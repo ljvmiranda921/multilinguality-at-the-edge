@@ -1,0 +1,222 @@
+% Figure 1: The Language Modelling Pipeline
+% Edge requirements press DOWN (cindigo), Multilinguality requirements press UP (ccrest)
+%
+% HOW TO EDIT:
+%   - Labels are in the "Edge labels" and "Multilinguality labels" sections at the bottom.
+%     Each label is a \node with a minipage. Replace the placeholder text.
+%   - To add/remove wedges per stage, copy or delete a \fill block.
+%   - Wedge size: adjust \wedgehalfwidth and \wedgeheight.
+%
+\begin{figure*}[t]
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \begin{tikzpicture}[
+                stage/.style={
+                        rectangle,
+                        rounded corners=6pt,
+                        draw=cslate3,
+                        fill=cslate1,
+                        thick,
+                        minimum height=1.2cm,
+                        minimum width=2.8cm,
+                        font=\small,
+                        align=center,
+                    },
+                connector/.style={->, thick, color=cslate3},
+                % Style for annotation labels
+                edgelabel/.style={
+                        font=\scriptsize,
+                        color=cdarkindigo,
+                        anchor=south,
+                        align=center,
+                    },
+                mllabel/.style={
+                        font=\scriptsize,
+                        color=cdarkcrest,
+                        anchor=north,
+                        align=center,
+                    },
+            ]
+
+            % ── Pipeline stages ──────────────────────────────────────
+            \node[stage] (data) at (0, 0)    {Data\\Collection};
+            \node[stage] (pre)  at (3.8, 0)  {Pre-training};
+            \node[stage] (post) at (7.6, 0)  {Post-training};
+            \node[stage] (inf)  at (11.4, 0) {Inference};
+
+            % ── Connectors ───────────────────────────────────────────
+            \draw[connector] (data) -- (pre);
+            \draw[connector] (pre)  -- (post);
+            \draw[connector] (post) -- (inf);
+
+            % ── Wedge dimensions ─────────────────────────────────────
+            \pgfmathsetmacro{\wedgehalfwidth}{0.25}
+            \pgfmathsetmacro{\wedgeheight}{0.8}
+            \pgfmathsetmacro{\edgetop}{1.1}   % y where edge wedge tips touch
+            \pgfmathsetmacro{\mlbot}{-1.1}    % y where multilinguality wedge tips touch
+
+            % ══════════════════════════════════════════════════════════
+            % EDGE REQUIREMENTS — pressing DOWN (cindigo)
+            % ══════════════════════════════════════════════════════════
+
+            % -- Data Collection --
+            \fill[cindigo, opacity=0.7]
+            ({-0.3 - \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- ({-0.3 + \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- (-0.3, \edgetop) -- cycle;
+            \fill[cindigo, opacity=0.7]
+            ({0.3 - \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- ({0.3 + \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- (0.3, \edgetop) -- cycle;
+
+            % -- Pre-training --
+            \fill[cindigo, opacity=0.7]
+            ({3.5 - \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- ({3.5 + \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- (3.5, \edgetop) -- cycle;
+            \fill[cindigo, opacity=0.7]
+            ({4.1 - \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- ({4.1 + \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- (4.1, \edgetop) -- cycle;
+
+            % -- Post-training --
+            \fill[cindigo, opacity=0.7]
+            ({7.3 - \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- ({7.3 + \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- (7.3, \edgetop) -- cycle;
+            \fill[cindigo, opacity=0.7]
+            ({7.9 - \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- ({7.9 + \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- (7.9, \edgetop) -- cycle;
+
+            % -- Inference --
+            \fill[cindigo, opacity=0.7]
+            ({11.1 - \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- ({11.1 + \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- (11.1, \edgetop) -- cycle;
+            \fill[cindigo, opacity=0.7]
+            ({11.7 - \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- ({11.7 + \wedgehalfwidth}, {\edgetop + \wedgeheight})
+            -- (11.7, \edgetop) -- cycle;
+
+            % ══════════════════════════════════════════════════════════
+            % MULTILINGUALITY REQUIREMENTS — pressing UP (ccrest)
+            % ══════════════════════════════════════════════════════════
+
+            % -- Data Collection --
+            \fill[ccrest, opacity=0.7]
+            ({-0.3 - \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- ({-0.3 + \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- (-0.3, \mlbot) -- cycle;
+            \fill[ccrest, opacity=0.7]
+            ({0.3 - \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- ({0.3 + \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- (0.3, \mlbot) -- cycle;
+
+            % -- Pre-training --
+            \fill[ccrest, opacity=0.7]
+            ({3.5 - \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- ({3.5 + \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- (3.5, \mlbot) -- cycle;
+            \fill[ccrest, opacity=0.7]
+            ({4.1 - \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- ({4.1 + \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- (4.1, \mlbot) -- cycle;
+
+            % -- Post-training --
+            \fill[ccrest, opacity=0.7]
+            ({7.3 - \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- ({7.3 + \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- (7.3, \mlbot) -- cycle;
+            \fill[ccrest, opacity=0.7]
+            ({7.9 - \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- ({7.9 + \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- (7.9, \mlbot) -- cycle;
+
+            % -- Inference --
+            \fill[ccrest, opacity=0.7]
+            ({11.1 - \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- ({11.1 + \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- (11.1, \mlbot) -- cycle;
+            \fill[ccrest, opacity=0.7]
+            ({11.7 - \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- ({11.7 + \wedgehalfwidth}, {\mlbot - \wedgeheight})
+            -- (11.7, \mlbot) -- cycle;
+
+            % ══════════════════════════════════════════════════════════
+            % EDGE LABELS (above wedges)
+            %   Edit the text inside each \node to annotate.
+            %   Format: short phrase per line, e.g. "N.~params: $<$1B"
+            % ══════════════════════════════════════════════════════════
+
+            \node[edgelabel] at (0, {\edgetop + \wedgeheight + 0.05}) {%
+                \begin{minipage}{2.5cm}\centering\scriptsize
+                    N.~tokens: XXXX\\        % <-- EDIT: e.g., "N. tokens: <100B"
+                    Domain: XXXX             % <-- EDIT: e.g., "Domain: narrow"
+                \end{minipage}};
+
+            \node[edgelabel] at (3.8, {\edgetop + \wedgeheight + 0.05}) {%
+                \begin{minipage}{2.5cm}\centering\scriptsize
+                    N.~params: XXXX\\        % <-- EDIT: e.g., "N. params: <3B"
+                    Vocab size: XXXX         % <-- EDIT: e.g., "Vocab size: <64K"
+                \end{minipage}};
+
+            \node[edgelabel] at (7.6, {\edgetop + \wedgeheight + 0.05}) {%
+                \begin{minipage}{2.5cm}\centering\scriptsize
+                    Quantization: XXXX\\     % <-- EDIT: e.g., "Quantization: INT4"
+                    Pruning: XXXX            % <-- EDIT: e.g., "Pruning: structured"
+                \end{minipage}};
+
+            \node[edgelabel] at (11.4, {\edgetop + \wedgeheight + 0.05}) {%
+                \begin{minipage}{2.5cm}\centering\scriptsize
+                    Latency: XXXX\\          % <-- EDIT: e.g., "Latency: <100ms"
+                    Memory: XXXX             % <-- EDIT: e.g., "Memory: <4GB"
+                \end{minipage}};
+
+            % ══════════════════════════════════════════════════════════
+            % MULTILINGUALITY LABELS (below wedges)
+            %   Edit the text inside each \node to annotate.
+            % ══════════════════════════════════════════════════════════
+
+            \node[mllabel] at (0, {\mlbot - \wedgeheight - 0.05}) {%
+                \begin{minipage}{2.5cm}\centering\scriptsize
+                    N.~languages: XXXX\\     % <-- EDIT: e.g., "N. languages: >100"
+                    Script diversity: XXXX   % <-- EDIT: e.g., "Script diversity: high"
+                \end{minipage}};
+
+            \node[mllabel] at (3.8, {\mlbot - \wedgeheight - 0.05}) {%
+                \begin{minipage}{2.5cm}\centering\scriptsize
+                    Vocab coverage: XXXX\\   % <-- EDIT: e.g., "Vocab coverage: all scripts"
+                    Capacity: XXXX           % <-- EDIT: e.g., "Capacity: per-lang repr."
+                \end{minipage}};
+
+            \node[mllabel] at (7.6, {\mlbot - \wedgeheight - 0.05}) {%
+                \begin{minipage}{2.5cm}\centering\scriptsize
+                    Lang.~balance: XXXX\\    % <-- EDIT: e.g., "Lang. balance: equal perf."
+                    Task coverage: XXXX      % <-- EDIT: e.g., "Task coverage: broad"
+                \end{minipage}};
+
+            \node[mllabel] at (11.4, {\mlbot - \wedgeheight - 0.05}) {%
+                \begin{minipage}{2.5cm}\centering\scriptsize
+                    Encoding cost: XXXX\\    % <-- EDIT: e.g., "Encoding cost: high for CJK"
+                    Tail langs: XXXX         % <-- EDIT: e.g., "Tail langs: degraded"
+                \end{minipage}};
+
+            % ── Section headers ──────────────────────────────────────
+            \node[font=\small\bfseries, color=cdarkindigo, anchor=south]
+            at (5.7, {\edgetop + \wedgeheight + 1.0}) {Edge Requirements};
+            \node[font=\small\bfseries, color=cdarkcrest, anchor=north]
+            at (5.7, {\mlbot - \wedgeheight - 1.0}) {Multilinguality Requirements};
+
+        \end{tikzpicture}%
+    }% end resizebox
+    \caption{
+        The language modelling pipeline under competing pressures.
+        Edge requirements (\textcolor{cindigo}{blue}) press down,
+        demanding smaller models, less memory, and faster inference.
+        Multilinguality requirements (\textcolor{ccrest}{orange}) press up,
+        demanding broader coverage, larger vocabularies, and more data.
+        The tension between these forces shapes design decisions at every stage.
+    }
+    \label{fig:pipeline}
+\end{figure*}
