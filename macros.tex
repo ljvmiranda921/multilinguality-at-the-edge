@@ -1,0 +1,86 @@
+% Please add yours
+\newcommand{\ljm}[1]{{\color{red} [ljm]: #1}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newtheorem{definition}{Definition}
+
+% brand colors
+% Core palette
+\definecolor{cblue}{HTML}{8EE8D8}
+\definecolor{clightblue}{HTML}{D1F9F1}
+\definecolor{cwarmblue}{HTML}{00BDB6}
+\definecolor{cdarkblue}{HTML}{133844}
+
+% Secondary palette - Crest
+\definecolor{clightcrest}{HTML}{FFE2C8}
+\definecolor{cwarmcrest}{HTML}{FFC392}
+\definecolor{ccrest}{HTML}{FD8153}
+\definecolor{cdarkcrest}{HTML}{DD3025}
+
+% Secondary palette - Cherry
+\definecolor{clightcherry}{HTML}{F2CAD8}
+\definecolor{cwarmcherry}{HTML}{E18AAC}
+\definecolor{ccherry}{HTML}{CD3572}
+\definecolor{cdarkcherry}{HTML}{911449}
+
+% Secondary palette - Purple
+\definecolor{clightpurple}{HTML}{F2ECF8}
+\definecolor{cwarmpurple}{HTML}{D1B7EB}
+\definecolor{cpurple}{HTML}{A368DF}
+\definecolor{cdarkpurple}{HTML}{681FB1}
+
+% Secondary palette - Indigo
+\definecolor{clightindigo}{HTML}{EBEDFB}
+\definecolor{cwarmindigo}{HTML}{B0B9F1}
+\definecolor{cindigo}{HTML}{5366E0}
+\definecolor{cdarkindigo}{HTML}{29347A}
+
+% Secondary palette - Green
+\definecolor{clightgreen}{HTML}{DFF2EA}
+\definecolor{cwarmgreen}{HTML}{AFDFCB}
+\definecolor{cgreen}{HTML}{4DB78C}
+\definecolor{cdarkgreen}{HTML}{13553A}
+
+% Greyscale palette
+\definecolor{cslate1}{HTML}{ECEEF1}
+\definecolor{cslate2}{HTML}{B5BDC8}
+\definecolor{cslate3}{HTML}{546072}
+\definecolor{cslate4}{HTML}{232830}
+
+% Heritage & specialized
+\definecolor{cheritageblue}{HTML}{85B09A}
+\definecolor{cjudgeyellow}{HTML}{FFB81C}
+
+% Equation highlighting helpers
+\newcommand{\perf}[1]{{\color{cgreen}#1}}          % performance terms
+\newcommand{\res}[1]{{\color{cpurple}#1}}          % resource terms
+\newcommand{\cost}[1]{{\color{cdarkcrest}#1}}      % cost terms
+
+% Highlighted paragraph markers matching taxonomy
+\newcommand{\dataparagraph}[1]{\paragraph{\colorbox{clightblue}{#1}}}
+\newcommand{\infraparagraph}[1]{\paragraph{\colorbox{clightcrest}{#1}}}
+\newcommand{\readinessparagraph}[1]{\paragraph{\colorbox{clightpurple}{#1}}}
+
+\newcommand{\numpapers}{229}
+
+\newcommand{\promptbox}[2][]{%
+  \begin{tcolorbox}[
+      rounded corners,
+      colback=white,
+      colframe=cblue,
+      boxrule=1pt,
+      toptitle=1mm,              % Space above the title
+      bottomtitle=1mm,           % Space below the title
+      left=10pt,                 % Left padding
+      right=10pt,                % Right padding
+      top=5pt,                   % Top padding
+      bottom=5pt,                % Bottom padding
+      title=#1,
+      colbacktitle=cblue,
+      coltitle=black,
+      boxrule=0.5mm,             % Frame thickness
+      boxsep=5pt,                % Space between content and box
+    ]
+    #2
+  \end{tcolorbox}%
+}

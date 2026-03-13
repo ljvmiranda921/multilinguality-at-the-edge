@@ -1,0 +1,230 @@
+title,paper_url,binding_constraint,devices_tested,intervention,model_size_if_released
+MasakhaNER 2.0: Africa-centric Transfer Learning for Named Entity Recognition,https://aclanthology.org/2022.emnlp-main.298/,Data,[],Cross-lingual Transfer,N/A (dataset+evaluation)
+MasakhaNEWS: News Topic Classification for African languages,https://aclanthology.org/2023.ijcnlp-main.10/,Readiness,[],Community-led Development,N/A (dataset)
+IrokoBench: A New Benchmark for African Languages in the Age of Large Language Models,https://aclanthology.org/2025.naacl-long.139/,Data,[],Localized Benchmarks,N/A (benchmark)
+Meta-Pretraining for Zero-Shot Cross-Lingual Named Entity Recognition in Low-Resource Philippine Languages,https://aclanthology.org/2025.mrl-main.8/,Data,[],Cross-lingual Transfer,N/A (method)
+On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes,https://openreview.net/forum?id=3zKtaqxLhW,Data,[],Data Scaling,N/A (method)
+LLM in a flash: Efficient Large Language Model Inference with Limited Memory,https://aclanthology.org/2024.acl-long.678/,Infrastructure,"[""Apple Silicon (M1/M2)"", ""iPhone""]",On-Device ML,N/A (method)
+Private prediction for large-scale synthetic text generation,https://aclanthology.org/2024.findings-emnlp.425/,Infrastructure,[],Privacy-preserving Training,N/A (method)
+Perplexed by Perplexity: Perplexity-Based Data Pruning With Small Reference Models,https://openreview.net/forum?id=1GTARJhxtq,Data,[],Data Curation,N/A (method)
+Composable Sparse Fine-Tuning for Cross-Lingual Transfer,https://aclanthology.org/2022.acl-long.125/,Data,[],Cross-lingual Transfer,N/A (method)
+mR3: Multilingual Rubric-Agnostic Reward Reasoning Models,https://arxiv.org/abs/2510.01146,Data,[],Evaluation Methods,"mR3 (open, finetuned)"
+Apertus: Democratizing Open and Compliant LLMs for Global Language Environments,https://arxiv.org/abs/2509.14233,Data,[],Data Curation,Apertus: 7B
+Revisiting Machine Translation for Cross-lingual Classification,https://aclanthology.org/2023.emnlp-main.399/,Data,[],Data Scaling,N/A (method)
+GPTCache: An Open-Source Semantic Cache for LLM Applications Enabling Faster Answers and Cost Savings,https://aclanthology.org/2023.nlposs-1.24/,Infrastructure,[],API Optimization,N/A (caching framework)
+AsyLex: A Dataset for Legal Language Processing of Refugee Claims,https://aclanthology.org/2023.nllp-1.24/,Data,[],Localized Benchmarks,N/A (benchmark)
+Flower: A Friendly Federated Learning Research Framework,https://arxiv.org/abs/2007.14390,Infrastructure,[],Privacy-preserving Training,N/A (framework: Flower)
+IndoNLG: Benchmark and Resources for Evaluating Indonesian Natural Language Generation,https://aclanthology.org/2021.emnlp-main.699/,Data,[],Localized Benchmarks,N/A (benchmark)
+Cendol: Open Instruction-tuned Generative Large Language Models for Indonesian Languages,https://aclanthology.org/2024.acl-long.796/,Data,[],Data Scaling,Cendol: 560M-13B
+EncryptedLLM: Privacy-Preserving Large Language Model Inference via GPU-Accelerated Fully Homomorphic Encryption,https://openreview.net/forum?id=PGNff6H1TV,Infrastructure,[],Privacy-preserving Inference,N/A (method)
+Global PIQA: Evaluating Physical Commonsense Reasoning Across 100+ Languages and Cultures,https://arxiv.org/abs/2510.24081,Data,[],Localized Benchmarks,N/A (benchmark)
+UPDESH: Synthesizing Grounded Instruction Tuning Data for 13 Indic [sic],https://arxiv.org/abs/2509.21294,Data,[],Data Scaling,N/A (dataset: Updesh)
+Mind the Privacy Unit! User-Level Differential Privacy for Language Model Fine-Tuning,https://openreview.net/forum?id=Jd0bCD12DS,Infrastructure,[],Privacy-preserving Training,N/A (method)
+FlashAttention: fast and memory-efficient exact attention with IO-awareness,,Infrastructure,"[""GPU (A100)""]",Efficient Architectures & Adaptation,N/A (method)
+FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning,https://openreview.net/forum?id=mZn2Xyh9Ec,Infrastructure,"[""GPU (A100, H100)""]",Efficient Architectures & Adaptation,N/A (method)
+TensorFlow Lite Micro: Embedded Machine Learning on TinyML Systems,https://arxiv.org/abs/2010.08678,Infrastructure,"[""microcontrollers"", ""embedded devices""]",On-Device ML,N/A (framework)
+A New Massive Multilingual Dataset for High-Performance Language Technologies,https://arxiv.org/abs/2403.14009,Data,[],Data Curation,N/A (dataset)
+QLoRA: Efficient Finetuning of Quantized LLMs,,Infrastructure,"[""GPU (single 48GB)""]",Efficient Architectures & Adaptation,"Guanaco: 7B, 13B, 33B, 65B"
+AfroLM: A Self-Active Learning-based Multilingual Pretrained Language Model for 23 African Languages,https://aclanthology.org/2022.sustainlp-1.11/,Readiness,[],Community-led Development,AfroLM: various sizes
+To Translate or Not to Translate: A Systematic Investigation of Translation-Based Cross-Lingual Transfer to Low-Resource Languages,https://aclanthology.org/2024.naacl-long.298/,Data,[],Data Scaling,N/A (method)
+Switch transformers: scaling to trillion parameter models with simple and efficient sparsity,,Infrastructure,"[""TPU""]",Efficient Architectures & Adaptation,Switch Transformer: up to 1.6T
+TranslateGemma Technical Report,https://arxiv.org/abs/2601.09012,Readiness,[],Capacity Building,TranslateGemma: 2B
+\textttllama.cpp: LLM Inference in C/C++,https://github.com/ggml-org/llama.cpp,Infrastructure,"[""CPU"", ""GPU"", ""Apple Silicon""]",On-Device ML,N/A (inference engine)
+M-RewardBench: Evaluating Reward Models in Multilingual Settings,https://aclanthology.org/2025.acl-long.3/,Data,[],Localized Benchmarks,N/A (benchmark)
+Building Benchmarks from the Ground Up: Community-Centered Evaluation of LLMs in Healthcare Chatbot Settings,https://arxiv.org/abs/2509.24506,Data,[],Localized Benchmarks,N/A (benchmark)
+LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models,https://aclanthology.org/2023.emnlp-main.825/,Infrastructure,[],API Optimization,N/A (method)
+LongLLMLingua: Accelerating and Enhancing LLMs in Long Context Scenarios via Prompt Compression,https://aclanthology.org/2024.acl-long.91/,Infrastructure,[],API Optimization,N/A (method)
+Mixtral of Experts,https://arxiv.org/abs/2401.04088,Infrastructure,[],Efficient Architectures & Adaptation,"Mixtral: 8x7B, 8x22B"
+AmericasNLI: Machine translation and natural language inference systems for Indigenous languages of the Americas,https://doi.org/10.3389/frai.2022.995667,Data,[],Cross-lingual Transfer,N/A (dataset)
+FederatedScope-LLM: A Comprehensive Package for Fine-tuning Large Language Models in Federated Learning,https://doi.org/10.1145/3637528.3671573,Infrastructure,[],Privacy-preserving Training,N/A (framework)
+Advances in Neural Information Processing Systems,https://proceedings.neurips.cc/paper_files/paper/2023/file/d49042a5d49818711c401d34172f9900-Paper-Datasets_and_Benchmarks.pdf,Data,[],Data Curation,"MADLAD-400: 3B, 7.2B, 10.7B"
+SLED: A Speculative LLM Decoding Framework for Efficient Edge Serving,https://doi.org/10.1145/3769102.3770608,Infrastructure,[],API Optimization,N/A (method)
+"WangchanThaiInstruct: An instruction-following Dataset for Culture-Aware, Multitask, and Multi-domain Evaluation in Thai",https://aclanthology.org/2025.emnlp-main.175/,Data,[],Data Scaling,WangchanThaiInstruct (finetuned)
+FATE: An Industrial Grade Platform for Collaborative Learning with Data Protection,,Infrastructure,[],Privacy-preserving Training,N/A (framework: FATE-LLM)
+"On LLMs-Driven Synthetic Data Generation, Curation, and Evaluation: A Survey",https://aclanthology.org/2024.findings-acl.658/,Data,[],Data Scaling,N/A (method)
+"ATLAS: Adaptive Transfer Scaling Laws for Multilingual Pretraining, Finetuning, and Decoding the Curse of Multilinguality",https://arxiv.org/abs/2510.22037,Data,[],Cross-lingual Transfer,N/A (method)
+SEACrowd: A Multilingual Multimodal Data Hub and Benchmark Suite for Southeast Asian Languages,https://aclanthology.org/2024.emnlp-main.296/,Readiness,[],Community-led Development,N/A (data hub)
+On-Policy Distillation,,Data,[],Data Scaling,N/A (method)
+IndicParam: Benchmark to evaluate LLMs on low-resource Indic Languages,https://arxiv.org/abs/2512.00333,Data,[],Localized Benchmarks,N/A (benchmark)
+How Does Quantization Affect Multilingual LLMs?,https://aclanthology.org/2024.findings-emnlp.935/,Infrastructure,[],Smaller LLMs,N/A (analysis of quantization)
+When Less is More: Investigating Data Pruning for Pretraining LLMs at Scale,https://arxiv.org/abs/2309.04564,Data,[],Data Curation,N/A (method)
+EuroLLM-9B: Technical Report,https://arxiv.org/abs/2506.04079,Data,[],Data Curation; Data Scaling,"EuroLLM: 1.7B, 9B"
+Nemotron-Personas: Improve AI Training With the First Synthetic Personas Dataset Aligned to Real-World Distributions,https://huggingface.co/blog/nvidia/nemotron-personas,Data,[],Data Scaling,N/A (dataset)
+Developing a Named Entity Recognition Dataset for Tagalog,https://aclanthology.org/2023.sealp-1.2/,Data,[],Cross-lingual Transfer,N/A (method)
+FilBench: Can LLMs Understand and Generate Filipino?,https://aclanthology.org/2025.emnlp-main.127/,Data,[],Localized Benchmarks,N/A (benchmark)
+MLC-LLM,https://github.com/mlc-ai/mlc-llm,Infrastructure,"[""GPU"", ""mobile (iOS/Android)"", ""browser""]",On-Device ML,N/A (inference engine)
+THOR: Secure Transformer Inference with Homomorphic Encryption,https://doi.org/10.1145/3719027.3765150,Infrastructure,[],Privacy-preserving Inference,N/A (method)
+SemEval-2023 Task 12: Sentiment Analysis for African Languages (AfriSenti-SemEval),https://aclanthology.org/2023.semeval-1.315/,Data,[],Cross-lingual Transfer,N/A (shared task)
+SEA-LION: Southeast Asian Languages in One Network,https://arxiv.org/abs/2504.05747,Data,[],Data Curation,"SEA-LION: 3B, 8B"
+"CulturaX: A Cleaned, Enormous, and Multilingual Dataset for Large Language Models in 167 Languages",https://aclanthology.org/2024.lrec-main.377/,Data,[],Data Curation,N/A (dataset)
+DSSD: Efficient Edge-Device Deployment and Collaborative Inference via Distributed Split Speculative Decoding,https://openreview.net/forum?id=5vkXfhUmnn,Infrastructure,[],API Optimization,N/A (method)
+No Language Left Behind: Scaling Human-Centered Machine Translation,https://arxiv.org/abs/2207.04672,Readiness,[],Capacity Building,"NLLB-200: 600M, 1.3B, 3.3B, 54.5B"
+AfroBench: How Good are Large Language Models on African Languages?,https://aclanthology.org/2025.findings-acl.976/,Data,[],Localized Benchmarks,N/A (benchmark)
+Better Quality Pre-training Data and T5 Models for African Languages,https://aclanthology.org/2023.emnlp-main.11/,Data,[],Data Curation,N/A (dataset)
+LLMLLingua-2: Data Distillation for Efficient and Faithful Task-Agnostic Prompt Compression,https://aclanthology.org/2024.findings-acl.57/,Infrastructure,[],API Optimization,N/A (method)
+FineWeb2: One Pipeline to Scale Them All \textemdash Adapting Pre-Training Data Processing to Every Language,https://openreview.net/forum?id=jnRBe6zatP,Data,[],Data Curation,N/A (dataset)
+Seed-Free Synthetic Data Generation Framework for Instruction-Tuning LLMs: A Case Study in Thai,https://arxiv.org/abs/2411.15484,Data,[],Data Scaling,N/A (method)
+UniBridge: A Unified Approach to Cross-Lingual Transfer Learning for Low-Resource Languages,https://aclanthology.org/2024.acl-long.174/,Data,[],Cross-lingual Transfer,N/A (method)
+Toward Community-Based Natural Language Processing (CBNLP): Cocreating With Communities,https://doi.org/10.2196/48498,Data,[],Localized Benchmarks,N/A (benchmark)
+M-Prometheus: A Suite of Open Multilingual LLM Judges,https://openreview.net/forum?id=Atyk8lnIQQ,Data,[],Evaluation Methods,"M-Prometheus (open, finetuned)"
+CamelEval: Advancing Culturally Aligned Arabic Language Models and Benchmarks,https://arxiv.org/abs/2409.12623,Data,[],Localized Benchmarks,N/A (benchmark)
+ASHABot: An LLM-Powered Chatbot to Support the Informational Needs of Community Health Workers,https://doi.org/10.1145/3706598.3713680,Data,[],Localized Benchmarks,N/A (benchmark)
+EuroLLM-22B: Technical Report,https://arxiv.org/abs/2602.05879,Data,[],Data Scaling,EuroLLM: 22B
+GPT Semantic Cache: Reducing LLM Costs and Latency via Semantic Embedding Caching,https://arxiv.org/abs/2411.05276,Infrastructure,[],API Optimization,N/A (caching method)
+WebLLM: A High-Performance In-Browser LLM Inference Engine,https://arxiv.org/abs/2412.15803,Infrastructure,"[""browser (WebGPU)""]",Offline-First Design,N/A (framework)
+Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning,https://aclanthology.org/2024.acl-long.620/,Readiness,[],Capacity Building,Aya (dataset for 101 languages)
+Global MMLU: Understanding and Addressing Cultural and Linguistic Biases in Multilingual Evaluation,https://aclanthology.org/2025.acl-long.919/,Data,[],Localized Benchmarks,N/A (benchmark)
+PowerInfer: Fast Large Language Model Serving with a Consumer-grade GPU,https://doi.org/10.1145/3694715.3695964,Infrastructure,"[""smartphone (Android)""]",On-Device ML,N/A (inference engine)
+Decentralized Federated Averaging,,Infrastructure,[],Privacy-preserving Training,N/A (method)
+D4: Improving LLM Pretraining via Document De-Duplication and Diversification,,Data,[],Data Curation,N/A (method)
+Reverse-engineering GGUF | Post-Training Quantization,https://www.youtube.com/watch?v=vW30o4U9BFE,Infrastructure,"[""CPU"", ""GPU"", ""mobile"", ""edge""]",Offline-First Design,N/A (format specification)
+Fast and Cost-effective Speculative Edge-Cloud Decoding with Early Exits,https://openreview.net/forum?id=PTIUjARnbc,Infrastructure,[],API Optimization,N/A (method)
+MNN-LLM: A Generic Inference Engine for Fast Large Language Model Deployment on Mobile Devices,https://doi.org/10.1145/3700410.3702126,Infrastructure,"[""mobile (Android/iOS)""]",On-Device ML,N/A (inference engine)
+Pretrained Models for Multilingual Federated Learning,https://aclanthology.org/2022.naacl-main.101/,Infrastructure,[],Privacy-preserving Training,N/A (method)
+IndoNLU: Benchmark and Resources for Evaluating Indonesian Natural Language Understanding,https://aclanthology.org/2020.aacl-main.85/,Data,[],Localized Benchmarks,N/A (benchmark)
+mT5: A Massively Multilingual Pre-trained Text-to-Text Transformer,https://aclanthology.org/2021.naacl-main.41/,Data,[],Data Curation,"mT5: 300M, 580M, 1.2B, 3.7B, 13B"
+Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance,https://arxiv.org/abs/2403.16952,Data,[],Data Curation,N/A (method)
+Translate-Train Embracing Translationese Artifacts,https://aclanthology.org/2022.acl-short.40/,Data,[],Data Scaling,N/A (method)
+AfriqueLLM: How Data Mixing and Model Architecture Impact Continued Pre-training for African Languages,https://arxiv.org/abs/2601.06395,Readiness,[],Capacity Building,AfriqueLLM
+PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration,https://aclanthology.org/2025.acl-long.532/,Infrastructure,[],Privacy-preserving Inference,N/A (method)
+Operationalizing Data Minimization for Privacy-Preserving LLM Prompting,https://arxiv.org/abs/2510.03662,Infrastructure,[],Privacy-preserving Training,N/A (method)
+MobileLLM: Optimizing Sub-Billion Parameter Language Models for On-Device Use Cases,https://arxiv.org/abs/2402.14905,Infrastructure,"[""iPhone"", ""Samsung Galaxy""]",Smaller LLMs,"MobileLLM: 125M, 350M"
+SmolLM2: When Smol Goes Big -- Data-Centric Training of a Fully Open Small Language Model,https://openreview.net/forum?id=3JiCl2A14H,Infrastructure,[],Smaller LLMs,"SmolLM2: 135M, 360M, 1.7B"
+AWQ: Activation-aware Weight Quantization for On-Device LLM Compression and Acceleration,https://arxiv.org/abs/2306.00978,Infrastructure,"[""GPU (A100)"", ""NVIDIA Orin""]",Smaller LLMs,N/A (method)
+OPTQ: Accurate Quantization for Generative Pre-trained Transformers,https://arxiv.org/abs/2210.17323,Infrastructure,"[""GPU (A100, A6000)""]",Smaller LLMs,N/A (method)
+LLM-QAT: Data-Free Quantization Aware Training for Large Language Models,https://arxiv.org/abs/2305.17888,Infrastructure,"[""GPU (A100)""]",Smaller LLMs,N/A (method)
+GOLD: Generalized Knowledge Distillation via Out-of-Distribution-Guided Language Model,https://arxiv.org/abs/2403.12738,Infrastructure,[],Smaller LLMs,N/A (method)
+Universal Cross-Tokenizer Distillation via Approximate Likelihood Matching,https://arxiv.org/abs/2502.08559,Infrastructure,[],Smaller LLMs,N/A (method)
+The Low-Resource Double Bind: An Empirical Study of Pruning for Low-Resource Machine Translation,https://aclanthology.org/2021.findings-emnlp.282/,Infrastructure,[],Smaller LLMs,N/A (method)
+SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot,https://arxiv.org/abs/2301.00774,Infrastructure,"[""GPU (A100)""]",Smaller LLMs,N/A (method)
+A Simple and Effective Pruning Approach for Large Language Models (Wanda),https://arxiv.org/abs/2306.11695,Infrastructure,"[""GPU (A100)""]",Smaller LLMs,N/A (method)
+SqueezeLLM: Dense-and-Sparse Quantization,https://arxiv.org/abs/2306.07629,Infrastructure,"[""GPU (A6000)""]",Smaller LLMs,N/A (method)
+SpQR: A Sparse-Quantized Representation for Near-Lossless LLM Weight Compression,https://arxiv.org/abs/2306.03078,Infrastructure,"[""GPU (A100)""]",Smaller LLMs,N/A (method)
+QuIP: 2-Bit Quantization of Large Language Models With Guarantees,https://arxiv.org/abs/2307.13304,Infrastructure,"[""GPU (A100)""]",Smaller LLMs,N/A (method)
+QuIP#: Even Better LLM Quantization with Hadamard Incoherence and Lattice Codebooks,https://arxiv.org/abs/2402.04396,Infrastructure,"[""GPU (A100, RTX 4090)""]",Smaller LLMs,N/A (method)
+AQLM: Extreme Compression of Large Language Models via Additive Quantization,https://arxiv.org/abs/2401.06118,Infrastructure,"[""GPU (A100, RTX 3090)""]",Smaller LLMs,N/A (method)
+BitNet: Scaling 1-Bit Transformers for Large Language Models,https://arxiv.org/abs/2310.11453,Infrastructure,[],Smaller LLMs,N/A (method)
+The Era of 1-bit LLMs: All Large Language Models are in 1.58 Bits,https://arxiv.org/abs/2402.17764,Infrastructure,[],Smaller LLMs,N/A (method)
+Sheared LLaMA: Accelerating Language Model Pre-training via Structured Pruning,https://arxiv.org/abs/2310.06694,Infrastructure,"[""GPU (A100)""]",Smaller LLMs,"Sheared-LLaMA: 1.3B, 2.7B"
+TinyLlama: An Open-Source Small Language Model,https://arxiv.org/abs/2401.02385,Infrastructure,[],Smaller LLMs,TinyLlama: 1.1B
+Phi-2: The Surprising Power of Small Language Models,https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/,Infrastructure,[],Smaller LLMs,Phi-2: 2.7B
+Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone,https://arxiv.org/abs/2404.14219,Infrastructure,"[""iPhone 14 (A16 Bionic)""]",Smaller LLMs,Phi-3-mini: 3.8B
+Gemma: Open Models Based on Gemini Research and Technology,https://arxiv.org/abs/2403.08295,Infrastructure,"[""GPU (A100, H100)"", ""TPU""]",Smaller LLMs,"Gemma: 2B, 7B"
+Gemma 2: Improving Open Language Models at a Practical Size,https://arxiv.org/abs/2408.00118,Infrastructure,"[""GPU (A100, H100)"", ""TPU""]",Smaller LLMs,"Gemma 2: 2B, 9B, 27B"
+OpenELM: An Efficient Language Model Family with Open-source Training and Inference Framework,https://arxiv.org/abs/2404.14619,Infrastructure,"[""Apple Silicon (M2 Ultra)""]",Smaller LLMs,"OpenELM: 270M, 450M, 1.1B, 3B"
+OLMo 2 Furious,https://openreview.net/forum?id=2ezugTT9kU,Infrastructure,"[""GPU (H100)""]",Smaller LLMs,"OLMo 2: 1B, 7B, 13B, 32B"
+Llama 2: Open Foundation and Fine-Tuned Chat Models,https://arxiv.org/abs/2307.09288,Infrastructure,"[""GPU (A100)""]",Smaller LLMs,"Llama 2: 7B, 13B, 70B"
+The Llama 3 Herd of Models,https://arxiv.org/abs/2407.21783,Infrastructure,"[""GPU (H100)""]",Smaller LLMs,"Llama 3: 8B, 70B, 405B"
+Mistral 7B,https://arxiv.org/abs/2310.06825,Infrastructure,"[""GPU (A100)""]",Smaller LLMs,Mistral: 7B
+Qwen2.5 Technical Report,https://arxiv.org/abs/2412.15115,Infrastructure,"[""GPU (A100, H100)""]",Smaller LLMs,"Qwen2.5: 0.5B, 1.5B, 3B, 7B, 14B, 32B, 72B"
+Ollama,https://github.com/ollama/ollama,Infrastructure,"[""CPU"", ""GPU"", ""Apple Silicon""]",On-Device ML,N/A (inference engine)
+"vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention",https://arxiv.org/abs/2309.06180,Infrastructure,"[""GPU (A100, A10G)""]",On-Device ML,N/A (inference engine)
+ExecuTorch,https://pytorch.org/executorch/,Infrastructure,"[""mobile (iOS/Android)"", ""microcontrollers"", ""Apple Silicon""]",On-Device ML,N/A (framework)
+MediaPipe LLM Inference API,https://ai.google.dev/edge/mediapipe/solutions/genai/llm_inference,Infrastructure,"[""mobile (Android/iOS)"", ""browser""]",On-Device ML,N/A (framework)
+EdgeMoE: Fast On-Device Inference of MoE-based Large Language Models,https://arxiv.org/abs/2308.14352,Infrastructure,"[""Jetson Orin Nano (8GB)"", ""Raspberry Pi 5""]",On-Device ML,N/A (method)
+LLMCad: Fast and Scalable On-device Large Language Model Inference,https://arxiv.org/abs/2309.04255,Infrastructure,"[""mobile (Pixel 7)""]",On-Device ML,N/A (method)
+MELTing Point: Mobile Evaluation of Language Transformers,https://arxiv.org/abs/2403.12844,Infrastructure,"[""Samsung Galaxy S21 (6GB)"", ""Samsung Galaxy S24 (12GB)"", ""iPhone 15 Pro""]",On-Device ML,N/A (benchmark)
+Longformer: The Long-Document Transformer,https://arxiv.org/abs/2004.05150,Infrastructure,"[""GPU (RTX 8000)""]",Efficient Architectures & Adaptation,Longformer: 149M
+Mamba: Linear-Time Sequence Modeling with Selective State Spaces,https://arxiv.org/abs/2312.00752,Infrastructure,"[""GPU (A100)""]",Efficient Architectures & Adaptation,"Mamba: 130M, 370M, 790M, 1.4B, 2.8B"
+RWKV: Reinventing RNNs for the Transformer Era,https://arxiv.org/abs/2305.13048,Infrastructure,"[""GPU (A100)""]",Efficient Architectures & Adaptation,RWKV: 169M-14B
+GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints,https://arxiv.org/abs/2305.13245,Infrastructure,"[""GPU (TPUv4)""]",Efficient Architectures & Adaptation,N/A (method)
+LoRA: Low-Rank Adaptation of Large Language Models,https://arxiv.org/abs/2106.09685,Infrastructure,"[""GPU (A100)""]",Efficient Architectures & Adaptation,N/A (method)
+Prefix-Tuning: Optimizing Continuous Prompts for Generation,https://aclanthology.org/2021.acl-long.353/,Infrastructure,[],Efficient Architectures & Adaptation,N/A (method)
+DoRA: Weight-Decomposed Low-Rank Adaptation,https://arxiv.org/abs/2402.09353,Infrastructure,[],Efficient Architectures & Adaptation,N/A (method)
+VeRA: Vector-based Random Matrix Adaptation,https://arxiv.org/abs/2310.11454,Infrastructure,[],Efficient Architectures & Adaptation,N/A (method)
+GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection,https://arxiv.org/abs/2403.03507,Infrastructure,"[""GPU (A100, RTX 4090)""]",Efficient Architectures & Adaptation,N/A (method)
+LongLoRA: Efficient Fine-tuning of Long-Context Large Language Models,https://arxiv.org/abs/2309.12307,Infrastructure,"[""GPU (A100)""]",Efficient Architectures & Adaptation,N/A (method)
+LM Studio,https://lmstudio.ai/,Infrastructure,"[""CPU"", ""GPU"", ""Apple Silicon""]",Offline-First Design,N/A (application)
+Speculative Decoding with Big Little Decoder,https://arxiv.org/abs/2302.07863,Infrastructure,"[""GPU (A100)""]",API Optimization,N/A (method)
+Fast Inference from Transformers via Speculative Decoding,https://arxiv.org/abs/2211.17192,Infrastructure,"[""TPU""]",API Optimization,N/A (method)
+RouteLLM: Learning to Route LLMs with Preference Data,https://arxiv.org/abs/2406.18665,Infrastructure,[],API Optimization,N/A (method)
+FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance,https://arxiv.org/abs/2305.05176,Infrastructure,[],API Optimization,N/A (method)
+CCNet: Extracting High Quality Monolingual Datasets from Web Crawl Data,https://aclanthology.org/2020.lrec-1.494/,Data,[],Data Curation,N/A (pipeline)
+The ROOTS Search Tool: Data Transparency for LLMs,https://arxiv.org/abs/2302.14035,Data,[],Data Curation,N/A (dataset: ROOTS for BLOOM)
+BLOOM: A 176B-Parameter Open-Access Multilingual Language Model,https://arxiv.org/abs/2211.05100,Data,"[""GPU (A100)""]",Data Curation,BLOOM: 560M-176B
+Glot500: Scaling Multilingual Corpora and Language Technology to 500 Languages,https://aclanthology.org/2023.acl-long.61/,Data,[],Data Curation,Glot500-m: 395M
+"The RefinedWeb Dataset for Falcon LLM: Outperforming Curated Corpora with Web Data, and Web Data Only",https://arxiv.org/abs/2306.01116,Data,[],Data Curation,"Falcon: 7B, 40B, 180B"
+Dolma: An Open Corpus of Three Trillion Tokens for Language Model Pretraining Research,https://arxiv.org/abs/2402.00159,Data,[],Data Curation,N/A (dataset)
+RedPajama: An Open Dataset for Training Large Language Models,https://arxiv.org/abs/2411.12372,Data,[],Data Curation,N/A (dataset)
+How Good is Your Tokenizer? On the Monolingual Performance of Multilingual Language Models,https://aclanthology.org/2021.acl-long.243/,Data,[],Data Curation,N/A (analysis)
+Language Model Tokenizers Introduce Unfairness Between Languages,https://openreview.net/forum?id=78yDLKi95p,Data,[],Data Curation,N/A (analysis)
+Consent in Crisis: The Rapid Decline of the AI Data Commons,https://arxiv.org/abs/2407.14933,Data,[],Data Curation,N/A (audit)
+Quality at a Glance: An Audit of Web-Crawled Multilingual Datasets,https://doi.org/10.1162/tacl_a_00447,Data,[],Data Curation,N/A (audit)
+Deduplicating Training Data Makes Language Models Better,https://aclanthology.org/2022.acl-long.577/,Data,[],Data Curation,N/A (method)
+Scaling Data-Constrained Language Models,https://arxiv.org/abs/2305.16264,Data,[],Data Curation,N/A (method)
+DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining,https://arxiv.org/abs/2305.10429,Data,[],Data Curation,N/A (method)
+Self-Instruct: Aligning Language Models with Self-Generated Instructions,https://aclanthology.org/2023.acl-long.754/,Data,[],Data Scaling,N/A (method)
+Stanford Alpaca: An Instruction-following LLaMA Model,https://github.com/tatsu-lab/stanford_alpaca,Data,[],Data Scaling,Alpaca: 7B
+Magpie: Alignment Data Synthesis from Scratch by Prompting Aligned LLMs with Nothing,https://arxiv.org/abs/2406.08464,Data,[],Data Scaling,N/A (method)
+Aya Expanse: Combining Research Breakthroughs for a New Multilingual Frontier,https://arxiv.org/abs/2412.04261,Data,[],Data Scaling,"Aya Expanse: 8B, 32B"
+Multilingual Arbitrage: Optimizing Data Pools to Accelerate Multilingual Progress,https://arxiv.org/abs/2408.14960,Data,[],Data Scaling,N/A (method)
+The Art of Asking: Multilingual Prompt Optimization for Synthetic Data,https://arxiv.org/abs/2510.19806,Data,[],Data Scaling,N/A (method)
+Textbooks Are All You Need,https://arxiv.org/abs/2306.11644,Data,[],Data Scaling,Phi-1: 1.3B
+Training language models to follow instructions with human feedback (InstructGPT),https://arxiv.org/abs/2203.02155,Data,[],Data Scaling,"InstructGPT: 1.3B, 6B, 175B"
+Orca 2: Teaching Small Language Models How to Reason,https://arxiv.org/abs/2311.11045,Data,[],Data Scaling,"Orca 2: 7B, 13B"
+Cosmopedia: Creating Large-Scale Synthetic Data for Pre-training,https://arxiv.org/abs/2406.13274,Data,[],Data Scaling,N/A (dataset)
+LLaMA Beyond English: An Empirical Study on Language Capability Transfer,https://arxiv.org/abs/2401.01055,Data,[],Data Scaling,N/A (method)
+UltraChat: A Large-scale Auto-generated Multi-round Dialogue Data,https://arxiv.org/abs/2305.14233,Data,[],Data Scaling,N/A (dataset)
+OpenHermes 2.5: An Open Dataset of Synthetic Data for Generalist LLM Assistants,https://huggingface.co/teknium/OpenHermes-2.5-Mistral-7B,Data,[],Data Scaling,OpenHermes: 7B
+Scaling Laws for Multilingual Language Models,https://aclanthology.org/2025.findings-acl.221/,Data,[],Data Scaling,N/A (method)
+MAD-X: An Adapter-Based Framework for Multi-Task Cross-Lingual Transfer,https://aclanthology.org/2020.emnlp-main.617/,Data,[],Cross-lingual Transfer,N/A (method)
+How Vocabulary Sharing Facilitates Multilingualism in LLaMA?,https://arxiv.org/abs/2311.09071,Data,[],Cross-lingual Transfer,N/A (analysis)
+GlotLID: Language Identification for Low-Resource Languages,https://aclanthology.org/2024.emnlp-main.989/,Data,[],Cross-lingual Transfer,N/A (tool)
+MasakhaPOS: Part-of-Speech Tagging for Typologically Diverse African Languages,https://aclanthology.org/2023.acl-long.609/,Data,[],Cross-lingual Transfer,N/A (dataset)
+Unsupervised Cross-lingual Representation Learning at Scale (XLM-R),https://aclanthology.org/2020.acl-main.747/,Data,[],Cross-lingual Transfer,"XLM-R: 270M, 550M"
+Extending the Frontier of ChatGPT: Code Generation and Debugging,https://arxiv.org/abs/2307.08260,Data,[],Cross-lingual Transfer,N/A (method)
+Translation Artifacts in Cross-lingual Transfer Learning,https://aclanthology.org/2020.emnlp-main.618/,Data,[],Cross-lingual Transfer,N/A (analysis)
+"Untangling the Influence of Typology, Data, and Model Architecture on Ranking Transfer Languages",https://aclanthology.org/2025.lm4uc-1.4/,Data,[],Cross-lingual Transfer,N/A (method)
+MEGA: Multilingual Evaluation of Generative AI,https://aclanthology.org/2023.emnlp-main.258/,Data,[],Localized Benchmarks,N/A (benchmark)
+"MEGAVERSE: Benchmarking LLMs Across Languages, Modalities, Models and Tasks",https://arxiv.org/abs/2311.07463,Data,[],Localized Benchmarks,N/A (benchmark)
+XTREME: A Massively Multilingual Multi-task Benchmark for Evaluating Cross-lingual Generalisation,https://arxiv.org/abs/2003.11080,Data,[],Localized Benchmarks,N/A (benchmark)
+XTREME-R: Towards More Challenging and Nuanced Multilingual Evaluation,https://aclanthology.org/2021.emnlp-main.802/,Data,[],Localized Benchmarks,N/A (benchmark)
+Having Beer after Prayer? Measuring Cultural Bias in Large Language Models,https://aclanthology.org/2024.acl-long.862/,Data,[],Localized Benchmarks,N/A (benchmark)
+FLORES-200: Enabling High-Quality Machine Translation Evaluation Across 200 Languages,https://arxiv.org/abs/2207.04672,Data,[],Localized Benchmarks,N/A (benchmark)
+TyDi QA: A Benchmark for Information-Seeking Question Answering in Typologically Diverse Languages,https://aclanthology.org/2020.tacl-1.30/,Data,[],Localized Benchmarks,N/A (benchmark)
+NusaCrowd: Open Source Initiative for Indonesian NLP Resources,https://aclanthology.org/2023.findings-acl.868/,Data,[],Localized Benchmarks,N/A (data hub)
+The Zeno's Paradox of 'Low-Resource' Languages,https://aclanthology.org/2024.emnlp-main.983/,Data,[],Localized Benchmarks,N/A (analysis)
+"The Bitter Lesson Learned from 2,000+ Multilingual Benchmarks",https://arxiv.org/abs/2504.15521,Data,[],Localized Benchmarks,N/A (analysis)
+Belebele: A Parallel Evaluation Benchmark for Multilingual LLMs across 122 Languages,https://arxiv.org/abs/2308.16884,Data,[],Localized Benchmarks,N/A (benchmark)
+AfriQA: Cross-lingual Open-Retrieval Question Answering for African Languages,https://aclanthology.org/2023.emnlp-main.807/,Data,[],Localized Benchmarks,N/A (benchmark)
+SEA-VL: A Multicultural Vision-Language Dataset for Southeast Asia,https://aclanthology.org/2025.acl-long.916/,Data,[],Localized Benchmarks,N/A (dataset)
+Translationese-index: Using Likelihood Ratios for Graded and Generalizable Measurement of Translationese,https://aclanthology.org/2025.acl-long.1042/,Data,[],Evaluation Methods,N/A (method)
+Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena,https://arxiv.org/abs/2306.05685,Data,[],Evaluation Methods,N/A (benchmark)
+Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference,https://arxiv.org/abs/2403.04132,Data,[],Evaluation Methods,N/A (platform)
+Aya Model: An Instruction Finetuned Open-Access Multilingual Language Model,https://aclanthology.org/2024.acl-long.845/,Readiness,[],Capacity Building,Aya-101: 13B
+Participatory Research for Low-resourced Machine Translation: A Case Study in African Languages,https://aclanthology.org/2020.findings-emnlp.195/,Readiness,[],Capacity Building,N/A (MT models for 30+ languages)
+Masakhane -- Machine Translation For Africa,https://arxiv.org/abs/2003.11529,Readiness,[],Community-led Development,N/A (community initiative)
+Differentially Private Decoding in Large Language Models,https://arxiv.org/abs/2205.13621,Infrastructure,[],Privacy-preserving Inference,N/A (method)
+Prompt Stealing Attacks Against Large Language Models,https://arxiv.org/abs/2402.12959,Infrastructure,[],Privacy-preserving Inference,N/A (analysis)
+Efficient Memory Management for Large Language Model Serving with PagedAttention,https://arxiv.org/abs/2309.06180,Infrastructure,"[""GPU (A100)""]",Efficient Architectures & Adaptation,N/A (method)
+FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-precision,https://arxiv.org/abs/2407.08691,Infrastructure,"[""GPU (H100)""]",Efficient Architectures & Adaptation,N/A (method)
+Ring Attention with Blockwise Transformers for Near-Infinite Context,https://arxiv.org/abs/2310.01889,Infrastructure,"[""GPU (A100)"", ""TPU""]",Efficient Architectures & Adaptation,N/A (method)
+Mixture-of-Depths: Dynamically Allocating Compute in Transformer-Based Language Models,https://arxiv.org/abs/2404.02258,Infrastructure,[],Efficient Architectures & Adaptation,N/A (method)
+Aya 23: Open Weight Releases to Further Multilingual Progress,https://arxiv.org/abs/2405.15032,Readiness,[],Capacity Building,"Aya-23: 8B, 35B"
+BLOOMZ & mT0: Crosslingual Generalization through Multitask Finetuning,https://arxiv.org/abs/2211.01786,Readiness,[],Capacity Building,"BLOOMZ: 560M-176B, mT0: 300M-13B"
+Sabia-2: A New Generation of Portuguese Large Language Models,https://arxiv.org/abs/2403.09887,Readiness,[],Capacity Building,"Sabia-2: 7B, 70B"
+Jais and Jais-chat: Arabic-Centric Foundation and Instruction-Tuned Open Generative Large Language Models,https://arxiv.org/abs/2308.16149,Readiness,[],Capacity Building,"Jais: 13B, 30B"
+YaLM 100B: A GPT-Like Language Model for Russian,https://github.com/yandex/YaLM-100B,Readiness,[],Capacity Building,YaLM: 100B
+BioMistral: A Collection of Open-Source Pretrained Large Language Models for Medical Domains,https://arxiv.org/abs/2402.10373,Data,[],Data Scaling,BioMistral: 7B
+Tele-FLM Technical Report,https://arxiv.org/abs/2404.16645,Data,[],Data Curation,Tele-FLM: 52B
+InternLM2 Technical Report,https://arxiv.org/abs/2403.17297,Data,[],Data Curation,"InternLM2: 1.8B, 7B, 20B"
+Yi: Open Foundation Models by 01.AI,https://arxiv.org/abs/2403.04652,Data,[],Data Curation,"Yi: 6B, 34B"
+Baichuan 2: Open Large-scale Language Models,https://arxiv.org/abs/2309.10305,Data,[],Data Curation,"Baichuan 2: 7B, 13B"
+Parameter-Efficient Transfer Learning for NLP (Adapters),https://arxiv.org/abs/1902.00751,Infrastructure,[],Efficient Architectures & Adaptation,N/A (method)
+Sequence-Level Knowledge Distillation,https://aclanthology.org/2016.emnlp-main.300/,Infrastructure,[],Smaller LLMs,N/A (method)
+Knowledge Distillation of Large Language Models,https://arxiv.org/abs/2306.08543,Infrastructure,[],Smaller LLMs,N/A (method)
+MiniLLM: Knowledge Distillation of Large Language Models,https://arxiv.org/abs/2306.08543,Infrastructure,[],Smaller LLMs,N/A (method)
+"DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter",https://arxiv.org/abs/1910.01108,Infrastructure,"[""mobile (iPhone)""]",Smaller LLMs,DistilBERT: 66M
+Speculative Decoding: Exploiting Speculative Execution for Accelerating Seq2seq Generation,https://arxiv.org/abs/2203.16487,Infrastructure,"[""GPU (V100)""]",API Optimization,N/A (method)
+Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads,https://arxiv.org/abs/2401.10774,Infrastructure,"[""GPU (A100)""]",API Optimization,N/A (method)
+GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding,https://arxiv.org/abs/2006.16668,Infrastructure,"[""TPU""]",Efficient Architectures & Adaptation,GShard: 600B
+"DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model",https://arxiv.org/abs/2405.04434,Infrastructure,"[""GPU (H800)""]",Efficient Architectures & Adaptation,DeepSeek-V2: 236B (21B active)
+Qwen-MoE: A Mixture-of-Experts Language Model with Multi-Scale Experts,https://arxiv.org/abs/2408.08274,Infrastructure,"[""GPU (A100)""]",Efficient Architectures & Adaptation,Qwen-MoE: 57B (14B active)
+Communication-Efficient Learning of Deep Networks from Decentralized Data (FedAvg),https://arxiv.org/abs/1602.05629,Infrastructure,"[""mobile (simulated)""]",Privacy-preserving Training,N/A (method)
+QLoRA: Efficient Finetuning of Quantized LLMs,https://arxiv.org/abs/2305.14314,Infrastructure,"[""NVIDIA A100 48GB""]",Efficient Architectures & Adaptation,"7B, 13B, 33B, 65B"
+LoRA: Low-Rank Adaptation of Large Language Models,https://arxiv.org/abs/2106.09685,Infrastructure,[],Efficient Architectures & Adaptation,"N/A (method applied to GPT-3 175B, RoBERTa, DeBERTa)"
+llama.cpp,https://github.com/ggerganov/llama.cpp,Infrastructure,"[""Apple Silicon MacBooks"", ""x86 laptops"", ""Snapdragon phones"", ""NVIDIA GPUs"", ""AMD GPUs""]",On-Device ML,N/A (inference framework)
+MAD-X: An Adapter-Based Framework for Multi-Task Cross-Lingual Transfer,https://aclanthology.org/2020.emnlp-main.617/,Data,[],Cross-lingual Transfer,"N/A (adapter method for mBERT, XLM-R)"
+GPTCache: An Open-Source Semantic Cache for LLM Applications,https://aclanthology.org/2023.nlposs-1.24/,Infrastructure,[],API Optimization,N/A (caching tool)
+Communication-Efficient Learning of Deep Networks from Decentralized Data,https://proceedings.mlr.press/v54/mcmahan17a.html,Infrastructure,"[""mobile devices""]",Privacy-preserving Training,N/A (method)
+EncryptedLLM: Privacy-Preserving Large Language Model Inference via GPU-Accelerated Fully Homomorphic Encryption,https://openreview.net/forum?id=PGNff6H1TV,Infrastructure,"[""NVIDIA GPUs""]",Privacy-preserving Inference,N/A (method)

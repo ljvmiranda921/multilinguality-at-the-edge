@@ -1,0 +1,67 @@
+% figures/case_study.tex
+% Case study diagram - top to bottom forest
+% Usage: \input{figures/case_study.tex}
+
+\resizebox{\columnwidth}{!}{%
+  \begin{forest}
+    forked edges,
+    for tree={
+        grow'=south,           % top to bottom
+        draw,
+        rounded corners,
+        font=\small,
+        inner sep=3pt,
+        minimum height=1.5em,
+        node options={align=center},
+        anchor=north,
+        parent anchor=south,
+        child anchor=north,
+        l sep=1.2em,
+        s sep=0.8em,
+        edge={-latex},
+      },
+    % === PRIMITIVES ===
+    % Rounded rectangle (data color - light blue): fill=clightblue
+    % Rounded rectangle (infra color - light crest): fill=clightcrest
+    % Rounded rectangle (readiness color - light purple): fill=clightpurple
+    % Standard grey rectangle: fill=cslate1, sharp corners
+    %
+    % Example tree structure:
+    % \begin{noindent}
+    [{Rwanda's 60,000 CHW's lack reliable LLM based clinical decision support at national scale \citep{rutunda2026llmfrontline}}, fill=cslate1, sharp corners, text width=12em
+      [{Working model can't be deployed?}, fill=clightcrest, text width=8em,
+        [{CHWs lack devices or network?}, fill=clightcrest, text width=6em
+          [{No}, fill=cslate1, sharp corners, text width=2em]
+        ]
+        [{Too expensive to deploy?}, fill=clightcrest, text width=4em
+          [{\textbf{Yes}}, fill=cslate1, sharp corners, text width=2em
+            [{Per-token API price too high?}, fill=clightcrest, text width=8em
+              [{No}, fill=cslate1, sharp corners, text width=2em]
+            ]
+            [{Token price per query too high?}, fill=clightcrest, text width=8em
+              [{\textbf{Yes}}, fill=cslate1, sharp corners, text width=2em
+                [{Higher output token counts?}, fill=clightblue, text width=6em
+                  [{\textbf{Yes}. Subword tokenization of Kinyarwanda produces more tokens \citep{ahia2023do}}, fill=cslate1, sharp corners, text width=14em
+                    [{\textbf{Binding constaint: Data}}, fill=clightblue, sharp corners, text width=10em]
+                  ]
+                ]
+                [{No language support?}, fill=clightblue, text width=8em]
+              ]
+            ]
+          ]
+        ]
+        [{Cannot coordinate deployments}, fill=clightcrest, text width=6em
+          [{No}, fill=cslate1, sharp corners, text width=2em]
+        ]
+      ]
+      [{No models that perform well on clinical trials?}, fill=clightblue, text width=8em,
+          [{No}, fill=cslate1, sharp corners, text width=2em]
+      ]
+    ]
+    % \end{noindent}
+    %  [{\textbf{Binding constaint: Data}}, fill=clightblue, sharp corners, text width=10em]
+  \end{forest}%
+}
+
+
+% [{Higher output token counts on Kinyarwanda vs. English, driving up costs}, fill=clightblue, text width=12em]

@@ -1,0 +1,45 @@
+year,month,name,category,description,significance
+2017,6,Transformer,architecture,Attention Is All You Need paper by Vaswani et al.,Foundation architecture for all modern LLMs
+2018,2,ELMo,model,Contextualized word embeddings from Allen AI,Showed deep contextualized representations improve NLP tasks
+2018,6,GPT-1,model,Generative Pre-Training by OpenAI (117M params),Established generative pre-training + fine-tuning paradigm
+2018,10,BERT,model,Bidirectional Encoder Representations from Transformers by Google (340M params),Dominated NLU benchmarks; pre-train then fine-tune goes mainstream
+2018,11,Multilingual BERT,model,Single BERT model trained on 104 languages,First massively multilingual transformer model
+2019,2,GPT-2,model,OpenAI 1.5B parameter model initially withheld from release,Sparked public AI safety debate; too dangerous to release
+2019,7,RoBERTa,model,Robustly optimized BERT by Meta,Showed BERT was significantly undertrained
+2019,10,T5,model,Text-to-Text Transfer Transformer by Google (11B params),Unified all NLP tasks as text-to-text; explored scaling
+2019,10,DistilBERT,efficiency,Distilled version of BERT 60% faster with 97% performance,Pioneered knowledge distillation for LLMs
+2019,11,XLM-RoBERTa,model,Cross-lingual model trained on 100 languages by Meta,Strong multilingual baseline; widely adopted for cross-lingual transfer
+2020,5,GPT-3,model,OpenAI 175B parameter model,Demonstrated few-shot learning; validated scaling laws
+2020,1,Scaling Laws,research,Kaplan et al. paper on neural language model scaling,Empirical laws relating compute/data/params to loss
+2020,10,mT5,model,Multilingual T5 covering 101 languages by Google,Extended T5 to multilingual; widely used for non-English NLP
+2020,11,Megatron-Turing NLG,infrastructure,NVIDIA and Microsoft collaboration on training large models,Advanced large-scale distributed training infrastructure
+2021,1,Switch Transformer,architecture,Google mixture-of-experts with 1.6T parameters,Showed MoE can scale to trillions of parameters efficiently
+2021,6,Codex,model,OpenAI code generation model powering GitHub Copilot,First major commercial LLM product; AI-assisted coding
+2021,12,Gopher,model,DeepMind 280B parameter model,Comprehensive analysis of scaling across 152 tasks
+2022,3,PaLM,model,Google Pathways Language Model 540B params,Breakthrough reasoning; chain-of-thought prompting
+2022,3,Chinchilla,research,DeepMind compute-optimal scaling paper (70B params),Showed most LLMs are overtrained on params and undertrained on data
+2022,3,InstructGPT,technique,OpenAI RLHF-aligned model,Pioneered RLHF for alignment; precursor to ChatGPT
+2022,7,BLOOM,model,BigScience 176B open multilingual model covering 46 languages,Largest open-science multilingual LLM; community-driven
+2022,11,ChatGPT,product,OpenAI conversational AI (GPT-3.5-turbo),Fastest-growing consumer app ever; mainstream inflection point
+2023,2,LLaMA,model,Meta open-weights 7B-65B parameter models,Catalyzed open-source LLM ecosystem
+2023,3,GPT-4,model,OpenAI multimodal model,Major capability jump; multimodal (text + vision)
+2023,3,Alpaca,technique,Stanford instruction-tuned LLaMA for $600,Showed cheap fine-tuning can approximate proprietary models
+2023,5,QLoRA,efficiency,4-bit quantized LoRA fine-tuning,Enabled fine-tuning 65B models on single GPU
+2023,7,Llama 2,model,Meta open-weights with commercial license 7B-70B,Open-weights with permissive license; shifted industry norms
+2023,9,Mistral 7B,model,Mistral AI 7B model outperforming Llama 2 13B,Showed small models can punch above weight class
+2023,12,Mixtral 8x7B,model,Mistral mixture-of-experts open model,Open MoE model competitive with GPT-3.5
+2023,12,Gemini,model,Google multimodal model family,Google's unified multimodal frontier model
+2024,2,Gemma,model,Google open-weights 2B and 7B models,High-quality small open models from Google
+2024,3,Claude 3,model,Anthropic model family (Haiku/Sonnet/Opus),Frontier model with strong multilingual and reasoning
+2024,4,Llama 3,model,Meta open-weights 8B and 70B,New open-weights SOTA; massive training data (15T tokens)
+2024,4,Phi-3,model,Microsoft small language models 3.8B,Showed small models trained on curated data can match larger ones
+2024,5,GPT-4o,model,OpenAI omnimodel with native multimodal,Native audio/vision/text; real-time conversational AI
+2024,7,Llama 3.1,model,Meta 405B open-weights model,Largest open-weights model; competitive with closed frontier
+2024,8,Gemma 2,model,Google open-weights 9B and 27B,Strong open models; competitive at small scale
+2024,9,o1,model,OpenAI reasoning model with chain-of-thought,Inference-time compute scaling; new paradigm for reasoning
+2024,9,Qwen 2.5,model,Alibaba multilingual models 0.5B-72B,Strong multilingual open models from China
+2024,12,Gemini 2.0,model,Google next-gen multimodal with agentic capabilities,Agentic AI; tool use and autonomous action
+2025,1,DeepSeek-R1,model,DeepSeek open reasoning model trained with RL,Open reasoning model; showed RL-based training for reasoning
+2025,2,Claude 3.5,model,Anthropic updated Sonnet and Haiku,Strong coding and reasoning; computer use capabilities
+2025,3,GPT-4.5,model,OpenAI large-scale pre-trained model,Largest OpenAI pre-trained model; improved EQ and breadth
+2025,4,Llama 4,model,Meta Scout and Maverick MoE models,Open MoE architecture; multimodal native
