@@ -108,6 +108,13 @@ Most LLMs are not trained on the long tail of the world's 7,000 languages and th
 In addition, infrastructure constraints such as limited connectivity and low smartphone penetration, especially in the Global South, further restrict the use of both cloud-based and on-device models \citep{GSMA2025MobileEconomy,itu-2025-facts}.
 As LLMs become central to economic productivity, these compounding barriers threaten to widen the divide further.
 
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/main.pdf}
+  \caption{Overview of the last mile of NLP.}
+  \label{fig:main}
+\end{figure*}
+
 Tackling the problems of efficiency or multilinguality in isolation has merit, but it risks not addressing the actual needs of the communities left behind this widening gap.
 For example, research on model compression has largely focused on English, with several studies observing degradation in multilingual performance as models are made smaller \citep{ogueji-etal-2022-intriguing,mohammadshahi-etal-2022-compressed,marchisio-etal-2024-quantization}.
 Similarly, multilingual scaling laws \citep{longpre2025atlasadaptivetransferscaling,he-etal-2025-scaling} reveal a power-law relationship between multilingual performance and model scale, suggesting that smaller, more deployable models may struggle with low-resource languages.
@@ -122,7 +129,8 @@ We begin by defining the constraints of efficient NLP (\S\ref{sec:edge_constrain
 and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
 and highlight how the two often impose competing demands (\S\ref{sec:the_tension}),
 which is precisely what makes the \textit{last mile} so challenging.
-Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see \ref{fig:main_figure}).
+Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:main}).
+
 
 
 \section{Multilinguality at the Edge}
