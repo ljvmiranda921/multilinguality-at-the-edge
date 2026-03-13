@@ -3357,3 +3357,47 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   url      = {http://www.ncbi.nlm.nih.gov/pubmed/40053738}
 }
 
+
+@inproceedings{ogueji-etal-2022-intriguing,
+  title     = {{Intriguing Properties of Compression on Multilingual Models}},
+  author    = {Ogueji, Kelechi  and
+               Ahia, Orevaoghene  and
+               Onilude, Gbemileke  and
+               Gehrmann, Sebastian  and
+               Hooker, Sara  and
+               Kreutzer, Julia},
+  editor    = {Goldberg, Yoav  and
+               Kozareva, Zornitsa  and
+               Zhang, Yue},
+  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},
+  month     = dec,
+  year      = {2022},
+  address   = {Abu Dhabi, United Arab Emirates},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2022.emnlp-main.619/},
+  doi       = {10.18653/v1/2022.emnlp-main.619},
+  pages     = {9092--9110},
+  abstract  = {Multilingual models are often particularly dependent on scaling to generalize to a growing number of languages. Compression techniques are widely relied upon to reconcile the growth in model size with real world resource constraints, but compression can have a disparate effect on model performance for low-resource languages. It is thus crucial to understand the trade-offs between scale, multilingualism, and compression. In this work, we propose an experimental framework to characterize the impact of sparsifying multilingual pre-trained language models during fine-tuning.Applying this framework to mBERT named entity recognition models across 40 languages, we find that compression confers several intriguing and previously unknown generalization properties. In contrast to prior findings, we find that compression may improve model robustness over dense models. We additionally observe that under certain sparsification regimes compression may aid, rather than disproportionately impact the performance of low-resource languages.}
+}
+
+@inproceedings{mohammadshahi-etal-2022-compressed,
+  title     = {{What Do Compressed Multilingual Machine Translation Models Forget?}},
+  author    = {Mohammadshahi, Alireza  and
+               Nikoulina, Vassilina  and
+               Berard, Alexandre  and
+               Brun, Caroline  and
+               Henderson, James  and
+               Besacier, Laurent},
+  editor    = {Goldberg, Yoav  and
+               Kozareva, Zornitsa  and
+               Zhang, Yue},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2022},
+  month     = dec,
+  year      = {2022},
+  address   = {Abu Dhabi, United Arab Emirates},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2022.findings-emnlp.317/},
+  doi       = {10.18653/v1/2022.findings-emnlp.317},
+  pages     = {4308--4329},
+  abstract  = {Recently, very large pre-trained models achieve state-of-the-art results in various natural language processing (NLP) tasks, but their size makes it more challenging to apply them in resource-constrained environments. Compression techniques allow to drastically reduce the size of the models and therefore their inference time with negligible impact on top-tier metrics. However, the general performance averaged across multiple tasks and/or languages may hide a drastic performance drop on under-represented features, which could result in the amplification of biases encoded by the models. In this work, we assess the impact of compression methods on Multilingual Neural Machine Translation models (MNMT) for various language groups, gender, and semantic biases by extensive analysis of compressed models on different machine translation benchmarks, i.e. FLORES-101, MT-Gender, and DiBiMT. We show that the performance of under-represented languages drops significantly, while the average BLEU metric only slightly decreases. Interestingly, the removal of noisy memorization with compression leads to a significant improvement for some medium-resource languages. Finally, we demonstrate that compression amplifies intrinsic gender and semantic biases, even in high-resource languages.}
+}
