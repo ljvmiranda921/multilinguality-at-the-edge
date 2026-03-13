@@ -110,14 +110,14 @@ As LLMs become central to economic productivity, these compounding barriers thre
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/main.pdf}
+  \includegraphics[width=\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/lm_pipeline.pdf}
   \caption{
     \textbf{Tensions at each step of the language modelling pipeline.}
     Efficient edge NLP deployment imposes a set of constraints such as the amount of storage, memory, and compute \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}.
     These constraints come into tension against factors that determine multilingual capability \citep{longpre2025atlasadaptivetransferscaling}.
     This survey shows how these tensions manifest at different parts of the language modelling pipeline and review several works that attempt to address it.
   }
-  \label{fig:main}
+  \label{fig:lm_pipeline}
 \end{figure*}
 
 Tackling the problems of efficiency or multilinguality in isolation has merit, but it risks not addressing the actual needs of the communities left behind this widening gap.
@@ -134,7 +134,7 @@ We begin by defining the constraints of efficient NLP (\S\ref{sec:edge_constrain
 and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
 and highlight how the two often impose competing demands (\S\ref{sec:the_tension}),
 which is precisely what makes the \textit{last mile} so challenging.
-Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:main}).
+Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:lm_pipeline}).
 
 
 
