@@ -94,6 +94,7 @@ TACL-submission anonymization requirements)}
 \begin{document}
 \maketitle
 \begin{abstract}
+  \ljm{\lipsum[1]}
 \end{abstract}
 
 \section{Introduction}
@@ -116,8 +117,12 @@ Building on these insights, we adopt this framing as a foundational premise and 
 We use this term because it captures the hardest and most costly stretch of LLM development: reaching communities that need both a model that understands their language and the efficiency to run on their available hardware.
 
 In this work, we survey \numpapers{} methods, techniques, and challenges within the last mile of NLP.
-We organize our discussion around the language modeling pipeline, covering data collection, training, deployment, and evaluation, and describe relevant techniques at each stage.
-We begin by defining the constraints of efficient NLP and the requirements for building quality multilingual models, and highlight how the two often impose competing demands, which is precisely what makes the \textit{last mile} so challenging.
+We organize our discussion around the large language modeling pipeline (\S\ref{sec:lm_pipeline}), covering data collection, training, deployment, and evaluation, and describe relevant techniques at each stage.
+We begin by defining the constraints of efficient NLP (\S\ref{sec:edge_constraints})
+and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
+and highlight how the two often impose competing demands (\S\ref{sec:the_tension}),
+which is precisely what makes the \textit{last mile} so challenging.
+Our survey (\S\ref{sec:survey}) naturally looks at how each tension manifests and how it is being addressed at each stage of the LLM pipeline.
 
 
 \section{Multilinguality at the Edge}
@@ -140,19 +145,21 @@ We begin by defining the constraints of efficient NLP and the requirements for b
 \subsection{The Language Modelling Pipeline}
 \label{sec:lm_pipeline}
 
-
 \subsection{What the Edge Demands}
 \label{sec:edge_constraints}
-
-
 
 \subsection{What Multilinguality Demands}
 \label{sec:multilingual_constraints}
 
-
-
 \subsection{The Tension}
 \label{sec:the_tension}
+
+\section{Methodology}
+
+\section{Survey: The Last Mile of NLP}
+\label{sec:survey}
+
+\section{Discussion}
 
 
 \iftaclpubformat
