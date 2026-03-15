@@ -168,13 +168,15 @@ OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
 In general, we describe five main stages:
 
-\begin{itemize}
-  \item \textbf{Data Collection}
-  \item \textbf{Pretraining}
-  \item \textbf{Post-training}
-  \item \textbf{Inference}
-  \item \textbf{Evaluation}
+\begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
+  \item \textbf{Data Collection}: sourcing, filtering, and curating the text corpora used to train the model.
+  \item \textbf{Pretraining}: training the base model on large-scale corpora to learn general language representations.
+  \item \textbf{Post-training}: adapting the pretrained model through fine-tuning, alignment, or distillation for target tasks and deployment settings.
+  \item \textbf{Inference}: serving the model under the latency, memory, and compute constraints of the target device.
+  \item \textbf{Evaluation}: measuring model quality across languages, tasks, and hardware configurations.
 \end{itemize}
+
+\ljm{\lipsum[1]}
 
 \subsection{What the Edge Demands}
 \label{sec:edge_constraints}
