@@ -158,10 +158,10 @@ Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and ar
 
 Deploying LLMs on edge devices that serve multilingual communities imposes distinct, and often competing,
 requirements on every stage of the modelling pipeline.
-In this section, we first describe a typical LLM pipeline (\S\ref{sec:lm_pipeline}),
-then discuss the constraints imposed by edge deployment (\S\ref{sec:edge_constraints})
-and the variables that affect multilingual capability (\S\ref{sec:multilingual_constraints}).
-Finally, we highlight the key tensions between these two sets of demands and use them to frame the rest of this survey.
+Edge deployment favours small model footprints, low latency, and tight resource budgets,
+while multilingual support calls for broad vocabulary coverage, diverse training data, and sufficient model capacity to represent many languages well.
+These two sets of demands interact at every stage of the pipeline, from data collection through inference,
+and the trade-offs they create shape what is practically achievable on constrained hardware.
 
 \subsection{Why Study Multilinguality at the Edge}
 \label{sec:motivation}
