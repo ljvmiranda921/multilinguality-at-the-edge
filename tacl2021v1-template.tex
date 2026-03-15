@@ -169,8 +169,10 @@ Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient
 In general, we describe five main stages:
 
 \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
-  \item \textbf{Data Collection}: sourcing, filtering, and curating the text corpora used to train the model.
-  \item \textbf{Pretraining}: training the base model on large-scale corpora to learn general language representations.
+  \item \textbf{Data Collection}: this stage involves sourcing and curating text corpora for training the model.
+        In this stage, we combine the data collection involved for both pre- and post-training.
+  \item \textbf{Pretraining}: this stage involves training the base model on large-scale corpora to learn general language representations.
+        This tends to be most computationally expensive stage, ranging from <cite something from OLMo / Nvidia> compared to <XX> in post-training.
   \item \textbf{Post-training}: adapting the pretrained model through fine-tuning, alignment, or distillation for target tasks and deployment settings.
   \item \textbf{Inference}: serving the model under the latency, memory, and compute constraints of the target device.
   \item \textbf{Evaluation}: measuring model quality across languages, tasks, and hardware configurations.
