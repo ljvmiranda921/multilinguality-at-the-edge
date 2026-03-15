@@ -168,7 +168,7 @@ OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
 In general, we describe five main stages:
 
-\begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
+\begin{itemize}%[leftmargin=5mm,topsep=0mm,itemsep=0mm]
   \item \textbf{Data Collection}: sourcing and curating the text corpora used for both pretraining and post-training.
         Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured, such as prompt-response or preference pairs.
   \item \textbf{Pretraining}: training the base model on large-scale corpora to learn general language representations.
@@ -179,7 +179,7 @@ In general, we describe five main stages:
   \item \textbf{Evaluation}: measuring model performance across a variety of capabilities and domains. This involves assessing performance on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
 \end{itemize}
 
-\ljm{\lipsum[1]}
+The design choices made at each stage jointly determine how well a model serves multilingual communities on constrained hardware.
 
 \subsection{What the Edge Demands}
 \label{sec:edge_constraints}
