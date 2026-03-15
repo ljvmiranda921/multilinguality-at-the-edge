@@ -175,8 +175,8 @@ In general, we describe five main stages:
         This is typically the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for around 6T tokens.
   \item \textbf{Post-training}: further adapting and tuning the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
         We also group model compression and merging under this stage.
-  \item \textbf{Inference}: serving the model on a target device. The breadth of these devices, in terms of their storage and compute capabilities, is wide. Ranging from microcontrollers to data center-scale GPUs.
-  \item \textbf{Evaluation}: measuring model quality across languages, tasks, and hardware configurations.
+  \item \textbf{Inference}: serving the model on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
+  \item \textbf{Evaluation}: measuring model performance across a variety of capabilities and domains. This involves assessing performance on static benchmarks or on structured testbeds.
 \end{itemize}
 
 \ljm{\lipsum[1]}
