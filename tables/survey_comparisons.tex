@@ -1,0 +1,32 @@
+% tables/survey_comparisons.tex
+% Usage: \input{tables/survey_comparisons}
+%
+% To disable resizebox, comment out the \resizebox line and its closing brace,
+% then uncomment the bare \begin{tabular} line below it.
+
+\begin{table}[t]
+\centering
+\caption{Comparison of related surveys.}
+\label{tab:survey_comparisons}
+% --- resize wrapper (comment out the next line + its closing brace to disable) ---
+\resizebox{\columnwidth}{!}{%
+% --- begin tabular ---
+\begin{tabular}{l cc l}
+\toprule
+& \multicolumn{2}{c}{\textbf{Focus}} & \\
+\cmidrule(lr){2-3}
+\textbf{Paper} & \textbf{Edge} & \textbf{Multiling.} & \textbf{Description} \\
+\midrule
+% === Uncomment entries one by one after verifying ===
+% \citet{TODO}  & \checkmark &            & TODO description \\
+% \citet{TODO}  &            & \checkmark & TODO description \\
+% \citet{TODO}  & \checkmark & \checkmark & TODO description \\
+% \citet{TODO}  & \checkmark &            & TODO description \\
+% \citet{TODO}  &            & \checkmark & TODO description \\
+\midrule
+Ours           & \checkmark & \checkmark & TODO description \\
+\bottomrule
+\end{tabular}
+% --- end resize wrapper (comment out this brace if resizebox is disabled) ---
+}
+\end{table}
