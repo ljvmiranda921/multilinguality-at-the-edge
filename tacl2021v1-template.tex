@@ -173,7 +173,7 @@ In general, we describe five main stages:
         In this stage, we combine the data collection involved for both pre- and post-training.
   \item \textbf{Pretraining}: this stage involves training the base model on large-scale corpora to learn general language representations.
         This stage tends to be most computationally expensive stage, for example \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens while \citet{olmo2025olmo3} used 8x NVIDIA H100s for around 6T tokens.
-  \item \textbf{Post-training}: adapting the pretrained model through fine-tuning, alignment, or distillation for target tasks and deployment settings.
+  \item \textbf{Post-training}: this stage involves a variety of techniques to further adapt and tune the base model towards certain capabilities.
   \item \textbf{Inference}: serving the model under the latency, memory, and compute constraints of the target device.
   \item \textbf{Evaluation}: measuring model quality across languages, tasks, and hardware configurations.
 \end{itemize}
