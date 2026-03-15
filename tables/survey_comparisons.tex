@@ -5,16 +5,15 @@
 % then uncomment the bare \begin{tabular} line below it.
 
 \begin{table}[t]
-\centering
-\caption{Comparison of related surveys.}
-\label{tab:survey_comparisons}
-% --- resize wrapper (comment out the next line + its closing brace to disable) ---
-\resizebox{\columnwidth}{!}{%
-% --- begin tabular ---
-\begin{tabular}{l cc l}
-\toprule
-& \multicolumn{2}{c}{\textbf{Focus}} & \\
-\cmidrule(lr){2-3}
+    \centering
+    % --- resize wrapper (comment out the next line + its closing brace to disable) ---
+    \resizebox{\columnwidth}{!}{%
+        % --- begin tabular ---
+        \begin{tabular}{l cc p{0.45\columnwidth}}
+            \toprule
+             & \multicolumn{2}{c}{\textbf{Focus}} & \\
+            \cmidrule(lr){2-3}
+            % \begin{noindent}
 \textbf{Paper} & \textbf{Edge} & \textbf{Multiling.} & \textbf{Description} \\
 \midrule
 % === Uncomment entries one by one after verifying ===
@@ -26,7 +25,11 @@
 \midrule
 Ours           & \checkmark & \checkmark & TODO description \\
 \bottomrule
-\end{tabular}
-% --- end resize wrapper (comment out this brace if resizebox is disabled) ---
-}
+% \end{noindent}
+        \end{tabular}
+        % --- end resize wrapper (comment out this brace if resizebox is disabled) ---
+    }
+
+    \caption{Comparison of related surveys.}
+    \label{tab:survey_comparisons}
 \end{table}
