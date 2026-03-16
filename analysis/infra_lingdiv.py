@@ -123,6 +123,7 @@ def main():
         "Ethiopia",
         "United States",
         "Burundi",
+        "Iceland",
     ]
     for _, row in df_ict[df_ict["country"].isin(annotate_countries)].iterrows():
         label = row["country"]
@@ -134,7 +135,7 @@ def main():
             (row["internet_users"], row["num_living_languages"]),
             textcoords="offset points",
             xytext=(6, 4),
-            fontsize=12,
+            fontsize=14,
             color=color,
         )
 
