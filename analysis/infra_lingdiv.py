@@ -12,7 +12,6 @@ plt.rcParams.update(PLOT_PARAMS)
 
 
 def main():
-    # Load data
     income_df = pd.read_csv(
         "https://ourworldindata.org/grapher/world-bank-income-groups.csv?v=1&csvType=full&useColumnShortNames=true",
         storage_options={"User-Agent": "Our World In Data data fetch/1.0"},
@@ -23,10 +22,11 @@ def main():
     )
     language_df = pd.read_csv(ROOT / "data" / "living_languages_per_country_2025.csv")
 
-    # Filter to 2023 for network data, latest year for income
     network_2023 = (
         network_df[network_df["year"] == 2023][["entity", "_9_c_1__it_mob_4gntwk"]]
-        .rename(columns={"entity": "country", "_9_c_1__it_mob_4gntwk": "network_access"})
+        .rename(
+            columns={"entity": "country", "_9_c_1__it_mob_4gntwk": "network_access"}
+        )
         .dropna(subset=["network_access"])
     )
     income_latest = (
@@ -37,9 +37,10 @@ def main():
     )
 
     # Merge all three
-    df = network_2023.merge(language_df, on="country").merge(income_latest, on="country")
+    df = network_2023.merge(language_df, on="country").merge(
+        income_latest, on="country"
+    )
 
-    # Color and marker mapping by income group
     income_style = {
         "Low-income countries": {"color": COLORS["cherry"], "marker": "o"},
         "Lower-middle-income countries": {"color": COLORS["purple"], "marker": "s"},
@@ -70,7 +71,7 @@ def main():
             alpha=0.85,
         )
 
-    ax.set_xlabel(r"\% population covered by 4G network (2023)")
+    ax.set_xlabel(r"\% population covered by 4G network")
     ax.set_ylabel("Number of living languages")
     ax.legend(frameon=False)
     ax.grid(False)
