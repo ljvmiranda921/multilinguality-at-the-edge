@@ -12,7 +12,7 @@ USER_PROMPT = """Title: {title}
 Abstract: {abstract}
 
 Please classify this paper according to the following dimensions:
-1. Pipeline stage(s) the paper addresses (Data Collection, Pretraining, Post-training, Inference, Evaluation).
+1. The single primary pipeline stage the paper addresses (Data Collection, Pretraining, Post-training, Inference, Evaluation, or Full-Stack if it spans 4+ stages).
 2. Primary topic(s) or techniques used in the paper.
 3. Primary subject area of the paper based on ACL 2025 Subject Areas.
 4. Modality of the work (e.g., text, speech, multimodal).
@@ -28,23 +28,23 @@ Please classify this paper according to the following dimensions:
 
 
 class ResearchPaperAnnotation(BaseModel):
-    pipeline_stages: List[
-        Literal[
-            "Data Collection",
-            "Pretraining",
-            "Post-training",
-            "Inference",
-            "Evaluation",
-        ]
+    pipeline_stage: Literal[
+        "Data Collection",
+        "Pretraining",
+        "Post-training",
+        "Inference",
+        "Evaluation",
+        "Full-Stack",
     ] = Field(
         ...,
         description=(
-            "Which stage(s) of the ML pipeline does this paper address? "
+            "The single primary pipeline stage this paper addresses. Pick ONE: "
             "Data Collection: corpus creation, data augmentation, annotation. "
             "Pretraining: training from scratch, continued pretraining, foundation models. "
             "Post-training: fine-tuning, instruction tuning, alignment, adapters, LoRA. "
             "Inference: quantization, pruning, distillation, deployment, on-device. "
-            "Evaluation: benchmarks, metrics, leaderboards, analysis."
+            "Evaluation: primarily a benchmark, metric, leaderboard, or analysis paper. "
+            "Full-Stack: spans 4 or more stages (e.g., a complete model report covering data, pretraining, post-training, and inference)."
         ),
     )
     topics: List[

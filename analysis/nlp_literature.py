@@ -1,6 +1,5 @@
 """Plot publication trends in multilingual and efficient NLP literature."""
 
-import ast
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -38,33 +37,33 @@ FOCUS_STYLE = {
 }
 FOCUS_ORDER = ["Efficiency", "Multilinguality", "Both"]
 
+STAGE_ORDER = [
+    "Data Collection",
+    "Pretraining",
+    "Post-training",
+    "Inference",
+    "Evaluation",
+    "Full-Stack",
+]
+
 
 def main():
     df = pd.read_csv(DATA_PATH)
     print(f"Loaded: {len(df)} papers")
     df_focus = df[df["research_focus"].isin(FOCUS_ORDER)]
+    df_focus = df_focus[df_focus["primary_stage"].isin(STAGE_ORDER)]
 
-    df_focus = df_focus.copy()
-    df_focus["pipeline_stages"] = df_focus["pipeline_stages"].apply(ast.literal_eval)
-    stages_exploded = df_focus.explode("pipeline_stages")
     stage_counts = (
-        stages_exploded.groupby(["research_focus", "pipeline_stages"])
+        df_focus.groupby(["research_focus", "primary_stage"])
         .size()
         .unstack(fill_value=0)
     )
-    stage_order = [
-        "Data Collection",
-        "Pretraining",
-        "Post-training",
-        "Inference",
-        "Evaluation",
-    ]
-    stage_counts = stage_counts.reindex(columns=stage_order, fill_value=0)
+    stage_counts = stage_counts.reindex(columns=STAGE_ORDER, fill_value=0)
     stage_counts = stage_counts.reindex(FOCUS_ORDER, fill_value=0)
 
     # Proportional pipeline stage chart (horizontal stacked bars)
     # Reverse so Data Collection is at top
-    stage_order_rev = stage_order[::-1]
+    stage_order_rev = STAGE_ORDER[::-1]
     stage_props = stage_counts.div(stage_counts.sum(axis=0), axis=1) * 100
     stage_props = stage_props.reindex(columns=stage_order_rev, fill_value=0)
 

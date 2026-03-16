@@ -96,6 +96,33 @@ REMOVE_S2_IDS = [
 ]
 
 
+STAGE_PRIORITY = ["Inference", "Post-training", "Pretraining", "Data Collection"]
+
+
+def _assign_primary_stage(row: pd.Series) -> str:
+    """Assign each paper a single pipeline stage to avoid double-counting.
+
+    - 4+ stages -> "Full-Stack"
+    - Benchmark/resource papers (no Method/Technique) -> "Evaluation"
+    - Otherwise pick the most downstream stage
+    """
+    stages = set(ast.literal_eval(row["pipeline_stages"]))
+    contribs = ast.literal_eval(row["contribution_type"])
+    is_method = "Method" in contribs or "Technique" in contribs
+    if is_method:
+        stages.discard("Evaluation")
+    if len(stages) >= 4:
+        return "Full-Stack"
+    if not is_method and "Evaluation" in stages:
+        return "Evaluation"
+    for s in STAGE_PRIORITY:
+        if s in stages:
+            return s
+    if "Evaluation" in stages:
+        return "Evaluation"
+    return "Other"
+
+
 def filter_papers(
     df: pd.DataFrame,
     year_range: tuple = YEAR_RANGE,
@@ -113,6 +140,7 @@ def filter_papers(
     df = df[~(df["contribution_type"] == "['Analysis']")]
     df = df[df["research_focus"].isin(VALID_FOCUS)]
     df = df[~df["s2_id"].isin(REMOVE_S2_IDS)]
+    df["primary_stage"] = df.apply(_assign_primary_stage, axis=1)
     return df
 
 
