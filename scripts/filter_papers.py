@@ -15,11 +15,24 @@ ROOT = Path(__file__).resolve().parent.parent
 # Defaults
 DEFAULT_INPUT = ROOT / "data" / "llm_annotate" / "20260316_142727_llm_annotations.csv"
 DEFAULT_OUTPUT = ROOT / "data" / "papers_multilingual_edge_llm.csv"
+MANUAL_ADDITIONS = ROOT / "data" / "manual_papers.csv"
 
-YEAR_RANGE = (2020, 2025)
+YEAR_RANGE = (2020, 2026)
 MIN_RELEVANCE = 3
-MIN_CITATIONS = 100
 VALID_FOCUS = ["Efficiency", "Multilinguality", "Both"]
+
+# Staggered citation thresholds: older papers need more citations
+# to ensure quality, recent papers get a pass since they haven't
+# had time to accumulate citations yet.
+CITATION_THRESHOLDS = {
+    2020: 100,
+    2021: 100,
+    2022: 80,
+    2023: 60,
+    2024: 30,
+    2025: 10,
+    2026: 5,
+}
 
 # Manually flagged for removal (off-topic despite passing automated filters)
 REMOVE_S2_IDS = [
@@ -46,11 +59,10 @@ def filter_papers(
     df: pd.DataFrame,
     year_range: tuple = YEAR_RANGE,
     min_relevance: int = MIN_RELEVANCE,
-    min_citations: int = MIN_CITATIONS,
 ) -> pd.DataFrame:
     df = df[df["year"].between(*year_range)]
     df = df[df["relevance_score"] >= min_relevance]
-    df = df[df["citations"] >= min_citations]
+    df = df[df.apply(lambda r: r["citations"] >= CITATION_THRESHOLDS.get(r["year"], 100), axis=1)]
     df = df[df["modalities"].apply(lambda x: "Text" in ast.literal_eval(x))]
     df = df[~df["contribution_type"].str.contains("Survey")]
     df = df[~(df["contribution_type"] == "['Analysis']")]
@@ -63,7 +75,6 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--min_citations", type=int, default=MIN_CITATIONS)
     parser.add_argument("--min_relevance", type=int, default=MIN_RELEVANCE)
     args = parser.parse_args()
 
@@ -72,8 +83,12 @@ def main():
     df = filter_papers(
         df,
         min_relevance=args.min_relevance,
-        min_citations=args.min_citations,
     )
+    if MANUAL_ADDITIONS.exists():
+        manual = pd.read_csv(MANUAL_ADDITIONS)
+        df = pd.concat([df, manual], ignore_index=True)
+        df = df.drop_duplicates(subset="s2_id", keep="last")
+        print(f"Added {len(manual)} manual papers.")
     df.to_csv(args.output, index=False)
     print(f"{n_start} -> {len(df)} papers. Saved to {args.output}")
 
