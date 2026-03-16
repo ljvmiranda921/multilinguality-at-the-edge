@@ -116,12 +116,16 @@ class ResearchPaperAnnotation(BaseModel):
     relevance_score: int = Field(
         ...,
         description=(
-            "Relevance to multilingual NLP for edge devices, scored 1-5: "
+            "Relevance to 'the last mile of NLP': the intersection of multilinguality and edge-efficiency, "
+            "i.e., reaching language communities that need both a model that understands their language AND "
+            "the efficiency to run on constrained hardware. Scored 1-5: "
             "1 - Not relevant: addresses neither multilinguality nor efficiency. "
             "2 - Slightly relevant: touches on one aspect peripherally. "
             "3 - Moderately relevant: substantially addresses multilinguality OR efficiency, but not both. "
-            "4 - Very relevant: addresses both multilinguality and efficiency, or makes a major contribution to one. "
-            "5 - Highly relevant: directly targets multilingual NLP on resource-constrained or edge devices."
+            "4 - Very relevant: studies the tension between multilinguality and efficiency (e.g., how compression "
+            "degrades multilingual performance, or how to maintain language coverage in smaller models). "
+            "5 - Highly relevant: directly targets multilingual NLP on resource-constrained or edge devices, "
+            "addressing the 'low-resource double bind' of limited data AND limited compute."
         ),
         ge=1,
         le=5,
