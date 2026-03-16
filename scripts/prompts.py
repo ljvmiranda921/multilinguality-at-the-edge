@@ -20,9 +20,10 @@ Please classify this paper according to the following dimensions:
 6. Names of any models released by the authors (empty list if none).
 7. Parameter sizes of the models released in billions (empty list if none or not specified).
 8. Is this paper primarily about efficiency, multilinguality, both, or neither?
-9. Is this paper relevant in the context of multilingual NLP for edge devices? Score from 1 to 5.
-10. State your reason for the relevance score.
-11. Extract a list of free-form keywords that capture the paper's key concepts, methods, datasets, or findings.
+9. What type of contribution does this paper make (Method, Technique, Evaluation, Survey, Resource, Analysis)?
+10. Is this paper relevant in the context of multilingual NLP for edge devices? Score from 1 to 5.
+11. State your reason for the relevance score.
+12. Extract a list of free-form keywords that capture the paper's key concepts, methods, datasets, or findings.
 """
 
 
@@ -128,6 +129,27 @@ class ResearchPaperAnnotation(BaseModel):
             "Multilinguality: cross-lingual transfer, multilingual models, low-resource languages, translation. "
             "Both: explicitly studies the intersection (e.g., compressing multilingual models, efficient cross-lingual transfer). "
             "Neither: does not primarily focus on either dimension."
+        ),
+    )
+    contribution_type: List[
+        Literal[
+            "Method",
+            "Technique",
+            "Evaluation",
+            "Survey",
+            "Resource",
+            "Analysis",
+        ]
+    ] = Field(
+        ...,
+        description=(
+            "What type of contribution does this paper make? "
+            "Method: proposes a new model, architecture, or training procedure. "
+            "Technique: introduces a specific trick, algorithm, or optimization (e.g., a new pruning strategy). "
+            "Evaluation: primarily benchmarks or compares existing methods. "
+            "Survey: reviews and summarizes existing literature. "
+            "Resource: releases a dataset, benchmark, or tool. "
+            "Analysis: provides empirical analysis or insights without proposing a new method."
         ),
     )
     relevance_score: int = Field(
