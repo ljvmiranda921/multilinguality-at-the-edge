@@ -41,6 +41,7 @@ def get_args():
     parser.add_argument("--id_column", type=str, default="s2_id", help="Column name for the unique paper identifier.")
     parser.add_argument("--use_azure", action="store_true", help="Use Azure OpenAI instead of OpenAI. Requires AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY in .env.")
     parser.add_argument("--azure_api_version", type=str, default="2024-12-01-preview", help="Azure OpenAI API version.")
+    parser.add_argument("--resume", type=str, default=None, help="Path to an existing output CSV to resume from (skips already-annotated papers).")
     # fmt: on
     return parser.parse_args()
 
@@ -66,19 +67,45 @@ def main():
     if args.limit > 0:
         df = df.head(args.limit)
 
+    # Set up output path (use --resume to append to an existing file)
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.resume:
+        output_path = Path(args.resume)
+        if not output_path.exists():
+            logging.error(f"Resume file not found: {output_path}")
+            sys.exit(1)
+        existing_df = pd.read_csv(output_path)
+        done_ids = set(existing_df[args.id_column].dropna().astype(str))
+        logging.info(f"Resuming from {output_path} ({len(done_ids)} papers already annotated)")
+    else:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = output_dir / f"{timestamp}_llm_annotations.csv"
+        done_ids = set()
+
     requests_list = []
     for _, row in df.iterrows():
+        paper_id = str(row.get(args.id_column))
+        if paper_id in done_ids:
+            continue
         title = row.get("title", "")
         abstract = row.get("abstract", "")
         user_prompt = USER_PROMPT.format(title=title, abstract=abstract)
         request = (
-            row.get(args.id_column),
+            paper_id,
             [
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
             ],
         )
         requests_list.append(request)
+
+    logging.info(f"{len(requests_list)} papers to annotate ({len(done_ids)} already done)")
+
+    if not requests_list:
+        logging.info("Nothing to do!")
+        return
 
     if args.use_azure:
         client = AsyncAzureOpenAI(
@@ -88,7 +115,8 @@ def main():
         )
     else:
         client = AsyncOpenAI(api_key=api_key)
-    results = asyncio.run(
+
+    asyncio.run(
         submit_async_requests(
             requests_list,
             model=args.model,
@@ -96,18 +124,12 @@ def main():
             batch_size=args.batch_size,
             response_model=ResearchPaperAnnotation,
             id_column=args.id_column,
+            output_path=output_path,
+            input_df=df,
         )
     )
 
-    results_df = pd.DataFrame(results)
-    merged_df = df.merge(results_df, on=args.id_column, how="left")
-
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = output_dir / f"{timestamp}_llm_annotations.csv"
-    merged_df.to_csv(output_path, index=False)
-    logging.info(f"Saved {len(merged_df)} annotated papers to {output_path}")
+    logging.info(f"Done! Results saved to {output_path}")
 
 
 async def submit_async_requests(
@@ -119,10 +141,12 @@ async def submit_async_requests(
     response_model: type[BaseModel],
     delay_between_batches: float = 1.0,
     id_column: str = "s2_id",
-) -> list[BaseModel]:
-    """Submit async requests to OpenAI API in batches."""
-    all_results = []
+    output_path: Path,
+    input_df: pd.DataFrame,
+) -> None:
+    """Submit async requests to OpenAI API in batches, appending results to CSV after each batch."""
     total_batches = (len(messages) + batch_size - 1) // batch_size
+    write_header = not output_path.exists()
 
     batches = [messages[i : i + batch_size] for i in range(0, len(messages), batch_size)]  # fmt: skip
 
@@ -134,12 +158,18 @@ async def submit_async_requests(
             response_model=response_model,
             id_column=id_column,
         )
-        all_results.extend(results)
+
+        # Merge with input data and append to CSV
+        results_df = pd.DataFrame(results)
+        batch_ids = results_df[id_column].tolist()
+        input_subset = input_df[input_df[id_column].astype(str).isin(batch_ids)]
+        merged = input_subset.merge(results_df, on=id_column, how="left")
+        merged.to_csv(output_path, mode="a", header=write_header, index=False)
+        write_header = False
+        logging.info(f"Batch {batch_num}/{total_batches}: appended {len(merged)} rows to {output_path}")
 
         if batch_num < total_batches:
             await asyncio.sleep(delay_between_batches)
-
-    return all_results
 
 
 async def _process_batch(
