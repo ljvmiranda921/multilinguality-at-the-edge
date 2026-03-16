@@ -122,6 +122,7 @@ def main():
         "Democratic Republic of Congo",
         "Ethiopia",
         "United States",
+        "Burundi",
     ]
     for _, row in df_ict[df_ict["country"].isin(annotate_countries)].iterrows():
         label = row["country"]
