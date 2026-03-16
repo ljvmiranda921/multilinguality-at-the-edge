@@ -156,7 +156,7 @@ def fetch_papers(
     publication_types: list[str] = ["JournalArticle", "Conference"],
 ) -> list[dict]:
     delay = 2.0
-    headers = {"x-api-key": api_key}
+    headers = {"x-api-key": api_key} if api_key else {}
     params = {
         "query": query,
         "year": f"{year}-",

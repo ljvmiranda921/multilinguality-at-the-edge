@@ -18,3 +18,5 @@ outputs/
 
 # Notebooks
 .ipynb_checkpoints
+
+data/s2_papers/*.csv
