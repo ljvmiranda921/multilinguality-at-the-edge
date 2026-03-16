@@ -38,33 +38,10 @@ FOCUS_STYLE = {
 }
 FOCUS_ORDER = ["Efficiency", "Multilinguality", "Both"]
 
-# Filters
-YEAR_RANGE = (2020, 2025)
-MIN_RELEVANCE = 3
-MIN_CITATIONS = 100
-REQUIRE_TEXT_MODALITY = True
-EXCLUDE_SURVEYS = True
-EXCLUDE_ANALYSIS = True
-
-
-def _apply_filters(df: pd.DataFrame) -> pd.DataFrame:
-    """Apply standard filters to the annotation dataframe."""
-    df = df[df["year"].between(*YEAR_RANGE)]
-    df = df[df["relevance_score"] >= MIN_RELEVANCE]
-    df = df[df["citations"] >= MIN_CITATIONS]
-    if REQUIRE_TEXT_MODALITY:
-        df = df[df["modalities"].apply(lambda x: "Text" in ast.literal_eval(x))]
-    if EXCLUDE_SURVEYS:
-        df = df[~df["contribution_type"].str.contains("Survey")]
-    if EXCLUDE_ANALYSIS:
-        df = df[~(df["contribution_type"] == "['Analysis']")]
-    return df
-
 
 def main():
     df = pd.read_csv(DATA_PATH)
-    df = _apply_filters(df)
-    print(f"After filtering: {len(df)} papers")
+    print(f"Loaded: {len(df)} papers")
     df_focus = df[df["research_focus"].isin(FOCUS_ORDER)]
 
     df_focus = df_focus.copy()
