@@ -114,7 +114,7 @@ As LLMs become central to economic productivity, these compounding barriers thre
   \includegraphics[width=0.90\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/lm_pipeline.pdf}
   \caption{
     \textbf{Tensions at each step of the language modelling pipeline.}
-    Efficient edge NLP deployment imposes a set of constraints such as the amount of storage, memory, and compute \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}.
+    Edge LLM deployment imposes a set of constraints such as the amount of storage, memory, and compute \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}.
     These constraints come into tension against factors that determine multilingual capability \citep{longpre2025atlasadaptivetransferscaling}.
     This survey shows how these tensions manifest at different parts of the language modelling pipeline and review several works that attempt to address it.
   }
@@ -171,17 +171,21 @@ Of the 21 countries with more than 100 living languages, 12 are classified as lo
 \end{figure}
 
 \paragraph{Multilingual and Edge NLP literature exist in silos}
-The two fields
+Another reason for studying these two fields in tandem is the research \textit{opportunity} it presents.
+\autoref{fig:nlp_literature_by_stage_prop} shows the proportion of surveyed papers that focus on efficiency, multilinguality, or both, broken down by pipeline stage.
+Across most stages, work on the two topics rarely overlaps: the ``Both'' category accounts for at most 10\% of papers in data collection through inference.
+The exception is full-stack work, where 43\% of papers address both concerns, likely because end-to-end systems cannot avoid the interaction between the two.
+Data collection is dominated by multilinguality research (71\%), while pretraining (71\%), post-training (65\%), and inference (73\%) are dominated by efficiency work.
+This separation suggests that insights from one community are not routinely adopted by the other, leaving a clear gap for work that bridges both.
 
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth, trim={0cm 0.5cm 0cm 0}]{figures/nlp_literature_by_stage_prop.pdf}
   \caption{
-    \textbf{Countries with high linguistic diversity have the most limited network connectivity (upper left).}
-    Internet penetration is sourced from \citet{itu-2025-facts},
-    number of living languages from the Ethnologue \citep{ethnologue2025},
-    and income groups from the \citet{worldbank2025income}.
+    \textbf{Efficiency and multilinguality research rarely overlap within individual pipeline stages.}
+    Each bar shows the share of surveyed papers classified as addressing efficiency, multilinguality, or both.
+    Full-stack work is the only category where a substantial fraction (43\%) tackles both concerns simultaneously.
   }
   \label{fig:nlp_literature_by_stage_prop}
 \end{figure}
