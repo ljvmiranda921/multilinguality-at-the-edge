@@ -8,7 +8,6 @@ wheels/
 *.egg-info
 
 # Data folders
-data/
 outputs/
 
 # Virtual environments

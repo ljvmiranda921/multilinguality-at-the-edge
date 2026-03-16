@@ -16,6 +16,11 @@ cd multilingual-edge-nlp
 uv sync
 ```
 
+## Data Sources
+
+- [Share of population in range of mobile network](https://ourworldindata.org/grapher/population-covered-by-mobile-network-by-network-capability.csv?v=1&csvType=full&useColumnShortNames=true): [International Telecommunication Union](https://unstats.un.org/sdgs/dataportal), processsed by [Our World in Data](https://ourworldindata.org/grapher/population-covered-by-mobile-network-by-network-capability)
+- []
+
 ## Acknowledgements
 
 LJVM and AK acknowledge the support of the UKRI Frontier Grant EP/Y031350/1 ([EQUATE](https://gtr.ukri.org/projects?ref=EP%2FY031350%2F1)).
