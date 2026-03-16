@@ -1,3 +1,5 @@
+"""Plot the relationship between infrastructure access and linguistic diversity per country."""
+
 from pathlib import Path
 
 import matplotlib.pyplot as plt

@@ -18,8 +18,13 @@ uv sync
 
 ## Data Sources
 
-- [Share of population in range of mobile network](https://ourworldindata.org/grapher/population-covered-by-mobile-network-by-network-capability.csv?v=1&csvType=full&useColumnShortNames=true): [International Telecommunication Union](https://unstats.un.org/sdgs/dataportal), processsed by [Our World in Data](https://ourworldindata.org/grapher/population-covered-by-mobile-network-by-network-capability)
-- []
+In this section, we list down the data sources to build some of the supporting figures.
+You should be able to replicate the figures by running `python -m analysis.<script_name>`.
+
+- [Share of population in range of mobile network](https://ourworldindata.org/grapher/population-covered-by-mobile-network-by-network-capability): [International Telecommunication Union](https://unstats.un.org/sdgs/dataportal), processed by [Our World in Data](https://ourworldindata.org/)
+- [Living languages per country](https://ourworldindata.org/grapher/living-languages): [SIL International, Ethnologue (28th edition)](https://www.ethnologue.com/), processed by [Our World in Data](https://ourworldindata.org/)
+- [ICT adoption per 100 people](https://ourworldindata.org/grapher/ict-adoption-per-100-people): [International Telecommunication Union](https://www.itu.int/) via [World Bank World Development Indicators](https://databank.worldbank.org/source/world-development-indicators), processed by [Our World in Data](https://ourworldindata.org/)
+- [World Bank income groups](https://ourworldindata.org/grapher/world-bank-income-groups): [World Bank Country and Lending Groups](https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups), processed by [Our World in Data](https://ourworldindata.org/)
 
 ## Acknowledgements
 
