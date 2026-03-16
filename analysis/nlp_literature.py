@@ -14,7 +14,7 @@ ROOT = CWD.parent
 
 plt.rcParams.update(PLOT_PARAMS)
 
-DATA_PATH = ROOT / "data" / "llm_annotate" / "20260316_142727_llm_annotations copy.csv"
+DATA_PATH = ROOT / "data" / "papers_multilingual_edge_llm.csv"
 
 FOCUS_STYLE = {
     "Efficiency": {
@@ -41,7 +41,7 @@ FOCUS_ORDER = ["Efficiency", "Multilinguality", "Both"]
 # Filters
 YEAR_RANGE = (2020, 2025)
 MIN_RELEVANCE = 3
-MIN_CITATIONS = 40
+MIN_CITATIONS = 100
 REQUIRE_TEXT_MODALITY = True
 EXCLUDE_SURVEYS = True
 EXCLUDE_ANALYSIS = True
