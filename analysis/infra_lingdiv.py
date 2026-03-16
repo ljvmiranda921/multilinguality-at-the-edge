@@ -3,10 +3,10 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from analysis.utils import COLORS, PLOT_PARAMS
+from analysis.utils import COLORS, PLOT_PARAMS, OUTPUT_DIR
 
-HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
+CWD = Path(__file__).resolve().parent
+ROOT = CWD.parent
 
 plt.rcParams.update(PLOT_PARAMS)
 
@@ -58,7 +58,7 @@ def main():
         "High-income countries",
     ]
 
-    fig, ax = plt.subplots(figsize=(10, 7))
+    fig, ax = plt.subplots(figsize=(8, 7))
 
     for group in income_order:
         style = income_style[group]
@@ -75,6 +75,7 @@ def main():
             alpha=0.85,
         )
 
+    ax.set_yscale("log")
     ax.set_xlabel(r"\% population covered by 4G network")
     ax.set_ylabel("Number of living languages")
     ax.legend(frameon=False)
@@ -83,9 +84,7 @@ def main():
     ax.spines["right"].set_visible(False)
 
     fig.tight_layout()
-    output_dir = ROOT / "outputs"
-    output_dir.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output_dir / "infra_lingdiv.pdf", bbox_inches="tight")
+    fig.savefig(OUTPUT_DIR / "infra_lingdiv.pdf", bbox_inches="tight")
     plt.close(fig)
     print("Saved to outputs/infra_lingdiv.pdf")
 
