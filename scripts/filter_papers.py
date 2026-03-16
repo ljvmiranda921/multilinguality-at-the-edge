@@ -83,6 +83,16 @@ REMOVE_S2_IDS = [
     "f69f494ab691481ec353da4be480b334fada6607",
     "f608011b0f50a14bb2949c186a7c632a099aa75b",
     "f1d477ccd20b3e90611fc46b1951b3708651a425",
+    # Second round of manual review
+    "26f82f42f434fdf190e0b3004601ee93ae6ace9e",  # Rank1: IR reranking
+    "40d8e46e117013f3e3143bb2ad03b3fb5c58f00b",  # Fraud-R1: fraud benchmark
+    "cde48b24264e44355abb0e548a2cf7c70bb072b4",  # NV-Embed: embedding model
+    "c491d6e6e24db88e1532788d63bbecfc02b8d9a0",  # Serving LLMs on Huawei CloudMatrix384
+    "d0e7353189feb4501c637b7008ff993de603c3f0",  # Nemotron-4 340B: huge model
+    "c4022c8b34254068af24ca00b5b7d5aa250ce2bf",  # Llama2Vec: dense retrieval
+    "ae4aa7b0c5a327dae63ad20e00b58bcc6176b3b8",  # Moshi: speech foundation model
+    "ad2be51acf42f686a8d1de92d7435d84274ee62d",  # Orca-Math: math reasoning
+    "f8d75c913a4811fe9f2030ca8d965c3a6d49b423",  # GraphRouter: LLM routing
 ]
 
 
