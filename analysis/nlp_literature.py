@@ -67,7 +67,7 @@ def main():
     stage_props = stage_counts.div(stage_counts.sum(axis=0), axis=1) * 100
     stage_props = stage_props.reindex(columns=stage_order_rev, fill_value=0)
 
-    fig, ax = plt.subplots(figsize=(10, 5))
+    fig, ax = plt.subplots(figsize=(8, 6))
     left = np.zeros(len(stage_order_rev))
     for focus in FOCUS_ORDER:
         style = FOCUS_STYLE[focus]
