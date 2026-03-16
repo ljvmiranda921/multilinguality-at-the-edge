@@ -19,13 +19,13 @@ DATA_PATH = ROOT / "data" / "papers_multilingual_edge_llm.csv"
 FOCUS_STYLE = {
     "Efficiency": {
         "facecolor": COLORS["light_blue"],
-        "edgecolor": COLORS["dark_blue"],
+        "edgecolor": COLORS["warm_blue"],
         "hatch": "//",
         "label": "Efficiency",
     },
     "Multilinguality": {
         "facecolor": COLORS["light_crest"],
-        "edgecolor": COLORS["dark_crest"],
+        "edgecolor": COLORS["crest"],
         "hatch": "\\\\",
         "label": "Multilinguality",
     },
@@ -114,7 +114,7 @@ def main():
                     f"{v:.0%}",
                     ha="center",
                     va="center",
-                    fontsize=16,
+                    fontsize=22,
                     fontweight="bold",
                 )
         left += vals
@@ -124,7 +124,7 @@ def main():
     ax.legend(
         frameon=False,
         loc="upper center",
-        bbox_to_anchor=(0.5, -0.12),
+        bbox_to_anchor=(0.5, -0.18),
         ncol=3,
     )
     ax.grid(False)
