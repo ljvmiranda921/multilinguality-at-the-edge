@@ -47,7 +47,9 @@ def main():
     )
     network_2023 = (
         network_df[network_df["year"] == 2023][["entity", "_9_c_1__it_mob_4gntwk"]]
-        .rename(columns={"entity": "country", "_9_c_1__it_mob_4gntwk": "network_access"})
+        .rename(
+            columns={"entity": "country", "_9_c_1__it_mob_4gntwk": "network_access"}
+        )
         .dropna(subset=["network_access"])
     )
     ict_2023 = (
@@ -56,8 +58,10 @@ def main():
         .dropna(subset=["internet_users"])
     )
 
-    # --- Network adoption plot ---
-    df_net = network_2023.merge(language_df, on="country").merge(income_latest, on="country")
+    # Network adoption
+    df_net = network_2023.merge(language_df, on="country").merge(
+        income_latest, on="country"
+    )
     fig, ax = plt.subplots(figsize=(8, 7))
     for group in INCOME_ORDER:
         style = INCOME_STYLE[group]
@@ -85,8 +89,10 @@ def main():
     plt.close(fig)
     print("Saved to outputs/infra_lingdiv_network.pdf")
 
-    # --- ICT adoption plot ---
-    df_ict = ict_2023.merge(language_df, on="country").merge(income_latest, on="country")
+    # ICT Adoption
+    df_ict = ict_2023.merge(language_df, on="country").merge(
+        income_latest, on="country"
+    )
     fig, ax = plt.subplots(figsize=(8, 7))
     for group in INCOME_ORDER:
         style = INCOME_STYLE[group]
@@ -103,7 +109,7 @@ def main():
             alpha=0.85,
         )
     ax.set_yscale("log")
-    ax.set_xlabel(r"\% individuals using the Internet")
+    ax.set_xlabel(r"\% Individuals using the Internet")
     ax.set_ylabel("Number of living languages")
     ax.legend(
         frameon=False,
