@@ -17,9 +17,9 @@ plt.rcParams.update(PLOT_PARAMS)
 DATA_PATH = ROOT / "data" / "llm_annotate" / "20260316_142727_llm_annotations copy.csv"
 
 FOCUS_STYLE = {
-    "Efficiency": {"color": COLORS["indigo"], "label": "Efficiency"},
-    "Multilinguality": {"color": COLORS["cherry"], "label": "Multilinguality"},
-    "Both": {"color": COLORS["dark_green"], "label": "Both"},
+    "Efficiency": {"facecolor": COLORS["warm_indigo"], "edgecolor": COLORS["dark_indigo"], "label": "Efficiency"},
+    "Multilinguality": {"facecolor": COLORS["warm_cherry"], "edgecolor": COLORS["dark_cherry"], "label": "Multilinguality"},
+    "Both": {"facecolor": COLORS["warm_green"], "edgecolor": COLORS["dark_green"], "label": "Both"},
 }
 FOCUS_ORDER = ["Efficiency", "Multilinguality", "Both"]
 
@@ -29,6 +29,7 @@ MIN_RELEVANCE = 3
 MIN_CITATIONS = 40
 REQUIRE_TEXT_MODALITY = True
 EXCLUDE_SURVEYS = True
+EXCLUDE_ANALYSIS = True
 
 
 def _apply_filters(df: pd.DataFrame) -> pd.DataFrame:
@@ -40,6 +41,8 @@ def _apply_filters(df: pd.DataFrame) -> pd.DataFrame:
         df = df[df["modalities"].apply(lambda x: "Text" in ast.literal_eval(x))]
     if EXCLUDE_SURVEYS:
         df = df[~df["contribution_type"].str.contains("Survey")]
+    if EXCLUDE_ANALYSIS:
+        df = df[~(df["contribution_type"] == "['Analysis']")]
     return df
 
 
@@ -64,9 +67,9 @@ def main():
             counts[focus],
             width,
             label=style["label"],
-            color=style["color"],
-            edgecolor=COLORS["slate_3"],
-            linewidth=0.5,
+            color=style["facecolor"],
+            edgecolor=style["edgecolor"],
+            linewidth=1.0,
         )
 
     ax.set_xlabel("Year")
@@ -97,9 +100,9 @@ def main():
             years,
             proportions[focus],
             label=style["label"],
-            color=style["color"],
-            edgecolor=COLORS["slate_3"],
-            linewidth=0.5,
+            color=style["facecolor"],
+            edgecolor=style["edgecolor"],
+            linewidth=1.0,
             bottom=bottom,
         )
         bottom += proportions[focus].values
@@ -149,9 +152,9 @@ def main():
             stage_counts.loc[focus],
             width,
             label=style["label"],
-            color=style["color"],
-            edgecolor=COLORS["slate_3"],
-            linewidth=0.5,
+            color=style["facecolor"],
+            edgecolor=style["edgecolor"],
+            linewidth=1.0,
         )
 
     ax.set_xlabel("Pipeline stage")
@@ -171,6 +174,53 @@ def main():
     fig.savefig(OUTPUT_DIR / "nlp_literature_by_stage.pdf", bbox_inches="tight")
     plt.close(fig)
     print("Saved to plot_outputs/nlp_literature_by_stage.pdf")
+
+    # Proportional pipeline stage chart (horizontal stacked bars)
+    stage_props = stage_counts.div(stage_counts.sum(axis=0), axis=1)
+    stage_props = stage_props.reindex(columns=stage_order, fill_value=0)
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    left = np.zeros(len(stage_order))
+    for focus in FOCUS_ORDER:
+        style = FOCUS_STYLE[focus]
+        vals = stage_props.loc[focus].values
+        ax.barh(
+            stage_order,
+            vals,
+            label=style["label"],
+            color=style["facecolor"],
+            edgecolor=style["edgecolor"],
+            linewidth=1.0,
+            left=left,
+        )
+        # Add percentage labels inside bars
+        for j, (v, offset) in enumerate(zip(vals, left)):
+            if v > 0.08:  # only label if wide enough
+                ax.text(
+                    offset + v / 2,
+                    j,
+                    f"{v:.0%}",
+                    ha="center",
+                    va="center",
+                    fontsize=12,
+                )
+        left += vals
+
+    ax.set_xlabel("Proportion of papers")
+    ax.set_xlim(0, 1)
+    ax.legend(
+        frameon=False,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.12),
+        ncol=3,
+    )
+    ax.grid(False)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    fig.tight_layout()
+    fig.savefig(OUTPUT_DIR / "nlp_literature_by_stage_prop.pdf", bbox_inches="tight")
+    plt.close(fig)
+    print("Saved to plot_outputs/nlp_literature_by_stage_prop.pdf")
 
 
 if __name__ == "__main__":
