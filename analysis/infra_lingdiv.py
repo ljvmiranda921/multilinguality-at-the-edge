@@ -45,6 +45,8 @@ def main():
         .last()[["entity", "classification"]]
         .rename(columns={"entity": "country", "classification": "income_group"})
     )
+    # Filter to only countries that appear in World Bank income groups
+    language_df = language_df[language_df["country"].isin(income_latest["country"])]
     network_2023 = (
         network_df[network_df["year"] == 2023][["entity", "_9_c_1__it_mob_4gntwk"]]
         .rename(
@@ -108,6 +110,31 @@ def main():
             s=60,
             alpha=0.85,
         )
+    # Annotate notable outliers
+    annotate_countries = [
+        "Papua New Guinea",
+        "Nigeria",
+        "Indonesia",
+        "India",
+        "China",
+        "Cameroon",
+        "Chad",
+        "Democratic Republic of Congo",
+        "Ethiopia",
+    ]
+    for _, row in df_ict[df_ict["country"].isin(annotate_countries)].iterrows():
+        label = row["country"]
+        if label == "Democratic Republic of Congo":
+            label = "DR Congo"
+        ax.annotate(
+            label,
+            (row["internet_users"], row["num_living_languages"]),
+            textcoords="offset points",
+            xytext=(6, 4),
+            fontsize=12,
+            color=COLORS["slate_3"],
+        )
+
     ax.set_yscale("log")
     ax.set_xlabel(r"\% Individuals using the Internet")
     ax.set_ylabel("Number of living languages")
