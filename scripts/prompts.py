@@ -19,8 +19,10 @@ Please classify this paper according to the following dimensions:
 5. Languages studied or supported (if applicable). Use ISO 639-1 codes where possible (e.g., en, fr, de, es). Use "multilingual" if >10 languages.
 6. Names of any models released by the authors (empty list if none).
 7. Parameter sizes of the models released in billions (empty list if none or not specified).
-8. Is this paper relevant in the context of multilingual NLP for edge devices? Score from 1 to 5.
-9. State your reason for the relevance score.
+8. Is this paper primarily about efficiency, multilinguality, both, or neither?
+9. Is this paper relevant in the context of multilingual NLP for edge devices? Score from 1 to 5.
+10. State your reason for the relevance score.
+11. Extract a list of free-form keywords that capture the paper's key concepts, methods, datasets, or findings.
 """
 
 
@@ -113,6 +115,21 @@ class ResearchPaperAnnotation(BaseModel):
         ...,
         description="Parameter sizes of models released in billions (e.g., 7, 1.5, 0.1). Empty list if none or not specified.",
     )
+    research_focus: Literal[
+        "Efficiency",
+        "Multilinguality",
+        "Both",
+        "Neither",
+    ] = Field(
+        ...,
+        description=(
+            "Is this paper primarily about efficiency, multilinguality, both, or neither? "
+            "Efficiency: compression, quantization, pruning, distillation, on-device, edge deployment, small models. "
+            "Multilinguality: cross-lingual transfer, multilingual models, low-resource languages, translation. "
+            "Both: explicitly studies the intersection (e.g., compressing multilingual models, efficient cross-lingual transfer). "
+            "Neither: does not primarily focus on either dimension."
+        ),
+    )
     relevance_score: int = Field(
         ...,
         description=(
@@ -133,4 +150,12 @@ class ResearchPaperAnnotation(BaseModel):
     relevance_reasoning: str = Field(
         ...,
         description="Brief reasoning for the assigned relevance score.",
+    )
+    keywords: List[str] = Field(
+        ...,
+        description=(
+            "Free-form keywords capturing the paper's key concepts, methods, datasets, or findings. "
+            "Include specific technique names (e.g., 'GPTQ', 'LoRA'), dataset names (e.g., 'FLORES', 'XNLI'), "
+            "model names, and other salient terms useful for building a keyword co-occurrence network."
+        ),
     )
