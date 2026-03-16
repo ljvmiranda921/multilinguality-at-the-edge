@@ -11,7 +11,7 @@ from typing import Any
 
 import pandas as pd
 from dotenv import load_dotenv
-from openai import AsyncAzureOpenAI, AsyncOpenAI
+from openai import APIError, AsyncAzureOpenAI, AsyncOpenAI, RateLimitError
 from pydantic import BaseModel
 from tqdm.asyncio import tqdm_asyncio
 
@@ -42,6 +42,8 @@ def get_args():
     parser.add_argument("--use_azure", action="store_true", help="Use Azure OpenAI instead of OpenAI. Requires AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY in .env.")
     parser.add_argument("--azure_api_version", type=str, default="2024-12-01-preview", help="Azure OpenAI API version.")
     parser.add_argument("--resume", type=str, default=None, help="Path to an existing output CSV to resume from (skips already-annotated papers).")
+    parser.add_argument("--delay", type=float, default=1.0, help="Delay in seconds between batches (for rate limiting).")
+    parser.add_argument("--max_retries", type=int, default=5, help="Max retries per request on rate limit errors.")
     # fmt: on
     return parser.parse_args()
 
@@ -126,6 +128,8 @@ def main():
             id_column=args.id_column,
             output_path=output_path,
             input_df=df,
+            delay_between_batches=args.delay,
+            max_retries=args.max_retries,
         )
     )
 
@@ -143,6 +147,7 @@ async def submit_async_requests(
     id_column: str = "s2_id",
     output_path: Path,
     input_df: pd.DataFrame,
+    max_retries: int = 5,
 ) -> None:
     """Submit async requests to OpenAI API in batches, appending results to CSV after each batch."""
     total_batches = (len(messages) + batch_size - 1) // batch_size
@@ -157,6 +162,7 @@ async def submit_async_requests(
             model=model,
             response_model=response_model,
             id_column=id_column,
+            max_retries=max_retries,
         )
 
         # Merge with input data and append to CSV
@@ -169,6 +175,7 @@ async def submit_async_requests(
         logging.info(f"Batch {batch_num}/{total_batches}: appended {len(merged)} rows to {output_path}")
 
         if batch_num < total_batches:
+            logging.info(f"Waiting {delay_between_batches}s before next batch...")
             await asyncio.sleep(delay_between_batches)
 
 
@@ -179,6 +186,7 @@ async def _process_batch(
     model: str,
     response_model: type[BaseModel],
     id_column: str = "s2_id",
+    max_retries: int = 5,
 ) -> list[BaseModel]:
     """Process a batch of requests concurrently."""
     tasks = [
@@ -188,6 +196,7 @@ async def _process_batch(
             model=model,
             response_model=response_model,
             id_column=id_column,
+            max_retries=max_retries,
         )
         for request in requests
     ]
@@ -201,16 +210,29 @@ async def _process_single_request(
     model: str,
     response_model: type[BaseModel],
     id_column: str = "s2_id",
+    max_retries: int = 5,
 ) -> dict[str, Any]:
-    """Process a single async OpenAI request with structured output."""
+    """Process a single async OpenAI request with structured output and retry on rate limits."""
     s2_id, messages = inputs
-    response = await client.beta.chat.completions.parse(
-        messages=messages,
-        model=model,
-        response_format=response_model,
-    )
-    parsed_output = response.choices[0].message.parsed.model_dump()
-    return {id_column: s2_id, **parsed_output}
+    for attempt in range(max_retries):
+        try:
+            response = await client.beta.chat.completions.parse(
+                messages=messages,
+                model=model,
+                response_format=response_model,
+            )
+            parsed_output = response.choices[0].message.parsed.model_dump()
+            return {id_column: s2_id, **parsed_output}
+        except RateLimitError as e:
+            wait = 2 ** attempt
+            logging.warning(f"Rate limited on {s2_id}, retrying in {wait}s (attempt {attempt + 1}/{max_retries}): {e}")
+            await asyncio.sleep(wait)
+        except APIError as e:
+            wait = 2 ** attempt
+            logging.warning(f"API error on {s2_id}, retrying in {wait}s (attempt {attempt + 1}/{max_retries}): {e}")
+            await asyncio.sleep(wait)
+    logging.error(f"Failed after {max_retries} retries for {s2_id}")
+    return {id_column: s2_id}
 
 
 if __name__ == "__main__":
