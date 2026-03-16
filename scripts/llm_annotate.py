@@ -11,7 +11,7 @@ from typing import Any
 
 import pandas as pd
 from dotenv import load_dotenv
-from openai import AsyncOpenAI
+from openai import AsyncAzureOpenAI, AsyncOpenAI
 from pydantic import BaseModel
 from tqdm.asyncio import tqdm_asyncio
 
@@ -35,10 +35,12 @@ def get_args():
     parser = argparse.ArgumentParser("Annotate papers using a language model.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-i", "--input_csv", type=str, default="data/s2_papers/papers.csv", help="Path to the input CSV file.")
     parser.add_argument("-o", "--output_dir", type=str, default="data/llm_annotate", help="Directory to save annotated CSV.")
-    parser.add_argument("--model", type=str, default="gpt-4o-mini-2024-07-18", help="Language model to use for annotation.")
+    parser.add_argument("--model", type=str, default="gpt-4.1-mini", help="Language model to use for annotation.")
     parser.add_argument("--batch_size", type=int, default=32, help="Number of papers to annotate in each batch.")
     parser.add_argument("--limit", type=int, default=-1, help="Number of papers to annotate. Set to -1 for no limit.")
     parser.add_argument("--id_column", type=str, default="s2_id", help="Column name for the unique paper identifier.")
+    parser.add_argument("--use_azure", action="store_true", help="Use Azure OpenAI instead of OpenAI. Requires AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY in .env.")
+    parser.add_argument("--azure_api_version", type=str, default="2024-12-01-preview", help="Azure OpenAI API version.")
     # fmt: on
     return parser.parse_args()
 
@@ -46,10 +48,17 @@ def get_args():
 def main():
     args = get_args()
 
-    api_key = os.getenv("OPENAI_API_KEY")
-    if api_key is None:
-        logging.error("OPENAI_API_KEY is not set!")
-        sys.exit(1)
+    if args.use_azure:
+        azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+        azure_key = os.getenv("AZURE_OPENAI_API_KEY")
+        if not azure_endpoint or not azure_key:
+            logging.error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set in .env")
+            sys.exit(1)
+    else:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if api_key is None:
+            logging.error("OPENAI_API_KEY is not set!")
+            sys.exit(1)
 
     df = pd.read_csv(args.input_csv)
     logging.info(f"Loaded {len(df)} papers from {args.input_csv}")
@@ -71,7 +80,14 @@ def main():
         )
         requests_list.append(request)
 
-    client = AsyncOpenAI(api_key=api_key)
+    if args.use_azure:
+        client = AsyncAzureOpenAI(
+            azure_endpoint=azure_endpoint,
+            api_key=azure_key,
+            api_version=args.azure_api_version,
+        )
+    else:
+        client = AsyncOpenAI(api_key=api_key)
     results = asyncio.run(
         submit_async_requests(
             requests_list,
@@ -158,12 +174,12 @@ async def _process_single_request(
 ) -> dict[str, Any]:
     """Process a single async OpenAI request with structured output."""
     s2_id, messages = inputs
-    response = await client.responses.parse(
-        input=messages,
+    response = await client.beta.chat.completions.parse(
+        messages=messages,
         model=model,
-        text_format=response_model,
+        response_format=response_model,
     )
-    parsed_output = response.output_parsed.model_dump()
+    parsed_output = response.choices[0].message.parsed.model_dump()
     return {id_column: s2_id, **parsed_output}
 
 

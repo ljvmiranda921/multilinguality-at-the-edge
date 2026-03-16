@@ -17,8 +17,23 @@ uv sync
 ```
 
 To generate figures, run `python -m analysis.<script_name>`.
-To scrape papers from Semantic Scholar, run `python scripts/s2_scrape.py`.
-To annotate papers using an LLM, run `python scripts/llm_annotate.py` (requires `OPENAI_API_KEY` in `.env`).
+
+To scrape papers from Semantic Scholar, run `python -m scripts.s2_scrape`.
+You can optionally set `S2_API_KEY` in `.env` for higher rate limits, but unauthenticated requests work fine for moderate volumes.
+Use `--query_names` to select specific queries (`multilingual`, `efficient`, `intersection`), or omit to run all three.
+
+```bash
+python -m scripts.s2_scrape --year 2020 --min_citations 5
+```
+
+To annotate papers using an LLM, run `python -m scripts.llm_annotate`.
+We use Azure OpenAI by default&mdash;set `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` in `.env`, then pass `--use_azure` with the deployment name as `--model`:
+
+```bash
+python -m scripts.llm_annotate --use_azure --model gpt-4.1-mini
+```
+
+You can also use the OpenAI API directly by setting `OPENAI_API_KEY` in `.env` and omitting the `--use_azure` flag.
 
 ## Data Sources
 
