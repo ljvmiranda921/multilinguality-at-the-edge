@@ -20,7 +20,7 @@ FOCUS_STYLE = {
         "facecolor": COLORS["light_blue"],
         "edgecolor": COLORS["warm_blue"],
         "hatch": "//",
-        "label": "Efficiency",
+        "label": "Edge",
     },
     "Multilinguality": {
         "facecolor": COLORS["light_crest"],
