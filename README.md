@@ -18,6 +18,7 @@ uv sync
 
 To generate figures, run `python -m analysis.<script_name>`.
 To scrape papers from Semantic Scholar, run `python scripts/s2_scrape.py`.
+To annotate papers using an LLM, run `python scripts/llm_annotate.py` (requires `OPENAI_API_KEY` in `.env`).
 
 ## Data Sources
 
