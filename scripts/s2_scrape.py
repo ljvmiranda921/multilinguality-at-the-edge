@@ -89,8 +89,7 @@ def main():
 
     api_key = os.getenv("S2_API_KEY")
     if api_key is None:
-        logging.error("S2_API_KEY not found. Set it in .env file.")
-        sys.exit(1)
+        logging.warning("S2_API_KEY not found. Using unauthenticated requests (stricter rate limits).")
 
     query_names = args.query_names or list(QUERIES.keys())
     output_dir = Path(args.output_dir)
@@ -149,7 +148,7 @@ def main():
 def fetch_papers(
     query: str,
     *,
-    api_key: str,
+    api_key: str | None = None,
     year: int = 2015,
     limit: int = -1,
     min_citations: int = 5,
