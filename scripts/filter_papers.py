@@ -48,36 +48,14 @@ def filter_papers(
     min_relevance: int = MIN_RELEVANCE,
     min_citations: int = MIN_CITATIONS,
 ) -> pd.DataFrame:
-    n_start = len(df)
-    print(f"Starting papers: {n_start}")
-
     df = df[df["year"].between(*year_range)]
-    print(f"  After year filter ({year_range[0]}-{year_range[1]}): {len(df)}")
-
     df = df[df["relevance_score"] >= min_relevance]
-    print(f"  After relevance >= {min_relevance}: {len(df)}")
-
     df = df[df["citations"] >= min_citations]
-    print(f"  After citations >= {min_citations}: {len(df)}")
-
     df = df[df["modalities"].apply(lambda x: "Text" in ast.literal_eval(x))]
-    print(f"  After text-only modality: {len(df)}")
-
     df = df[~df["contribution_type"].str.contains("Survey")]
-    print(f"  After excluding surveys: {len(df)}")
-
     df = df[~(df["contribution_type"] == "['Analysis']")]
-    print(f"  After excluding pure analysis: {len(df)}")
-
     df = df[df["research_focus"].isin(VALID_FOCUS)]
-    print(f"  After keeping valid focus {VALID_FOCUS}: {len(df)}")
-
     df = df[~df["s2_id"].isin(REMOVE_S2_IDS)]
-    print(f"  After manual removal list ({len(REMOVE_S2_IDS)} IDs): {len(df)}")
-
-    print(f"\nFinal: {len(df)} papers ({len(df)/n_start:.1%} of original)")
-    print(f"\nBy research focus:\n{df['research_focus'].value_counts().to_string()}")
-    print(f"\nBy year:\n{df.groupby('year').size().to_string()}")
     return df
 
 
@@ -90,13 +68,14 @@ def main():
     args = parser.parse_args()
 
     df = pd.read_csv(args.input)
+    n_start = len(df)
     df = filter_papers(
         df,
         min_relevance=args.min_relevance,
         min_citations=args.min_citations,
     )
     df.to_csv(args.output, index=False)
-    print(f"\nSaved to {args.output}")
+    print(f"{n_start} -> {len(df)} papers. Saved to {args.output}")
 
 
 if __name__ == "__main__":
