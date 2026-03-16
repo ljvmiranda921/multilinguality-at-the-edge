@@ -186,10 +186,18 @@ def fetch_papers(
         if "data" not in data:
             break
 
-        retrieved_papers.extend(data["data"])
-        logging.info(
-            f"Retrieved {len(retrieved_papers)} papers so far (total: {data.get('total', '?')})"
-        )
+        batch = data["data"]
+        if not batch:
+            logging.info("Empty batch, stopping")
+            break
+
+        retrieved_papers.extend(batch)
+        total = data.get("total", "?")
+        logging.info(f"Retrieved {len(retrieved_papers)} papers so far (total: {total})")
+
+        if isinstance(total, int) and len(retrieved_papers) >= total:
+            logging.info("Fetched all available papers")
+            break
 
         if limit != -1 and len(retrieved_papers) >= limit:
             logging.info(f"Reached limit of {limit} papers")
