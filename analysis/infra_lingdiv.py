@@ -13,7 +13,7 @@ def main():
         "https://ourworldindata.org/grapher/population-covered-by-mobile-network-by-network-capability.csv?v=1&csvType=full&useColumnShortNames=true",
         storage_options={"User-Agent": "Our World In Data data fetch/1.0"},
     )
-    language_df = pd.read_csv()
+    language_df = pd.read_csv("data/living_languages_per_country_2025.csv")
     breakpoint()
 
 
