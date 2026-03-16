@@ -44,31 +44,46 @@ DEFAULT_FIELDS = [
 # Each query is a (name, bulk_query) tuple.
 QUERIES = {
     "multilingual": (
-        '("multilingual" | "cross-lingual" | "crosslingual" | "low-resource language*"'
-        ' | "multilanguage" | "polyglot" | "language-agnostic")'
+        '("multilingual" | "cross-lingual" | "crosslingual" | "low-resource language*")'
         " + "
-        '("language model*" | "NLP" | "natural language" | "transformer*" | "BERT"'
+        '("language model*" | "NLP" | "natural language processing"'
         ' | "LLM" | "large language model*")'
     ),
     "efficient": (
-        '("efficient" | "compression" | "quantization" | "pruning" | "distillation"'
-        ' | "edge" | "on-device" | "mobile" | "tinyml" | "tiny" | "lightweight"'
-        ' | "small language model*" | "compact" | "knowledge distillation")'
+        '("compression" | "quantization" | "pruning" | "distillation"'
+        ' | "edge" | "on-device" | "tinyml" | "lightweight"'
+        ' | "small language model*" | "knowledge distillation")'
         " + "
-        '("language model*" | "NLP" | "natural language" | "transformer*" | "BERT"'
+        '("language model*" | "NLP" | "natural language processing"'
         ' | "LLM" | "large language model*")'
     ),
     "intersection": (
         '("multilingual" | "cross-lingual" | "crosslingual" | "low-resource language*")'
         " + "
-        '("efficient" | "compression" | "quantization" | "pruning" | "distillation"'
-        ' | "edge" | "on-device" | "mobile" | "tinyml" | "lightweight"'
-        ' | "small language model*" | "compact" | "knowledge distillation")'
+        '("compression" | "quantization" | "pruning" | "distillation"'
+        ' | "edge" | "on-device" | "tinyml" | "lightweight"'
+        ' | "small language model*" | "knowledge distillation")'
         " + "
-        '("language model*" | "NLP" | "natural language" | "transformer*"'
+        '("language model*" | "NLP" | "natural language processing"'
         ' | "LLM" | "large language model*")'
     ),
 }
+
+# fmt: off
+DEFAULT_VENUES = [
+    "Annual Meeting of the Association for Computational Linguistics",
+    "Conference on Empirical Methods in Natural Language Processing",
+    "North American Chapter of the Association for Computational Linguistics",
+    "Conference of the European Chapter of the Association for Computational Linguistics",
+    "International Conference on Computational Linguistics",
+    "International Conference on Learning Representations",
+    "Neural Information Processing Systems",
+    "International Conference on Machine Learning",
+    "AAAI Conference on Artificial Intelligence",
+    "arXiv.org",
+    "Trans. Mach. Learn. Res.",
+]
+# fmt: on
 
 
 def get_args():
@@ -110,6 +125,7 @@ def main():
             year=args.year,
             limit=args.limit,
             min_citations=args.min_citations,
+            venues=DEFAULT_VENUES,
         )
         for p in papers:
             p["query_source"] = name
@@ -158,8 +174,9 @@ def fetch_papers(
     year: int = 2015,
     limit: int = -1,
     min_citations: int = 5,
-    fields_of_study: list[str] = ["Computer Science", "Linguistics", "Engineering"],
+    fields_of_study: list[str] = ["Computer Science", "Linguistics"],
     publication_types: list[str] = ["JournalArticle", "Conference"],
+    venues: list[str] | None = None,
 ) -> list[dict]:
     delay = 2.0
     headers = {"x-api-key": api_key} if api_key else {}
@@ -172,6 +189,8 @@ def fetch_papers(
         "sort": "citationCount:desc",
         "minCitationCount": min_citations,
     }
+    if venues:
+        params["venue"] = ",".join(venues)
     logging.info(f"Retrieving papers with query: {query[:100]}...")
     retrieved_papers = []
     while True:
