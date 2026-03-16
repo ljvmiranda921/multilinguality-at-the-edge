@@ -21,9 +21,7 @@ YEAR_RANGE = (2020, 2026)
 MIN_RELEVANCE = 3
 VALID_FOCUS = ["Efficiency", "Multilinguality", "Both"]
 
-# Staggered citation thresholds: older papers need more citations
-# to ensure quality, recent papers get a pass since they haven't
-# had time to accumulate citations yet.
+# Let's stagger the citation filter
 CITATION_THRESHOLDS = {
     2020: 100,
     2021: 100,
@@ -34,24 +32,24 @@ CITATION_THRESHOLDS = {
     2026: 5,
 }
 
-# Manually flagged for removal (off-topic despite passing automated filters)
+# Don't include these after manual relevance checks
 REMOVE_S2_IDS = [
-    "00696ba295d66f049d70272219f7fea4266171be",  # Optimus: Organizing Sentences via Pre-trained Modeling of a Latent Space
-    "2577d053f8aab912d29b424e1f09133d83740fd2",  # Multi-lingual Evaluation of Code Generation Models
-    "18e7ab056c16928d8f9539509a4b366889106d97",  # StarCoder 2 and The Stack v2: The Next Generation
-    "93d6fa92d60938b5bd0e405e159832b91332f169",  # Is ChatGPT a Highly Fluent Grammatical Error Correction System?
-    "fbd2c8089870814449f9254a711041bbae145a82",  # How Far Can Camels Go?
-    "b932a2c610a16566639f8d693eaa98181bef06f1",  # With More Contexts Comes Better Performance
-    "31f44f0f2124c54e47f4df54dec63118232c25da",  # ChatGPT: Beginning of an End of Manual Linguistic Data Annotation?
-    "32dcd0887537cece54e214f531d2c384470b023f",  # Large Language Models as Tool Makers
-    "455866ca838f356b53a7e3e5b344834f9e93dbbc",  # ToolAlpaca
-    "aade40af0d85b0b4fe15c97f6222d5c2e4d6d9b3",  # Graph of Thoughts
-    "53132ea6c107479d4557631299d3ed525109b464",  # AFlow: Automating Agentic Workflow Generation
-    "4fcb8b6c466937025d315be6a83b624b10e860b4",  # MAmmoTH2: Scaling Instructions from the Web
-    "459c82205d2a27a8542bba7a4d478a8a23be2f5d",  # Is ChatGPT Good at Search?
-    "29f032fc875576b5c3c6b1c2d76af8639bacfb88",  # OpenChat
-    "85e7d63f75c0916bd350a229e040c5fbb1472e7a",  # Making Pre-trained Language Models Better Few-shot Learners
-    "9b56086e420ecb216f85d408a25264f640e46705",  # Differentiable Prompt Makes Pre-trained Language Models Better Few-shot Learners
+    "00696ba295d66f049d70272219f7fea4266171be",
+    "2577d053f8aab912d29b424e1f09133d83740fd2",
+    "18e7ab056c16928d8f9539509a4b366889106d97",
+    "93d6fa92d60938b5bd0e405e159832b91332f169",
+    "fbd2c8089870814449f9254a711041bbae145a82",
+    "b932a2c610a16566639f8d693eaa98181bef06f1",
+    "31f44f0f2124c54e47f4df54dec63118232c25da",
+    "32dcd0887537cece54e214f531d2c384470b023f",
+    "455866ca838f356b53a7e3e5b344834f9e93dbbc",
+    "aade40af0d85b0b4fe15c97f6222d5c2e4d6d9b3",
+    "53132ea6c107479d4557631299d3ed525109b464",
+    "4fcb8b6c466937025d315be6a83b624b10e860b4",
+    "459c82205d2a27a8542bba7a4d478a8a23be2f5d",
+    "29f032fc875576b5c3c6b1c2d76af8639bacfb88",
+    "85e7d63f75c0916bd350a229e040c5fbb1472e7a",
+    "9b56086e420ecb216f85d408a25264f640e46705",
 ]
 
 
@@ -62,7 +60,11 @@ def filter_papers(
 ) -> pd.DataFrame:
     df = df[df["year"].between(*year_range)]
     df = df[df["relevance_score"] >= min_relevance]
-    df = df[df.apply(lambda r: r["citations"] >= CITATION_THRESHOLDS.get(r["year"], 100), axis=1)]
+    df = df[
+        df.apply(
+            lambda r: r["citations"] >= CITATION_THRESHOLDS.get(r["year"], 100), axis=1
+        )
+    ]
     df = df[df["modalities"].apply(lambda x: "Text" in ast.literal_eval(x))]
     df = df[~df["contribution_type"].str.contains("Survey")]
     df = df[~(df["contribution_type"] == "['Analysis']")]
