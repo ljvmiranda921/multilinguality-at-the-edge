@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from analysis.utils import COLORS, PLOT_PARAMS, OUTPUT_DIR
+from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
