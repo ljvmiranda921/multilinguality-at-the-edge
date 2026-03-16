@@ -1,0 +1,21 @@
+.DS_Store
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Data folders
+data/
+outputs/
+
+# Virtual environments
+.venv
+
+# Env variables
+.env
+
+# Notebooks
+.ipynb_checkpoints
