@@ -6,7 +6,7 @@
 This repository contains all the experiments for the Multilingual Edge LLM project.
 The first portion of this work as a survey, which looks at existing literature in multilingual and efficient NLP to condense a potential recipe for multilingual edge LLMs.
 
-## Installation
+## Installation & Usage
 
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
@@ -15,6 +15,9 @@ git clone git@github.com:ljvmiranda921/multilingual-edge-nlp.git
 cd multilingual-edge-nlp
 uv sync
 ```
+
+To generate figures, run `python -m analysis.<script_name>`.
+To scrape papers from Semantic Scholar, run `python scripts/s2_scrape.py`.
 
 ## Data Sources
 
