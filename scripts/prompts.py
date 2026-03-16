@@ -2,22 +2,76 @@ from typing import List, Literal
 
 from pydantic import BaseModel, Field
 
-SYSTEM_PROMPT = """You are an expert research paper annotator. Given the title and abstract of a research paper, you will classify it according to several dimensions relevant to low-resource and efficient NLP on edge devices. Your responses must strictly adhere to the specified response schema without adding any additional commentary or information."""
-USER_PROMPT = """Title: {title}\n\nAbstract: {abstract}\n\nPlease classify the paper according to the following dimensions:
-1. Primary subject area of the paper based on ACL 2025 Subject Areas.
-2. Application domain(s) addressed by the paper.
-3. Methods used in the paper.
-4. Deployment platforms targeted by the paper.
-5. Names of any models released by the authors.
-6. Parameter sizes of the models released (in B of parameters).
-7. Modality of the models (e.g., text, speech, multimodal).
-8. Languages supported by the models (if applicable). Use the ISO 639-1 codes where possible (e.g., en, fr, de, es).
-9. Is this paper relevant in the context of efficient NLP on edge devices (score from 1 to 5, with 5 as highly relevant)?
-10. State your reason as to why you assigned the relevance score.
+SYSTEM_PROMPT = """You are an expert research paper annotator specializing in NLP and machine learning.
+Given the title and abstract of a research paper, classify it according to several dimensions
+relevant to multilingual and efficient NLP for edge deployment.
+Your responses must strictly adhere to the specified response schema without adding any additional commentary."""
+
+USER_PROMPT = """Title: {title}
+
+Abstract: {abstract}
+
+Please classify this paper according to the following dimensions:
+1. Pipeline stage(s) the paper addresses (Data Collection, Pretraining, Post-training, Inference, Evaluation).
+2. Primary topic(s) or techniques used in the paper.
+3. Primary subject area of the paper based on ACL 2025 Subject Areas.
+4. Modality of the work (e.g., text, speech, multimodal).
+5. Languages studied or supported (if applicable). Use ISO 639-1 codes where possible (e.g., en, fr, de, es). Use "multilingual" if >10 languages.
+6. Names of any models released by the authors (empty list if none).
+7. Parameter sizes of the models released in billions (empty list if none or not specified).
+8. Is this paper relevant in the context of multilingual NLP for edge devices? Score from 1 to 5.
+9. State your reason for the relevance score.
 """
 
 
 class ResearchPaperAnnotation(BaseModel):
+    pipeline_stages: List[
+        Literal[
+            "Data Collection",
+            "Pretraining",
+            "Post-training",
+            "Inference",
+            "Evaluation",
+        ]
+    ] = Field(
+        ...,
+        description=(
+            "Which stage(s) of the ML pipeline does this paper address? "
+            "Data Collection: corpus creation, data augmentation, annotation. "
+            "Pretraining: training from scratch, continued pretraining, foundation models. "
+            "Post-training: fine-tuning, instruction tuning, alignment, adapters, LoRA. "
+            "Inference: quantization, pruning, distillation, deployment, on-device. "
+            "Evaluation: benchmarks, metrics, leaderboards, analysis."
+        ),
+    )
+    topics: List[
+        Literal[
+            "Quantization",
+            "Pruning",
+            "Knowledge Distillation",
+            "Model Compression",
+            "Neural Architecture Search",
+            "Low-Rank Factorization",
+            "Parameter-Efficient Fine-Tuning",
+            "Efficient Architectures",
+            "Data-Efficient Training",
+            "Mixture of Experts",
+            "Cross-Lingual Transfer",
+            "Multilingual Pretraining",
+            "Machine Translation",
+            "Low-Resource NLP",
+            "Language Modeling",
+            "Named Entity Recognition",
+            "Question Answering",
+            "Text Classification",
+            "Sentiment Analysis",
+            "Summarization",
+            "Information Extraction",
+            "Speech and Audio",
+            "Benchmark and Evaluation",
+            "Other",
+        ]
+    ] = Field(..., description="Primary topic(s) or techniques in the paper.")
     subject_areas: List[
         Literal[
             "Computational Social Science and Cultural Analytics",
@@ -32,56 +86,12 @@ class ResearchPaperAnnotation(BaseModel):
             "Information Retrieval and Text Mining",
             "Information Extraction",
             "Generation",
+            "Efficient Methods",
+            "Resources and Evaluation",
         ]
     ] = Field(
         ...,
         description="Primary subject area of the paper based on ACL 2025 Subject Areas.",
-    )
-    application_domain: List[
-        Literal[
-            "Healthcare",
-            "Education",
-            "Finance",
-            "Agriculture",
-            "Legal",
-            "Smart Cities",
-            "Industrial IoT",
-            "Environmental Science",
-            "Other",
-        ]
-    ] = Field(..., description="Application domain(s) addressed by the paper.")
-    methods_used: List[
-        Literal[
-            "Quantization",
-            "Pruning",
-            "Knowledge Distillation",
-            "Neural Architecture Search",
-            "Low-Rank Factorization",
-            "Federated Learning",
-            "Sparse Modeling",
-            "Parameter-Efficient Fine-Tuning",
-            "Efficient Architectures",
-            "Data-Efficient Training",
-            "Mixture of Experts",
-            "Other",
-        ]
-    ] = Field(..., description="Methods used in the paper.")
-    deployment_platforms: List[
-        Literal[
-            "Microcontrollers",
-            "Wearables",
-            "Mobile Devices",
-            "Laptop/PC",
-            "Cloud",
-            "Not Specified",
-        ]
-    ] = Field(..., description="Deployment platforms targeted by the paper.")
-    models_released: List[str] = Field(
-        ..., description="Names of any models released by the authors."
-    )
-    model_sizes: List[float] = Field(
-        ...,
-        description="Parameter sizes of the models released (in billions of parameters, e.g., 405, 70, 8, 1, 0.2).",
     )
     modalities: List[
         Literal[
@@ -91,26 +101,32 @@ class ResearchPaperAnnotation(BaseModel):
             "Multimodal",
             "Other",
         ]
-    ] = Field(
-        ...,
-        description="Modality of the models (e.g., text, speech, vision multimodal).",
-    )
+    ] = Field(..., description="Modality of the work.")
     languages_supported: List[str] = Field(
         ...,
-        description="Languages supported by the models (if applicable). Use the ISO 639-1 codes where possible (e.g., en, fr, de, es).",
+        description="Languages studied or supported. Use ISO 639-1 codes (e.g., en, fr, de). Use 'multilingual' if >10 languages.",
+    )
+    models_released: List[str] = Field(
+        ..., description="Names of any models released by the authors. Empty list if none."
+    )
+    model_sizes: List[float] = Field(
+        ...,
+        description="Parameter sizes of models released in billions (e.g., 7, 1.5, 0.1). Empty list if none or not specified.",
     )
     relevance_score: int = Field(
         ...,
-        description="Is this paper relevant in the context of efficient NLP on edge devices. Score from 1 to 5 using the following rubrics:"
-        "1 - Not relevant: The paper does not address any aspects of efficient NLP or edge devices.\n"
-        "2 - Slightly relevant: The paper mentions efficient NLP or edge devices but does not focus on them.\n"
-        "3 - Moderately relevant: The paper addresses efficient NLP or edge devices but lacks depth or novelty.\n"
-        "4 - Very relevant: The paper provides significant contributions to efficient NLP by either introducing a novel method, a new benchmark, or demonstrating substantial improvements.\n"
-        "5 - Highly relevant: The paper is an important and seminal work in efficient NLP on edge devices.",
+        description=(
+            "Relevance to multilingual NLP for edge devices, scored 1-5: "
+            "1 - Not relevant: addresses neither multilinguality nor efficiency. "
+            "2 - Slightly relevant: touches on one aspect peripherally. "
+            "3 - Moderately relevant: substantially addresses multilinguality OR efficiency, but not both. "
+            "4 - Very relevant: addresses both multilinguality and efficiency, or makes a major contribution to one. "
+            "5 - Highly relevant: directly targets multilingual NLP on resource-constrained or edge devices."
+        ),
         ge=1,
         le=5,
     )
     relevance_reasoning: str = Field(
         ...,
-        description="Reasoning for the assigned relevance score.",
+        description="Brief reasoning for the assigned relevance score.",
     )
