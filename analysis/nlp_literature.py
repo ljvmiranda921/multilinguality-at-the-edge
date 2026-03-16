@@ -88,7 +88,7 @@ def main():
     # Proportional pipeline stage chart (horizontal stacked bars)
     # Reverse so Data Collection is at top
     stage_order_rev = stage_order[::-1]
-    stage_props = stage_counts.div(stage_counts.sum(axis=0), axis=1)
+    stage_props = stage_counts.div(stage_counts.sum(axis=0), axis=1) * 100
     stage_props = stage_props.reindex(columns=stage_order_rev, fill_value=0)
 
     fig, ax = plt.subplots(figsize=(10, 5))
@@ -107,11 +107,11 @@ def main():
             left=left,
         )
         for j, (v, offset) in enumerate(zip(vals, left)):
-            if v > 0.08:
+            if v > 8:
                 ax.text(
                     offset + v / 2,
                     j,
-                    f"{v:.0%}",
+                    f"{v:.0f}\\%",
                     ha="center",
                     va="center",
                     fontsize=22,
@@ -119,8 +119,8 @@ def main():
                 )
         left += vals
 
-    ax.set_xlabel("Proportion of papers")
-    ax.set_xlim(0, 1)
+    ax.set_xlabel("Percentage of papers (\\%)")
+    ax.set_xlim(0, 100)
     ax.legend(
         frameon=False,
         loc="upper center",
