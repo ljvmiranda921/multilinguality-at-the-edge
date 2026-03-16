@@ -83,44 +83,16 @@ REMOVE_S2_IDS = [
     "f69f494ab691481ec353da4be480b334fada6607",
     "f608011b0f50a14bb2949c186a7c632a099aa75b",
     "f1d477ccd20b3e90611fc46b1951b3708651a425",
-    # Second round of manual review
-    "26f82f42f434fdf190e0b3004601ee93ae6ace9e",  # Rank1: IR reranking
-    "40d8e46e117013f3e3143bb2ad03b3fb5c58f00b",  # Fraud-R1: fraud benchmark
-    "cde48b24264e44355abb0e548a2cf7c70bb072b4",  # NV-Embed: embedding model
-    "c491d6e6e24db88e1532788d63bbecfc02b8d9a0",  # Serving LLMs on Huawei CloudMatrix384
-    "d0e7353189feb4501c637b7008ff993de603c3f0",  # Nemotron-4 340B: huge model
-    "c4022c8b34254068af24ca00b5b7d5aa250ce2bf",  # Llama2Vec: dense retrieval
-    "ae4aa7b0c5a327dae63ad20e00b58bcc6176b3b8",  # Moshi: speech foundation model
-    "ad2be51acf42f686a8d1de92d7435d84274ee62d",  # Orca-Math: math reasoning
-    "f8d75c913a4811fe9f2030ca8d965c3a6d49b423",  # GraphRouter: LLM routing
+    "26f82f42f434fdf190e0b3004601ee93ae6ace9e",
+    "40d8e46e117013f3e3143bb2ad03b3fb5c58f00b",
+    "cde48b24264e44355abb0e548a2cf7c70bb072b4",
+    "c491d6e6e24db88e1532788d63bbecfc02b8d9a0",
+    "d0e7353189feb4501c637b7008ff993de603c3f0",
+    "c4022c8b34254068af24ca00b5b7d5aa250ce2bf",
+    "ae4aa7b0c5a327dae63ad20e00b58bcc6176b3b8",
+    "ad2be51acf42f686a8d1de92d7435d84274ee62d",
+    "f8d75c913a4811fe9f2030ca8d965c3a6d49b423",
 ]
-
-
-STAGE_PRIORITY = ["Inference", "Post-training", "Pretraining", "Data Collection"]
-
-
-def _assign_primary_stage(row: pd.Series) -> str:
-    """Assign each paper a single pipeline stage to avoid double-counting.
-
-    - 4+ stages -> "Full-Stack"
-    - Benchmark/resource papers (no Method/Technique) -> "Evaluation"
-    - Otherwise pick the most downstream stage
-    """
-    stages = set(ast.literal_eval(row["pipeline_stages"]))
-    contribs = ast.literal_eval(row["contribution_type"])
-    is_method = "Method" in contribs or "Technique" in contribs
-    if is_method:
-        stages.discard("Evaluation")
-    if len(stages) >= 4:
-        return "Full-Stack"
-    if not is_method and "Evaluation" in stages:
-        return "Evaluation"
-    for s in STAGE_PRIORITY:
-        if s in stages:
-            return s
-    if "Evaluation" in stages:
-        return "Evaluation"
-    return "Other"
 
 
 def filter_papers(
@@ -140,7 +112,6 @@ def filter_papers(
     df = df[~(df["contribution_type"] == "['Analysis']")]
     df = df[df["research_focus"].isin(VALID_FOCUS)]
     df = df[~df["s2_id"].isin(REMOVE_S2_IDS)]
-    df["primary_stage"] = df.apply(_assign_primary_stage, axis=1)
     return df
 
 
