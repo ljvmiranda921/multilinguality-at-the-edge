@@ -127,13 +127,14 @@ def main():
         label = row["country"]
         if label == "Democratic Republic of Congo":
             label = "DR Congo"
+        color = INCOME_STYLE[row["income_group"]]["color"]
         ax.annotate(
             label,
             (row["internet_users"], row["num_living_languages"]),
             textcoords="offset points",
             xytext=(6, 4),
             fontsize=12,
-            color=COLORS["slate_3"],
+            color=color,
         )
 
     ax.set_yscale("log")
