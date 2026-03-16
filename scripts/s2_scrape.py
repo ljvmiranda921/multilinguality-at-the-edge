@@ -89,7 +89,9 @@ def main():
 
     api_key = os.getenv("S2_API_KEY")
     if api_key is None:
-        logging.warning("S2_API_KEY not found. Using unauthenticated requests (stricter rate limits).")
+        logging.warning(
+            "S2_API_KEY not found. Using unauthenticated requests (stricter rate limits)."
+        )
 
     query_names = args.query_names or list(QUERIES.keys())
     output_dir = Path(args.output_dir)
@@ -119,12 +121,15 @@ def main():
 
     df = pd.DataFrame(papers)
     # Deduplicate: keep all query_source tags for a paper
-    df = (
-        df.groupby("s2_id", as_index=False)
-        .agg({
-            **{col: "first" for col in df.columns if col not in ("s2_id", "query_source")},
+    df = df.groupby("s2_id", as_index=False).agg(
+        {
+            **{
+                col: "first"
+                for col in df.columns
+                if col not in ("s2_id", "query_source")
+            },
             "query_source": lambda x: ",".join(sorted(set(x))),
-        })
+        }
     )
     logging.info(f"After dedup: {len(df)} unique papers")
 
@@ -138,11 +143,12 @@ def main():
     df.to_csv(output_dir / "papers.csv", index=False)
     logging.info(f"Saved {len(df)} papers to {output_dir / 'papers.csv'}")
 
-    # Also save per-query CSVs for convenience
     for name in query_names:
         subset = df[df["query_source"].str.contains(name)]
         subset.to_csv(output_dir / f"papers_{name}.csv", index=False)
-        logging.info(f"  -> {len(subset)} papers in {output_dir / f'papers_{name}.csv'}")
+        logging.info(
+            f"  -> {len(subset)} papers in {output_dir / f'papers_{name}.csv'}"
+        )
 
 
 def fetch_papers(
@@ -181,7 +187,9 @@ def fetch_papers(
             break
 
         retrieved_papers.extend(data["data"])
-        logging.info(f"Retrieved {len(retrieved_papers)} papers so far (total: {data.get('total', '?')})")
+        logging.info(
+            f"Retrieved {len(retrieved_papers)} papers so far (total: {data.get('total', '?')})"
+        )
 
         if limit != -1 and len(retrieved_papers) >= limit:
             logging.info(f"Reached limit of {limit} papers")
@@ -216,7 +224,6 @@ def _cleanup(data: dict[str, Any]) -> dict[str, Any]:
         "query_source": data.get("query_source", ""),
         # fmt: on
     }
-
 
 
 def _download(paper: dict[str, Any], download_dir: Path) -> None:
