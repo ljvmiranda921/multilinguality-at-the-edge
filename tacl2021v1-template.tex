@@ -169,7 +169,7 @@ we observe trends suggesting that they must be studied together.
 \paragraph{Multilingual communities face infrastructure constraints}
 The first reason is that there is an actual \textit{need} to deploy edge models.
 Communities with the highest linguistic diversity often have the most limited network connectivity.
-As shown in \autoref{fig:infra_lingdiv}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet digitally underserved.
+As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet digitally underserved.
 Because the dominant paradigm to serve LLMs is through cloud infrastructure (i.e., requests are sent over a network), this limited connectivity restricts  how these communities can access language technologies.
 Of the 21 countries with more than 100 living languages, 12 are classified as low or lower-middle income, pointing to a need for models that can run entirely on-device.
 
@@ -179,6 +179,15 @@ Of the 21 countries with more than 100 living languages, 12 are classified as lo
 % pointing to a growing \textit{need} for language technologies that fit within device constraints.
 
 %Need: Communities that need multilingual models are the most hardware-constrained
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth, trim={0cm 0.5cm 1cm 0}]{figures/infra_lingdiv_ict.pdf}
+  \caption{
+    \textbf{Tensions at each step of the language modelling pipeline.}
+  }
+  \label{fig:infra_lingdiv_ict}
+\end{figure}
 
 \paragraph{Multilingual and Efficiency NLP literature exist in silos}
 Another reason for studying these two fields in tandem is due to the research \textit{opportunity} it presents.
