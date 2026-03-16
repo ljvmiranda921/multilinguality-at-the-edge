@@ -51,7 +51,7 @@ DEFAULT_FIELDS = [
 def get_args():
     # fmt: off
     parser = argparse.ArgumentParser(description="Fetch papers from Semantic Scholar API.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-o", "--output_dataset", type=str, default="ljvmiranda921/edgeml-ltl-survey", help="Path to save the fetched papers in HuggingFace Dataset format.")
+    parser.add_argument("-o", "--output_dataset", type=str, default="ljvmiranda921/multilingual-edge-llm", help="Path to save the fetched papers in HuggingFace Dataset format.")
     parser.add_argument("--query", required=False, default=None, help="Search query for fetching papers. If not provided, uses a default query.")
     parser.add_argument("--limit", type=int, default=-1, help="Number of papers to fetch. Set to -1 for no limit.")
     parser.add_argument("-B", "--use_bulk_api", action="store_true", help="Whether to use the bulk API for fetching papers.")
