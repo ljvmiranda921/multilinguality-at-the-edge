@@ -34,6 +34,7 @@ CITATION_THRESHOLDS = {
 
 # Don't include these after manual relevance checks
 REMOVE_S2_IDS = [
+    "0d5124d1fb7f21aa2efc0ae234feab97e8a23208",
     "0c9d97d2ba489256d4f1760598dc2c7be6d90d96",
     "0a168c38959a8bdb5f5cf8b91b06e64e3a77f27a",
     "09dff683262090feaa9b7b97c1c43103cc96657d",
