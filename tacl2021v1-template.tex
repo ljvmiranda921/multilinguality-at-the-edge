@@ -172,18 +172,20 @@ Of the 21 countries with more than 100 living languages, 12 are classified as lo
 
 \paragraph{Multilingual and Edge NLP literature exist in silos}
 Another reason for studying these two fields in tandem is the research \textit{opportunity} it presents.
-\autoref{fig:nlp_literature_by_stage_prop} shows the proportion of surveyed papers that focus on edge LLMs, multilinguality, or both, broken down by pipeline stage.
-Across most stages, work on the two topics rarely overlaps: the ``Both'' category accounts for at most 10\% of papers in data collection through inference.
-The exception is full-stack work, where 43\% of papers address both concerns, likely because end-to-end systems cannot avoid the interaction between the two.
-Data collection is dominated by multilinguality research (71\%), while pretraining (71\%), post-training (65\%), and inference (73\%) are dominated by edge LLM work.
-This separation suggests that insights from one community are not routinely adopted by the other, leaving a clear gap for work that bridges both.
+\autoref{fig:nlp_literature_by_stage_prop} shows how some parts of the LLM pipeline are overwhelmingly focused on Multilinguality (Data Collection, Evaluation) or Edge LLM development (Pretraining to Inference).
+However, it is apparent that looking at the full pipeline (Full-Stack), both fields are being considered in tandem (43\%).
+Later on in this work, we examine what might be causing these silos (we assume that there is an inherent tension between the two) and see how they can be addressed by looking at other works that attempt to tackle both.
+% Across most stages, work on the two topics rarely overlaps: the ``Both'' category accounts for at most 10\% of papers in data collection through inference.
+% The exception is full-stack work, where 43\% of papers address both concerns, likely because end-to-end systems cannot avoid the interaction between the two.
+% Data collection is dominated by multilinguality research (71\%), while pretraining (71\%), post-training (65\%), and inference (73\%) are dominated by edge LLM work.
+% This separation suggests that insights from one community are not routinely adopted by the other, leaving a clear gap for work that bridges both.
 
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth, trim={0cm 0.5cm 0cm 0}]{figures/nlp_literature_by_stage_prop.pdf}
   \caption{
-    \textbf{Edge LLM and multilinguality research (N=304) rarely overlap within individual pipeline stages.}
+    \textbf{Edge LLM and multilinguality research (N=\numpapers{}) rarely overlap within individual pipeline stages.}
     Each bar shows the share of surveyed papers classified as addressing edge LLMs, multilinguality, or both.
     Full-stack work is the only category where a substantial fraction (43\%) tackles both concerns simultaneously.
     We describe our paper collection methodology in \S\ref{sec:methodology}.
