@@ -134,7 +134,7 @@ We first motivate why studying multilinguality at the edge is relevant (\S\ref{s
 We organize our discussion around the large language modeling pipeline (\S\ref{sec:lm_pipeline}), covering data collection, development, and deployment, and describe relevant techniques at each stage.
 We then define the constraints of Edge LLMs (\S\ref{sec:edge_constraints})
 and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
-and highlight how the two often impose competing demands (\S\ref{sec:the_tension}),
+and highlight how the two often impose competing demands,% (\S\ref{sec:the_tension}),
 which is precisely what makes the \textit{last mile} so challenging.
 Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:lm_pipeline}).
 
@@ -167,6 +167,9 @@ Appendix \ref{appendix:extended_survey_methodology} provides details of our coll
 
 \section{Multilinguality at the Edge}
 \label{sec:multilinguality_at_the_edge}
+
+Throughout this work, our desideratum is to place these language technologies nearest to the communities that need it the most.
+% In this section, we discuss 
 
 % There is a strong case for studying multilinguality within the context of edge deployment (or vice versa).
 % However, the intersection of these two imposes distinct, and often competing, requirements on every stage of the modelling pipeline.
@@ -201,10 +204,11 @@ Another reason for studying these two fields in tandem is the research \textit{o
 \autoref{fig:nlp_literature_by_stage_prop} shows that individual stages of the LLM pipeline tend to be dominated by one field: Data Collection and Evaluation skew toward Multilinguality, while Pretraining through Inference skew toward Edge LLM development.
 However, looking at the full pipeline (Full-Stack), both fields are already being considered together (43\%).
 Later in this work, we examine what might be causing these silos (we assume that there is an inherent tension between the two) and look at how other works attempt to bridge them.
-% Across most stages, work on the two topics rarely overlaps: the ``Both'' category accounts for at most 10\% of papers in data collection through inference.
-% The exception is full-stack work, where 43\% of papers address both concerns, likely because end-to-end systems cannot avoid the interaction between the two.
-% Data collection is dominated by multilinguality research (71\%), while pretraining (71\%), post-training (65\%), and inference (73\%) are dominated by edge LLM work.
-% This separation suggests that insights from one community are not routinely adopted by the other, leaving a clear gap for work that bridges both.
+% \newline
+% \newline
+% \noindent Understanding
+
+% \paragraph{Desideratum: Developing and deploying LLMs that are nearest to the communities that need it the most}
 
 
 \begin{figure}[t]
@@ -276,7 +280,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 \end{itemize}
 
 
-\subsection{The Qualities that Multilinguality Demands}
+\subsection{The Qualities that Define Multilingual Capability}
 \label{sec:multilingual_constraints}
 
 We define \textit{Multilinguality} as the set of methods and techniques for building language models that perform well across a broad range of languages, particularly low-resource ones.
@@ -286,7 +290,7 @@ Based on recent surveys \citep{liu-etal-2025-culturally,longpre2025atlasadaptive
 \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
   \item \textbf{Data:} \ljm{talks about the amount of data for training, the quality of the text whether it has to be fluent or culturally aligned}
   \item \textbf{Representation:} \ljm{governs how multilngual text is represented in the model}
-  \item \textbf{Energy:} restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
+        % \item \textbf{Energy:} restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
 \end{itemize}
 
 % \paragraph{Sufficient and balanced data}
@@ -303,9 +307,6 @@ Based on recent surveys \citep{liu-etal-2025-culturally,longpre2025atlasadaptive
 % RLHF and safety alignment performed in English does not reliably transfer to other languages.
 % LLMs produce more harmful responses when prompted in low-resource languages, and knowledge edits made in English show sharp drops in factual consistency in other languages \citep{yong-etal-2025-state-multilingual-llm-safety}.
 % Of the top 24 models on Chatbot Arena, 20 claim multilingual support, but only 5 reported multilingual safety alignment and red-teaming \citep{yong-etal-2025-state-multilingual-llm-safety}.
-
-\subsection{The Tension}
-\label{sec:the_tension}
 
 \section{Survey: The Last Mile of NLP}
 \label{sec:survey}
