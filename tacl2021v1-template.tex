@@ -213,14 +213,14 @@ In general, we identify five main stages.
 
 \paragraph{Data Collection}
 Sourcing and curating the text corpora used for both pretraining and post-training.
-Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured, such as prompt-response or preference pairs.
+Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured (e.g., prompt-response pairs).
 
 \paragraph{Pretraining}
 Training the base model on large-scale corpora to learn general language representations.
 This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 
 \paragraph{Post-training}
-Further adapting and tuning the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
+Further adapting the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
 We also group model compression and merging under this stage.
 
 \paragraph{Inference}
