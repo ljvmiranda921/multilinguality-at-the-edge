@@ -275,11 +275,23 @@ Edge LLM is relevant because much of the Global South is constrained in digital 
 Successful Edge LLM deployment has been seen in domains such as healthcare \citep{hu-etal-2025-nlp-public-health-africa,rutunda2026llmfrontline}, agriculture \citep{singh2024farmerchatscalingaipoweredagricultural,samuel2025agrollmconnectingfarmersagricultural}, and law \citep{ariai-etal-2025-nlp-legal-domain}.
 Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM}, we identify \textbf{constraints} for effective Edge LLM deployment.
 
-\begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
-  \item \textbf{Memory:} limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
-  \item \textbf{Compute:} governs the feasibility of certain finetuning techniques and the latency of models during inference.
-  \item \textbf{Energy:} restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
-\end{itemize}
+\paragraph{Memory}
+Limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
+For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires around 13\,GB in FP16, but most mobile devices have only 4--12\,GB of DRAM, making 7B the practical upper bound even after quantization.
+
+\paragraph{Compute}
+Governs the feasibility of certain finetuning techniques and the latency of models during inference.
+\citet{zheng2025reviewedgeLLM} highlight a widening gap between the computational demands of LLMs (measured in TFLOPs) and the capabilities of edge chips (measured in TOPS), and because autoregressive decoding is inherently sequential, this gap translates directly into user-facing latency.
+
+\paragraph{Energy}
+Restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
+\citet{treviso-etal-2023-efficient} note that power consumption during LLM inference is difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support, making energy costs easy to underestimate.
+
+% \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
+%   \item \textbf{Memory:} limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
+%   \item \textbf{Compute:} governs the feasibility of certain finetuning techniques and the latency of models during inference.
+%   \item \textbf{Energy:} restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
+% \end{itemize}
 
 
 \subsection{The Qualities that Define Multilingual Capability}
@@ -292,7 +304,7 @@ Based on recent surveys \citep{liu-etal-2025-culturally,longpre2025atlasadaptive
 \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
   \item \textbf{Data Quality:} \ljm{talks about the amount of data for training, the quality of the text whether it has to be fluent or culturally aligned}
   \item \textbf{Representation Quality:} \ljm{governs how multilngual text is represented in the model}
-        % \item \textbf{Energy:} restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
+  \item \textbf{Alignment Quality:}
 \end{itemize}
 
 These qualities are controlled through different kinds of levers.
