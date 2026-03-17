@@ -46,6 +46,15 @@ STAGE_ORDER = [
     "Full-Stack",
 ]
 
+STAGE_LABELS = {
+    "Data Collection": "Data Coll.",
+    "Pretraining": "Pretraining",
+    "Post-training": "Post-training",
+    "Inference": "Inference",
+    "Evaluation": "Evaluation",
+    "Full-Stack": "Full-Stack",
+}
+
 
 def main():
     df = pd.read_csv(DATA_PATH)
@@ -67,13 +76,19 @@ def main():
     stage_props = stage_counts.div(stage_counts.sum(axis=0), axis=1) * 100
     stage_props = stage_props.reindex(columns=stage_order_rev, fill_value=0)
 
+    # Build y-axis labels: "Short Name (N=count)"
+    stage_totals = stage_counts.sum(axis=0)
+    y_labels = [
+        f"{STAGE_LABELS[s]} (N={int(stage_totals[s])})" for s in stage_order_rev
+    ]
+
     fig, ax = plt.subplots(figsize=(8, 6))
     left = np.zeros(len(stage_order_rev))
     for focus in FOCUS_ORDER:
         style = FOCUS_STYLE[focus]
         vals = stage_props.loc[focus].values
         ax.barh(
-            stage_order_rev,
+            y_labels,
             vals,
             label=style["label"],
             color=style["facecolor"],
