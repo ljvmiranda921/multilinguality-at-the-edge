@@ -111,7 +111,7 @@ As LLMs become central to economic productivity, these compounding barriers thre
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.90\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/lm_pipeline.pdf}
+  \includegraphics[width=0.85\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/lm_pipeline.pdf}
   \caption{
     \textbf{Tensions at each step of the language modelling pipeline.}
     Edge LLM deployment imposes a set of constraints such as the amount of memory, compute, and energy \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}.
@@ -134,10 +134,10 @@ This challenge is non-trivial, as we show that sometimes, prioritizing edge effi
 
 In this work, we define the challenge of the \textit{last mile} (\S\ref{sec:motivation}) and present a survey of \numpapers{} papers that describe methods attempting to solve this problem at different stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}).
 For each stage of the pipeline, we describe how constraints present in deploying edge models (\ref{sec:edge_constraints}) can come into tension with the properties necessary to build capable multilingual models (\ref{sec:multilingual_constraints}).
-Recently, we've been seeing LLM releases that jointly address the last mile such as Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages under 3.35B and Omnilingual ASR that covers 1.6k languages with a 300M parameter variant \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual}.
-Our desideratum is to stimulate more work at this intersection of multilingual and edge NLP,
+Although we've been seeing LLM releases that jointly address the \textit{last mile} (e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
+our desideratum is to stimulate more work at this intersection of multilingual and edge NLP,
 and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
-We hope that this work contributes to the development of equitable and inclusive language technologies.
+Finally, we hope that this work contributes to the development of equitable and inclusive language technologies.
 
 % In this work, we survey \numpapers{} methods, techniques, and challenges that tackle the development of multilingual LLMs that can be deployed at the edge.
 % We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
