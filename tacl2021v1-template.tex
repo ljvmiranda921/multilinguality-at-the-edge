@@ -269,20 +269,12 @@ Edge LLM is relevant because much of the Global South is constrained in digital 
 Successful Edge LLM deployment has been seen in domains such as healthcare \citep{hu-etal-2025-nlp-public-health-africa,rutunda2026llmfrontline}, agriculture \citep{singh2024farmerchatscalingaipoweredagricultural,samuel2025agrollmconnectingfarmersagricultural}, and law \citep{ariai-etal-2025-nlp-legal-domain}.
 Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM}, we identify three constraints for effective Edge LLM deployment.
 
-\paragraph{Memory}
-Edge devices have limited memory, which constrains model size at every stage of the pipeline.
-For example, a 7B-parameter model requires over 8\,GB in FP16 \citep{zheng2025reviewedgeLLM}, already exceeding the memory available on most mobile devices.
-At inference time, the KV cache grows with sequence length, further limiting the context a model can process on-device.
+\begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
+  \item \textbf{Memory:} this constraint limits the size of models deployed during inference, the batch size during training, and the KV cache during long interactions.
+  \item \textbf{Compute:} this constraint governs the feasibility of certain finetuning techniques or the latency of models during inference.
+  \item \textbf{Energy:} this constraint restricts how long and how intensively a model can be run. Some chips under sustained inference can easily drain a device's battery within hours.
+\end{itemize}
 
-\paragraph{Compute}
-Edge processors have limited compute throughput, which constrains which models can run interactively on-device.
-For example, there is a widening gap between the demands of LLMs, often measured in TFLOPs, and the capabilities of edge chips, measured in TOPS \citep{zheng2025reviewedgeLLM}.
-Autoregressive decoding makes this worse: each token is generated sequentially, so the gap translates directly into user-facing latency.
-
-\paragraph{Energy}
-Edge devices have limited power budgets, which constrain how long and how intensively a model can run.
-For example, a chip may be fast enough to generate tokens in real time, but sustained inference can exceed the thermal envelope of a mobile SoC or drain a battery within hours.
-Power consumption is also difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support \citep{treviso-etal-2023-efficient}.
 
 % \subsection{What Multilinguality Demands}
 % \label{sec:multilingual_constraints}
