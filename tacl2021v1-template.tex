@@ -272,7 +272,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
   \item \textbf{Memory:} limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
   \item \textbf{Compute:} governs the feasibility of certain finetuning techniques and the latency of models during inference.
-  \item \textbf{Energy:} restricts how long and how intensively a model can run. Under sustained inference, some chips can drain a device's battery within hours.
+  \item \textbf{Energy:} restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
 \end{itemize}
 
 
@@ -280,7 +280,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 \label{sec:multilingual_constraints}
 
 We define \textit{Multilinguality} as the set of methods and techniques for building language models that perform well across a broad range of languages, particularly low-resource ones.
-Based on recent surveys \citep{huang2025surveyresponsiblemultilingualllm,singh-etal-2025-global}, we identify three requirements for building multilingual models.
+Based on recent surveys \citep{liu2024responsiblemultilinguallargelanguage,yong-etal-2025-state,longpre2025atlasadaptivetransferscaling}, we identify three requirements for building multilingual models.
 
 % \paragraph{Sufficient and balanced data}
 % Low-resource languages lack pretraining text, parallel corpora, preference data for RLHF, and evaluation benchmarks.
