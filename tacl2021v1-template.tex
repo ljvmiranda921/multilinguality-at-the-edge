@@ -277,15 +277,15 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 
 \paragraph{Memory}
 Limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
-For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires over 8\,GB of memory in FP16, which already exceeds the capacity of many mobile devices and makes quantization a necessity rather than an optimization.
+\ljm{For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires over 8\,GB of memory in FP16, which already exceeds the capacity of many mobile devices and makes quantization a necessity rather than an optimization.}
 
 \paragraph{Compute}
 Governs the feasibility of certain finetuning techniques and the latency of models during inference.
-\citet{zheng2025reviewedgeLLM} highlight a widening gap between the computational demands of LLMs and the capabilities of edge chips, noting that the quadratic complexity of self-attention with respect to sequence length creates severe throughput bottlenecks on edge CPUs, GPUs, and NPUs.
+\ljm{\citet{zheng2025reviewedgeLLM} highlight a widening gap between the computational demands of LLMs and the capabilities of edge chips, noting that the quadratic complexity of self-attention with respect to sequence length creates severe throughput bottlenecks on edge CPUs, GPUs, and NPUs.}
 
 \paragraph{Energy}
 Restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
-\citet{treviso-etal-2023-efficient} note that power consumption is difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support, so energy costs are often underestimated in practice.
+\ljm{\citet{treviso-etal-2023-efficient} note that power consumption is difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support, so energy costs are often underestimated in practice.}
 
 % \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Memory:} limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
@@ -294,7 +294,7 @@ Restricts how long and how intensively a model can run, as sustained inference c
 % \end{itemize}
 
 
-\subsection{The Qualities that Define Multilingual Capability}
+\subsection{The Qualities that can Influence Multilingual Capability}
 \label{sec:multilingual_constraints}
 
 We define \textit{Multilinguality} as the set of methods and techniques for building language models that perform well across a broad range of languages, particularly low-resource ones.
@@ -302,13 +302,13 @@ Addressing gaps in multilinguality is important because communities in the long 
 Based on recent surveys \citep{liu-etal-2025-culturally,longpre2025atlasadaptivetransferscaling}, we identify \textbf{qualities} to consider when building capable multilingual models.
 
 \paragraph{Data Quality}
-\ljm{\lipsum[1]}
+\ljm{\lipsum[4]}
 
 \paragraph{Representation Quality}
-\ljm{\lipsum[1]}
+\ljm{\lipsum[4]}
 
 \paragraph{Alignment Quality}
-\ljm{\lipsum[1]}
+\ljm{\lipsum[4]}
 
 % \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Data Quality:} \ljm{talks about the amount of data for training, the quality of the text whether it has to be fluent or culturally aligned}
