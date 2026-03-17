@@ -3607,3 +3607,68 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {483-497},
   numpages  = {15}
 }
+
+@article{caravaca-2026-measuring,
+  author     = {Caravaca, Francisco},
+  title      = {{Measuring Energy Consumption of LLMs Inferences}},
+  year       = {2026},
+  issue_date = {December 2025},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {53},
+  number     = {3},
+  issn       = {0163-5999},
+  url        = {https://doi.org/10.1145/3788882.3788890},
+  doi        = {10.1145/3788882.3788890},
+  abstract   = {Large Language Models (LLMs) offer unprecedented language understanding and generation capabilities. However, these advancements come at a cost. LLMs rely heavily on high-performance computing, not only for training but also for inference. This dependence translates into substantial energy consumption, with inference potentially exceeding the already significant environmental impact of training, which can generate thousands of tons of CO2eq.Therefore, quantifying the energy consumption of LLM inference is crucial. This research focuses on measuring this energy use across a wide range of transformer models, from smaller architectures to cutting-edge models like DeepSeek V3/R1. We utilize state-of-the-art inference frameworks and high-end GPUs to ensure accurate assessments.},
+  journal    = {SIGMETRICS Perform. Eval. Rev.},
+  month      = jan,
+  pages      = {18-19},
+  numpages   = {2}
+}
+
+@misc{ozcan2025quantifyingenergyconsumptioncarbon,
+  title         = {{Quantifying the Energy Consumption and Carbon Emissions of LLM Inference via Simulations}},
+  author        = {Miray Özcan and Philipp Wiesner and Philipp Weiß and Odej Kao},
+  year          = {2025},
+  eprint        = {2507.11417},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.DC},
+  url           = {https://arxiv.org/abs/2507.11417}
+}
+
+@article{10.1145/3767742,
+  author     = {Husom, Erik Johannes and Goknil, Arda and Astekin, Merve and Shar, Lwin Khin and K\~{A}¥sen, Andre and Sen, Sagar and Mithassel, Benedikt Andreas and Soylu, Ahmet},
+  title      = {{Sustainable LLM Inference for Edge AI: Evaluating Quantized LLMs for Energy Efficiency, Output Accuracy, and Inference Latency}},
+  year       = {2025},
+  issue_date = {November 2025},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {6},
+  number     = {4},
+  url        = {https://doi.org/10.1145/3767742},
+  doi        = {10.1145/3767742},
+  abstract   = {Deploying Large Language Models (LLMs) on edge devices presents significant challenges due to computational constraints, memory limitations, inference speed, and energy consumption. Model quantization has emerged as a key technique to enable efficient LLM inference by reducing model size and computational overhead. In this study, we conduct a comprehensive analysis of 28 quantized LLMs from the Ollama library, which applies by default Post-Training Quantization (PTQ) and weight-only quantization techniques, deployed on an edge device (Raspberry Pi 4 with 4 GB RAM). We evaluate energy efficiency, inference performance, and output accuracy across multiple quantization levels and task types. Models are benchmarked on five standardized datasets (CommonsenseQA, BIG-Bench Hard, TruthfulQA, GSM8K, and HumanEval), and we employ a high-resolution, hardware-based energy measurement tool to capture real-world power consumption. Our findings reveal the trade-offs between energy efficiency, inference speed, and accuracy in different quantization settings, highlighting configurations that optimize LLM deployment for resource-constrained environments. By integrating hardware-level energy profiling with LLM benchmarking, this study provides actionable insights for sustainable AI, bridging a critical gap in existing research on energy-aware LLM deployment.},
+  journal    = {ACM Trans. Internet Things},
+  month      = nov,
+  articleno  = {28},
+  numpages   = {35},
+  keywords   = {LLMs, quantized models, edge AI, energy efficiency, edge computing, sustainability}
+}
+
+@inproceedings{luccioni-etal-2024-power,
+  author    = {Luccioni, Sasha and Jernite, Yacine and Strubell, Emma},
+  title     = {{Power Hungry Processing: Watts Driving the Cost of AI Deployment?}},
+  year      = {2024},
+  isbn      = {9798400704505},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3630106.3658542},
+  doi       = {10.1145/3630106.3658542},
+  abstract  = {Recent years have seen a surge in the popularity of commercial AI products based on generative, multi-purpose AI systems promising a unified approach to building machine learning (ML) models into technology. However, this ambition of “generality” comes at a steep cost to the environment, given the amount of energy these systems require and the amount of carbon that they emit. In this work, we propose the first systematic comparison of the ongoing inference cost of various categories of ML systems, covering both task-specific (i.e. finetuned models that carry out a single task) and ‘general-purpose’ models, (i.e. those trained for multiple tasks). We measure deployment cost as the amount of energy and carbon required to perform 1,000 inferences on representative benchmark dataset using these models. We find that multi-purpose, generative architectures are orders of magnitude more expensive than task-specific systems for a variety of tasks, even when controlling for the number of model parameters. We conclude with a discussion around the current trend of deploying multi-purpose generative ML systems, and caution that their utility should be more intentionally weighed against increased costs in terms of energy and emissions. All the data from our study can be accessed via an interactive demo to carry out further exploration and analysis.},
+  booktitle = {Proceedings of the 2024 ACM Conference on Fairness, Accountability, and Transparency},
+  pages     = {85-99},
+  numpages  = {15},
+  location  = {Rio de Janeiro, Brazil},
+  series    = {FAccT '24}
+}
