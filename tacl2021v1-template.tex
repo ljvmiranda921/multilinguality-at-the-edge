@@ -226,33 +226,32 @@ Later in this work, we examine what might be causing these silos (we assume that
   \label{fig:nlp_literature_by_stage_prop}
 \end{figure}
 
-\input{tables/survey_comparisons.tex}
-
 \subsection{The Language Modelling Pipeline}
 \label{sec:lm_pipeline}
 
 We structure the pipeline based on design choices highlighted across recent open LLM model releases such as the
 OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
-In general, we identify five main stages.
+In general, we identify five main stages: Data Collection, Pretraining, Post-training, Inference, and Evaluation.
+We describe each step in \S\ref{sec:survey}.
 
-\paragraph{Data Collection}
-The pipeline begins with sourcing and curating text corpora for both pretraining and post-training.
-Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured (e.g., prompt-response pairs).
+% \paragraph{Data Collection}
+% The pipeline begins with sourcing and curating text corpora for both pretraining and post-training.
+% Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured (e.g., prompt-response pairs).
 
-\paragraph{Pretraining}
-These corpora are then used to train the base model on large-scale data to learn general language representations.
-This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
+% \paragraph{Pretraining}
+% These corpora are then used to train the base model on large-scale data to learn general language representations.
+% This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 
-\paragraph{Post-training}
-Once the base model is trained, it is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
-We also group the literature on model compression and merging under this stage.
+% \paragraph{Post-training}
+% Once the base model is trained, it is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
+% We also group the literature on model compression and merging under this stage.
 
-\paragraph{Inference}
-The resulting model is then served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
+% \paragraph{Inference}
+% The resulting model is then served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
 
-\paragraph{Evaluation}
-Finally, model performance is measured across a variety of capabilities and domains, either on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+% \paragraph{Evaluation}
+% Finally, model performance is measured across a variety of capabilities and domains, either on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
 
 % \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Data Collection}: sourcing and curating the text corpora used for both pretraining and post-training.
@@ -291,10 +290,15 @@ Addressing gaps in multilinguality is important because communities in the long 
 Based on recent surveys \citep{liu-etal-2025-culturally,longpre2025atlasadaptivetransferscaling}, we identify \textbf{qualities} to consider when building capable multilingual models.
 
 \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
-  \item \textbf{Data:} \ljm{talks about the amount of data for training, the quality of the text whether it has to be fluent or culturally aligned}
-  \item \textbf{Representation:} \ljm{governs how multilngual text is represented in the model}
+  \item \textbf{Data Quality:} \ljm{talks about the amount of data for training, the quality of the text whether it has to be fluent or culturally aligned}
+  \item \textbf{Representation Quality:} \ljm{governs how multilngual text is represented in the model}
         % \item \textbf{Energy:} restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
 \end{itemize}
+
+These qualities are controlled through different kinds of levers.
+For example, data quality can be a function of the dataset's underlying distribution, which can be shaped by filtering or synthetic data generation.
+Representation quality can also be influenced by the dataset, but can also be affected by the tokenizer design or model architecture.
+
 
 % \paragraph{Sufficient and balanced data}
 % Low-resource languages lack pretraining text, parallel corpora, preference data for RLHF, and evaluation benchmarks.
@@ -310,6 +314,9 @@ Based on recent surveys \citep{liu-etal-2025-culturally,longpre2025atlasadaptive
 % RLHF and safety alignment performed in English does not reliably transfer to other languages.
 % LLMs produce more harmful responses when prompted in low-resource languages, and knowledge edits made in English show sharp drops in factual consistency in other languages \citep{yong-etal-2025-state-multilingual-llm-safety}.
 % Of the top 24 models on Chatbot Arena, 20 claim multilingual support, but only 5 reported multilingual safety alignment and red-teaming \citep{yong-etal-2025-state-multilingual-llm-safety}.
+
+\input{tables/survey_comparisons.tex}
+
 
 \section{Survey: The Last Mile of NLP}
 \label{sec:survey}
