@@ -146,6 +146,24 @@ we collect research from 2021 onwards on multilinguality, edge and efficient NLP
 In total, we obtain \numpapers{} papers.
 The rest of this section describes our methodology.
 
+\paragraph{Initial Paper Screening}
+First, we gather studies from peer-reviewed academic papers, industry whitepapers, and technical reports using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
+Our search query includes keywords relating to multilingual NLP, efficiency, participatory AI, and LLM development (Appendix \ref{appendix:initial_paper_screening}).
+This step resulted in 2,473 papers.
+
+\paragraph{Filtering and Annotation}
+For each work, we perform human and LLM-assisted filtering and annotation to identify key attributes such as the work's
+subject domain,
+downstream application,
+and deployment device.
+We bootstrap annotations with GPT 4.1 Mini\footnote{Version: \texttt{gpt-4.1-mini-2025-04-14}} by including the work's title and abstract in a prompt shown in \autoref{fig:appendix_annotation_prompt},
+and then perform human validation to correct the annotations.
+
+\paragraph{Final Validation}
+Finally, we conduct a round of human validation to correct and refine the annotations.
+In total, we collected \numpapers{} interventions that aim to relax a community's binding constraints.
+Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
+
 
 \section{Multilinguality at the Edge}
 \label{sec:multilinguality_at_the_edge}
@@ -168,7 +186,7 @@ Of the 21 countries with more than 100 living languages, 12 are classified as lo
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.95\linewidth, trim={0cm 0.5cm 1cm 0}]{figures/infra_lingdiv_ict.pdf}
+  \includegraphics[width=0.90\linewidth, trim={0cm 0.5cm 1cm 0}]{figures/infra_lingdiv_ict.pdf}
   \caption{
     \textbf{Countries with high linguistic diversity have the most limited network connectivity (upper left).}
     Internet penetration is sourced from \citet{itu-2025-facts},
