@@ -267,27 +267,21 @@ In this work, we define the \textit{Edge LLM} field as the set of methods and te
 These settings typically involve commodity hardware such as mobile phones and laptops, and sometimes even microcontroller devices.
 Edge LLM is relevant because much of the Global South is constrained in digital infrastructure \citep{GSMA2025MobileEconomy,occhini2026artificialintelligencecreatingnew}, and the usual routes for deploying LLMs, such as using high-end GPUs or cloud services, are often inaccessible.
 Successful Edge LLM deployment has been seen in domains such as healthcare \citep{hu-etal-2025-nlp-public-health-africa,rutunda2026llmfrontline}, agriculture \citep{singh2024farmerchatscalingaipoweredagricultural,samuel2025agrollmconnectingfarmersagricultural}, and law \citep{ariai-etal-2025-nlp-legal-domain}.
-Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM}, we define the constraints for effective Edge LLM deployment:
+Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM}, we identify three constraints for effective Edge LLM deployment.
 
 \paragraph{Memory}
-Edge devices have limited DRAM, which constrains model size at every stage of the pipeline.
-A 7B-parameter model requires over 8\,GB in FP16, already exceeding the memory available on most mobile devices.
-At inference time, the KV cache grows with sequence length, further limiting the context a model can process.
+Edge devices have limited memory, which constrains model size at every stage of the pipeline.
+For example, a 7B-parameter model requires over 8\,GB in FP16 \citep{zheng2025reviewedgeLLM}, already exceeding the memory available on most mobile devices.
+At inference time, the KV cache grows with sequence length, further limiting the context a model can process on-device.
 
-\paragraph{Compute}
+\paragraph{Compute and latency}
+There is a widening gap between the computational demands of LLMs, often measured in TFLOPs, and the capabilities of edge hardware, measured in TOPS \citep{zheng2025reviewedgeLLM}.
+Autoregressive decoding is inherently sequential, making latency difficult to hide through parallelism.
 
-% \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=1mm]
-%   \item \textbf{Memory.}
-%         Edge devices have limited DRAM, which constrains model size at every stage of the pipeline.
-%         A 7B-parameter model requires over 8\,GB in FP16, already exceeding the memory available on most mobile devices.
-%         At inference time, the KV cache grows with sequence length, further limiting the context a model can process.
-%   \item \textbf{Compute and latency.}
-%         There is a widening gap between the computational demands of LLMs, often measured in TFLOPs, and the capabilities of edge hardware, measured in TOPS.
-%         Autoregressive decoding is inherently sequential, making latency difficult to hide through parallelism.
-%   \item \textbf{Energy and power.}
-%         Distinct from raw compute speed, energy is a binding constraint on battery-powered and thermally limited devices.
-%         Mobile SoCs and IoT hardware operate under strict thermal envelopes, and sustained LLM inference can quickly exceed them.
-% \end{itemize}
+\paragraph{Energy and power}
+Distinct from raw compute speed, energy is a binding constraint on battery-powered and thermally limited devices.
+Mobile SoCs and IoT hardware operate under strict thermal envelopes, and sustained LLM inference can quickly exceed them.
+Power consumption is also difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support \citep{treviso-etal-2023-efficient}.
 
 % \subsection{What Multilinguality Demands}
 % \label{sec:multilingual_constraints}
@@ -295,20 +289,20 @@ At inference time, the KV cache grows with sequence length, further limiting the
 % We define \textit{Multilinguality} as the set of methods and techniques for building language models that perform well across a broad range of languages, particularly low-resource ones.
 % Based on recent surveys \citep{huang2025surveyresponsiblemultilingualllm,singh-etal-2025-global}, we identify three requirements for building multilingual models.
 
-% \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=1mm]
-%   \item \textbf{Sufficient and balanced data.}
-%         Low-resource languages lack pretraining text, parallel corpora, preference data for RLHF, and evaluation benchmarks.
-%         The imbalance can be severe: Llama~3's training data was 95\% English and code, with only 5\% allocated to all other languages \citep{grattafiori2024llama3herdmodels}, yet the model is deployed multilingually.
-%         \citet{longpre2026atlasllmsscalinglaws} ran 774 experiments across 400+ languages and found that supporting 2$\times$ more languages optimally requires roughly 1.18$\times$ the model size and 1.66$\times$ the total data, though positive cross-lingual transfer offsets much of this cost.
-%   \item \textbf{Tokenizer efficiency.}
-%         English-centric BPE tokenizers fragment non-Latin and morphologically rich languages into far more subwords, a property known as high fertility.
-%         The same content in Finnish, Turkish, or Arabic can require 2--3$\times$ more tokens than English, directly multiplying compute, KV cache memory, latency, and API cost.
-%         \citet{ali-etal-2024-tokenizer} found that English-centric tokenizers cause up to 68\% additional training cost and severe downstream degradation for multilingual models, while multilingual tokenizers require roughly 3$\times$ the vocabulary size of English-only ones.
-%   \item \textbf{Safety and alignment transfer.}
-%         RLHF and safety alignment performed in English does not reliably transfer to other languages.
-%         LLMs produce more harmful responses when prompted in low-resource languages, and knowledge edits made in English (e.g., via ROME or MEMIT) show sharp drops in factual consistency in other languages \citep{yong-etal-2025-state-multilingual-llm-safety}.
-%         Of the top 24 models on Chatbot Arena, 20 claim multilingual support, but only 5 reported multilingual safety alignment and red-teaming \citep{yong-etal-2025-state-multilingual-llm-safety}.
-% \end{itemize}
+% \paragraph{Sufficient and balanced data}
+% Low-resource languages lack pretraining text, parallel corpora, preference data for RLHF, and evaluation benchmarks.
+% The imbalance can be severe: Llama~3's training data was 95\% English and code, with only 5\% allocated to all other languages \citep{grattafiori2024llama3herdmodels}, yet the model is deployed multilingually.
+% \citet{longpre2026atlasllmsscalinglaws} found that supporting 2$\times$ more languages optimally requires roughly 1.18$\times$ the model size and 1.66$\times$ the total data, though positive cross-lingual transfer offsets much of this cost.
+
+% \paragraph{Tokenizer efficiency}
+% English-centric BPE tokenizers fragment non-Latin and morphologically rich languages into far more subwords, a property known as high fertility.
+% The same content in Finnish, Turkish, or Arabic can require 2--3$\times$ more tokens than English, directly multiplying compute, KV cache memory, and latency.
+% \citet{ali-etal-2024-tokenizer} found that English-centric tokenizers cause up to 68\% additional training cost and severe downstream degradation for multilingual models.
+
+% \paragraph{Safety and alignment transfer}
+% RLHF and safety alignment performed in English does not reliably transfer to other languages.
+% LLMs produce more harmful responses when prompted in low-resource languages, and knowledge edits made in English show sharp drops in factual consistency in other languages \citep{yong-etal-2025-state-multilingual-llm-safety}.
+% Of the top 24 models on Chatbot Arena, 20 claim multilingual support, but only 5 reported multilingual safety alignment and red-teaming \citep{yong-etal-2025-state-multilingual-llm-safety}.
 
 \subsection{The Tension}
 \label{sec:the_tension}
