@@ -111,7 +111,7 @@ As LLMs become central to economic productivity, these compounding barriers thre
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.85\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/lm_pipeline.pdf}
+  \includegraphics[width=0.88\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/lm_pipeline.pdf}
   \caption{
     \textbf{Tensions at each step of the language modelling pipeline.}
     Edge LLM deployment imposes a set of constraints such as the amount of memory, compute, and energy \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}.
@@ -291,13 +291,6 @@ The amount of memory in a device limits what LLMs can be loaded and served.
 It is also relevant during finetuning, where it constrains the size of a training batch.
 For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobilellm}, yet even a 7B-parameter model in half precision already requires over 8\,GB.
 
-% \citet{chen-etal-2025-confidant} notes that the memory footprint of most LLMs exceed the capacities most edge devices.
-% In addition, memory is also a hard limit to the size of the KV cache, which can affect inference speed during long interactions.
-% For training, this can restrict the batch size available during training.
-% This deployment consideration 
-% Limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
-% \ljm{For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires over 8\,GB of memory in FP16, which already exceeds the capacity of many mobile devices and makes quantization a necessity rather than an optimization.}
-
 \paragraph{Compute}
 The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
 The gap between LLM requirements (in TFLOPs) and edge device throughput (in TOPS) continues to widen \citep{zheng2025reviewedgeLLM}.
@@ -306,14 +299,6 @@ The gap between LLM requirements (in TFLOPs) and edge device throughput (in TOPS
 Sustained inference can quickly drain a device's battery, restricting how long and how intensively a model can run.
 For example, inference energy can vary by a factor of over 1,000 across models \citep{luccioni-etal-2024-power},
 and even quantized LLMs on a Raspberry Pi consume several joules per token \citep{husom-etal-2025-sustainable}.
-% This constraint is also difficult to account for in practice: \citet{treviso-etal-2023-efficient} note that power consumption is hard to measure reliably due to sampling frequency limitations and inconsistent OS-level support, meaning energy costs are often underestimated.
-
-% \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
-%   \item \textbf{Memory:} limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
-%   \item \textbf{Compute:} governs the feasibility of certain finetuning techniques and the latency of models during inference.
-%   \item \textbf{Energy:} restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
-% \end{itemize}
-
 
 \subsection{The Qualities that can Influence Multilingual Capability}
 \label{sec:multilingual_constraints}
