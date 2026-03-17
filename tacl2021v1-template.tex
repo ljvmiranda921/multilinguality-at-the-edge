@@ -132,18 +132,20 @@ This challenge is non-trivial, as we show that sometimes, prioritizing edge effi
 %adopt this framing as a premise and refer to the intersection of multilinguality and edge-efficiency as the \textit{last mile} of NLP.
 % The \textit{last mile} refers to the hardest and most costly stretch of Language AI development, i.e., developing and deploying language technologies nearest to the communities that need them the most%.: reaching communities that need both a model that understands their language and the efficiency to run on their available hardware.
 
-In this work, we survey \numpapers{} methods, techniques, and challenges that tackle the development of multilingual LLMs that can be deployed at the edge.
-We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
-We organize our discussion around the large language modeling pipeline (\S\ref{sec:lm_pipeline}), covering data collection, development, and deployment, and describe relevant techniques at each stage.
-We then define the constraints of Edge LLMs (\S\ref{sec:edge_constraints})
-and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
-and highlight how the two often impose competing demands,% (\S\ref{sec:the_tension}),
-which is precisely what makes the \textit{last mile} so challenging.
-Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:lm_pipeline}).
+In this work, we define the challenge of the \textit{last mile} (\S\ref{sec:motivation}) and present a survey of \numpapers{} papers that describe methods attempting to solve this problem at different stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}).
+For each stage of the pipeline, we describe how constraints present in deploying edge models (\ref{sec:edge_constraints}) can come into tension with the properties necessary to build capable multilingual models (\ref{sec:multilingual_constraints}).
 Our desideratum is to stimulate work at the intersection of multilingual and edge NLP,
-ensuring that these technologies reach the communities that need it the most.
-And so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders \ref{sec:discussion}.
-We hope that this work contributes to the development of equitable and truly inclusive language technologies.
+and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
+We hope that this work contributes to the development of equitable and inclusive language technologies.
+
+% In this work, we survey \numpapers{} methods, techniques, and challenges that tackle the development of multilingual LLMs that can be deployed at the edge.
+% We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
+% We organize our discussion around the large language modeling pipeline (\S\ref{sec:lm_pipeline}), covering data collection, development, and deployment, and describe relevant techniques at each stage.
+% We then define the constraints of Edge LLMs (\S\ref{sec:edge_constraints})
+% and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
+% and highlight how the two often impose competing demands,% (\S\ref{sec:the_tension}),
+% which is precisely what makes the \textit{last mile} so challenging.
+% Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:lm_pipeline}).
 
 \section{Methodology}
 \label{sec:methodology}
