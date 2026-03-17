@@ -274,13 +274,14 @@ Edge devices have limited memory, which constrains model size at every stage of 
 For example, a 7B-parameter model requires over 8\,GB in FP16 \citep{zheng2025reviewedgeLLM}, already exceeding the memory available on most mobile devices.
 At inference time, the KV cache grows with sequence length, further limiting the context a model can process on-device.
 
-\paragraph{Compute and latency}
-There is a widening gap between the computational demands of LLMs, often measured in TFLOPs, and the capabilities of edge hardware, measured in TOPS \citep{zheng2025reviewedgeLLM}.
-Autoregressive decoding is inherently sequential, making latency difficult to hide through parallelism.
+\paragraph{Compute}
+Edge processors have limited compute throughput, which constrains which models can run interactively on-device.
+For example, there is a widening gap between the demands of LLMs, often measured in TFLOPs, and the capabilities of edge chips, measured in TOPS \citep{zheng2025reviewedgeLLM}.
+Autoregressive decoding makes this worse: each token is generated sequentially, so the gap translates directly into user-facing latency.
 
-\paragraph{Energy and power}
-Distinct from raw compute speed, energy is a binding constraint on battery-powered and thermally limited devices.
-Mobile SoCs and IoT hardware operate under strict thermal envelopes, and sustained LLM inference can quickly exceed them.
+\paragraph{Energy}
+Edge devices have limited power budgets, which constrain how long and how intensively a model can run.
+For example, a chip may be fast enough to generate tokens in real time, but sustained inference can exceed the thermal envelope of a mobile SoC or drain a battery within hours.
 Power consumption is also difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support \citep{treviso-etal-2023-efficient}.
 
 % \subsection{What Multilinguality Demands}
