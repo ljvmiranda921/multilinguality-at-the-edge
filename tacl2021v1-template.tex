@@ -289,7 +289,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 \paragraph{Memory}
 The amount of memory in a device limits what LLMs can be loaded and served.
 It is also relevant during finetuning, where it constrains the size of a training batch.
-For example, a 7B-parameter model requires over 8GB in FP16, which already exceeds the capacity of many mobile phones and laptops.
+For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobilellm}, yet a 7B-parameter model already requires over 8\,GB in FP16.
 
 % \citet{chen-etal-2025-confidant} notes that the memory footprint of most LLMs exceed the capacities most edge devices.
 % In addition, memory is also a hard limit to the size of the KV cache, which can affect inference speed during long interactions.
@@ -300,7 +300,7 @@ For example, a 7B-parameter model requires over 8GB in FP16, which already excee
 
 \paragraph{Compute}
 The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
-Computational cost and portability motivate the need to design LLMs specifically for mobile deployment \citep{liu2024mobilellm}.
+The gap between LLM requirements (in TFLOPs) and edge device throughput (in TOPS) continues to widen \citep{zheng2025reviewedgeLLM}.
 
 \paragraph{Energy}
 Sustained inference can quickly drain a device's battery, restricting how long and how intensively a model can run.
