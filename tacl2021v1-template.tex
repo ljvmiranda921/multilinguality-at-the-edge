@@ -305,7 +305,8 @@ Considerations of computational cost and portability motivate the need to design
 
 \paragraph{Energy}
 Sustained inference can quickly drain a device's battery, restricting how long and how intensively a model can run.
-For example, \citet{luccioni-etal-2024-power} find that the energy required for inference can vary by a factor of over 1,000 across models, and \citet{husom-etal-2025-sustainable} show that even quantized LLMs on a Raspberry Pi consume several joules per token.%, making energy budgeting a practical concern for battery-powered devices.
+For example, inference energy can vary by a factor of over 1,000 across models \citep{luccioni-etal-2024-power},
+and even quantized LLMs on a Raspberry Pi consume several joules per token \citep{husom-etal-2025-sustainable}.
 % This constraint is also difficult to account for in practice: \citet{treviso-etal-2023-efficient} note that power consumption is hard to measure reliably due to sampling frequency limitations and inconsistent OS-level support, meaning energy costs are often underestimated.
 
 % \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
