@@ -289,7 +289,8 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 \paragraph{Memory}
 The amount of memory in a device imposes limits to loading and serving an LLM.
 For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires over 8GB of memory in FP16, which already exceeds the capacity of many mobile phones and laptops.
-Memory is also relevant during training, where it sets a limit to how large a batch size can be set.
+It is also relevant during training, where it sets a limit to how large a batch size can be set.
+\citet{chen-etal-2025-confidant} notes that the memory footprint of most LLMs exceed the capacities most edge devices.
 % In addition, memory is also a hard limit to the size of the KV cache, which can affect inference speed during long interactions.
 % For training, this can restrict the batch size available during training.
 % This deployment consideration 
