@@ -287,9 +287,9 @@ Successful Edge LLM deployment has been seen in domains such as healthcare \cite
 Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM}, we identify \textbf{constraints} for effective Edge LLM deployment.
 
 \paragraph{Memory}
-The amount of memory in a device imposes limits to loading and serving an LLM.
-It is also relevant during finetuning, where it sets a limit to the size of a training batch.
-\citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires a memory footprint of over 8GB of memory in FP16, which already exceeds the capacity of many mobile phones and laptops.
+The amount of memory in a device limits what LLMs can be loaded and served.
+It is also relevant during finetuning, where it constrains the size of a training batch.
+\citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires over 8GB in FP16, which already exceeds the capacity of many mobile phones and laptops.
 
 % \citet{chen-etal-2025-confidant} notes that the memory footprint of most LLMs exceed the capacities most edge devices.
 % In addition, memory is also a hard limit to the size of the KV cache, which can affect inference speed during long interactions.
