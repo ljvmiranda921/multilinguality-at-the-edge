@@ -289,7 +289,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 \paragraph{Memory}
 The amount of memory in a device limits what LLMs can be loaded and served.
 It is also relevant during finetuning, where it constrains the size of a training batch.
-For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobilellm}, yet a 7B-parameter model already requires over 8\,GB in FP16.
+For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobilellm}, yet even a 7B-parameter model in half precision already requires over 8\,GB.
 
 % \citet{chen-etal-2025-confidant} notes that the memory footprint of most LLMs exceed the capacities most edge devices.
 % In addition, memory is also a hard limit to the size of the KV cache, which can affect inference speed during long interactions.
