@@ -190,8 +190,9 @@ Appendix \ref{appendix:extended_survey_methodology} provides details of our coll
 While Edge LLM and Multilinguality have each been studied in isolation,
 we observe trends suggesting that they must be studied together.
 
+% TODO: improve this paragraph
 \paragraph{Need: Multilingual communities face infrastructure constraints}
-The first trend is that communities with the highest linguistic diversity often have the hardest infastructure constraint such as network connectivity or ICT adoption.
+The first trend is that communities with the highest linguistic diversity often have the most severe infastructure constraint. %  such as network connectivity or ICT adoption.
 As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet least active in the Internet.
 This constraints them further in the LLM pipeline because most pretraining data were derived from web-scale text which they might lack due to Internet inactivity, and
 that the dominant paradigm to serve LLMs is through cloud infrastructure (i.e., requests are sent over a network).% this limited connectivity restricts  how these communities can access language technologies.
@@ -215,7 +216,8 @@ Of the 21 countries with more than 100 living languages, 12 are classified as lo
 Another reason for studying these two fields in tandem is the research \textit{opportunity} it presents.
 \autoref{fig:nlp_literature_by_stage_prop} shows that individual stages of the LLM pipeline tend to be dominated by one field: Data Collection and Evaluation skew toward Multilinguality, while Pretraining through Inference skew toward Edge LLM development.
 However, looking at the full pipeline (Full-Stack), both fields are already being considered together (43\%).
-Later in this work, we examine what might be causing these silos (we assume that there is an inherent tension between the two) and look at how other works attempt to bridge them.
+Recent works such as Tiny Aya \citep{salamanca2026tinyayabridgingscale}, Gemma 3n \citep{gemmateam2025gemma3technicalreport}, and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} show that this intersection is emerging and actively being explored upon.
+% Later in this work, we examine what might be causing these silos (we posit that there is an inherent tension between the two) and look at how other works attempt to bridge them.
 % \newline
 % \newline
 % \noindent Understanding
@@ -345,7 +347,7 @@ Representation quality can also be influenced by the dataset, but can also be af
 % LLMs produce more harmful responses when prompted in low-resource languages, and knowledge edits made in English show sharp drops in factual consistency in other languages \citep{yong-etal-2025-state-multilingual-llm-safety}.
 % Of the top 24 models on Chatbot Arena, 20 claim multilingual support, but only 5 reported multilingual safety alignment and red-teaming \citep{yong-etal-2025-state-multilingual-llm-safety}.
 
-\input{tables/survey_comparisons.tex}
+% \input{tables/survey_comparisons.tex}
 
 
 \section{Survey: The Last Mile of NLP}
