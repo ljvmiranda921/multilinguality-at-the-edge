@@ -301,12 +301,11 @@ For example, a 7B-parameter model requires over 8GB in FP16, which already excee
 \paragraph{Compute}
 The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
 This is typically measured in FLOPs, i.e., the number of floating-point operations a chip can perform per second.
-\citet{zheng2025reviewedgeLLM} highlight a widening gap
-% \citet{zheng2025reviewedgeLLM} highlight a widening gap between the computational demands of LLMs and the capabilities of edge chips, which is made worse due to the quadratic complexity of self-attention which is . %the quadratic complexity of self-attention with respect to sequence length creates severe throughput bottlenecks on edge CPUs, GPUs, and NPUs.
+Considerations of computational cost and portability motivate the need to design LLMs specifically for mobile deployment \citep{liu2024mobilellm}.
 
 \paragraph{Energy}
 Sustained inference can quickly drain a device's battery, restricting how long and how intensively a model can run.
-This constraint is also difficult to account for in practice: \citet{treviso-etal-2023-efficient} note that power consumption is hard to measure reliably due to sampling frequency limitations and inconsistent OS-level support, meaning energy costs are often underestimated.
+% This constraint is also difficult to account for in practice: \citet{treviso-etal-2023-efficient} note that power consumption is hard to measure reliably due to sampling frequency limitations and inconsistent OS-level support, meaning energy costs are often underestimated.
 
 % \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Memory:} limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
