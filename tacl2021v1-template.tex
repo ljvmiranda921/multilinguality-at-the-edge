@@ -84,7 +84,7 @@ TACL-submission anonymization requirements)}
 \title{
   % Multilinguality at the Edge:\\
   % A Survey of Methods and Challenges at the Last Mile of NLP
-  The Last Mile: A Survey of Multilinguality at the Edge
+  The Last Mile: The State of Multilinguality at the Edge
 }
 
 \input{authors.tex}
@@ -129,7 +129,7 @@ This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resou
 Building on these insights, we adopt this framing as a foundational premise and refer to the intersection of multilinguality and edge-efficiency as the \textit{last mile} of NLP.
 We use this term because it captures the hardest and most costly stretch of LLM development: reaching communities that need both a model that understands their language and the efficiency to run on their available hardware.
 
-In this work, we survey \numpapers{} methods, techniques, and challenges within the \textit{last mile} of NLP.
+In this work, we review \numpapers{} methods, techniques, and challenges that tackle the development of multilingual LLMs that can be deployed at the edge.
 We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
 We organize our discussion around the large language modeling pipeline (\S\ref{sec:lm_pipeline}), covering data collection, development, and deployment, and describe relevant techniques at each stage.
 We then define the constraints of Edge LLMs (\S\ref{sec:edge_constraints})
@@ -137,6 +137,12 @@ and the requirements for building quality multilingual models (\S\ref{sec:multil
 and highlight how the two often impose competing demands (\S\ref{sec:the_tension}),
 which is precisely what makes the \textit{last mile} so challenging.
 Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:lm_pipeline}).
+
+\section{Methodology}
+\label{sec:methodology}
+
+To understand the state of
+
 
 
 \section{Multilinguality at the Edge}
@@ -203,16 +209,34 @@ OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
 In general, we describe five main stages:
 
-\begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
-  \item \textbf{Data Collection}: sourcing and curating the text corpora used for both pretraining and post-training.
-        Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured, such as prompt-response or preference pairs.
-  \item \textbf{Pretraining}: training the base model on large-scale corpora to learn general language representations.
-        This is typically the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for around 6T tokens.
-  \item \textbf{Post-training}: further adapting and tuning the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
-        We also group model compression and merging under this stage.
-  \item \textbf{Inference}: serving the model on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
-  \item \textbf{Evaluation}: measuring model performance across a variety of capabilities and domains. This involves assessing performance on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
-\end{itemize}
+\paragraph{Data Collection}
+Sourcing and curating the text corpora used for both pretraining and post-training.
+Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured, such as prompt-response or preference pairs.
+
+\paragraph{Pretraining}
+Training the base model on large-scale corpora to learn general language representations.
+This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
+
+\paragraph{Post-training}
+Further adapting and tuning the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
+We also group model compression and merging under this stage.
+
+\paragraph{Inference}
+Serving the model on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
+
+\paragraph{Evaluation}
+Measuring model performance across a variety of capabilities and domains. This involves assessing performance on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+
+% \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
+%   \item \textbf{Data Collection}: sourcing and curating the text corpora used for both pretraining and post-training.
+%         Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured, such as prompt-response or preference pairs.
+%   \item \textbf{Pretraining}: training the base model on large-scale corpora to learn general language representations.
+%         This is typically the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for around 6T tokens.
+%   \item \textbf{Post-training}: further adapting and tuning the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
+%         We also group model compression and merging under this stage.
+%   \item \textbf{Inference}: serving the model on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
+%   \item \textbf{Evaluation}: measuring model performance across a variety of capabilities and domains. This involves assessing performance on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+% \end{itemize}
 
 The design choices made at each stage jointly determine how well a model serves multilingual communities on constrained hardware.
 
@@ -238,9 +262,6 @@ In this work, we define \textit{Multilinguality} as
 
 \subsection{The Tension}
 \label{sec:the_tension}
-
-\section{Methodology}
-\label{sec:methodology}
 
 \section{Survey: The Last Mile of NLP}
 \label{sec:survey}
