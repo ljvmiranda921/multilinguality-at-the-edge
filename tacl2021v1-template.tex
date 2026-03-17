@@ -212,22 +212,22 @@ Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient
 In general, we identify five main stages.
 
 \paragraph{Data Collection}
-Sourcing and curating the text corpora used for both pretraining and post-training.
+The pipeline begins with sourcing and curating text corpora for both pretraining and post-training.
 Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured (e.g., prompt-response pairs).
 
 \paragraph{Pretraining}
-Training the base model on large-scale corpora to learn general language representations.
+These corpora are then used to train the base model on large-scale data to learn general language representations.
 This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 
 \paragraph{Post-training}
-Further adapting the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
-We also group model compression and merging under this stage.
+Once the base model is trained, it is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
+We also group the literature on model compression and merging under this stage.
 
 \paragraph{Inference}
-Serving the model on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
+The resulting model is then served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
 
 \paragraph{Evaluation}
-Measuring model performance across a variety of capabilities and domains. This involves assessing performance on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+Finally, model performance is measured across a variety of capabilities and domains, either on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
 
 % \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Data Collection}: sourcing and curating the text corpora used for both pretraining and post-training.
