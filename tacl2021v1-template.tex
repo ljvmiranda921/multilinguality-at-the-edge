@@ -281,11 +281,11 @@ For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requi
 
 \paragraph{Compute}
 Governs the feasibility of certain finetuning techniques and the latency of models during inference.
-\citet{zheng2025reviewedgeLLM} highlight a widening gap between the computational demands of LLMs and the capabilities of edge chips (p.~6, Figure~3), noting that the quadratic complexity of self-attention with respect to sequence length creates severe throughput bottlenecks on edge CPUs, GPUs, and NPUs (p.~3).
+\citet{zheng2025reviewedgeLLM} highlight a widening gap between the computational demands of LLMs and the capabilities of edge chips, noting that the quadratic complexity of self-attention with respect to sequence length creates severe throughput bottlenecks on edge CPUs, GPUs, and NPUs.
 
 \paragraph{Energy}
 Restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
-\citet{treviso-etal-2023-efficient} note that power consumption during LLM inference is difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support, making energy costs easy to underestimate.
+\citet{treviso-etal-2023-efficient} note that power consumption is difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support, so energy costs are often underestimated in practice.
 
 % \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Memory:} limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
