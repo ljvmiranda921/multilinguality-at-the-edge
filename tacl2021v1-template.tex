@@ -289,7 +289,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 \paragraph{Memory}
 The amount of memory in a device limits what LLMs can be loaded and served.
 It is also relevant during finetuning, where it constrains the size of a training batch.
-For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires over 8GB in FP16, which already exceeds the capacity of many mobile phones and laptops.
+For example, a 7B-parameter model requires over 8GB in FP16, which already exceeds the capacity of many mobile phones and laptops.
 
 % \citet{chen-etal-2025-confidant} notes that the memory footprint of most LLMs exceed the capacities most edge devices.
 % In addition, memory is also a hard limit to the size of the KV cache, which can affect inference speed during long interactions.
@@ -299,12 +299,14 @@ For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requi
 % \ljm{For example, \citet{zheng2025reviewedgeLLM} note that a 7B-parameter model requires over 8\,GB of memory in FP16, which already exceeds the capacity of many mobile devices and makes quantization a necessity rather than an optimization.}
 
 \paragraph{Compute}
-Governs the feasibility of certain finetuning techniques and the latency of models during inference.
-\ljm{\citet{zheng2025reviewedgeLLM} highlight a widening gap between the computational demands of LLMs and the capabilities of edge chips, noting that the quadratic complexity of self-attention with respect to sequence length creates severe throughput bottlenecks on edge CPUs, GPUs, and NPUs.}
+The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
+This is typically measured in FLOPs, i.e., the number of floating-point operations a chip can perform per second.
+\citet{zheng2025reviewedgeLLM} highlight a widening gap
+% \citet{zheng2025reviewedgeLLM} highlight a widening gap between the computational demands of LLMs and the capabilities of edge chips, which is made worse due to the quadratic complexity of self-attention which is . %the quadratic complexity of self-attention with respect to sequence length creates severe throughput bottlenecks on edge CPUs, GPUs, and NPUs.
 
 \paragraph{Energy}
-Restricts how long and how intensively a model can run, as sustained inference can quickly drain a device's battery.
-\ljm{\citet{treviso-etal-2023-efficient} note that power consumption is difficult to measure reliably due to sampling frequency limitations and inconsistent OS-level support, so energy costs are often underestimated in practice.}
+Sustained inference can quickly drain a device's battery, restricting how long and how intensively a model can run.
+This constraint is also difficult to account for in practice: \citet{treviso-etal-2023-efficient} note that power consumption is hard to measure reliably due to sampling frequency limitations and inconsistent OS-level support, meaning energy costs are often underestimated.
 
 % \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Memory:} limits model size that can be deployed for inference, the batch size during training, and the KV cache during long interactions.
