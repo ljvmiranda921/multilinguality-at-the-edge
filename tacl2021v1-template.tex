@@ -158,20 +158,21 @@ The rest of this section describes our methodology.
 
 \paragraph{Initial Paper Screening}
 First, we gather studies from peer-reviewed academic papers, industry whitepapers, and technical reports using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
-Our search query includes keywords relating to multilingual NLP, efficiency, participatory AI, and LLM development (Appendix \ref{appendix:initial_paper_screening}).
+Our search query includes keywords relating to multilingual NLP, efficiency, and LLM deployment (Appendix \ref{appendix:initial_paper_screening}).
 This step resulted in 2,473 papers.
+We further screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published last year (2025) should have at least 3.
 
 \paragraph{Filtering and Annotation}
 For each work, we perform human and LLM-assisted filtering and annotation to identify key attributes such as the work's
-subject domain,
-downstream application,
+focus in the LLM pipeline,
+whether it focuses on multilinguality, efficiency, or both,
 and deployment device.
 We bootstrap annotations with GPT 4.1 Mini\footnote{Version: \texttt{gpt-4.1-mini-2025-04-14}} by including the work's title and abstract in a prompt shown in \autoref{fig:appendix_annotation_prompt},
 and then perform human validation to correct the annotations.
 
 \paragraph{Final Validation}
 Finally, we conduct a round of human validation to correct and refine the annotations.
-In total, we collected \numpapers{} interventions that aim to relax a community's binding constraints.
+In total, we collected \numpapers{} works for each stage of the LLM pipeline.
 Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
 
 
@@ -190,9 +191,10 @@ While Edge LLM and Multilinguality have each been studied in isolation,
 we observe trends suggesting that they must be studied together.
 
 \paragraph{Need: Multilingual communities face infrastructure constraints}
-The first trend is that communities with the highest linguistic diversity often have the most limited network connectivity.
-As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet digitally underserved.
-Because the dominant paradigm to serve LLMs is through cloud infrastructure (i.e., requests are sent over a network), this limited connectivity restricts  how these communities can access language technologies.
+The first trend is that communities with the highest linguistic diversity often have the hardest infastructure constraint such as network connectivity or ICT adoption.
+As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet least active in the Internet.
+This constraints them further in the LLM pipeline because most pretraining data were derived from web-scale text, and
+that the dominant paradigm to serve LLMs is through cloud infrastructure (i.e., requests are sent over a network).% this limited connectivity restricts  how these communities can access language technologies.
 In addition, entry-level smartphones cost up to 48\% of monthly income for the poorest quintile in these regions, meaning the devices that exist are mostly low-end \cite{GSMA2025MobileEconomy}.
 Of the 21 countries with more than 100 living languages, 12 are classified as low or lower-middle income, showing a \textit{need} for models that can run entirely on-device.
 
