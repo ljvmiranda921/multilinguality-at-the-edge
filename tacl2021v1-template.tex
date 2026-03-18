@@ -200,7 +200,7 @@ For each work, we perform human and LLM-assisted filtering and annotation to ide
 focus in the LLM pipeline,
 whether it focuses on multilinguality, efficiency, or both,
 and deployment device.
-We bootstrap annotations with GPT 4.1 Mini\footnote{Version: \texttt{gpt-4.1-mini-2025-04-14}} by including the work's title and abstract in a prompt shown in \autoref{fig:appendix_annotation_prompt},
+We bootstrap annotations with GPT 4.1 Mini by including the work's title and abstract in a prompt (\autoref{fig:appendix_annotation_prompt}),
 and then perform human validation to correct the annotations.
 
 \paragraph{Final Validation}
@@ -435,6 +435,44 @@ To navigate this, we draw on the concept of \textit{growth diagnostics} \citep{h
 
 \clearpage
 \appendix
+
+\begin{figure*}[t]
+  \footnotesize
+  \centering
+  \begin{minipage}{0.95\textwidth}
+    \promptbox[\textbf{LLM Annotation Prompt:} Annotate papers on different dimensions based on their title and abstract.]{
+      You are an expert research paper annotator specializing in NLP and machine learning.
+      Given the title and abstract of a research paper, classify it according to several dimensions
+      relevant to multilingual and efficient NLP for edge deployment.
+      Your responses must strictly adhere to the specified response schema without adding any additional commentary.\\\\
+      Title: \texttt{\{title\}}\\
+      Abstract: \texttt{\{abstract\}}\\\\
+      Please classify this paper according to the following dimensions:\\
+      1. The single primary pipeline stage the paper addresses (Data Collection, Pretraining, Post-training, Inference, Evaluation, or Full-Stack if it spans 4+ stages).\\
+      2. Primary topic(s) or techniques used in the paper.\\
+      3. Primary subject area of the paper based on ACL 2025 Subject Areas.\\
+      4. Modality of the work (e.g., text, speech, multimodal).\\
+      5. Languages studied or supported (if applicable). Use ISO 639-1 codes where possible (e.g., en, fr, de, es). Use "multilingual" if >10 languages.\\
+      6. Names of any models released by the authors (empty list if none).\\
+      7. Parameter sizes of the models released in billions (empty list if none or not specified).\\
+      8. Is this paper primarily about efficiency, multilinguality, both, or neither?\\
+      9. What type of contribution does this paper make (Method, Technique, Evaluation, Survey, Resource, Analysis)?\\
+      10. Is this paper relevant in the context of multilingual NLP for edge devices? Score from 1 to 5.\\
+      11. State your reason for the relevance score.\\
+      12. Extract a list of free-form keywords that capture the paper's key concepts, methods, datasets, or findings.\\
+
+    }
+  \end{minipage}
+  \caption{
+    \textbf{LLM Annotation Prompt.}
+    Using GPT 4.1 Mini (\texttt{gpt-4.1-mini-2025-04-14}), we annotate several
+    papers based on their title and abstract across several dimensions.
+    We use the \texttt{outlines} library for structured output generation \citep{willard2023efficientguidedgenerationlarge}.
+  }
+  \label{fig:appendix_annotation_prompt}
+\end{figure*}
+
+\input{tables/survey_comparisons.tex}
 
 
 \end{document}
