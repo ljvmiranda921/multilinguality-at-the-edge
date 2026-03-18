@@ -85,7 +85,8 @@ TACL-submission anonymization requirements)}
   % Multilinguality at the Edge:\\
   % A Survey of Methods and Challenges at the Last Mile of NLP
   % The Last Mile: The State of Multilinguality at the Edge
-  Multilinguality at the Edge: A Survey of the Last Mile of NLP
+  % Multilinguality at the Edge: A Survey of the Last Mile of NLP
+  The Last Mile: A Survey of Multilinguality at the Edge
 }
 
 \input{authors.tex}
@@ -301,22 +302,34 @@ In this section, we examine how the constraints of edge deployment and the requi
 
 \subsection{Data Collection}
 
-% The pipeline begins with sourcing and curating text corpora for both pretraining and post-training.
-% Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured (e.g., prompt-response pairs).
+The LLM pipeline often begins with sourcing and curating text corpora for both pretraining and post-training.
+Pretraining corpora tend to be unstructured web-crawled text, while post-training datasets are more structured.
 
+\paragraph{Tension 1}
+\ljm{\lipsum[1]}
 
 
 \subsection{Pretraining}
 
+Web-crawled text is then used to train a base model to learn general language representations.
+This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 % These corpora are then used to train the base model on large-scale data to learn general language representations.
 % This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 
 
+\paragraph{Tension 1}
+\ljm{\lipsum[1]}
+
+
+\paragraph{Tension 2}
+\ljm{\lipsum[1]}
+
+
 \subsection{Post-training}
 
-% Once the base model is trained, it is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
-% We also group the literature on model compression and merging under this stage.
-% sometimes we start here
+Once the base model is trained, it is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
+We also group the literature on model compression and merging under this stage.
+
 
 
 \subsection{Inference}
