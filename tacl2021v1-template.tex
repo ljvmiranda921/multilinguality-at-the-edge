@@ -247,24 +247,6 @@ Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient
 In general, we identify five main stages: Data Collection, Pretraining, Post-training, Inference, and Evaluation.
 We describe each step in \S\ref{sec:survey}.
 
-% \paragraph{Data Collection}
-% The pipeline begins with sourcing and curating text corpora for both pretraining and post-training.
-% Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured (e.g., prompt-response pairs).
-
-% \paragraph{Pretraining}
-% These corpora are then used to train the base model on large-scale data to learn general language representations.
-% This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
-
-% \paragraph{Post-training}
-% Once the base model is trained, it is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
-% We also group the literature on model compression and merging under this stage.
-
-% \paragraph{Inference}
-% The resulting model is then served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
-
-% \paragraph{Evaluation}
-% Finally, model performance is measured across a variety of capabilities and domains, either on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
-
 % \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Data Collection}: sourcing and curating the text corpora used for both pretraining and post-training.
 %         Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured, such as prompt-response or preference pairs.
@@ -328,21 +310,32 @@ This alignment also extends to safety \citep{yong-etal-2025-state}, where differ
 
 \subsection{Data Collection}
 
+% The pipeline begins with sourcing and curating text corpora for both pretraining and post-training.
+% Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured (e.g., prompt-response pairs).
+
 
 
 \subsection{Pretraining}
 
+% These corpora are then used to train the base model on large-scale data to learn general language representations.
+% This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 
 
 \subsection{Post-training}
 
+% Once the base model is trained, it is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
+% We also group the literature on model compression and merging under this stage.
+% sometimes we start here
 
 
 \subsection{Inference}
 
+% The resulting model is then served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
 
 
 \subsection{Evaluation}
+
+% Finally, model performance is measured across a variety of capabilities and domains, either on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
 
 \section{Discussion: Reaching the Last Mile}
 \label{sec:discussion}
