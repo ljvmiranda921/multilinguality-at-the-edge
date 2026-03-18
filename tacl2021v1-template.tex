@@ -134,7 +134,7 @@ This challenge is non-trivial, as we show that sometimes, prioritizing edge effi
 
 In this work, we define the challenge of the \textit{last mile} (\S\ref{sec:motivation}) and present a survey of \numpapers{} papers that describe methods attempting to solve this problem at different stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}).
 For each stage of the pipeline, we describe how constraints present in deploying edge models (\ref{sec:edge_constraints}) can come into tension with the properties necessary to build capable multilingual models (\ref{sec:multilingual_constraints}).
-Although we've been seeing LLM releases that jointly address the \textit{last mile} (e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
+Although we've been seeing LLM releases that jointly address the \textit{last mile},%(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
 our desideratum is to stimulate more work at this intersection of multilingual and edge NLP,
 and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
 Finally, we hope that this work contributes to the development of equitable and inclusive language technologies.
@@ -172,7 +172,7 @@ and then perform human validation to correct the annotations.
 
 \paragraph{Final Validation}
 Finally, we conduct a round of human validation to correct and refine the annotations.
-In total, we collected \numpapers{} works for each stage of the LLM pipeline.
+In total, we collected \numpapers{} works across the whole LLM pipeline.
 Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
 
 
@@ -196,7 +196,7 @@ The first trend is that communities with the highest linguistic diversity often 
 As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet among the least active on the Internet.
 This compounds their disadvantage in the LLM pipeline: most pretraining data are derived from web-scale text, which these communities lack due to limited Internet activity, and
 the dominant paradigm for serving LLMs relies on cloud infrastructure (i.e., requests are sent over a network).% this limited connectivity restricts  how these communities can access language technologies.
-The result is LLMs that are both unable to serve their languages and undeployable in their specific contexts.
+This leads to LLMs that are both unable to serve their languages and undeployable in their specific contexts.
 In addition, entry-level smartphones cost up to 48\% of monthly income for the poorest quintile in these regions, meaning the devices that do exist are mostly low-end \cite{GSMA2025MobileEconomy}.
 Of the 21 countries with more than 100 living languages, 12 are classified as low or lower-middle income, showing a \textit{need} for models that can run entirely on-device.
 
@@ -216,7 +216,8 @@ Of the 21 countries with more than 100 living languages, 12 are classified as lo
 Another reason for studying these two fields in tandem is the research \textit{opportunity} it presents.
 \autoref{fig:nlp_literature_by_stage_prop} shows that individual stages of the LLM pipeline tend to be dominated by one field: Data Collection and Evaluation skew toward Multilinguality, while Pretraining through Inference skew toward Edge LLM development.
 However, when looking at the full pipeline (Full-Stack), both fields are already being considered together (43\%).
-Recent works such as Tiny Aya \citep{salamanca2026tinyayabridgingscale}, Gemma 3n \citep{gemmateam2025gemma3technicalreport}, and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} show that this intersection is emerging and actively being explored.
+Recent works such as Tiny Aya \citep[70 languages, 3.35B,][]{salamanca2026tinyayabridgingscale}, Gemma 3n \citep[140 languages, 2B,][]{gemmateam2025gemma3technicalreport}, and Omnilingual ASR \citep[1600+ languages, with 600M param. variant,][]{omnilingualasrteam2025omnilingualasropensourcemultilingual} show that this intersection is emerging and actively being explored.
+%(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
 % Later in this work, we examine what might be causing these silos (we posit that there is an inherent tension between the two) and look at how other works attempt to bridge them.
 % \newline
 % \newline
