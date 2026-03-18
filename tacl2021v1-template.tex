@@ -308,18 +308,18 @@ We define \textit{Multilinguality} as the set of methods and techniques for buil
 Addressing gaps in multilinguality is important because communities in the long tail of language support also tend to face systemic constraints in digital infrastructure and socioeconomic capability \citep{occhini2026artificialintelligencecreatingnew}, further exacerbating this divide.
 Based on recent surveys \citep{liu-etal-2025-culturally,longpre2025atlasadaptivetransferscaling}, we identify \textbf{properties} to consider when building capable multilingual models.
 
-\paragraph{Data Quality}
+\paragraph{Data}
 Data has value when it's high-quality and diverse \citep{raventos2023pretraining,chen2024diversitysyntheticdataimpact}.
 High-quality multilingual data enables LLMs to be fluent in a community's language while maintaining strong capabilities.
-Common approaches for sourcing such data include web crawling \citep{penedo2025fineweb}, human annotation \citep{singh-etal-2024-aya}, and synthetic data generation \citep{dang2024ayaexpansecombiningresearch}.
+Common approaches include web crawling \citep{penedo2025fineweb}, human annotation \citep{singh-etal-2024-aya}, and synthetic data generation \citep{dang2024ayaexpansecombiningresearch}.
 
-\paragraph{Representation Quality}
-How a language is encoded affects model performance, especially for langauges with complex morphology or non-Latin scripts.
-Across the LLM pipeline, this is affected by design decisions such as tokenizer vocabulary \citep{rust-etal-2021-good}, input encoding \citep{minixhofer2026bolmobyteifyinggenerationlanguage}, and pretraining data mixtures \citep{conneau-etal-2020-unsupervised}.
+\paragraph{Representation}
+How text is encoded affects model performance, especially for languages with complex morphology or non-Latin scripts.
+Across the LLM pipeline, this is affected by design decisions such as tokenizer vocabulary \citep{rust-etal-2021-good}, input encoding \citep{minixhofer2026bolmobyteifyinggenerationlanguage}, and pretraining mixtures \citep{conneau-etal-2020-unsupervised}.
 
-\paragraph{Alignment Quality}
+\paragraph{Alignment}
 Even if a model is fluent in a certain language, it does not necessarily mean that it adheres to the cultural norms and nuances of that language's community \citep{adilazuarda-etal-2024-towards,liu-etal-2025-culturally}.
-\ljm{\lipsum[3][1-5]}
+This alignment also extends to safety \citep{yong-etal-2025-state}, where different communities have different standards on what is allowable.
 
 % \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
 %   \item \textbf{Data Quality:} \ljm{talks about the amount of data for training, the quality of the text whether it has to be fluent or culturally aligned}
