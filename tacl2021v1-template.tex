@@ -26,6 +26,7 @@
 \usepackage{tcolorbox}
 \usepackage{subcaption}
 \usepackage{tikz}
+\usetikzlibrary{positioning}
 
 
 %% Package options:
@@ -205,8 +206,8 @@ and then perform human validation to correct the annotations.
 
 \paragraph{Final Validation}
 Finally, we conduct a round of human validation to correct and refine the annotations.
-In total, we collected \numpapers{} works across the whole LLM pipeline.
-Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
+In total, we collected \numpapers{} works across the whole language modelling pipeline.
+% Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
 
 
 \section{Multilinguality at the Edge}
@@ -499,7 +500,7 @@ To navigate this, we draw on the concept of \textit{growth diagnostics} \citep{h
   \label{fig:appendix_annotation_prompt}
 \end{figure*}
 
-% \input{tables/survey_comparisons.tex}
+\input{tables/survey_comparisons.tex}
 
 
 \end{document}
