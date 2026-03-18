@@ -113,7 +113,39 @@ As LLMs become central to economic productivity, these compounding barriers thre
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.95\linewidth, trim={1cm 1.2cm 1cm 0}]{figures/lm_pipeline_blank.pdf}
+  \begin{tikzpicture}
+    \node[anchor=south west, inner sep=0] (image)
+    {\includegraphics[width=0.95\linewidth, trim={1cm 1.2cm 1cm 0}]{figures/lm_pipeline_blank.pdf}};
+    \begin{scope}[x={(image.south east)}, y={(image.north west)}]
+      % Top heading
+      \node[anchor=center, font=\large\bfseries, text=cdarkblue] at (0.48, 0.86)
+      {Constraints the Edge Demands (\S\ref{sec:edge_constraints})};
+      % Bottom heading
+      \node[anchor=center, font=\large\bfseries, text=cdarkcrest] at (0.52, 0.20)
+      {Properties that Influence Multilingual Capability (\S\ref{sec:multilingual_constraints})};
+      % Pipeline stage labels
+      \node[anchor=center, font=\bfseries] at (0.08, 0.50)
+      {\begin{tabular}{c}Data\\Collection\end{tabular}};
+      \node[anchor=south, font=\scriptsize] at (0.08, 0.38)
+      {(\S\ref{sec:data_collection})};
+      \node[anchor=center, font=\bfseries] at (0.30, 0.50)
+      {Pretraining};
+      \node[anchor=south, font=\scriptsize] at (0.30, 0.42)
+      {(\S\ref{sec:pretraining})};
+      \node[anchor=center, font=\bfseries] at (0.50, 0.50)
+      {Post-training};
+      \node[anchor=south, font=\scriptsize] at (0.50, 0.42)
+      {(\S\ref{sec:post_training})};
+      \node[anchor=center, font=\bfseries] at (0.72, 0.50)
+      {Inference};
+      \node[anchor=south, font=\scriptsize] at (0.72, 0.42)
+      {(\S\ref{sec:inference})};
+      \node[anchor=center, font=\bfseries] at (0.93, 0.50)
+      {Evaluation};
+      \node[anchor=south, font=\scriptsize] at (0.93, 0.42)
+      {(\S\ref{sec:evaluation})};
+    \end{scope}
+  \end{tikzpicture}
   \caption{
     \textbf{Competing requirements at each step of the language modelling pipeline.}
     Edge LLM deployment imposes constraints on memory, compute, and energy \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}, which can conflict with the requirements for building capable multilingual models \citep{longpre2025atlasadaptivetransferscaling,yong-etal-2025-state}.
