@@ -191,7 +191,7 @@ The rest of this section describes our methodology.
 
 \paragraph{Initial Paper Screening}
 First, we gather studies from peer-reviewed academic papers, industry whitepapers, and technical reports using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
-Our search query includes keywords relating to multilingual NLP, efficiency, and LLM deployment (Appendix \ref{appendix:initial_paper_screening}).
+Our search query includes keywords relating to multilingual NLP, efficiency, and LLM deployment (\autoref{fig:search_keywords}).
 This step resulted in 2,473 papers.
 We further screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published last year (2025) should have at least 3.
 
@@ -435,6 +435,31 @@ To navigate this, we draw on the concept of \textit{growth diagnostics} \citep{h
 
 \clearpage
 \appendix
+
+\begin{figure*}[t]
+  \footnotesize
+  \centering
+  \begin{minipage}{0.95\textwidth}
+    \promptbox[\textbf{Search Keywords:} Keywords for the Initial Paper Screening Step]{
+      \texttt{
+        ("multilingual" | "cross-lingual" | "crosslingual" | "low-resource language*" | "polyglot" | "code-switching" | "language
+        transfer" | "zero-shot cross-lingual" | "massively multilingual" | "underrepresented language*" | "endangered language*" |
+        "minority language*" | "language-agnostic" | "compression" | "quantization" | "pruning" | "distillation" | "edge" |
+        "on-device" | "tinyml" | "lightweight" | "small language model*" | "knowledge distillation" | "model compression" | "weight
+        sharing" | "neural architecture search" | "efficient inference" | "mobile NLP" | "sparse model*" | "mixture of experts" |
+        "low-rank" | "LoRA" | "parameter-efficient" | "PEFT" | "vocabulary pruning" | "speculative decoding" | "early exit" |
+        "multilingual distillation" | "cross-lingual transfer" | "vocabulary reduction" | "tokenizer" | "subword" | "script") +
+        ("language model*" | "NLP" | "natural language processing" | "LLM" | "large language model*")
+      }
+    }
+  \end{minipage}
+  \caption{
+    \textbf{Search Keywords.}
+    Using the Semantic Scholar Bulk API, we use the following search keywords to obtain a broad set of literature spanning multilinguality and edge NLP.
+  }
+  \label{fig:search_keywords}
+\end{figure*}
+
 
 \begin{figure*}[t]
   \footnotesize
