@@ -2,7 +2,7 @@
 % Taxonomy diagram with aligned tiers and forked edges
 % Usage: \input{figures/taxonomy.tex}
 
-\scalebox{0.80}{%
+\scalebox{0.70}{%
     \begin{forest}
         forked edges,
         for tree={
@@ -16,20 +16,20 @@
         anchor=west,
         parent anchor=east,
         child anchor=west,
-        l sep=2em,
-        s sep=0.5em,
+        l sep=1.5em,
+        s sep=0.3em,
         tier/.wrap pgfmath arg={tier #1}{level()},
         edge={-latex},
         },
         %\begin{noindent}
   [Multilingual\\Edge LLMs, fill=white, minimum width=8em, name=tier1
-    [\textbf{Data Collection} (\S\ref{sec:data_collection}), fill=clightblue, for descendants={fill=clightblue}, name=tier2
+    [\textbf{Data Collection} (\S\ref{sec:data_collection}), name=tier2
       [Tension 1, name=tier3
         [Work A, name=tier4]
         [Work B]
       ]
     ]
-    [\textbf{Pretraining} (\S\ref{sec:pretraining}), fill=clightblue, for descendants={fill=clightblue}
+    [\textbf{Pretraining} (\S\ref{sec:pretraining})
       [Tension 1
         [Work A]
         [Work B]
@@ -39,7 +39,7 @@
         [Work B]
       ]
     ]
-    [\textbf{Post-training} (\S\ref{sec:post_training}), fill=clightcrest, for descendants={fill=clightcrest}
+    [\textbf{Post-training} (\S\ref{sec:post_training})
       [Tension 1
         [Work A]
         [Work B]
@@ -49,7 +49,7 @@
         [Work B]
       ]
     ]
-    [\textbf{Inference} (\S\ref{sec:inference}), fill=clightcrest, for descendants={fill=clightcrest}
+    [\textbf{Inference} (\S\ref{sec:inference})
       [Tension 1
         [Work A]
         [Work B]
@@ -59,7 +59,7 @@
         [Work B]
       ]
     ]
-    [\textbf{Evaluation} (\S\ref{sec:evaluation}), fill=clightpurple, for descendants={fill=clightpurple}
+    [\textbf{Evaluation} (\S\ref{sec:evaluation})
       [Tension 1
         [Work A]
         [Work B]
