@@ -1,0 +1,79 @@
+% figures/taxonomy.tex
+% Taxonomy diagram with aligned tiers and forked edges
+% Usage: \input{figures/taxonomy.tex}
+
+\scalebox{0.80}{%
+    \begin{forest}
+        forked edges,
+        for tree={
+        grow'=0,
+        draw,
+        rounded corners,
+        minimum height=1em,
+        minimum width=5em,
+        node options={align=center},
+        where level>=1{node options={align=left}}{},
+        anchor=west,
+        parent anchor=east,
+        child anchor=west,
+        l sep=2em,
+        s sep=0.5em,
+        tier/.wrap pgfmath arg={tier #1}{level()},
+        edge={-latex},
+        },
+        %\begin{noindent}
+  [Multilingual\\Edge LLMs, fill=white, minimum width=8em, name=tier1
+    [\textbf{Data Collection} (\S\ref{sec:data_collection}), fill=clightblue, for descendants={fill=clightblue}, name=tier2
+      [Tension 1, name=tier3
+        [Work A, name=tier4]
+        [Work B]
+      ]
+    ]
+    [\textbf{Pretraining} (\S\ref{sec:pretraining}), fill=clightblue, for descendants={fill=clightblue}
+      [Tension 1
+        [Work A]
+        [Work B]
+      ]
+      [Tension 2
+        [Work A]
+        [Work B]
+      ]
+    ]
+    [\textbf{Post-training} (\S\ref{sec:post_training}), fill=clightcrest, for descendants={fill=clightcrest}
+      [Tension 1
+        [Work A]
+        [Work B]
+      ]
+      [Tension 2
+        [Work A]
+        [Work B]
+      ]
+    ]
+    [\textbf{Inference} (\S\ref{sec:inference}), fill=clightcrest, for descendants={fill=clightcrest}
+      [Tension 1
+        [Work A]
+        [Work B]
+      ]
+      [Tension 2
+        [Work A]
+        [Work B]
+      ]
+    ]
+    [\textbf{Evaluation} (\S\ref{sec:evaluation}), fill=clightpurple, for descendants={fill=clightpurple}
+      [Tension 1
+        [Work A]
+        [Work B]
+      ]
+      [Tension 2
+        [Work A]
+        [Work B]
+      ]
+    ]
+  ]
+  %\end{noindent}
+        % Tier annotations above each tier
+        \node[anchor=south, font=\itshape, text=gray] at ([yshift=1.7em]tier2.north) {Pipeline Stage (\S\ref{sec:survey})};
+        \node[anchor=south, font=\itshape, text=gray] at ([yshift=1.4em]tier3.north) {Tension};
+        \node[anchor=south, font=\itshape, text=gray] at ([yshift=0.5em]tier4.north) {Sample Works};
+    \end{forest}%
+}
