@@ -321,34 +321,7 @@ Across the LLM pipeline, this is affected by design decisions such as tokenizer 
 Even if a model is fluent in a certain language, it does not necessarily mean that it adheres to the cultural norms and nuances of that language's community \citep{adilazuarda-etal-2024-towards,liu-etal-2025-culturally}.
 This alignment also extends to safety \citep{yong-etal-2025-state}, where different communities have different standards on what is allowable.
 
-% \begin{itemize}[leftmargin=3mm,topsep=0mm,itemsep=0mm]
-%   \item \textbf{Data Quality:} \ljm{talks about the amount of data for training, the quality of the text whether it has to be fluent or culturally aligned}
-%   \item \textbf{Representation Quality:} \ljm{governs how multilngual text is represented in the model}
-%   \item \textbf{Alignment Quality:}
-% \end{itemize}
-
-% These qualities are controlled through different kinds of levers.
-% For example, data quality can be a function of the dataset's underlying distribution, which can be shaped by filtering or synthetic data generation.
-% Representation quality can also be influenced by the dataset, but can also be affected by the tokenizer design or model architecture.
-
-
-% \paragraph{Sufficient and balanced data}
-% Low-resource languages lack pretraining text, parallel corpora, preference data for RLHF, and evaluation benchmarks.
-% The imbalance can be severe: Llama~3's training data was 95\% English and code, with only 5\% allocated to all other languages \citep{grattafiori2024llama3herdmodels}, yet the model is deployed multilingually.
-% \citet{longpre2026atlasllmsscalinglaws} found that supporting 2$\times$ more languages optimally requires roughly 1.18$\times$ the model size and 1.66$\times$ the total data, though positive cross-lingual transfer offsets much of this cost.
-
-% \paragraph{Tokenizer efficiency}
-% English-centric BPE tokenizers fragment non-Latin and morphologically rich languages into far more subwords, a property known as high fertility.
-% The same content in Finnish, Turkish, or Arabic can require 2--3$\times$ more tokens than English, directly multiplying compute, KV cache memory, and latency.
-% \citet{ali-etal-2024-tokenizer} found that English-centric tokenizers cause up to 68\% additional training cost and severe downstream degradation for multilingual models.
-
-% \paragraph{Safety and alignment transfer}
-% RLHF and safety alignment performed in English does not reliably transfer to other languages.
-% LLMs produce more harmful responses when prompted in low-resource languages, and knowledge edits made in English show sharp drops in factual consistency in other languages \citep{yong-etal-2025-state-multilingual-llm-safety}.
-% Of the top 24 models on Chatbot Arena, 20 claim multilingual support, but only 5 reported multilingual safety alignment and red-teaming \citep{yong-etal-2025-state-multilingual-llm-safety}.
-
 % \input{tables/survey_comparisons.tex}
-
 
 \section{Survey: The Last Mile of NLP}
 \label{sec:survey}
