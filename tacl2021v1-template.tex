@@ -247,17 +247,6 @@ Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient
 In general, we identify five main stages: Data Collection, Pretraining, Post-training, Inference, and Evaluation.
 We describe each step in \S\ref{sec:survey}.
 
-% \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
-%   \item \textbf{Data Collection}: sourcing and curating the text corpora used for both pretraining and post-training.
-%         Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured, such as prompt-response or preference pairs.
-%   \item \textbf{Pretraining}: training the base model on large-scale corpora to learn general language representations.
-%         This is typically the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for around 6T tokens.
-%   \item \textbf{Post-training}: further adapting and tuning the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
-%         We also group model compression and merging under this stage.
-%   \item \textbf{Inference}: serving the model on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
-%   \item \textbf{Evaluation}: measuring model performance across a variety of capabilities and domains. This involves assessing performance on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
-% \end{itemize}
-
 % The design choices made at each stage jointly determine how well a model serves multilingual communities on constrained hardware.
 
 \subsection{The Constraints the Edge Demands}
@@ -305,8 +294,11 @@ This alignment also extends to safety \citep{yong-etal-2025-state}, where differ
 
 % \input{tables/survey_comparisons.tex}
 
-\section{Survey: The Last Mile of NLP}
+\section{Challenges and Techniques for Building Multilingual Edge Models}
 \label{sec:survey}
+
+In this section, we look into the specific challenges brought about by balancing edge deployability and multilingual capability
+across the whole pipeline.
 
 \subsection{Data Collection}
 
