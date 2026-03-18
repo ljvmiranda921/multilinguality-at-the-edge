@@ -84,7 +84,7 @@ def main():
     ax.set_yscale("log")
     ax.set_xlabel(r"\% population covered by 4G network")
     ax.set_ylabel("Number of living languages")
-    ax.legend(frameon=False)
+    ax.legend(frameon=False, fontsize=16)
     ax.grid(False)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -131,13 +131,16 @@ def main():
         label = row["country"]
         if label == "Democratic Republic of Congo":
             label = "DR Congo"
+        elif label == "United States":
+            label = "USA"
         color = INCOME_STYLE[row["income_group"]]["color"]
+        offset = (-40, -14) if row["country"] == "Iceland" else (6, 4)
         ax.annotate(
             label,
             (row["internet_users"], row["num_living_languages"]),
             textcoords="offset points",
-            xytext=(6, 4),
-            fontsize=14,
+            xytext=offset,
+            fontsize=16,
             color=color,
         )
 
@@ -149,6 +152,7 @@ def main():
         loc="upper center",
         bbox_to_anchor=(0.5, -0.12),
         ncol=2,
+        fontsize=18,
     )
     ax.grid(False)
     ax.spines["top"].set_visible(False)
@@ -157,8 +161,6 @@ def main():
     fig.savefig(OUTPUT_DIR / "infra_lingdiv_ict.pdf", bbox_inches="tight")
     plt.close(fig)
     print("Saved to outputs/infra_lingdiv_ict.pdf")
-
-
 
 
 if __name__ == "__main__":
