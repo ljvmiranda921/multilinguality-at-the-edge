@@ -84,6 +84,8 @@ TACL-submission anonymization requirements)}
 \title{
   % Multilinguality at the Edge:\\
   % A Survey of Methods and Challenges at the Last Mile of NLP
+  % The Last Mile: The State of Multilinguality at the Edge
+  % Multilinguality at the Edge: A Survey of the Last Mile of NLP
   The Last Mile: A Survey of Multilinguality at the Edge
 }
 
@@ -111,12 +113,11 @@ As LLMs become central to economic productivity, these compounding barriers thre
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.90\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/lm_pipeline.pdf}
+  \includegraphics[width=0.88\linewidth, trim={1cm 0.5cm 1cm 0}]{figures/lm_pipeline.pdf}
   \caption{
-    \textbf{Tensions at each step of the language modelling pipeline.}
-    Edge LLM deployment imposes a set of constraints such as the amount of storage, memory, and compute \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}.
-    These constraints come into tension against factors that determine multilingual capability \citep{longpre2025atlasadaptivetransferscaling}.
-    This survey shows how these tensions manifest at different parts of the language modelling pipeline and review several works that attempt to address it.
+    \textbf{Competing requirements at each step of the language modelling pipeline.}
+    Edge LLM deployment imposes constraints on memory, compute, and energy \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}, which can conflict with the requirements for building capable multilingual models \citep{longpre2025atlasadaptivetransferscaling,yong-etal-2025-state}.
+    This survey examines how these competing demands manifest across the pipeline and reviews techniques that bridge them.
   }
   \label{fig:lm_pipeline}
 \end{figure*}
@@ -126,41 +127,83 @@ For example, research on model compression has largely focused on English, with 
 Similarly, multilingual scaling laws \citep{longpre2025atlasadaptivetransferscaling,he-etal-2025-scaling} reveal a power-law relationship between multilingual performance and model scale, suggesting that smaller, more deployable models may struggle with low-resource languages.
 Approaching these lines of work in tandem is important, as \citet{ahia-etal-2021-low-resource} argue that language communities face not only data constraints but also compute limitations (the ``low-resource double bind'').
 This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resource'' as a term pertains to technology as much as to data.
-Building on these insights, we adopt this framing as a foundational premise and refer to the intersection of multilinguality and edge-efficiency as the \textit{last mile} of NLP.
-We use this term because it captures the hardest and most costly stretch of LLM development: reaching communities that need both a model that understands their language and the efficiency to run on their available hardware.
+Building on these insights, we then ask: \textit{``how can we develop language technologies and deploy them nearest to the communities that need them the most?''}
+We refer to this challenge as the \textit{last mile}, which refers to the intersection of multilinguality and edge deployment, reaching communities that need both a model that understands their language and the efficiency to run on their available hardware devices.
+This challenge is non-trivial, as we show that while the goals of edge deployment and multilinguality are aligned, their technical requirements often compete.
+%adopt this framing as a premise and refer to the intersection of multilinguality and edge-efficiency as the \textit{last mile} of NLP.
+% The \textit{last mile} refers to the hardest and most costly stretch of Language AI development, i.e., developing and deploying language technologies nearest to the communities that need them the most%.: reaching communities that need both a model that understands their language and the efficiency to run on their available hardware.
 
-In this work, we survey \numpapers{} methods, techniques, and challenges within the \textit{last mile} of NLP.
-We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
-We organize our discussion around the large language modeling pipeline (\S\ref{sec:lm_pipeline}), covering data collection, development, and deployment, and describe relevant techniques at each stage.
-We then define the constraints of Edge LLMs (\S\ref{sec:edge_constraints})
-and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
-and highlight how the two often impose competing demands (\S\ref{sec:the_tension}),
-which is precisely what makes the \textit{last mile} so challenging.
-Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:lm_pipeline}).
+In this work, we define the challenge of the \textit{last mile} (\S\ref{sec:motivation}) and present a survey of \numpapers{} papers that describe methods attempting to solve this problem at different stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}).
+For each stage of the pipeline, we describe how the constraints of edge deployment (\ref{sec:edge_constraints}) and the requirements of multilinguality (\ref{sec:multilingual_constraints}) can impose competing demands, and how existing work bridges the gap.
+Although we've been seeing LLM releases that jointly address the \textit{last mile},%(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
+our desideratum is to stimulate more work at this intersection of multilingual and edge NLP,
+and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
+Finally, we hope that this work contributes to the development of equitable and inclusive language technologies.
+
+% In this work, we survey \numpapers{} methods, techniques, and challenges that tackle the development of multilingual LLMs that can be deployed at the edge.
+% We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
+% We organize our discussion around the large language modeling pipeline (\S\ref{sec:lm_pipeline}), covering data collection, development, and deployment, and describe relevant techniques at each stage.
+% We then define the constraints of Edge LLMs (\S\ref{sec:edge_constraints})
+% and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
+% and highlight how the two often impose competing demands,% (\S\ref{sec:the_tension}),
+% which is precisely what makes the \textit{last mile} so challenging.
+% Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LLM pipeline (see Figure~\ref{fig:lm_pipeline}).
+
+\section{Methodology}
+\label{sec:methodology}
+
+To understand the landscape of Multilingual Edge LLMs,
+we collect research from 2021 onwards on multilinguality, edge and efficient NLP, and work that combines both.
+In total, we obtain \numpapers{} papers.
+The rest of this section describes our methodology.
+
+\paragraph{Initial Paper Screening}
+First, we gather studies from peer-reviewed academic papers, industry whitepapers, and technical reports using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
+Our search query includes keywords relating to multilingual NLP, efficiency, and LLM deployment (Appendix \ref{appendix:initial_paper_screening}).
+This step resulted in 2,473 papers.
+We further screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published last year (2025) should have at least 3.
+
+\paragraph{Filtering and Annotation}
+For each work, we perform human and LLM-assisted filtering and annotation to identify key attributes such as the work's
+focus in the LLM pipeline,
+whether it focuses on multilinguality, efficiency, or both,
+and deployment device.
+We bootstrap annotations with GPT 4.1 Mini\footnote{Version: \texttt{gpt-4.1-mini-2025-04-14}} by including the work's title and abstract in a prompt shown in \autoref{fig:appendix_annotation_prompt},
+and then perform human validation to correct the annotations.
+
+\paragraph{Final Validation}
+Finally, we conduct a round of human validation to correct and refine the annotations.
+In total, we collected \numpapers{} works across the whole LLM pipeline.
+Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
 
 
 \section{Multilinguality at the Edge}
 \label{sec:multilinguality_at_the_edge}
 
-There is a strong case for studying multilinguality within the context of edge deployment (or vice versa).
-However, the intersection of these two imposes distinct, and often competing, requirements on every stage of the modelling pipeline.
+% In this section, we discuss 
 
-\subsection{Why Study Multilinguality at the Edge}
+% There is a strong case for studying multilinguality within the context of edge deployment (or vice versa).
+% However, the intersection of these two imposes distinct, and often competing, requirements on every stage of the modelling pipeline.
+
+\subsection{Why Study the Two Fields Together?}
 \label{sec:motivation}
 
-While efficiency and multilinguality have each been studied in isolation as shown in \autoref{tab:survey_comparisons},
+While Edge LLM and Multilinguality have each been studied in isolation,
 we observe trends suggesting that they must be studied together.
 
-\paragraph{Multilingual communities face infrastructure constraints}
-The first trend is that communities with the highest linguistic diversity often have the most limited network connectivity.
-As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet digitally underserved.
-Because the dominant paradigm to serve LLMs is through cloud infrastructure (i.e., requests are sent over a network), this limited connectivity restricts  how these communities can access language technologies.
-In addition, entry-level smartphones cost up to 48\% of monthly income for the poorest quintile in these regions, meaning the devices that exist are mostly low-end \cite{GSMA2025MobileEconomy}.
+% TODO: improve this paragraph
+\paragraph{Need: Multilingual communities face infrastructure constraints}
+The first trend is that communities with the highest linguistic diversity often face the most severe infrastructure constraints. %  such as network connectivity or ICT adoption.
+As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet among the least active on the Internet.
+This compounds their disadvantage in the LLM pipeline: most pretraining data are derived from web-scale text, which these communities lack due to limited Internet activity, and
+the dominant paradigm for serving LLMs relies on cloud infrastructure (i.e., requests are sent over a network).% this limited connectivity restricts  how these communities can access language technologies.
+This leads to LLMs that are both unable to serve their languages and undeployable in their specific contexts.
+In addition, entry-level smartphones cost up to 48\% of monthly income for the poorest quintile in these regions, meaning the devices that do exist are mostly low-end \cite{GSMA2025MobileEconomy}.
 Of the 21 countries with more than 100 living languages, 12 are classified as low or lower-middle income, showing a \textit{need} for models that can run entirely on-device.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.95\linewidth, trim={0cm 0.5cm 1cm 0}]{figures/infra_lingdiv_ict.pdf}
+  \includegraphics[width=0.90\linewidth, trim={1.2cm 0.5cm 1cm 0}]{figures/infra_lingdiv_ict.pdf}
   \caption{
     \textbf{Countries with high linguistic diversity have the most limited network connectivity (upper left).}
     Internet penetration is sourced from \citet{itu-2025-facts},
@@ -170,20 +213,25 @@ Of the 21 countries with more than 100 living languages, 12 are classified as lo
   \label{fig:infra_lingdiv_ict}
 \end{figure}
 
-\paragraph{Multilingual and Edge NLP literature exist in silos}
+\paragraph{Opportunity: Multilingual and Edge NLP literature exist in silos}
 Another reason for studying these two fields in tandem is the research \textit{opportunity} it presents.
-\autoref{fig:nlp_literature_by_stage_prop} shows the proportion of surveyed papers that focus on edge LLMs, multilinguality, or both, broken down by pipeline stage.
-Across most stages, work on the two topics rarely overlaps: the ``Both'' category accounts for at most 10\% of papers in data collection through inference.
-The exception is full-stack work, where 43\% of papers address both concerns, likely because end-to-end systems cannot avoid the interaction between the two.
-Data collection is dominated by multilinguality research (71\%), while pretraining (71\%), post-training (65\%), and inference (73\%) are dominated by edge LLM work.
-This separation suggests that insights from one community are not routinely adopted by the other, leaving a clear gap for work that bridges both.
+\autoref{fig:nlp_literature_by_stage_prop} shows that individual stages of the LLM pipeline tend to be dominated by one field: Data Collection and Evaluation skew toward Multilinguality, while Pretraining through Inference skew toward Edge LLM development.
+However, when looking at the full pipeline (Full-Stack), both fields are already being considered together (43\%).
+Recent works such as Tiny Aya \citep[70 languages, 3.35B,][]{salamanca2026tinyayabridgingscale}, Gemma 3n \citep[140 languages, 2B,][]{gemmateam2025gemma3technicalreport}, and Omnilingual ASR \citep[1600+ languages, with 600M param. variant,][]{omnilingualasrteam2025omnilingualasropensourcemultilingual} show that this intersection is emerging and actively being explored.
+%(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
+% Later in this work, we examine what might be causing these silos (we posit that there is an inherent tension between the two) and look at how other works attempt to bridge them.
+% \newline
+% \newline
+% \noindent Understanding
+
+% \paragraph{Desideratum: Developing and deploying LLMs that are nearest to the communities that need it the most}
 
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth, trim={0cm 0.5cm 0cm 0}]{figures/nlp_literature_by_stage_prop.pdf}
   \caption{
-    \textbf{Edge LLM and multilinguality research (N=304) rarely overlap within individual pipeline stages.}
+    \textbf{Edge LLM and multilinguality research (N=\numpapers{}) rarely overlap within individual pipeline stages.}
     Each bar shows the share of surveyed papers classified as addressing edge LLMs, multilinguality, or both.
     Full-stack work is the only category where a substantial fraction (43\%) tackles both concerns simultaneously.
     We describe our paper collection methodology in \S\ref{sec:methodology}.
@@ -191,54 +239,146 @@ This separation suggests that insights from one community are not routinely adop
   \label{fig:nlp_literature_by_stage_prop}
 \end{figure}
 
-\input{tables/survey_comparisons.tex}
-
 \subsection{The Language Modelling Pipeline}
 \label{sec:lm_pipeline}
 
 We structure the pipeline based on design choices highlighted across recent open LLM model releases such as the
 OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
-In general, we describe five main stages:
+In general, we identify five main stages: Data Collection, Pretraining, Post-training, Inference, and Evaluation.
+We describe each step in \S\ref{sec:survey}.
 
-\begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
-  \item \textbf{Data Collection}: sourcing and curating the text corpora used for both pretraining and post-training.
-        Pretraining corpora tend to be unstructured web text, while post-training datasets are more structured, such as prompt-response or preference pairs.
-  \item \textbf{Pretraining}: training the base model on large-scale corpora to learn general language representations.
-        This is typically the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for around 6T tokens.
-  \item \textbf{Post-training}: further adapting and tuning the base model toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} and reinforcement learning.
-        We also group model compression and merging under this stage.
-  \item \textbf{Inference}: serving the model on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
-  \item \textbf{Evaluation}: measuring model performance across a variety of capabilities and domains. This involves assessing performance on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
-\end{itemize}
+% The design choices made at each stage jointly determine how well a model serves multilingual communities on constrained hardware.
 
-The design choices made at each stage jointly determine how well a model serves multilingual communities on constrained hardware.
-
-\subsection{What the Edge Demands}
+\subsection{The Constraints the Edge Demands}
 \label{sec:edge_constraints}
 
-In this work, we define the \textit{Edge} as
+In this work, we define the \textit{Edge} as the development or deployment setting that imposes hardware constraints.
+The edge typically involve commodity hardware such as mobile phones and laptops, and sometimes even microcontroller devices.
+Edge research is relevant because much of the Global South is constrained in digital infrastructure \citep{GSMA2025MobileEconomy,occhini2026artificialintelligencecreatingnew}, and the usual routes for deploying LLMs, such as using high-end GPUs or cloud services, are often inaccessible.
+Successful edge deployment has been seen in domains such as healthcare \citep{hu-etal-2025-nlp-public-health-africa,rutunda2026llmfrontline}, agriculture \citep{singh2024farmerchatscalingaipoweredagricultural,samuel2025agrollmconnectingfarmersagricultural}, and law \citep{ariai-etal-2025-nlp-legal-domain}.
+Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM}, we identify \textbf{constraints} for effective Edge LLM deployment.
 
+\paragraph{\iconmemory{} Memory}
+The amount of memory in a device limits what LLMs can be loaded and served.
+It is also relevant during finetuning, where it constrains the size of a training batch.
+For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobilellm}, yet even a 7B-parameter model in half precision already requires over 8\,GB.
 
-\subsection{What Multilinguality Demands}
+\paragraph{\iconcompute{} Compute}
+The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
+The gap between LLM requirements (in TFLOPs) and edge device throughput (in TOPS) continues to widen \citep{zheng2025reviewedgeLLM}.
+
+\paragraph{\iconenergy{} Energy}
+Sustained inference can quickly drain a device's battery, restricting how long and how intensively a model can run.
+For example, inference energy can vary by a factor of over 1,000 across models \citep{luccioni-etal-2024-power},
+and even quantized LLMs on a Raspberry Pi consume several joules per token \citep{husom-etal-2025-sustainable}.
+
+\subsection{The Properties that Influence Multilingual Capability}
 \label{sec:multilingual_constraints}
 
-In this work, we define \textit{Multilinguality} as
+We define \textit{Multilinguality} as the set of methods and techniques for building language models that perform well across a broad range of languages, particularly low-resource ones.
+Addressing gaps in multilinguality is important because communities in the long tail of language support also tend to face systemic constraints in digital infrastructure and socioeconomic capability \citep{occhini2026artificialintelligencecreatingnew}, further exacerbating this divide.
+Based on recent surveys \citep{liu-etal-2025-culturally,longpre2025atlasadaptivetransferscaling}, we identify \textbf{properties} to consider when building capable multilingual models.
 
-\subsection{The Tension}
-\label{sec:the_tension}
+\paragraph{\icondata{} Data}
+Data has value when it's high-quality and diverse \citep{raventos2023pretraining,chen2024diversitysyntheticdataimpact}.
+High-quality multilingual data enables LLMs to be fluent in a community's language while maintaining strong capabilities.
+Common approaches include web crawling \citep{penedo2025fineweb}, human annotation \citep{singh-etal-2024-aya}, and synthetic data generation \citep{dang2024ayaexpansecombiningresearch}.
 
-\section{Methodology}
-\label{sec:methodology}
+\paragraph{\iconrepresentation{} Representation}
+How text is encoded affects model performance, especially for languages with complex morphology or non-Latin scripts.
+Across the LLM pipeline, this is affected by design decisions such as tokenizer vocabulary \citep{rust-etal-2021-good}, input encoding \citep{minixhofer2026bolmobyteifyinggenerationlanguage}, and pretraining mixtures \citep{conneau-etal-2020-unsupervised}.
 
-\section{Survey: The Last Mile of NLP}
+\paragraph{\iconalignment{} Alignment}
+Even if a model is fluent in a certain language, it does not necessarily mean that it adheres to the cultural norms and nuances of that language's community \citep{adilazuarda-etal-2024-towards,liu-etal-2025-culturally}.
+Alignment also extends to safety, as communities differ in what they consider allowable \citep{yong-etal-2025-state}.
+
+% \input{tables/survey_comparisons.tex}
+
+\section{Challenges and Techniques for Building Multilingual Edge Models}
 \label{sec:survey}
 
-\section{Discussion}
+In this section, we examine how the constraints of edge deployment and the requirements of multilinguality compete at each stage of the pipeline, and survey techniques that bridge them.
 
-\subsection{Which One to Tackle First?}
+\subsection{Data Collection}
 
-\subsection{Recommendations for Stakeholders}
+The LLM pipeline often begins with sourcing and curating text corpora for both pretraining and post-training.
+Pretraining corpora tend to be unstructured web-crawled text, while post-training datasets are more structured.
+
+\paragraph{Tension 1}
+\ljm{\lipsum[1]}
+
+
+\subsection{Pretraining}
+
+Web-crawled text is then used to train a base model to learn general language representations.
+This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
+% These corpora are then used to train the base model on large-scale data to learn general language representations.
+% This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
+
+
+\paragraph{Tension 1}
+\ljm{\lipsum[1]}
+
+
+\paragraph{Tension 2}
+\ljm{\lipsum[1]}
+
+
+\subsection{Post-training}
+
+A base model is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
+We also group the literature on model compression and merging under this stage.
+This stage is typically less computationally expensive than pretraining, and oftentimes most language communities start development at this stage by finetuning an existing base model.
+
+\paragraph{Tension 1}
+\ljm{\lipsum[1]}
+
+
+\paragraph{Tension 2}
+\ljm{\lipsum[1]}
+
+
+
+\subsection{Inference}
+
+At this stage, a model is served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
+
+\paragraph{Tension 1}
+\ljm{\lipsum[1]}
+
+
+\paragraph{Tension 2}
+\ljm{\lipsum[1]}
+
+% The resulting model is then served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
+
+
+\subsection{Evaluation}
+
+Finally, model performance is measured across a variety of capabilities and domains, either on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+
+\paragraph{Tension 1}
+\ljm{\lipsum[1]}
+
+
+\paragraph{Tension 2}
+\ljm{\lipsum[1]}
+
+\section{Discussion: Reaching the Last Mile}
+\label{sec:discussion}
+
+
+\paragraph{Which one to prioritize first?}
+Throughout this survey, we have shown how existing work attempts to reconcile multilingual capability with edge deployability.
+However, the competing demands we identified often force practitioners to prioritize one over the other.
+To navigate this, we draw on the concept of \textit{growth diagnostics} \citep{hausmann2005growth}: when facing multiple constraints, the key is to identify the most binding one, whether by its cost or by evidence that others are already working around it.
+
+% When building multilingual edge LLMs for underserved language communities, practitioners face a natural question:
+% where to invest first?
+% When buildling multilingual edge LLMs that cater to different language communities at the long tail, one might ask whether one is forced a choice between efficiency or multilinguality or whether they can be tackled altogether.
+
+
 
 \section{Conclusion}
 
