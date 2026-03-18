@@ -117,7 +117,7 @@ As LLMs become central to economic productivity, these compounding barriers thre
   \caption{
     \textbf{Competing requirements at each step of the language modelling pipeline.}
     Edge LLM deployment imposes constraints on memory, compute, and energy \citep{treviso-etal-2023-efficient,zheng2025reviewedgeLLM}, which can conflict with the requirements for building capable multilingual models \citep{longpre2025atlasadaptivetransferscaling,yong-etal-2025-state}.
-    This survey examines how these competing demands manifest across the pipeline and reviews techniques that bridge them.
+    This survey examines how these competing demands manifest across the pipeline and reviews techniques that address them.
   }
   \label{fig:lm_pipeline}
 \end{figure*}
@@ -134,7 +134,7 @@ This challenge is non-trivial, as we show that while the goals of edge deploymen
 % The \textit{last mile} refers to the hardest and most costly stretch of Language AI development, i.e., developing and deploying language technologies nearest to the communities that need them the most%.: reaching communities that need both a model that understands their language and the efficiency to run on their available hardware.
 
 In this work, we define the challenge of the \textit{last mile} (\S\ref{sec:motivation}) and present a survey of \numpapers{} papers that describe methods attempting to solve this problem at different stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}).
-For each stage of the pipeline, we describe how the constraints of edge deployment (\ref{sec:edge_constraints}) and the requirements of multilinguality (\ref{sec:multilingual_constraints}) can impose competing demands, and how existing work bridges the gap.
+For each stage of the pipeline, we describe how the constraints of edge deployment (\ref{sec:edge_constraints}) and the requirements of multilinguality (\ref{sec:multilingual_constraints}) can impose competing demands, and how existing work resolves the gap.
 Although we've been seeing LLM releases that jointly address the \textit{last mile},%(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
 our desideratum is to stimulate more work at this intersection of multilingual and edge NLP,
 and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
@@ -298,7 +298,7 @@ Alignment also extends to safety, as communities differ in what they consider al
 \section{Challenges and Techniques for Building Multilingual Edge Models}
 \label{sec:survey}
 
-In this section, we examine how the constraints of edge deployment and the requirements of multilinguality compete at each stage of the pipeline, and survey techniques that bridge them.
+In this section, we examine how the constraints of edge deployment and the requirements of multilinguality compete at each stage of the pipeline, and survey techniques that address them.
 
 \subsection{Data Collection}
 
