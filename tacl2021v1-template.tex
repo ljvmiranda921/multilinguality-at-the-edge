@@ -305,12 +305,14 @@ For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobilellm}, yet ev
 
 \paragraph{\iconcompute{} Compute}
 The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
-The gap between LLM requirements (in TFLOPs) and edge device throughput (in TOPS) continues to widen \citep{zheng2025reviewedgeLLM}.
+This aspect is affected by the architecture used during model training: for example, mixture-of-experts (MoE) tend to be more efficient than dense models due to activating less parts of the network than dense models \citep{muennighoff2025olmoe}.
+The gap between LLM requirements (TFLOPs) and edge device throughput continues to widen \citep{zheng2025reviewedgeLLM}.
 
 \paragraph{\iconenergy{} Energy}
 Sustained inference can quickly drain a device's battery, restricting how long and how intensively a model can run.
-For example, inference energy can vary by a factor of over 1,000 across models \citep{luccioni-etal-2024-power},
+For example, text generation tasks can consume 0.042 KwH, which takes 9\% of a full smartphone charge \citep{luccioni-etal-2024-power},
 and even quantized LLMs on a Raspberry Pi consume several joules per token \citep{husom-etal-2025-sustainable}.
+A contributing factor for energy usage during inference is the length of the generated text, where some languages have a disadvantage due to inefficient tokenization \citep{ahia2023do}.
 
 \subsection{The Properties that Influence Multilingual Capability}
 \label{sec:multilingual_constraints}
