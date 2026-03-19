@@ -305,7 +305,7 @@ For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobilellm}, yet ev
 
 \paragraph{\iconcompute{} Compute}
 The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
-This aspect is affected by the architecture used during model training: for example, mixture-of-experts (MoE) tend to be more efficient than dense models due to activating less parts of the network than dense models \citep{muennighoff2025olmoe}.
+Compute cost is also affected by model architecture: for example, mixture-of-experts (MoE) models tend to be more efficient than dense models because they activate only a subset of the network's parameters per input \citep{muennighoff2025olmoe}.
 The gap between LLM requirements (TFLOPs) and edge device throughput continues to widen \citep{zheng2025reviewedgeLLM}.
 
 \paragraph{\iconenergy{} Energy}
