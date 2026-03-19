@@ -166,8 +166,15 @@ Similarly, multilingual scaling laws \citep{longpre2025atlasadaptivetransferscal
 Approaching these lines of work in tandem is important, as \citet{ahia-etal-2021-low-resource} argue that language communities face constraints not only in terms of data, but also of compute (the ``low-resource double bind'').
 This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resourceness'' pertains to technology inasmuch as data.
 Building on these insights, we then ask: \textit{``how can we develop language technologies and deploy them nearest to the communities that need them the most?''}
-We refer to this challenge as the \textit{last mile}, which refers to the intersection of multilinguality and edge deployment, reaching communities that need both a model that understands their language and the efficiency to run on their available hardware devices.
+We call this challenge as the \textit{last mile}, which refers to the intersection of multilinguality and edge deployment, reaching communities that need both a model that understands their language and the efficiency to run on their available hardware devices.
 This challenge is non-trivial, as we show that while the goals of edge deployment and multilinguality are aligned, their technical requirements often compete.
+% TODO: Add a sentence about how development choices can affect deployability.
+% e.g., "Decisions made during development---such as vocabulary size, model
+% architecture, or training data composition---can directly affect whether
+% a model is deployable on constrained hardware."
+% or: "In particular, choices at each stage of the modelling pipeline, from
+% tokenizer design to training objectives, shape a model's ultimate
+% deployability and multilingual capability in ways that are not always obvious."
 %adopt this framing as a premise and refer to the intersection of multilinguality and edge-efficiency as the \textit{last mile} of NLP.
 % The \textit{last mile} refers to the hardest and most costly stretch of Language AI development, i.e., developing and deploying language technologies nearest to the communities that need them the most%.: reaching communities that need both a model that understands their language and the efficiency to run on their available hardware.
 
