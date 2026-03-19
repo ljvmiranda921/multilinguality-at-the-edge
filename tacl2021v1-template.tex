@@ -158,8 +158,8 @@ As LLMs become central to economic productivity, these compounding barriers thre
 Tackling the problems of efficiency or multilinguality in isolation has merit, but it risks not addressing the actual needs of the communities left behind this widening gap.
 For example, research on model compression has largely focused on English, with several studies observing degradation in multilingual performance as models are made smaller \citep{ogueji-etal-2022-intriguing,mohammadshahi-etal-2022-compressed,marchisio-etal-2024-quantization}.
 Similarly, multilingual scaling laws \citep{longpre2025atlasadaptivetransferscaling,he-etal-2025-scaling} reveal a power-law relationship between multilingual performance and model scale, suggesting that smaller, more deployable models may struggle with low-resource languages.
-Approaching these lines of work in tandem is important, as \citet{ahia-etal-2021-low-resource} argue that language communities face not only data constraints but also compute limitations (the ``low-resource double bind'').
-This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resource'' as a term pertains to technology as much as to data.
+Approaching these lines of work in tandem is important, as \citet{ahia-etal-2021-low-resource} argue that language communities face constraints not only in terms of data, but also of compute (the ``low-resource double bind'').
+This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resourceness'' pertains to technology inasmuch as data.
 Building on these insights, we then ask: \textit{``how can we develop language technologies and deploy them nearest to the communities that need them the most?''}
 We refer to this challenge as the \textit{last mile}, which refers to the intersection of multilinguality and edge deployment, reaching communities that need both a model that understands their language and the efficiency to run on their available hardware devices.
 This challenge is non-trivial, as we show that while the goals of edge deployment and multilinguality are aligned, their technical requirements often compete.
@@ -188,11 +188,10 @@ Finally, we hope that this work contributes to the development of equitable and 
 To understand the landscape of multilingual edge LLMs,
 we collect research from 2021 onwards on multilinguality, edge and efficient NLP, and work that combines both.
 In total, we obtain \numpapers{} papers.
-The rest of this section describes our methodology.
 
 \paragraph{Initial Paper Screening}
 First, we gather studies from peer-reviewed academic papers in $^\star$CL (e.g., ACL/EMNLP/TACL) and machine learning venues (e.g. NeurIPS/ICLR/TMLR) using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
-Our search query includes keywords relating to multilingual NLP, efficiency, and LLM deployment (\autoref{fig:search_keywords}).
+Our search query includes keywords pertaining to multilingual NLP, efficiency, and LLM deployment (\autoref{fig:search_keywords}).
 This step resulted in 2,473 papers.
 We further screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published last year (2025) should have at least 3.
 
@@ -229,10 +228,10 @@ we observe trends suggesting that they must be studied together.
 The first trend is that communities with the highest linguistic diversity often face the most severe infrastructure constraints. %  such as network connectivity or ICT adoption.
 As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet among the least active on the Internet.
 This compounds their disadvantage in the LLM pipeline: most pretraining data are derived from web-scale text, which these communities lack due to limited Internet activity, and
-the dominant paradigm for serving LLMs relies on cloud infrastructure (i.e., requests are sent over a network).% this limited connectivity restricts  how these communities can access language technologies.
+the dominant paradigm for serving LLMs relies on cloud infrastructure (i.e., requests are sent over a network). % this limited connectivity restricts  how these communities can access language technologies.
 This leads to LLMs that are both unable to serve their languages and undeployable in their specific contexts.
 In addition, entry-level smartphones cost up to 48\% of monthly income for the poorest quintile in these regions, meaning the devices that do exist are mostly low-end \cite{GSMA2025MobileEconomy}.
-Of the 21 countries with more than 100 living languages, 12 are classified as low or lower-middle income, showing a \textit{need} for models that can run entirely on-device.
+Of the 21 countries with more than 100 living languages, 12 are classified as low or lower-middle income \citep{worldbank2025income}, showing a \textit{need} for models that can run entirely on-device.
 
 \begin{figure}[t]
   \centering
@@ -249,7 +248,7 @@ Of the 21 countries with more than 100 living languages, 12 are classified as lo
 \paragraph{Opportunity: Multilingual and Edge NLP literature exist in silos}
 Another reason for studying these two fields in tandem is the research \textit{opportunity} it presents.
 \autoref{fig:nlp_literature_by_stage_prop} shows that individual stages of the LLM pipeline tend to be dominated by one field: Data Collection and Evaluation skew toward Multilinguality, while Pretraining through Inference skew toward Edge LLM development.
-However, when looking at the full pipeline (Full-Stack), both fields are already being considered together (43\%).
+Looking at the full pipeline (Full-Stack), both fields are being considered together (43\%), suggesting some evidence that end-to-end multilingual models naturally demand attention to both.
 Recent works such as Tiny Aya \citep[70 languages, 3.35B,][]{salamanca2026tinyayabridgingscale}, Gemma 3n \citep[140 languages, 2B,][]{gemmateam2025gemma3technicalreport}, and Omnilingual ASR \citep[1600+ languages, with 600M param. variant,][]{omnilingualasrteam2025omnilingualasropensourcemultilingual} show that this intersection is emerging and actively being explored.
 %(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
 % Later in this work, we examine what might be causing these silos (we posit that there is an inherent tension between the two) and look at how other works attempt to bridge them.
@@ -275,7 +274,7 @@ Recent works such as Tiny Aya \citep[70 languages, 3.35B,][]{salamanca2026tinyay
 \subsection{The Language Modelling Pipeline}
 \label{sec:lm_pipeline}
 
-We structure the pipeline based on design choices highlighted across recent open LLM model releases such as the
+We ground the LLM pipeline based on design choices across recent open LLM model releases such as the
 OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
 In general, we identify five main stages: Data Collection, Pretraining, Post-training, Inference, and Evaluation.
