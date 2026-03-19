@@ -355,18 +355,19 @@ where adding more languages dilutes the model's capacity for existing ones \cite
 a phenomenon often dubbed the curse of multilinguality \citep[\textit{inter alia}]{chang-etal-2024-multilinguality,longpre2025atlasadaptivetransferscaling}.
 In order to resolve this tension, it is important to maximize language coverage without sacrificing per-language quality, given a fixed parameter budget.
 
-\paragraph{Solutions 1: Data curation strategies}
+% \paragraph{Solutions 1: Data curation strategies}
 Getting the right mixture of languages in the training dataset is effective for mitigating this tension.
 Several approaches optimize \textbf{vocabulary sharing}, where training on a certain language boosts performance of another \citep{yuan-etal-2024-vocabulary,li2025rethinking}.
 
-
+\citep{langlais2025commoncorpuslargestcollection}
 
 
 \paragraph{Tension 2: Small LMs \iconmemory{} are sensitive to data quality, yet low-resource data is noisy \icondata{}}
 Due to the small parameter size of edge LLMs, they tend to be less robust from noise.
 % Even monolingual datasets suffer from data quality, aff
+\citep{ali-etal-2025-judging}
 
-\paragraph{Solutions 2: Data quality pipelines}
+% \paragraph{Solutions 2: Data quality pipelines}
 
 % Solutions 1 (for curse of multilinguality / language coverage) — data curation strategies: temperature-based sampling (Conneau et al., 2020), scaling-law-informed language mixtures (Longpre et al., 2025), synthetic data expansion (Dang et al., 2024)
 % Solutions 2 (for data quality / noisy low-resource data) — data quality pipelines: language-agnostic filtering (Penedo et al., 2025), anomaly-detection-based cleaning, community-driven annotation (Singh et al., 2024b), exhaustive crawl mining (UnifiedCrawl)
