@@ -348,7 +348,7 @@ In this section, we examine \textit{tensions}, i.e., how the constraints of edge
 The LLM pipeline often begins with sourcing and curating text corpora for both pretraining and post-training.
 Pretraining corpora tend to be unstructured web-crawled text, while post-training datasets are more structured.
 
-\paragraph{Tension 1: the \textit{curse of multilinguality}, caused by limited model capacity \iconmemory{} covering more languages \icondata{}}
+\paragraph{Tension 1: The \textit{curse of multilinguality}, caused by limited model capacity \iconmemory{} covering more languages \icondata{}}
 \citet{pava2025mind} have noted that regional multilingual models may cover 10-20 languages, such as SEA-LION \citep{ng2025sealionsoutheastasianlanguages} for Southeast Asia or Updesh \citep{chitale2026updeshsynthesizinggroundedinstruction} for Indic languages.
 However, the current parameter-sharing paradigm imposes a capacity ceiling on pretrained LLMs,
 where adding more languages dilutes the model's capacity for existing ones \citep{doddapaneni2025primer},
@@ -358,6 +358,12 @@ In order to resolve this tension, it is important to maximize language coverage 
 \paragraph{Solutions 1: Effective data curation strategies}
 During data collection, a common approach is to
 
+\paragraph{Tension 2: Models with less parameters \iconmemory{} are sensitive to data quality, yet low-resource data is noisy \icondata{}}
+
+\paragraph{Solutions 2: Data quality pipelines}
+
+% Solutions 1 (for curse of multilinguality / language coverage) — data curation strategies: temperature-based sampling (Conneau et al., 2020), scaling-law-informed language mixtures (Longpre et al., 2025), synthetic data expansion (Dang et al., 2024)
+% Solutions 2 (for data quality / noisy low-resource data) — data quality pipelines: language-agnostic filtering (Penedo et al., 2025), anomaly-detection-based cleaning, community-driven annotation (Singh et al., 2024b), exhaustive crawl mining (UnifiedCrawl)
 
 \subsection{Pretraining}
 \label{sec:pretraining}
