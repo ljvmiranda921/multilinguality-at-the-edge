@@ -355,8 +355,12 @@ where adding more languages dilutes the model's capacity for existing ones \cite
 a phenomenon often dubbed the curse of multilinguality \citep[\textit{inter alia}]{chang-etal-2024-multilinguality,longpre2025atlasadaptivetransferscaling}.
 In order to resolve this tension, it is important to maximize language coverage without sacrificing per-language quality, given a fixed parameter budget.
 
-\paragraph{Solutions 1: Effective data curation strategies}
-A data-centric approach to mitigate the curse of multilinguality is properly curating data with the right mix of languages and instances.
+\paragraph{Solutions 1: Data curation strategies}
+Getting the right mixture of languages in the training dataset is effective for mitigating this tension.
+Several approaches optimize \textbf{vocabulary sharing}, where training on a certain language boosts performance of another \citep{yuan-etal-2024-vocabulary,li2025rethinking}.
+
+
+
 
 \paragraph{Tension 2: Small LMs \iconmemory{} are sensitive to data quality, yet low-resource data is noisy \icondata{}}
 Due to the small parameter size of edge LLMs, they tend to be less robust from noise.

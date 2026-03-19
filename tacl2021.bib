@@ -3796,3 +3796,31 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {4074--4096},
   abstract  = {Multilingual language models are widely used to extend NLP systems to low-resource languages. However, concrete evidence for the effects of multilinguality on language modeling performance in individual languages remains scarce. Here, we pre-train over 10,000 monolingual and multilingual language models for over 250 languages, including multiple language families that are under-studied in NLP. We assess how language modeling performance in each language varies as a function of (1) monolingual dataset size, (2) added multilingual dataset size, (3) linguistic similarity of the added languages, and (4) model size (up to 45M parameters). We find that in moderation, adding multilingual data improves low-resource language modeling performance, similar to increasing low-resource dataset sizes by up to 33{\%}. Improvements depend on the syntactic similarity of the added multilingual data, with marginal additional effects of vocabulary overlap. However, high-resource languages consistently perform worse in multilingual pre-training scenarios. As dataset sizes increase, adding multilingual data begins to hurt performance for both low-resource and high-resource languages, likely due to limited model capacity (the ``curse of multilinguality''). These results suggest that massively multilingual pre-training may not be optimal for any languages involved, but that more targeted models can significantly improve performance.}
 }
+
+@inproceedings{yuan-etal-2024-vocabulary,
+  title     = {{How Vocabulary Sharing Facilitates Multilingualism in LLaMA?}},
+  author    = {Yuan, Fei  and
+               Yuan, Shuai  and
+               Wu, Zhiyong  and
+               Li, Lei},
+  editor    = {Ku, Lun-Wei  and
+               Martins, Andre  and
+               Srikumar, Vivek},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},
+  month     = aug,
+  year      = {2024},
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-acl.721/},
+  doi       = {10.18653/v1/2024.findings-acl.721},
+  pages     = {12111--12130},
+  abstract  = {Large Language Models (LLMs), often show strong performance on English tasks, while exhibiting limitations on other languages. What is an LLM{'}s multilingual capability when it is trained only on certain languages? The underlying mechanism remains unclear. This study endeavors to examine the multilingual capability of LLMs from the vocabulary sharing perspective by conducting an exhaustive analysis across 101 languages. Through the investigation of the performance gap before and after embedding fine-tuning, we discovered four distinct quadrants. By delving into each quadrant we provide actionable and efficient guidelines for tuning these languages. Extensive experiments reveal that existing LLMs possess multilingual capabilities that surpass our expectations, and we can significantly improve the multilingual performance of LLMs based on these attributes of each quadrant .}
+}
+
+@inproceedings{li2025rethinking,
+  title     = {{Rethinking Multilingual Continual Pretraining: Data Mixing for Adapting LLMs Across Languages and Resources}},
+  author    = {Zihao Li and Shaoxiong Ji and Hengyu Luo and J{\"o}rg Tiedemann},
+  booktitle = {Second Conference on Language Modeling},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=mpTIzK4Zca}
+}
