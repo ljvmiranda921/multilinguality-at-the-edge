@@ -348,13 +348,13 @@ In this section, we examine \textit{tensions}, i.e., how the constraints of edge
 The LLM pipeline often begins with sourcing and curating text corpora for both pretraining and post-training.
 Pretraining corpora tend to be unstructured web-crawled text, while post-training datasets are more structured.
 
-\paragraph{Tension: the \textit{curse of multilinguality}, caused by limited model capacity \iconmemory{} covering more languages \icondata{}}
+\paragraph{Tension 1: the \textit{curse of multilinguality}, caused by limited model capacity \iconmemory{} covering more languages \icondata{}}
 \citet{pava2025mind} have noted that regional multilingual models may cover 10-20 languages, such as SEA-LION \citep{ng2025sealionsoutheastasianlanguages} for Southeast Asia or Updesh \citep{chitale2026updeshsynthesizinggroundedinstruction} for Indic languages.
 However, the current parameter-sharing paradigm imposes a capacity ceiling on pretrained LLMs,
 where adding more languages dilutes the model's capacity for existing ones \citep{doddapaneni2025primer},
 a phenomenon often dubbed the curse of multilinguality \citep[\textit{inter alia}]{chang-etal-2024-multilinguality,longpre2025atlasadaptivetransferscaling}.
 
-\paragraph{Solutions:}
+\paragraph{Solutions 1:}
 During data collection, a
 
 
