@@ -300,6 +300,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 \paragraph{\iconmemory{} Memory}
 The amount of memory in a device limits what LLMs can be loaded and served.
 It is also relevant during finetuning, where it constrains the size of a training batch.
+In practice, a model's size (measured in number of parameters) and numerical precision jointly determine whether it can be loaded into memory.
 For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobilellm}, yet even a 7B-parameter model in half precision already requires over 8\,GB.
 
 \paragraph{\iconcompute{} Compute}
@@ -344,9 +345,7 @@ In this section, we examine how the constraints of edge deployment and the requi
 The LLM pipeline often begins with sourcing and curating text corpora for both pretraining and post-training.
 Pretraining corpora tend to be unstructured web-crawled text, while post-training datasets are more structured.
 
-\paragraph{Tension 1}
-Memory and Representation: tokenization data
-\ljm{\lipsum[1]}
+\paragraph{The `curse of multilinguality' is caused by limited model capacity \iconmemory{} as it allows larger model coverage \icondata{}}
 
 
 \paragraph{Tension 2}
