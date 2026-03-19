@@ -24,8 +24,8 @@
         %\begin{noindent}
   [Multilingual\\Edge LLMs, fill=white, minimum width=8em, name=tier1
     [\textbf{Data Collection} (\S\ref{sec:data_collection}), fill=clightgreen, for descendants={fill=clightgreen}, name=tier2
-      [Tension 1, name=tier3
-        [Work A, name=tier4]
+      [Limited model capacity \iconmemory{} to\\cover more languages \icondata{}\\(curse of multilinguality), name=tier3
+        [\textbf{Data Curation}: \citep{adelani-etal-2022-masakhaner,adelani-etal-2023-masakhanews,adelani-etal-2025-irokobench}, name=tier4]
         [Work B]
       ]
     ]
@@ -72,8 +72,8 @@
   ]
   %\end{noindent}
         % Tier annotations above each tier
-        \node[anchor=south, font=\itshape, text=gray] at ([yshift=1.7em]tier2.north) {Pipeline Stage (\S\ref{sec:survey})};
-        \node[anchor=south, font=\itshape, text=gray] at ([yshift=1.4em]tier3.north) {Tension};
-        \node[anchor=south, font=\itshape, text=gray] at ([yshift=0.5em]tier4.north) {Sample Works};
+        % \node[anchor=south, font=\itshape, text=gray] at ([yshift=1em]tier2.north) {Pipeline Stage (\S\ref{sec:survey})};
+        % \node[anchor=south, font=\itshape, text=gray] at ([yshift=1em]tier3.north) {Tension};
+        % \node[anchor=south, font=\itshape, text=gray] at ([yshift=0.5em]tier4.north) {Sample Works};
     \end{forest}%
 }
