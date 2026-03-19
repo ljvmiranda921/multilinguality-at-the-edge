@@ -359,7 +359,8 @@ In order to resolve this tension, it is important to maximize language coverage 
 A data-centric approach to mitigate the curse of multilinguality is properly curating data with the right mix of languages and instances.
 
 \paragraph{Tension 2: Small LMs \iconmemory{} are sensitive to data quality, yet low-resource data is noisy \icondata{}}
-Data quality is also important even when collecting data for monolingual LLMs \citep{pava2025mind}
+Due to the small parameter size of edge LLMs, they tend to be less robust from noise.
+% Even monolingual datasets suffer from data quality, aff
 
 \paragraph{Solutions 2: Data quality pipelines}
 
