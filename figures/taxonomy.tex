@@ -13,6 +13,8 @@
         minimum width=5em,
         node options={align=center},
         where level>=1{node options={align=left}}{},
+        where level=2{text width=14em}{},
+        where level=3{text width=18em}{},
         anchor=west,
         parent anchor=east,
         child anchor=west,
@@ -25,7 +27,7 @@
   [Multilingual\\Edge LLMs, fill=white, minimum width=8em, name=tier1
     [\textbf{Data Collection} (\S\ref{sec:data_collection}), fill=clightgreen, for descendants={fill=clightgreen}, name=tier2
       [Limited model capacity \iconmemory{} to\\cover more languages \icondata{}\\(curse of multilinguality), name=tier3
-        [\textbf{Data Curation}: \citep{adelani-etal-2022-masakhaner,adelani-etal-2023-masakhanews,adelani-etal-2025-irokobench}, name=tier4]
+        [\textbf{Data Curation}: \ljm{\citep{adelani-etal-2022-masakhaner,adelani-etal-2023-masakhanews,adelani-etal-2025-irokobench}}, name=tier4]
         [Work B]
       ]
     ]
