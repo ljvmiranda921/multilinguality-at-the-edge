@@ -3776,3 +3776,23 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   numpages   = {39},
   keywords   = {Multilingual language models, deep neural networks, natural language understanding}
 }
+
+@inproceedings{chang-etal-2024-multilinguality,
+  title     = {{When Is Multilinguality a Curse? Language Modeling for 250 High- and Low-Resource Languages}},
+  author    = {Chang, Tyler A.  and
+               Arnett, Catherine  and
+               Tu, Zhuowen  and
+               Bergen, Benjamin K.},
+  editor    = {Al-Onaizan, Yaser  and
+               Bansal, Mohit  and
+               Chen, Yun-Nung},
+  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+  month     = nov,
+  year      = {2024},
+  address   = {Miami, Florida, USA},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.emnlp-main.236/},
+  doi       = {10.18653/v1/2024.emnlp-main.236},
+  pages     = {4074--4096},
+  abstract  = {Multilingual language models are widely used to extend NLP systems to low-resource languages. However, concrete evidence for the effects of multilinguality on language modeling performance in individual languages remains scarce. Here, we pre-train over 10,000 monolingual and multilingual language models for over 250 languages, including multiple language families that are under-studied in NLP. We assess how language modeling performance in each language varies as a function of (1) monolingual dataset size, (2) added multilingual dataset size, (3) linguistic similarity of the added languages, and (4) model size (up to 45M parameters). We find that in moderation, adding multilingual data improves low-resource language modeling performance, similar to increasing low-resource dataset sizes by up to 33{\%}. Improvements depend on the syntactic similarity of the added multilingual data, with marginal additional effects of vocabulary overlap. However, high-resource languages consistently perform worse in multilingual pre-training scenarios. As dataset sizes increase, adding multilingual data begins to hurt performance for both low-resource and high-resource languages, likely due to limited model capacity (the ``curse of multilinguality''). These results suggest that massively multilingual pre-training may not be optimal for any languages involved, but that more targeted models can significantly improve performance.}
+}
