@@ -339,7 +339,8 @@ Alignment also extends to safety, as communities differ in what they consider al
 \section{Challenges and Techniques for Building Multilingual Edge Models}
 \label{sec:survey}
 
-In this section, we examine \textit{tensions}, i.e., how the constraints of edge deployment and the requirements of multilinguality compete at each stage of the LLM pipeline, and survey \textit{solutions} that address them.
+In this section, we examine \textit{tensions}, i.e., how the constraints of edge deployment and the requirements of multilinguality compete at each stage of the LLM pipeline,
+and survey different \textit{methods} that address them.
 \autoref{fig:taxonomy} in the Appendix shows an overview of this section.
 
 \subsection{Data Collection}
@@ -355,7 +356,7 @@ where adding more languages dilutes the model's capacity for existing ones \cite
 a phenomenon often dubbed the curse of multilinguality \citep[\textit{inter alia}]{chang-etal-2024-multilinguality,longpre2025atlasadaptivetransferscaling}.
 In order to resolve this tension, it is important to maximize language coverage without sacrificing per-language quality, given a fixed parameter budget.
 
-\paragraph{Solutions}
+\paragraph{Methods}
 Getting the right mixture of languages in the training dataset is effective for mitigating this tension.
 Several approaches leverage \textbf{vocabulary sharing}, i.e.,  selecting languages for the data mix based on whether their inclusion boosts the performance of other languages \citep[\textit{inter alia}]{yuan-etal-2024-vocabulary,li2025rethinking}.
 \textbf{Synthetic data generation} can also induce an optimal mixture:
