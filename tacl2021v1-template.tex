@@ -365,14 +365,15 @@ crafting prompts \citep{mora2025artaskingmultilingualprompt},
 and performing quality validation \citep{anugraha2026mr3multilingualrubricagnosticreward,pombal2025mprometheus},
 one can produce high-quality training data for small multilingual models \citep{devine2026kakugodistillationlowresourcelanguages}.
 Finally, \textbf{data curation} remains a reliable and high-leverage intervention that involves careful filtering, deduplication, and quality control of multilngual web corpora \citep{kuduguntua-etal-2023-madlad400,langlais2025commoncorpuslargestcollection,datologyai2026uberwebinsightsmultilingualcuration}.
+Later on, we show how this tension can be lifted by improving model capacity \S\ref{sec:pretraining}.
 
 
 \paragraph{Tension 2: Small LMs \iconmemory{} are sensitive to data quality, yet low-resource data is noisy \icondata{}}
 Due to the small parameter size of edge LLMs, they tend to be less robust from noise.
+Unfortunately, low-resource languages suffer from the exact noise problem \citep{kreutzer-etal-2022-quality}
 % Even monolingual datasets suffer from data quality, aff
-\citep{ali-etal-2025-judging}
 
-
+% \citep{ali-etal-2025-judging}
 % https://arxiv.org/abs/2402.09739
 % https://arxiv.org/abs/2402.09668
 % https://proceedings.neurips.cc/paper_files/paper/2024/hash/370df50ccfdf8bde18f8f9c2d9151bda-Abstract-Datasets_and_Benchmarks_Track.html
