@@ -4015,3 +4015,66 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   year      = {2025},
   url       = {https://openreview.net/forum?id=Hqoywh28zV}
 }
+
+@inproceedings{wang-etal-2023-noise,
+  title     = {{Noise-Robust Fine-Tuning of Pretrained Language Models via External Guidance}},
+  author    = {Wang, Song  and
+               Tan, Zhen  and
+               Guo, Ruocheng  and
+               Li, Jundong},
+  editor    = {Bouamor, Houda  and
+               Pino, Juan  and
+               Bali, Kalika},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2023},
+  month     = dec,
+  year      = {2023},
+  address   = {Singapore},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2023.findings-emnlp.834/},
+  doi       = {10.18653/v1/2023.findings-emnlp.834},
+  pages     = {12528--12540},
+  abstract  = {Adopting a two-stage paradigm of pretraining followed by fine-tuning, Pretrained Language Models (PLMs) have achieved substantial advancements in the field of natural language processing. However, in real-world scenarios, data labels are often noisy due to the complex annotation process, making it essential to develop strategies for fine-tuning PLMs with such noisy labels. To this end, we introduce an innovative approach for fine-tuning PLMs using noisy labels, which incorporates the guidance of Large Language Models (LLMs) like ChatGPT. This guidance assists in accurately distinguishing between clean and noisy samples and provides supplementary information beyond the noisy labels, thereby boosting the learning process during fine-tuning PLMs. Extensive experiments on synthetic and real-world noisy datasets further demonstrate the superior advantages of our framework over the state-of-the-art baselines.}
+}
+
+@inproceedings{jin-etal-2021-instance,
+  title     = {Instance-adaptive training with noise-robust losses against noisy labels},
+  author    = {Jin, Lifeng  and
+               Song, Linfeng  and
+               Xu, Kun  and
+               Yu, Dong},
+  editor    = {Moens, Marie-Francine  and
+               Huang, Xuanjing  and
+               Specia, Lucia  and
+               Yih, Scott Wen-tau},
+  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},
+  month     = nov,
+  year      = {2021},
+  address   = {Online and Punta Cana, Dominican Republic},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2021.emnlp-main.457/},
+  doi       = {10.18653/v1/2021.emnlp-main.457},
+  pages     = {5647--5663},
+  abstract  = {In order to alleviate the huge demand for annotated datasets for different tasks, many recent natural language processing datasets have adopted automated pipelines for fast-tracking usable data. However, model training with such datasets poses a challenge because popular optimization objectives are not robust to label noise induced in the annotation generation process. Several noise-robust losses have been proposed and evaluated on tasks in computer vision, but they generally use a single dataset-wise hyperparamter to control the strength of noise resistance. This work proposes novel instance-adaptive training frameworks to change single dataset-wise hyperparameters of noise resistance in such losses to be instance-wise. Such instance-wise noise resistance hyperparameters are predicted by special instance-level label quality predictors, which are trained along with the main classification models. Experiments on noisy and corrupted NLP datasets show that proposed instance-adaptive training frameworks help increase the noise-robustness provided by such losses, promoting the use of the frameworks and associated losses in NLP models trained with noisy data.}
+}
+
+@inproceedings{wu-etal-2023-noisywikihow,
+  title     = {{N}oisywiki{H}ow: {A} {B}enchmark for {L}earning with {R}eal-world {N}oisy {L}abels in {N}atural {L}anguage {P}rocessing},
+  author    = {Wu, Tingting  and
+               Ding, Xiao  and
+               Tang, Minji  and
+               Zhang, Hao  and
+               Qin, Bing  and
+               Liu, Ting},
+  editor    = {Rogers, Anna  and
+               Boyd-Graber, Jordan  and
+               Okazaki, Naoaki},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2023},
+  month     = jul,
+  year      = {2023},
+  address   = {Toronto, Canada},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2023.findings-acl.299/},
+  doi       = {10.18653/v1/2023.findings-acl.299},
+  pages     = {4856--4873},
+  abstract  = {Large-scale datasets in the real world inevitably involve label noise. Deep models can gradually overfit noisy labels and thus degrade model generalization. To mitigate the effects of label noise, learning with noisy labels (LNL) methods are designed to achieve better generalization performance. Due to the lack of suitable datasets, previous studies have frequently employed synthetic label noise to mimic real-world label noise. However, synthetic noise is not instance-dependent, making this approximation not always effective in practice. Recent research has proposed benchmarks for learning with real-world noisy labels. However, the noise sources within may be single or fuzzy, making benchmarks different from data with heterogeneous label noises in the real world. To tackle these issues, we contribute NoisywikiHow, the largest NLP benchmark built with minimal supervision. Specifically, inspired by human cognition, we explicitly construct multiple sources of label noise to imitate human errors throughout the annotation, replicating real-world noise, whose corruption is affected by both ground-truth labels and instances. Moreover, we provide a variety of noise levels to support controlled experiments on noisy data, enabling us to evaluate LNL methods systematically and comprehensively. After that, we conduct extensive multi-dimensional experiments on a broad range of LNL methods, obtaining new and intriguing findings.}
+}
