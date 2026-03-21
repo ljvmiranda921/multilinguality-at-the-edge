@@ -3950,3 +3950,33 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   doi       = {10.24963/ijcai.2024/403},
   url       = {https://doi.org/10.24963/ijcai.2024/403}
 }
+
+@inproceedings{chen2024understanding,
+  title     = {{Understanding and Mitigating the Label Noise in Pre-training on Downstream Tasks}},
+  author    = {Hao Chen and Jindong Wang and Ankit Shah and Ran Tao and Hongxin Wei and Xing Xie and Masashi Sugiyama and Bhiksha Raj},
+  booktitle = {The Twelfth International Conference on Learning Representations},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=TjhUtloBZU}
+}
+
+@inproceedings{zhu-etal-2024-fine,
+  title     = {{Fine-Tuning Large Language Models to Translate: Will a Touch of Noisy Data in Misaligned Languages Suffice?}},
+  author    = {Zhu, Dawei  and
+               Chen, Pinzhen  and
+               Zhang, Miaoran  and
+               Haddow, Barry  and
+               Shen, Xiaoyu  and
+               Klakow, Dietrich},
+  editor    = {Al-Onaizan, Yaser  and
+               Bansal, Mohit  and
+               Chen, Yun-Nung},
+  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+  month     = nov,
+  year      = {2024},
+  address   = {Miami, Florida, USA},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.emnlp-main.24/},
+  doi       = {10.18653/v1/2024.emnlp-main.24},
+  pages     = {388--409},
+  abstract  = {Traditionally, success in multilingual machine translation can be attributed to three key factors in training data: large volume, diverse translation directions, and high quality. In the current practice of fine-tuning large language models (LLMs) for translation, we revisit the importance of these factors. We find that LLMs display strong translation capability after being fine-tuned on as few as 32 parallel sentences and that fine-tuning on a single translation direction enables translation in multiple directions. However, the choice of direction is critical: fine-tuning LLMs with only English on the target side can lead to task misinterpretation, which hinders translation into non-English languages. Problems also arise when noisy synthetic data is placed on the target side, especially when the target language is well-represented in LLM pre-training. Yet interestingly, synthesized data in an under-represented language has a less pronounced effect. Our findings suggest that when adapting LLMs to translation, the requirement on data quantity can be eased but careful considerations are still crucial to prevent an LLM from exploiting unintended data biases.}
+}
