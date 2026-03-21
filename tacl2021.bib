@@ -3980,3 +3980,38 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {388--409},
   abstract  = {Traditionally, success in multilingual machine translation can be attributed to three key factors in training data: large volume, diverse translation directions, and high quality. In the current practice of fine-tuning large language models (LLMs) for translation, we revisit the importance of these factors. We find that LLMs display strong translation capability after being fine-tuned on as few as 32 parallel sentences and that fine-tuning on a single translation direction enables translation in multiple directions. However, the choice of direction is critical: fine-tuning LLMs with only English on the target side can lead to task misinterpretation, which hinders translation into non-English languages. Problems also arise when noisy synthetic data is placed on the target side, especially when the target language is well-represented in LLM pre-training. Yet interestingly, synthesized data in an under-represented language has a less pronounced effect. Our findings suggest that when adapting LLMs to translation, the requirement on data quantity can be eased but careful considerations are still crucial to prevent an LLM from exploiting unintended data biases.}
 }
+
+@inproceedings{longpre-etal-2024-pretrainers,
+  title     = {{A Pretrainer{'}s Guide to Training Data: Measuring the Effects of Data Age, Domain Coverage, Quality, {\&} Toxicity}},
+  author    = {Longpre, Shayne  and
+               Yauney, Gregory  and
+               Reif, Emily  and
+               Lee, Katherine  and
+               Roberts, Adam  and
+               Zoph, Barret  and
+               Zhou, Denny  and
+               Wei, Jason  and
+               Robinson, Kevin  and
+               Mimno, David  and
+               Ippolito, Daphne},
+  editor    = {Duh, Kevin  and
+               Gomez, Helena  and
+               Bethard, Steven},
+  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+  month     = jun,
+  year      = {2024},
+  address   = {Mexico City, Mexico},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.naacl-long.179/},
+  doi       = {10.18653/v1/2024.naacl-long.179},
+  pages     = {3245--3276},
+  abstract  = {Pretraining data design is critically under-documented and often guided by empirically unsupported intuitions. We pretrain models on data curated (1) at different collection times, (2) with varying toxicity and quality filters, and (3) with different domain compositions. First, we find that temporal shift between evaluation data and pretraining data leads to performance degradation, which is not overcome by finetuning. Second, we measure the effect of quality and toxicity filters, showing a trade-off between performance on standard benchmarks and risk of toxic generations. We also find that the effects of different types of filtering are not predictable from text domain characteristics. Third, we empirically validate that heterogeneous data sources, like books and web, are beneficial and warrant greater prioritization. To date, these experiments constitute the single largest publicly documented empirical study of the effects of pretraining data. Spanning 28 unique 1.5 billion parameter models pretrained from scratch, these findings validate, quantify, and expose many undocumented intuitions about text pretraining, which ultimately support more informed data-centric decisions in model development.}
+}
+
+@inproceedings{shen2025dcad,
+  title     = {{DCAD}-2000: {A Multilingual Dataset across 2000+ Languages with Data Cleaning as Anomaly Detection}},
+  author    = {Yingli Shen and Wen Lai and Shuo Wang and Xueren Zhang and Kangyang Luo and Alexander Fraser and Maosong Sun},
+  booktitle = {The Thirty-ninth Annual Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=Hqoywh28zV}
+}

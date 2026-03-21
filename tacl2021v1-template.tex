@@ -371,22 +371,13 @@ These methods are largely data-centric; in \S\ref{sec:pretraining}, we discuss h
 \paragraph{Tension 2: Small LMs \iconmemory{} are sensitive to data quality, yet low-resource data is noisy \icondata{}}
 Working within a model's limited capacity is also a challenge when building monolingual edge models.
 Here, the key tension is that this limited capacity renders a model more sensitive to noise \citep{havrilla2024understandingeffectnoisellm}, and low-resource languages suffer from this exact problem \citep{kreutzer-etal-2022-quality}.
-Noise manifests in both pretraining \citep{chen2024understanding} and post-training \citep{ijcai2024p403,zhu-etal-2024-fine} data collection.
+Noise manifests in both pretraining \citep{chen2024understanding,longpre-etal-2024-pretrainers} and post-training \citep{ijcai2024p403,zhu-etal-2024-fine} data.
 
 \paragraph{Methods}
-Many of the methods above are applicable here, but the focus shifts toward smarter filtering and handling noisy labels.
+Many of the methods above are applicable here, with a particular emphasis on working around the reality of noisy data in low-resource settings.
+\textbf{Data filtering} is a standard approach, which is adapted to multilingual contexts \citep{ali-etal-2025-judging,shen2025dcad} and common data sources such as Wikipedia \citep{lignos-etal-2022-toward}.
+Another approach is handling \textbf{noisy labels}
 
-
-% \citep{ali-etal-2025-judging}
-% https://arxiv.org/abs/2402.09739
-% https://arxiv.org/abs/2402.09668
-% https://proceedings.neurips.cc/paper_files/paper/2024/hash/370df50ccfdf8bde18f8f9c2d9151bda-Abstract-Datasets_and_Benchmarks_Track.html
-% https://aclanthology.org/2024.acl-long.400.pdf
-
-% \paragraph{Solutions 2: Data quality pipelines}
-
-% Solutions 1 (for curse of multilinguality / language coverage) — data curation strategies: temperature-based sampling (Conneau et al., 2020), scaling-law-informed language mixtures (Longpre et al., 2025), synthetic data expansion (Dang et al., 2024)
-% Solutions 2 (for data quality / noisy low-resource data) — data quality pipelines: language-agnostic filtering (Penedo et al., 2025), anomaly-detection-based cleaning, community-driven annotation (Singh et al., 2024b), exhaustive crawl mining (UnifiedCrawl)
 
 \subsection{Pretraining}
 \label{sec:pretraining}
