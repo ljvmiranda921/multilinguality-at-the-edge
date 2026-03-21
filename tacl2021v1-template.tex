@@ -354,6 +354,8 @@ Pretraining corpora tend to be unstructured web-crawled text, while post-trainin
 However, the current parameter-sharing paradigm imposes a capacity ceiling on pretrained LLMs,
 where adding more languages dilutes the model's capacity for existing ones \citep{doddapaneni2025primer},
 a phenomenon often dubbed the curse of multilinguality \citep[\textit{inter alia}]{chang-etal-2024-multilinguality,longpre2025atlasadaptivetransferscaling}.
+This limited capacity also renders a model more sensitive to noise \citep{havrilla2024understandingeffectnoisellm}, and low-resource languages suffer from this exact problem \citep{kreutzer-etal-2022-quality},
+as noise manifests in both pretraining \citep{chen2024understanding,longpre-etal-2024-pretrainers} and post-training \citep{ijcai2024p403,zhu-etal-2024-fine} data.
 In order to resolve this tension, it is important to maximize language coverage without sacrificing per-language quality, given a fixed parameter budget.
 
 \paragraph{Methods}
@@ -364,19 +366,10 @@ by choosing a strong teacher model \ljm{(Miranda et al., 2026)},
 crafting prompts \citep{mora2025artaskingmultilingualprompt},
 and performing quality validation \citep{anugraha2026mr3multilingualrubricagnosticreward,pombal2025mprometheus},
 one can produce high-quality training data for small multilingual models \citep{devine2026kakugodistillationlowresourcelanguages,kim2026dataefficientpretrainingscalingsynthetic}.
-Finally, \textbf{data curation} remains a reliable and high-leverage intervention that involves careful filtering, deduplication, and quality control of multilngual web corpora \citep{kuduguntua-etal-2023-madlad400,langlais2025commoncorpuslargestcollection,datologyai2026uberwebinsightsmultilingualcuration}.
+\textbf{Data curation and filtering} remains a reliable and high-leverage intervention that involves careful filtering, deduplication, and quality control of multilingual web corpora \citep{kuduguntua-etal-2023-madlad400,langlais2025commoncorpuslargestcollection,datologyai2026uberwebinsightsmultilingualcuration},
+adapted to multilingual contexts \citep{ali-etal-2025-judging,shen2025dcad} and common data sources such as Wikipedia \citep{lignos-etal-2022-toward}.
+When working with low-resource annotation pipelines, handling \textbf{noisy labels} through noise-robust training methods is also effective \citep{jin-etal-2021-instance,wang-etal-2023-noise,wu-etal-2023-noisywikihow}.
 These methods are largely data-centric; in \S\ref{sec:pretraining}, we discuss how this tension can also be addressed by expanding the model's capacity.
-
-
-\paragraph{Tension 2: Small LMs \iconmemory{} are sensitive to data quality, yet low-resource data is noisy \icondata{}}
-Working within a model's limited capacity is also a challenge when building monolingual edge models.
-Here, the key tension is that this limited capacity renders a model more sensitive to noise \citep{havrilla2024understandingeffectnoisellm}, and low-resource languages suffer from this exact problem \citep{kreutzer-etal-2022-quality}.
-Noise manifests in both pretraining \citep{chen2024understanding,longpre-etal-2024-pretrainers} and post-training \citep{ijcai2024p403,zhu-etal-2024-fine} data.
-
-\paragraph{Methods}
-Many of the methods above are applicable here, with a particular emphasis on working around the reality of noisy data in low-resource settings.
-\textbf{Data filtering} is a standard approach, which is adapted to multilingual contexts \citep{ali-etal-2025-judging,shen2025dcad} and common data sources such as Wikipedia \citep{lignos-etal-2022-toward}.
-Another approach is handling \textbf{noisy labels}, which are prevalent in low-resource annotation pipelines, through noise-robust training methods \citep{jin-etal-2021-instance,wang-etal-2023-noise,wu-etal-2023-noisywikihow}.
 
 
 \subsection{Pretraining}
