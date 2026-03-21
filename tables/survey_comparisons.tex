@@ -1,29 +1,27 @@
 \begin{table*}[t]
     \small
     \centering
-    % --- resize wrapper (comment out the next line + its closing brace to disable) ---
-    % \resizebox{0.85\linewidth}{!}{%
-    % --- begin tabular ---
-    \begin{tabular}{l cc p{0.45\columnwidth}}
+    \begin{tabular}{l p{0.70\linewidth}}
         \toprule
-         & \multicolumn{2}{c}{\textbf{Focus}} & \\
-        \cmidrule(lr){2-3}
-        % \begin{noindent}
-\textbf{Paper} & \textbf{Edge} & \textbf{Multilingual} & \textbf{Description} \\
-\midrule
-% === Uncomment entries one by one after verifying ===
-% \citet{TODO}  & \checkmark &            & TODO description \\
-% \citet{TODO}  &            & \checkmark & TODO description \\
-% \citet{TODO}  & \checkmark & \checkmark & TODO description \\
-% \citet{TODO}  & \checkmark &            & TODO description \\
-% \citet{TODO}  &            & \checkmark & TODO description \\
-\midrule
-Ours           & \checkmark & \checkmark & TODO description \\
-\bottomrule
-% \end{noindent}
+        %\begin{noindent}
+        \textbf{Paper} & \textbf{Description} \\
+        \midrule
+        % === Uncomment entries one by one after verifying ===
+        % \citet{TODO}  & Edge         & TODO description \\
+        % \citet{TODO}  & Multilingual & TODO description \\
+        % \citet{TODO}  & Both         & TODO description \\
+        \multicolumn{2}{l}{\textit{Edge Literature}} \\
+        \citet{treviso-etal-2023-efficient}  & \\
+        \citet{wan2024efficient}             & \\
+        \citet{zheng2025reviewedgeLLM}       & \\
+        \midrule
+        \multicolumn{2}{l}{\textit{Multilingual Literature}} \\
+        \citet{adilazuarda-etal-2024-towards} & \\
+        \citet{yong-etal-2025-state} & \\
+        \citet{liu-etal-2025-culturally} & \\
+        \bottomrule
+        %\end{noindent}
     \end{tabular}
-    % --- end resize wrapper (comment out this brace if resizebox is disabled) ---
-    % }
     \caption{Comparison of related surveys.}
     \label{tab:survey_comparisons}
 \end{table*}
