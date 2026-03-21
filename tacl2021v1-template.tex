@@ -382,11 +382,11 @@ for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while
 % This is often the most computationally expensive stage; for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 
 
-\paragraph{Challenge 1}
+\paragraph{Challenge 1: Multilingual performance scales with model size \iconrepresentation{}, which is limited in edge devices \iconmemory{}}
 \ljm{\lipsum[1]}
 
 
-\paragraph{Challenge 2}
+\paragraph{Challenge 2: Larger tokenizer vocabularies improve coverage across scripts \iconrepresentation{}, but also increases memory footprint \iconmemory{}}
 \ljm{\lipsum[1]}
 
 
@@ -436,7 +436,8 @@ Finally, model performance is measured across a variety of capabilities and doma
 \section{Discussion: Reaching the Last Mile}
 \label{sec:discussion}
 
-\paragraph{}
+\paragraph{Development in the Edge}
+In this work, we assume that edge development happens in a resource-rich environment such as a research cluster
 
 % \paragraph{Future Work}
 
