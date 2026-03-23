@@ -392,9 +392,6 @@ Model parameter sizes (e.g., 7B, 32B, 70B) are largely set by design choices pri
 One is through \textbf{tokenizer design}: choices such subword allocation \citep{petrov2023language,ali-etal-2024-tokenizer} and byte-level encoding \citep{yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage} affect how a fixed model represents diverse languages.
 Another is \textbf{continual pretraining}, which involves vocabulary expansion \citep{kim2024efficienteffectivevocabularyexpansion,cui2024efficienteffectivetextencoding} and further training on target-language data to adapt an existing model to new languages \citep{elhady-etal-2025-emergent,li2025rethinking} without retraining from scratch.
 The latter has been a common approach in most regional LMs such as in Southeast Asian \citep{ng2025sealionsoutheastasianlanguages} and Japanese \citep{fujii2024continual} languages.
-% \ljm{
-%   \textbf{Knowledge distillation} has a pretraining version
-% }
 
 \paragraph{Challenge 2: Multilinguality adds complexity beyond task and domain \iconrepresentation{}, straining edge compute \iconcompute{}}
 Language models must already capture variation across tasks and domains.
