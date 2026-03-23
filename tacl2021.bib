@@ -4228,3 +4228,22 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {12131--12145},
   abstract  = {While supervised fine-tuning (SFT) has been a straightforward approach for tailoring the output of foundation large language model (LLM) to specific preferences, concerns have been raised about the depth of this alignment, with some critiques suggesting it is merely ``superficial''. We critically examine this hypothesis within the scope of cross-lingual generation tasks, proposing that the effectiveness of SFT may be constrained by its reliance on prior tokens to guide cross-lingual generation. Based on this crucial insight, and in response to the challenges posed by the costly and limited availability of non-English data for SFT, we introduce a novel training-free alignment method named PreTTY, which employs minimal task-related prior tokens to bridge the foundation LLM and the SFT LLM, achieving comparable performance without training. Experiments on machine translation and part-of-speech tagging across seven languages demonstrate the efficacy of PreTTY in cross-lingual settings. Remarkably, by initiating the decoding process with only one or two prior tokens, foundation LLMs can attain up to 98{\%} of the performance metrics of their SFT counterparts. This method presents a cost-effective alternative to traditional SFT and advances the democratization of multilingual LLMs.}
 }
+
+@inproceedings{li-liang-2021-prefix,
+  title     = {{Prefix-Tuning: Optimizing Continuous Prompts for Generation}},
+  author    = {Li, Xiang Lisa  and
+               Liang, Percy},
+  editor    = {Zong, Chengqing  and
+               Xia, Fei  and
+               Li, Wenjie  and
+               Navigli, Roberto},
+  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},
+  month     = aug,
+  year      = {2021},
+  address   = {Online},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2021.acl-long.353/},
+  doi       = {10.18653/v1/2021.acl-long.353},
+  pages     = {4582--4597},
+  abstract  = {Fine-tuning is the de facto way of leveraging large pretrained language models for downstream tasks. However, fine-tuning modifies all the language model parameters and therefore necessitates storing a full copy for each task. In this paper, we propose prefix-tuning, a lightweight alternative to fine-tuning for natural language generation tasks, which keeps language model parameters frozen and instead optimizes a sequence of continuous task-specific vectors, which we call the prefix. Prefix-tuning draws inspiration from prompting for language models, allowing subsequent tokens to attend to this prefix as if it were ``virtual tokens''. We apply prefix-tuning to GPT-2 for table-to-text generation and to BART for summarization. We show that by learning only 0.1{\%} of the parameters, prefix-tuning obtains comparable performance in the full data setting, outperforms fine-tuning in low-data settings, and extrapolates better to examples with topics that are unseen during training.}
+}
