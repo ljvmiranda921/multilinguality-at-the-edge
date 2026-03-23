@@ -4207,3 +4207,24 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   isbn      = {979-8-89176-251-0},
   abstract  = {Large language models (LLMs) have achieved remarkable progress in multilingual machine translation (MT), demonstrating strong performance even with limited parallel data. However, effectively fine-tuning LLMs for MT is challenging due to parameter interference, which arises from the conflicting demands of different language pairs and the risk of overwriting pre-trained knowledge. To address this issue, we propose \textbf{MLAS-LoRA}, a novel multiple language-aware LoRA knowledge transfer framework. MLAS-LoRA efficiently adapts LLMs to MT by selectively transferring knowledge from a large teacher to a small student model. Our approach first evaluates the awareness of neurons and extracts linguistic knowledge in the teacher model to both the general MT task and specific language pairs.We then propose a multiple language-specific LoRA architecture to inject the extracted knowledge into the student model. During fine-tuning, only the parameters of the relevant language-general and language-specific LoRA modules are updated. Experimental results on diverse multilingual language pairs demonstrate that MLAS-LoRA significantly outperforms strong baselines by +1.7 BLEU on average, including standard fine-tuning and other parameter-efficient methods.}
 }
+
+@inproceedings{zhan-etal-2024-prefix,
+  title     = {{P}refix {T}ext as a {Y}arn: {E}liciting {N}on-{E}nglish {A}lignment in {F}oundation {L}anguage {M}odel},
+  author    = {Zhan, Runzhe  and
+               Yang, Xinyi  and
+               Wong, Derek  and
+               Chao, Lidia  and
+               Zhang, Yue},
+  editor    = {Ku, Lun-Wei  and
+               Martins, Andre  and
+               Srikumar, Vivek},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},
+  month     = aug,
+  year      = {2024},
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-acl.722/},
+  doi       = {10.18653/v1/2024.findings-acl.722},
+  pages     = {12131--12145},
+  abstract  = {While supervised fine-tuning (SFT) has been a straightforward approach for tailoring the output of foundation large language model (LLM) to specific preferences, concerns have been raised about the depth of this alignment, with some critiques suggesting it is merely ``superficial''. We critically examine this hypothesis within the scope of cross-lingual generation tasks, proposing that the effectiveness of SFT may be constrained by its reliance on prior tokens to guide cross-lingual generation. Based on this crucial insight, and in response to the challenges posed by the costly and limited availability of non-English data for SFT, we introduce a novel training-free alignment method named PreTTY, which employs minimal task-related prior tokens to bridge the foundation LLM and the SFT LLM, achieving comparable performance without training. Experiments on machine translation and part-of-speech tagging across seven languages demonstrate the efficacy of PreTTY in cross-lingual settings. Remarkably, by initiating the decoding process with only one or two prior tokens, foundation LLMs can attain up to 98{\%} of the performance metrics of their SFT counterparts. This method presents a cost-effective alternative to traditional SFT and advances the democratization of multilingual LLMs.}
+}
