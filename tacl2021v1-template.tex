@@ -389,11 +389,12 @@ Addressing this challenge requires careful tradeoffs: for instance, some approac
 
 \paragraph{Methods}
 Model parameter sizes (e.g., 7B, 32B, 70B) are largely set by design choices prior to pretraining \citep{kaplan2020scalinglawsneurallanguage}, but there are ways to ensure that a fixed parameter budget still supports strong multilingual performance.
-\ljm{
-  \textbf{Tokenizer design}
-  \textbf{Knowledge distillation} has a pretraining version
-  \textbf{Continual pretraining}
-}
+One approach is by improving representation of different languages in a model's \textbf{tokenizer design}, which involves
+% \ljm{
+%   \textbf{Tokenizer design}
+%   \textbf{Knowledge distillation} has a pretraining version
+%   \textbf{Continual pretraining}
+% }
 
 \paragraph{Challenge 2: Multilinguality adds complexity beyond task and domain \iconrepresentation{}, straining edge compute \iconcompute{}}
 Language models must already capture variation across tasks and domains.
