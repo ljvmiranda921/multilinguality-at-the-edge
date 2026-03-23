@@ -4400,3 +4400,40 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   doi           = {10.48550/arXiv.2509.11414},
   note          = {{c}s.CL/2509.11414v1}
 }
+
+@inproceedings{ali-etal-2024-tokenizer,
+  title     = {{Tokenizer Choice For LLM Training: Negligible or Crucial?}},
+  author    = {Ali, Mehdi  and
+               Fromm, Michael  and
+               Thellmann, Klaudia  and
+               Rutmann, Richard  and
+               L{\"u}bbering, Max  and
+               Leveling, Johannes  and
+               Klug, Katrin  and
+               Ebert, Jan  and
+               Doll, Niclas  and
+               Buschhoff, Jasper  and
+               Jain, Charvi  and
+               Weber, Alexander  and
+               Jurkschat, Lena  and
+               Abdelwahab, Hammam  and
+               John, Chelsea  and
+               Ortiz Suarez, Pedro  and
+               Ostendorff, Malte  and
+               Weinbach, Samuel  and
+               Sifa, Rafet  and
+               Kesselheim, Stefan  and
+               Flores-Herr, Nicolas},
+  editor    = {Duh, Kevin  and
+               Gomez, Helena  and
+               Bethard, Steven},
+  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2024},
+  month     = jun,
+  year      = {2024},
+  address   = {Mexico City, Mexico},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-naacl.247/},
+  doi       = {10.18653/v1/2024.findings-naacl.247},
+  pages     = {3907--3924},
+  abstract  = {The recent success of large language models (LLMs) has been predominantly driven by curating the training dataset composition, scaling of model architectures and dataset sizes and advancements in pretraining objectives, leaving tokenizer influence as a blind spot.Shedding light on this underexplored area, we conduct a comprehensive study on the influence of tokenizer choice on LLM downstream performance by training 24 mono- and multilingual LLMs at a 2.6B parameter scale, ablating different tokenizer algorithms and parameterizations. Our studies highlight that the tokenizer choice can significantly impact the model{'}s downstream performance and training costs. In particular, we find that the common tokenizer evaluation metrics fertility and parity are not always predictive of model downstream performance, rendering these metrics a questionable proxy for the model{'}s downstream performance. Furthermore, we show that multilingual tokenizers trained on the five most frequent European languages require vocabulary size increases of factor three in comparison to English. While English-centric tokenizers have been applied to the training of multi-lingual LLMs in the past, we find that this approach results in a severe downstream performance degradation and additional training costs of up to 68{\%}, due to an inefficient tokenization vocabulary.}
+}

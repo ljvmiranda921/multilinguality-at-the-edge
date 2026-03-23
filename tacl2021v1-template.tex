@@ -389,13 +389,10 @@ Addressing this challenge requires careful tradeoffs: for instance, some approac
 
 \paragraph{Methods}
 Model parameter sizes (e.g., 7B, 32B, 70B) are largely set by design choices prior to pretraining \citep{kaplan2020scalinglawsneurallanguage}, but there are ways to ensure that a fixed parameter budget still supports strong multilingual performance.
-One approach is by improving representation of different languages in a model's \textbf{tokenizer design}, which involves techniques such as byte-level encoding \citep{yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage} and XXX
-Another approach is to extend an existing pretrained model via \textbf{continual pretraining}. vocabulary expansion \citep{kim2024efficienteffectivevocabularyexpansion,cui2024efficienteffectivetextencoding}
-
+One is through \textbf{tokenizer design}: choices such subword allocation \citep{petrov2023language,ali-etal-2024-tokenizer} and byte-level encoding \citep{yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage} affect how a fixed model represents diverse languages.
+Another is \textbf{continual pretraining}, which involves vocabulary expansion \citep{kim2024efficienteffectivevocabularyexpansion,cui2024efficienteffectivetextencoding} and further training on target-language data to adapt an existing model to new languages without retraining from scratch.
 % \ljm{
-%   \textbf{Tokenizer design}
 %   \textbf{Knowledge distillation} has a pretraining version
-%   \textbf{Continual pretraining}
 % }
 
 \paragraph{Challenge 2: Multilinguality adds complexity beyond task and domain \iconrepresentation{}, straining edge compute \iconcompute{}}
