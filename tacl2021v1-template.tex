@@ -390,7 +390,7 @@ Minimizing an LM's compute footprint while retaining performance often involves 
 \textbf{Parameter-efficient methods} have been applied in multilingual settings across a variety of languages and tasks.
 These involve techniques such as adapters \citep{houlsby-etal-2019-parameter,pfeiffer-etal-2020-mad,pfeiffer-etal-2021-unks,pfeiffer-etal-2022-lifting,parovic-etal-2023-cross}, LoRA \citep{hu2022lora,whitehouse-etal-2024-low,dong-etal-2025-mlas}, and prefix tuning \citep{li-liang-2021-prefix,zhan-etal-2024-prefix}.
 Architectural interventions such as \textbf{language experts} have also been explored, where strong monolingual LMs are trained and combined through gating \citep{blevins-etal-2024-breaking,li-etal-2025-group} or routing \citep{zhao2024sparse,bandarkar2026multilingualroutingmixtureofexperts}.
-Compared to a dense model, this class of methods only active a subset of parameters
+Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving overall model capacity.
 
 
 \paragraph{Challenge 2: Larger tokenizer vocabularies improve coverage across scripts \iconrepresentation{}, but also increases memory footprint \iconmemory{}}
