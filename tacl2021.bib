@@ -4463,3 +4463,66 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   isbn      = {979-8-89176-251-0},
   abstract  = {Continued pretraining (CPT) is a popular approach to adapt existing large language models (LLMs) to new languages. When doing so, it is common practice to include a portion of English data in the mixture, but its role has not been carefully studied to date. In this work, we show that including English does not impact validation perplexity, yet it is critical for the emergence of downstream capabilities in the target language. We introduce a language-agnostic benchmark for in-context learning (ICL), which reveals catastrophic forgetting early on CPT when English is not included. This in turn damages the ability of the model to generalize to downstream prompts as measured by perplexity, even if it does not manifest in terms of accuracy until later in training, and can be tied to a big shift in the model parameters. Based on these insights, we introduce curriculum learning and exponential moving average (EMA) of weights as effective alternatives to mitigate the need for English. All in all, our work sheds light into the dynamics by which emergent abilities arise when doing CPT for language adaptation, and can serve as a foundation to design more effective methods in the future.}
 }
+
+@inproceedings{de-gibert-etal-2025-scaling,
+  title     = {{Scaling Low-Resource MT via Synthetic Data Generation with LLMs}},
+  author    = {de Gibert, Ona  and
+               Attieh, Joseph  and
+               Vahtola, Teemu  and
+               Aulamo, Mikko  and
+               Li, Zihao  and
+               V{\'a}zquez, Ra{\'u}l  and
+               Hu, Tiancheng  and
+               Tiedemann, J{\"o}rg},
+  editor    = {Christodoulopoulos, Christos  and
+               Chakraborty, Tanmoy  and
+               Rose, Carolyn  and
+               Peng, Violet},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},
+  month     = nov,
+  year      = {2025},
+  address   = {Suzhou, China},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.emnlp-main.1408/},
+  doi       = {10.18653/v1/2025.emnlp-main.1408},
+  pages     = {27674--27692},
+  isbn      = {979-8-89176-332-6},
+  abstract  = {We investigate the potential of LLM-generated synthetic data for improving low-resource Machine Translation (MT). Focusing on seven diverse target languages, we construct a document-level synthetic corpus from English Europarl, and extend it via pivoting to 147 additional language pairs. Automatic and human evaluation confirm its overall high quality. We study its practical application by (i) identifying effective training regimes, (ii) comparing our data with the HPLT dataset, (iii) studying the effect of varying training data size, and (iiii) testing its utility beyond English-centric MT. Finally, we introduce SynOPUS, a public repository for synthetic parallel datasets. Our findings show that LLM-generated synthetic data, even when noisy, can substantially improve MT performance for low-resource languages.}
+}
+
+@inproceedings{scalvini-etal-2025-rethinking,
+  title     = {{Rethinking Low-Resource MT: The Surprising Effectiveness of Fine-Tuned Multilingual Models in the LLM Age}},
+  author    = {Scalvini, Barbara  and
+               Debess, Iben Nyholm  and
+               Simonsen, Annika  and
+               Einarsson, Hafsteinn},
+  editor    = {Johansson, Richard  and
+               Stymne, Sara},
+  booktitle = {Proceedings of the Joint 25th Nordic Conference on Computational Linguistics and 11th Baltic Conference on Human Language Technologies (NoDaLiDa/Baltic-HLT 2025)},
+  month     = mar,
+  year      = {2025},
+  address   = {Tallinn, Estonia},
+  publisher = {University of Tartu Library},
+  url       = {https://aclanthology.org/2025.nodalida-1.62/},
+  pages     = {609--621},
+  isbn      = {978-9908-53-109-0},
+  abstract  = {This study challenges the current paradigm shift in machine translation, where large language models (LLMs) are gaining prominence over traditional neural machine translation models, with a focus on English-to-Faroese translation. We compare the performance of various models, including fine-tuned multilingual models, LLMs (GPT-SW3, Llama 3.1), and closed-source models (Claude 3.5, GPT-4). Our findings show that a fine-tuned NLLB model outperforms most LLMs, including some larger models, in both automatic and human evaluations. We also demonstrate the effectiveness of using LLM-generated synthetic data for fine-tuning. While closed-source models like Claude 3.5 perform best overall, the competitive performance of smaller, fine-tuned models suggests a more nuanced approach to low-resource machine translation. Our results highlight the potential of specialized multilingual models and the importance of language-specific knowledge. We discuss implications for resource allocation in low-resource settings and suggest future directions for improving low-resource machine translation, including targeted data creation and more comprehensive evaluation methodologies.}
+}
+
+@inproceedings{wolfe-etal-2024-laboratory,
+  author    = {Wolfe, Robert and Slaughter, Isaac and Han, Bin and Wen, Bingbing and Yang, Yiwei and Rosenblatt, Lucas and Herman, Bernease and Brown, Eva and Qu, Zening and Weber, Nic and Howe, Bill},
+  title     = {{Laboratory-Scale AI: Open-Weight Models are Competitive with ChatGPT Even in Low-Resource Settings}},
+  year      = {2024},
+  isbn      = {9798400704505},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3630106.3658966},
+  doi       = {10.1145/3630106.3658966},
+  abstract  = {The rapid proliferation of generative AI has raised questions about the competitiveness of lower-parameter, locally tunable, open-weight models relative to high-parameter, API-guarded, closed-weight models in terms of performance, domain adaptation, cost, and generalization. Centering under-resourced yet risk-intolerant settings in government, research, and healthcare, we see for-profit closed-weight models as incompatible with requirements for transparency, privacy, adaptability, and standards of evidence. Yet the performance penalty in using open-weight models, especially in low-data and low-resource settings, is unclear. We assess the feasibility of using smaller, open-weight models to replace GPT-4-Turbo in zero-shot, few-shot, and fine-tuned regimes, assuming access to only a single, low-cost GPU. We assess value-sensitive issues around bias, privacy, and abstention on three additional tasks relevant to those topics. We find that with relatively low effort, very low absolute monetary cost, and relatively little data for fine-tuning, small open-weight models can achieve competitive performance in domain-adapted tasks without sacrificing generality. We then run experiments considering practical issues in bias, privacy, and hallucination risk, finding that open models offer several benefits over closed models. We intend this work as a case study in understanding the opportunity cost of reproducibility and transparency over for-profit state-of-the-art zero shot performance, finding this cost to be marginal under realistic settings.},
+  booktitle = {Proceedings of the 2024 ACM Conference on Fairness, Accountability, and Transparency},
+  pages     = {1199-1210},
+  numpages  = {12},
+  keywords  = {ChatGPT, Chatbots, GPT-4, Generative AI, Language Models, Open Models, Transparency, qLoRA},
+  location  = {Rio de Janeiro, Brazil},
+  series    = {FAccT '24}
+}
