@@ -4162,3 +4162,48 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {176--193},
   abstract  = {Adapters have emerged as a modular and parameter-efficient approach to (zero-shot) cross-lingual transfer. The established MAD-X framework employs separate language and task adapters which can be arbitrarily combined to perform the transfer of any task to any target language. Subsequently, BAD-X, an extension of the MAD-X framework, achieves improved transfer at the cost of MAD-X{'}s modularity by creating `bilingual' adapters specific to the source-target language pair. In this work, we aim to take the best of both worlds by (i) fine-tuning *task* adapters adapted to the target language(s) (so-called *{`}target language-ready' (TLR)* adapters) to maintain high transfer performance, but (ii) without sacrificing the highly modular design of MAD-X. The main idea of `target language-ready' adapters is to resolve the training-vs-inference discrepancy of MAD-X: the task adapter `sees' the target language adapter for the very first time during inference, and thus might not be fully compatible with it. We address this mismatch by exposing the task adapter to the target language adapter during training, and empirically validate several variants of the idea: in the simplest form, we alternate between using the source and target language adapters during task adapter training, which can be generalized to cycling over any set of language adapters. We evaluate different TLR-based transfer configurations with varying degrees of generality across a suite of standard cross-lingual benchmarks, and find that the most general (and thus most modular) configuration consistently outperforms MAD-X and BAD-X on most tasks and languages.}
 }
+
+@inproceedings{whitehouse-etal-2024-low,
+  title     = {{Low-Rank Adaptation for Multilingual Summarization: An Empirical Study}},
+  author    = {Whitehouse, Chenxi  and
+               Huot, Fantine  and
+               Bastings, Jasmijn  and
+               Dehghani, Mostafa  and
+               Lin, Chu-Cheng  and
+               Lapata, Mirella},
+  editor    = {Duh, Kevin  and
+               Gomez, Helena  and
+               Bethard, Steven},
+  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2024},
+  month     = jun,
+  year      = {2024},
+  address   = {Mexico City, Mexico},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-naacl.77/},
+  doi       = {10.18653/v1/2024.findings-naacl.77},
+  pages     = {1202--1228},
+  abstract  = {Although the advancements of pre-trained Large Language Models have significantly accelerated recent progress in NLP, their ever-increasing size poses significant challenges for conventional fine-tuning, especially in memory-intensive tasks. We investigate the potential of Parameter-Efficient Fine-Tuning, focusing on Low-Rank Adaptation (LoRA), in the domain of multilingual summarization, a task that is both challenging (due to typically long inputs), and relatively unexplored. We conduct an extensive study across different data availability scenarios, including high- and low-data settings, and cross-lingual transfer, leveraging models of different sizes. Our findings reveal that LoRA is competitive with full fine-tuning when trained with high quantities of data, and excels in low-data scenarios and cross-lingual transfer. We also study different strategies for few-shot cross-lingual transfer, finding that continued LoRA tuning outperforms full fine-tuning and the dynamic composition of language-specific LoRA modules.}
+}
+
+@inproceedings{dong-etal-2025-mlas,
+  title     = {{MLAS}-{L}o{RA}: {L}anguage-{A}ware {P}arameters {D}etection and {L}o{RA}-{B}ased {K}nowledge {T}ransfer for {M}ultilingual {M}achine {T}ranslation},
+  author    = {Dong, Tianyu  and
+               Li, Bo  and
+               Liu, Jinsong  and
+               Zhu, Shaolin  and
+               Xiong, Deyi},
+  editor    = {Che, Wanxiang  and
+               Nabende, Joyce  and
+               Shutova, Ekaterina  and
+               Pilehvar, Mohammad Taher},
+  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = jul,
+  year      = {2025},
+  address   = {Vienna, Austria},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.acl-long.762/},
+  doi       = {10.18653/v1/2025.acl-long.762},
+  pages     = {15645--15660},
+  isbn      = {979-8-89176-251-0},
+  abstract  = {Large language models (LLMs) have achieved remarkable progress in multilingual machine translation (MT), demonstrating strong performance even with limited parallel data. However, effectively fine-tuning LLMs for MT is challenging due to parameter interference, which arises from the conflicting demands of different language pairs and the risk of overwriting pre-trained knowledge. To address this issue, we propose \textbf{MLAS-LoRA}, a novel multiple language-aware LoRA knowledge transfer framework. MLAS-LoRA efficiently adapts LLMs to MT by selectively transferring knowledge from a large teacher to a small student model. Our approach first evaluates the awareness of neurons and extracts linguistic knowledge in the teacher model to both the general MT task and specific language pairs.We then propose a multiple language-specific LoRA architecture to inject the extracted knowledge into the student model. During fine-tuning, only the parameters of the relevant language-general and language-specific LoRA modules are updated. Experimental results on diverse multilingual language pairs demonstrate that MLAS-LoRA significantly outperforms strong baselines by +1.7 BLEU on average, including standard fine-tuning and other parameter-efficient methods.}
+}
