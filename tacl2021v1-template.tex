@@ -419,7 +419,7 @@ This stage is typically less computationally expensive than pretraining, and oft
 Since pretraining is often expensive, practitioners resort to finetuning existing open-weight models released in platforms such as HuggingFace \citep{davidson2023aicapabilitiessignificantlyimproved,wolfe-etal-2024-laboratory}.
 However, adapting a pretrained base LM often involves inheriting the architectural decisions made during the pretraining stage.
 If the model size of the base LM goes over the limit of what the target edge device could handle \citep{zheng2025reviewedgeLLM},
-then the challenge becomes a matter of reducing this while still retaining the capabilities they learned during pretraining.
+then addressing this challenge becomes a matter of reducing this size while still retaining the capabilities they learned during pretraining.
 % \textit{Catastrophic forgetting}, which is widely documented even in multilnigual settings \citep{liu-niehues-2025-conditions,yamaguchi2025mitigatingcatastrophicforgettingtarget}.
 
 
