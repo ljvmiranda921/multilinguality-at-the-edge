@@ -393,8 +393,12 @@ Addressing this challenge requires careful tradeoffs: for instance, some approac
 % \paragraph{Challenge 2: Larger tokenizer vocabularies improve coverage across scripts \iconrepresentation{}, but also increases memory footprint \iconmemory{}}
 % \ljm{\lipsum[1]}
 
-\paragraph{Challenge 2: Multilinguality adds complexity beyond task and domain \iconrepresentation{}, which is difficult to fit within a small compute budget \iconcompute{}}
-% Dense models use all parameters per input, regardless of language, wasting compute on edge devices.
+\paragraph{Challenge 2: Multilinguality adds complexity beyond task and domain \iconrepresentation{}, straining edge compute \iconcompute{}}
+Language models must already capture variation across tasks and domains.
+Multilinguality introduces yet another axis of complexity such as morphology and orthography to name a few \citep{tsvetkov2017lowresource}.
+In a standard dense architecture, all parameters are activated for every input regardless of language, making compute costs proportional to total model complexity rather than what any single language requires.
+This further strains deployment in the edge context, as small devices can only handle a small number of FLOPS.
+
 
 \paragraph{Methods}
 Minimizing an LM's compute footprint while retaining performance often involves architectural modifications or training strategies beyond the standard dense model.
