@@ -408,8 +408,6 @@ Architectural interventions such as \textbf{language experts} have also been exp
 Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving model capacity.
 
 
-
-
 \subsection{Post-training}
 \label{sec:post_training}
 
@@ -417,11 +415,13 @@ A base model is further adapted toward specific capabilities through techniques 
 We also group the literature on model compression and merging under this stage.
 This stage is typically less computationally expensive than pretraining, and oftentimes most language communities start development at this stage by finetuning an existing base model.
 
-\paragraph{Challenge 1}
-\ljm{\lipsum[1]}
+\paragraph{Challenge 1: The ideal base model starting point \iconalignment{} is too large to fit into memory \iconmemory{}}
+
+% \ljm{\lipsum[1]}
 
 
 \paragraph{Methods}
+\textbf{Model compression} using knowledge distillation, quantization, and ..?
 \ljm{\lipsum[1]}
 
 \paragraph{Challenge 2}
