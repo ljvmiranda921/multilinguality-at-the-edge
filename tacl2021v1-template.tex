@@ -397,7 +397,7 @@ Addressing this challenge requires careful tradeoffs: for instance, some approac
 Language models must already capture variation across tasks and domains.
 Multilinguality introduces yet another axis of complexity such as morphology and orthography to name a few \citep{tsvetkov2017lowresource}.
 In a standard dense architecture, all parameters are activated for every input regardless of language, making compute costs proportional to total model complexity.
-This is particularly problematic on edge devices, where mobile GPUs peak at 1.5--3.4 TFLOPS (FP16) with under 65 GB/s memory bandwidth \citep{xiao2026llmpockets}, compared to datacenter GPUs that deliver over 300 TFLOPS with 2 TB/s bandwidth.
+This is particularly problematic on edge devices, where mobile GPUs peak at 2--6.5 TFLOPS (FP16) with 26--63 GB/s memory bandwidth \citep{xiao2026llmpockets}, orders of magnitude below datacenter capacity.
 
 
 \paragraph{Methods}
