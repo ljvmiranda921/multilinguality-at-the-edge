@@ -416,9 +416,10 @@ We also group the literature on model compression and merging under this stage.
 This stage is typically less computationally expensive than pretraining, and oftentimes most language communities start development at this stage by finetuning an existing base model.
 
 \paragraph{Challenge 1: Base models for finetuning \iconalignment{} tend to be too large to fit into memory \iconmemory{}}
-Adapting a pretrained base LM requires inheriting the architectural decisions made during the pretraining phase.
-
-% \ljm{\lipsum[1]}
+Adapting a pretrained base LM involves inheriting the architectural decisions made during the pretraining stage.
+Since pretraining is often expensive, practitioners resort to finetuning existing open-weight models released by third-party orgnizations such as industry or academic laboratories.
+However, their model sizes tend to be over the limits of what an edge device could handle.
+Addressing this challenge involves reducing the size of these models while retaining the capabilities they learned during pretraining.
 
 
 \paragraph{Methods}
