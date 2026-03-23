@@ -4098,3 +4098,67 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   url    = {https://huggingface.co/spaces/hfmlsoc/different-flops},
   note   = {Accessed: 2026-03-23}
 }
+
+@inproceedings{pfeiffer-etal-2022-lifting,
+  title     = {{Lifting the Curse of Multilinguality by Pre-training Modular Transformers}},
+  author    = {Pfeiffer, Jonas  and
+               Goyal, Naman  and
+               Lin, Xi Victoria  and
+               Li, Xian  and
+               Cross, James  and
+               Riedel, Sebastian  and
+               Artetxe, Mikel},
+  editor    = {Carpuat, Marine  and
+               de Marneffe, Marie-Catherine  and
+               Meza Ruiz, Ivan Vladimir},
+  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},
+  month     = jul,
+  year      = {2022},
+  address   = {Seattle, United States},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2022.naacl-main.255/},
+  doi       = {10.18653/v1/2022.naacl-main.255},
+  pages     = {3479--3495},
+  abstract  = {Multilingual pre-trained models are known to suffer from the curse of multilinguality, which causes per-language performance to drop as they cover more languages. We address this issue by introducing language-specific modules, which allows us to grow the total capacity of the model, while keeping the total number of trainable parameters per language constant. In contrast with prior work that learns language-specific components post-hoc, we pre-train the modules of our Cross-lingual Modular (X-Mod) models from the start. Our experiments on natural language inference, named entity recognition and question answering show that our approach not only mitigates the negative interference between languages, but also enables positive transfer, resulting in improved monolingual and cross-lingual performance. Furthermore, our approach enables adding languages post-hoc with no measurable drop in performance, no longer limiting the model usage to the set of pre-trained languages.}
+}
+
+@inproceedings{pfeiffer-etal-2021-unks,
+  title     = {{UNK}s Everywhere: {A}dapting {M}ultilingual {L}anguage {M}odels to {N}ew {S}cripts},
+  author    = {Pfeiffer, Jonas  and
+               Vuli{\'c}, Ivan  and
+               Gurevych, Iryna  and
+               Ruder, Sebastian},
+  editor    = {Moens, Marie-Francine  and
+               Huang, Xuanjing  and
+               Specia, Lucia  and
+               Yih, Scott Wen-tau},
+  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},
+  month     = nov,
+  year      = {2021},
+  address   = {Online and Punta Cana, Dominican Republic},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2021.emnlp-main.800/},
+  doi       = {10.18653/v1/2021.emnlp-main.800},
+  pages     = {10186--10203},
+  abstract  = {Massively multilingual language models such as multilingual BERT offer state-of-the-art cross-lingual transfer performance on a range of NLP tasks. However, due to limited capacity and large differences in pretraining data sizes, there is a profound performance gap between resource-rich and resource-poor target languages. The ultimate challenge is dealing with under-resourced languages not covered at all by the models and written in scripts unseen during pretraining. In this work, we propose a series of novel data-efficient methods that enable quick and effective adaptation of pretrained multilingual models to such low-resource languages and unseen scripts. Relying on matrix factorization, our methods capitalize on the existing latent knowledge about multiple languages already available in the pretrained model{'}s embedding matrix. Furthermore, we show that learning of the new dedicated embedding matrix in the target language can be improved by leveraging a small number of vocabulary items (i.e., the so-called lexically overlapping tokens) shared between mBERT{'}s and target language vocabulary. Our adaptation techniques offer substantial performance gains for languages with unseen scripts. We also demonstrate that they can yield improvements for low-resource languages written in scripts covered by the pretrained model.}
+}
+
+@inproceedings{parovic-etal-2023-cross,
+  title     = {{Cross-Lingual Transfer with Target Language-Ready Task Adapters}},
+  author    = {Parovic, Marinela  and
+               Ansell, Alan  and
+               Vuli{\'c}, Ivan  and
+               Korhonen, Anna},
+  editor    = {Rogers, Anna  and
+               Boyd-Graber, Jordan  and
+               Okazaki, Naoaki},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2023},
+  month     = jul,
+  year      = {2023},
+  address   = {Toronto, Canada},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2023.findings-acl.13/},
+  doi       = {10.18653/v1/2023.findings-acl.13},
+  pages     = {176--193},
+  abstract  = {Adapters have emerged as a modular and parameter-efficient approach to (zero-shot) cross-lingual transfer. The established MAD-X framework employs separate language and task adapters which can be arbitrarily combined to perform the transfer of any task to any target language. Subsequently, BAD-X, an extension of the MAD-X framework, achieves improved transfer at the cost of MAD-X{'}s modularity by creating `bilingual' adapters specific to the source-target language pair. In this work, we aim to take the best of both worlds by (i) fine-tuning *task* adapters adapted to the target language(s) (so-called *{`}target language-ready' (TLR)* adapters) to maintain high transfer performance, but (ii) without sacrificing the highly modular design of MAD-X. The main idea of `target language-ready' adapters is to resolve the training-vs-inference discrepancy of MAD-X: the task adapter `sees' the target language adapter for the very first time during inference, and thus might not be fully compatible with it. We address this mismatch by exposing the task adapter to the target language adapter during training, and empirically validate several variants of the idea: in the simplest form, we alternate between using the source and target language adapters during task adapter training, which can be generalized to cycling over any set of language adapters. We evaluate different TLR-based transfer configurations with varying degrees of generality across a suite of standard cross-lingual benchmarks, and find that the most general (and thus most modular) configuration consistently outperforms MAD-X and BAD-X on most tasks and languages.}
+}
