@@ -382,6 +382,8 @@ for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while
 \paragraph{Challenge 1: Multilingual performance scales with model size \iconrepresentation{}, which is limited in edge devices \iconcompute{}}
 Hardware imposes a ceiling on the size of the model that can be deployed.
 \citet{jernite2026aiflopsdifferentfolks} note that small LMs ($\leq$8B parameters) can run on mobile phones, low-end GPUs, and even CPUs for smaller workloads, though they still significantly increase the compute load of local devices and require continued hardware progress.
+In addition, \citet{longpre2025atlasadaptivetransferscaling}'s multilingual scaling laws show that multilingual performance improves with size.
+This then creates a tension between getting performance versus fitting on a local device.
 
 
 % \ljm{\lipsum[1]}
