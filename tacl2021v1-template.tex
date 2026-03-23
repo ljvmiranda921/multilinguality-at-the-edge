@@ -379,9 +379,9 @@ Web-crawled text is then used to train a base model to learn general language re
 This is often the most computationally expensive stage;
 for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 
-\paragraph{Challenge 1: Multilingual performance scales with model size \iconrepresentation{}, which is limited in edge devices \iconmemory{}}
+\paragraph{Challenge 1: Multilingual performance scales with model size \iconrepresentation{}, which is limited in edge devices \iconcompute{}}
 Hardware imposes a ceiling on the size of the model that can be deployed.
-\citet{jernite2026aiflopsdifferentfolks} note that small LMs ($\leq$8B parameters) can already run on mobile phones, low-end GPUs, and even CPUs for smaller workloads.
+\citet{jernite2026aiflopsdifferentfolks} note that small LMs ($\leq$8B parameters) can run on mobile phones, low-end GPUs, and even CPUs for smaller workloads, though they still significantly increase the compute load of local devices and require continued hardware progress.
 
 
 % \ljm{\lipsum[1]}
