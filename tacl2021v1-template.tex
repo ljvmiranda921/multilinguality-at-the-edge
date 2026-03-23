@@ -389,7 +389,7 @@ Addressing this challenge requires careful tradeoffs: for instance, some approac
 
 \paragraph{Methods}
 Model parameter sizes (e.g., 7B, 32B, 70B) are largely set by design choices prior to pretraining \citep{kaplan2020scalinglawsneurallanguage}, but there are ways to ensure that a fixed parameter budget still supports strong multilingual performance.
-One approach is by improving representation of different languages in a model's \textbf{tokenizer design}, which involves techniques such as byte-level encoding \citep{yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage} and vocabulary expansion \citep{kim2024efficienteffectivevocabularyexpansion}
+One approach is by improving representation of different languages in a model's \textbf{tokenizer design}, which involves techniques such as byte-level encoding \citep{yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage} and vocabulary expansion \citep{kim2024efficienteffectivevocabularyexpansion,cui2024efficienteffectivetextencoding}
 
 % \ljm{
 %   \textbf{Tokenizer design}
@@ -407,7 +407,7 @@ This is particularly problematic on edge devices, where mobile GPUs peak at 2--6
 \paragraph{Methods}
 Minimizing an LM's compute footprint while retaining performance often involves architectural modifications or training strategies beyond the standard dense model.
 \textbf{Parameter-efficient methods} have been applied in multilingual settings across a variety of languages and tasks.
-These involve techniques such as adapters \citep{houlsby-etal-2019-parameter,pfeiffer-etal-2020-mad,pfeiffer-etal-2021-unks,pfeiffer-etal-2022-lifting,parovic-etal-2023-cross}, LoRA \citep{hu2022lora,whitehouse-etal-2024-low,dong-etal-2025-mlas}, and prefix tuning \citep{li-liang-2021-prefix,zhan-etal-2024-prefix}.
+These involve techniques such as adapters \citep{houlsby-etal-2019-parameter,pfeiffer-etal-2020-mad,pfeiffer-etal-2021-unks,pfeiffer-etal-2022-lifting,parovic-etal-2023-cross}, LoRA \citep{hu2022lora,whitehouse-etal-2024-low,dong-etal-2025-mlas,owodunni2025continuallyaddingnewlanguages}, and prefix tuning \citep{li-liang-2021-prefix,zhan-etal-2024-prefix}.
 Architectural interventions such as \textbf{language experts} have also been explored, where strong monolingual LMs are trained and combined through gating \citep{blevins-etal-2024-breaking,li-etal-2025-group} or routing \citep{zhao2024sparse,bandarkar2026multilingualroutingmixtureofexperts}.
 Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving model capacity.
 
