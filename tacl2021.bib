@@ -4325,7 +4325,7 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   author    = {Xiao, Jie and Huang, Qianyi and Chen, Xu and Tian, Chen},
   journal   = { IEEE Transactions on Mobile Computing },
   title     = {{ Understanding Large Language Models in Your Pockets: Performance Study on COTS Mobile Devices }},
-  year      = {5555},
+  year      = {2024},
   volume    = {},
   number    = {01},
   issn      = {1558-0660},
@@ -4337,4 +4337,30 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   publisher = {IEEE Computer Society},
   address   = {Los Alamitos, CA, USA},
   month     = mar
+}
+
+@inproceedings{yu-etal-2023-megabyte,
+  author    = {Yu, Lili and Simig, D\'{a}niel and Flaherty, Colin and Aghajanyan, Armen and Zettlemoyer, Luke and Lewis, Mike},
+  title     = {{MEGABYTE: modeling million-byte sequences with multiscale transformers}},
+  year      = {2023},
+  publisher = {Curran Associates Inc.},
+  address   = {Red Hook, NY, USA},
+  abstract  = {Autoregressive transformers are spectacular models for short sequences but scale poorly to long sequences such as high-resolution images, podcasts, code, or books. We propose MEGABYTE, a multi-scale decoder architecture that enables end-to-end differentiable modeling of sequences of over one million bytes. MEGABYTE segments sequences into patches and uses a local submodel within patches and a global model between patches. This enables sub-quadratic self-attention, much larger feedforward layers for the same compute, and improved parallelism during decoding—unlocking better performance at reduced cost for both training and generation. Extensive experiments show that MEGABYTE allows byte-level models to perform competitively with subword models on long context language modeling, achieve state-of-the-art density estimation on ImageNet, and model audio from raw files. Together, these results establish the viability of tokenization-free autoregressive sequence modeling at scale.},
+  booktitle = {Proceedings of the 37th International Conference on Neural Information Processing Systems},
+  articleno = {3447},
+  numpages  = {16},
+  location  = {New Orleans, LA, USA},
+  series    = {NIPS '23}
+}
+
+@misc{kim2024efficienteffectivevocabularyexpansion,
+  title         = {{Efficient and Effective Vocabulary Expansion Towards Multilingual Large Language Models}},
+  author        = {Seungduk Kim and Seungtaek Choi and Myeongho Jeong},
+  year          = {2024},
+  eprint        = {2402.14714},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2402.14714},
+  doi           = {10.48550/arXiv.2402.14714},
+  note          = {{c}s.CL/2402.14714v1}
 }
