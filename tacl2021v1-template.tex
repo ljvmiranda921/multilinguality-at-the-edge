@@ -379,11 +379,22 @@ Web-crawled text is then used to train a base model to learn general language re
 This is often the most computationally expensive stage;
 for example, \citet{nvidia2025nvidianemotronnano2} pretrain on 20T tokens, while \citet{olmo2025olmo3} use 8$\times$ NVIDIA H100s for $\sim$6T tokens.
 
-\paragraph{Challenge 1: Multilingual performance scales with model size \iconrepresentation{}, which is limited in edge devices \iconcompute{}}
+\paragraph{Challenge 1: Multilingual performance scales with model size \iconrepresentation{}, which is limited in edge devices \iconmemory{}}
 Hardware imposes a ceiling on the size of the model that can be deployed.
 \citet{jernite2026aiflopsdifferentfolks} note that small LMs ($\leq$8B parameters) can run on mobile phones, low-end GPUs, and even CPUs for smaller workloads, though they still significantly increase the compute load of local devices and require continued hardware progress.
 Moreover, multilingual scaling laws show that performance improves with model size \citep{longpre2025atlasadaptivetransferscaling}, creating a tension between achieving strong multilingual performance and fitting within the constraints of a local device.
 Addressing this challenge requires careful tradeoffs: for instance, some approaches forego language coverage or capability in favor of language- or task-specific edge LMs.
+
+\paragraph{Methods}
+\textbf{Tokenizer design, }
+\ljm{\lipsum[1]}
+
+
+% \paragraph{Challenge 2: Larger tokenizer vocabularies improve coverage across scripts \iconrepresentation{}, but also increases memory footprint \iconmemory{}}
+% \ljm{\lipsum[1]}
+
+\paragraph{Challenge 2: Multilingual performance scales with model size \iconrepresentation{}, which is limited in edge devices \iconcompute{}}
+% Dense models use all parameters per input, regardless of language, wasting compute on edge devices.
 
 \paragraph{Methods}
 Minimizing an LM's compute footprint while retaining performance often involves architectural modifications or training strategies beyond the standard dense model.
@@ -393,12 +404,6 @@ Architectural interventions such as \textbf{language experts} have also been exp
 Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving model capacity.
 
 
-\paragraph{Challenge 2: Larger tokenizer vocabularies improve coverage across scripts \iconrepresentation{}, but also increases memory footprint \iconmemory{}}
-\ljm{\lipsum[1]}
-
-\paragraph{Methods}
-\textbf{Tokenizer design, }
-\ljm{\lipsum[1]}
 
 
 \subsection{Post-training}
