@@ -438,6 +438,11 @@ Adding capabilities, such as support for a new language, is the more obvious cas
 However, removing capabilities is also important: for example, on-device models may need to unlearn sensitive or private information from pretraining to comply with data regulations or to free up capacity \citep{habernal-etal-2023-privacy}.
 Addressing this challenge requires performing such activities while reducing (or fully-eliminating) the cost of training.
 
+\paragraph{Methods}
+Adding capabilities with minimal retraining can be achieved via \textbf{model merging} \citep{yadav-etal-2023-tiesmerging}, which has shown to be effective in multilingual scenarios \citep[\textit{inter alia}]{huang-etal-2024-chat,aakanksha2024mix,tao-etal-2024-unlocking}.
+
+
+
 
 
 % \textbf{Model compression} using knowledge distillation, quantization, and ..?
@@ -446,10 +451,6 @@ Addressing this challenge requires performing such activities while reducing (or
 % \textbf{Knowledge distillation} (talk about blackbox and whitebox, we discussed blackbox in an earlier section)
 % \textbf{Model Merging} (there should be some works re: this from Aya)
 % \ljm{\lipsum[1]}
-
-
-\paragraph{Methods}
-\ljm{\lipsum[1]}
 
 
 \subsection{Inference}

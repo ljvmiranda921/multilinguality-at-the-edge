@@ -4701,3 +4701,70 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {27--30},
   abstract  = {This cutting-edge tutorial will help the NLP community to get familiar with current research in privacy-preserving methods. We will cover topics as diverse as membership inference, differential privacy, homomorphic encryption, or federated learning, all with typical applications to NLP. The goal is not only to draw the interest of the broader community, but also to present some typical use-cases and potential pitfalls in applying privacy-preserving methods to human language technologies.}
 }
+
+@inproceedings{yadav-etal-2023-tiesmerging,
+  author    = {Yadav, Prateek and Tam, Derek and Choshen, Leshem and Raffel, Colin A and Bansal, Mohit},
+  booktitle = {Advances in Neural Information Processing Systems},
+  editor    = {A. Oh and T. Naumann and A. Globerson and K. Saenko and M. Hardt and S. Levine},
+  pages     = {7093--7115},
+  publisher = {Curran Associates, Inc.},
+  title     = {{TIES-Merging: Resolving Interference When Merging Models}},
+  url       = {https://proceedings.neurips.cc/paper_files/paper/2023/file/1644c9af28ab7916874f6fd6228a9bcf-Paper-Conference.pdf},
+  volume    = {36},
+  year      = {2023}
+}
+
+@inproceedings{huang-etal-2024-chat,
+  title     = {{Chat Vector: A Simple Approach to Equip LLMs with Instruction Following and Model Alignment in New Languages}},
+  author    = {Huang, Shih-Cheng  and
+               Li, Pin-Zu  and
+               Hsu, Yu-chi  and
+               Chen, Kuang-Ming  and
+               Lin, Yu Tung  and
+               Hsiao, Shih-Kai  and
+               Tsai, Richard  and
+               Lee, Hung-yi},
+  editor    = {Ku, Lun-Wei  and
+               Martins, Andre  and
+               Srikumar, Vivek},
+  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = aug,
+  year      = {2024},
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.acl-long.590/},
+  doi       = {10.18653/v1/2024.acl-long.590},
+  pages     = {10943--10959},
+  abstract  = {Recently, the development of open-source large language models (LLMs) has advanced rapidly. Nevertheless, due to data constraints, the capabilities of most open-source LLMs are primarily focused on English. To address this issue, we introduce the concept of $\textit{chat vector}$ to equip pre-trained language models with instruction following and human value alignment via simple model arithmetic. The chat vector is derived by subtracting the weights of a pre-trained base model (e.g. LLaMA2) from those of its corresponding chat model (e.g. LLaMA2-chat). By simply adding the chat vector to a continual pre-trained model{'}s weights, we can endow the model with chat capabilities in new languages without the need for further training.Our empirical studies demonstrate the superior efficacy of the chat vector from three different aspects: instruction following, toxicity mitigation, and multi-turn dialogue. Moreover, to showcase the adaptability of our approach, we extend our experiments to encompass various languages, base models, and chat vectors. The results underscore the chat vector{'}s simplicity, effectiveness, and wide applicability, making it a compelling solution for efficiently enabling conversational capabilities in pre-trained language models. Our code is available at https://github.com/aqweteddy/ChatVector.}
+}
+
+@inproceedings{aakanksha2024mix,
+  title     = {{Mix Data or Merge Models? Optimizing for Performance and Safety in Multilingual Contexts}},
+  author    = {Aakanksha and Arash Ahmadian and Seraphina Goldfarb-Tarrant and Beyza Ermis and Marzieh Fadaee and Sara Hooker},
+  booktitle = {Neurips Safe Generative AI Workshop 2024},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=L1Hxp8ktiT}
+}
+
+@inproceedings{tao-etal-2024-unlocking,
+  title     = {{Unlocking the Potential of Model Merging for Low-Resource Languages}},
+  author    = {Tao, Mingxu  and
+               Zhang, Chen  and
+               Huang, Quzhe  and
+               Ma, Tianyao  and
+               Huang, Songfang  and
+               Zhao, Dongyan  and
+               Feng, Yansong},
+  editor    = {Al-Onaizan, Yaser  and
+               Bansal, Mohit  and
+               Chen, Yun-Nung},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},
+  month     = nov,
+  year      = {2024},
+  address   = {Miami, Florida, USA},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-emnlp.508/},
+  doi       = {10.18653/v1/2024.findings-emnlp.508},
+  pages     = {8705--8720},
+  abstract  = {Adapting large language models (LLMs) to new languages typically involves continual pre-training (CT) followed by supervised fine-tuning (SFT). However, this CT-then-SFT approach struggles with limited data in the context of low-resource languages, failing to balance language modeling and task-solving capabilities. We thus propose a new model merging solution as an alternative for low-resource languages, combining models with distinct capabilities into a single model without additional training. We use model merging to develop task-solving LLMs for low-resource languages without SFT data in the target languages. Our experiments based on Llama-2-7B demonstrate that model merging effectively endows LLMs for low-resource languages with task-solving abilities, outperforming CT-then-SFT in scenarios with extremely scarce data. Observing performance saturation in model merging with increasingly more training tokens, we further analyze the merging process and introduce a slack variable to the model merging algorithm to mitigate the loss of important parameters, thereby enhancing model performance. We hope that model merging can benefit more human languages suffering from data scarcity with its higher data efficiency.}
+}
