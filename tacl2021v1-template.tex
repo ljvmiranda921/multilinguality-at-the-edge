@@ -431,6 +431,11 @@ Both methods rely on a calibration dataset to guide the compression process, and
 Generating synthetic data from the teacher is one approach as discussed in \S\ref{sec:pretraining} (off-policy), but it is also possible to learn this on-the-fly during training---an approach called on-policy distillation \citep[OPD,][]{agarwal2024onpolicydistillationlanguagemodels}.
 However, OPD typically requires the teacher and student to share the same tokenizer, and several works have attempted to address this restriction \citep{gholami-etal-2024-gold,minixhofer2025universal,boizard2025towards}.
 
+\paragraph{Challenge 2: Adding or removing capabilities \iconalignment{} requires expensive retraining \iconcompute{}}
+% \ljm{\lipsum[1]}
+
+
+
 % \textbf{Model compression} using knowledge distillation, quantization, and ..?
 % \textbf{Quantization} (talk about multilngual calibration,mpretraining and post-training quantization)
 % \textbf{Pruning} (is there multilingual versions of this?)
@@ -438,9 +443,6 @@ However, OPD typically requires the teacher and student to share the same tokeni
 % \textbf{Model Merging} (there should be some works re: this from Aya)
 % \ljm{\lipsum[1]}
 
-
-\paragraph{Challenge 2}
-\ljm{\lipsum[1]}
 
 \paragraph{Methods}
 \ljm{\lipsum[1]}
