@@ -423,9 +423,10 @@ Addressing this challenge may involve compressing the final post-trained model, 
 
 \paragraph{Methods}
 Compressing a model can happen before, during, or right after the post-training stage.
-\textbf{Quantization} is a common approach that represents a model's weights and activations in lower precision \citep{frantar2023optq,turc2025gguf,lin-etal-2025-awq}.
-A calibration dataset is used to determine the optimal quantization parameters (e.g., scaling factors and zero points) that minimize the loss of accuracy from reduced precision \citep{williams-aletras-2024-impact}.
-For multilingual models, this process often introduces performance degradation \citep{marchisio-etal-2024-quantization}, which can be mitigated by tailoring calibration datasets that are representative of the target language \citep{chimoto-etal-2026-calibrating,kurz-etal-2026-limitations}.
+\textbf{Model compression} attempts to reduce the size of a model while retaining its capabilities.
+This can be achieved through quantization \citep{frantar2023optq,lin-etal-2025-awq}, which expresses model weights in lower precision, or
+pruning, which removes redundant weights from the network \citep{zeng-etal-2024-multilingual,kim-etal-2024-pruning}.
+Both methods rely on a calibration dataset to guide the compression process, and several works find that tailoring this dataset to the target language is important for preserving multilingual performance \citep{chimoto-etal-2026-calibrating,kurz-etal-2026-limitations}.
 \textbf{Knowledge distillation} is another method that transfers the capabilities of a larger LM (teacher) into a smaller LM (student) by training the student to mimic the teacher's behavior.
 Generating synthetic data from the teacher is one approach as discussed in \S\ref{sec:pretraining} (off-policy), but it is also possible to learn this on-the-fly during training---an approach called on-policy distillation \citep[OPD,][]{agarwal2024onpolicydistillationlanguagemodels}.
 However, OPD typically requires the teacher and student to share the same tokenizer, and several works have attempted to address this restriction \citep{gholami-etal-2024-gold,minixhofer2025universal,boizard2025towards}.

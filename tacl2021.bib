@@ -4639,3 +4639,45 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   url     = {https://openreview.net/forum?id=bwRxXiGO9A},
   note    = {}
 }
+
+@inproceedings{zeng-etal-2024-multilingual,
+  title     = {{Multilingual Brain Surgeon: Large Language Models Can Be Compressed Leaving No Language behind}},
+  author    = {Zeng, Hongchuan  and
+               Xu, Hongshen  and
+               Chen, Lu  and
+               Yu, Kai},
+  editor    = {Calzolari, Nicoletta  and
+               Kan, Min-Yen  and
+               Hoste, Veronique  and
+               Lenci, Alessandro  and
+               Sakti, Sakriani  and
+               Xue, Nianwen},
+  booktitle = {Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)},
+  month     = may,
+  year      = {2024},
+  address   = {Torino, Italia},
+  publisher = {ELRA and ICCL},
+  url       = {https://aclanthology.org/2024.lrec-main.1030/},
+  pages     = {11794--11812},
+  abstract  = {Large Language Models (LLMs) have ushered in a new era in Natural Language Processing, but their massive size demands effective compression techniques for practicality. Although numerous model compression techniques have been investigated, they typically rely on a calibration set that overlooks the multilingual context and results in significant accuracy degradation for low-resource languages. This paper introduces Multilingual Brain Surgeon (MBS), a novel calibration data sampling method for multilingual LLMs compression. MBS overcomes the English-centric limitations of existing methods by sampling calibration data from various languages proportionally to the language distribution of the model training datasets. Our experiments, conducted on the BLOOM multilingual LLM, demonstrate that MBS improves the performance of existing English-centric compression methods, especially for low-resource languages. We also uncover the dynamics of language interaction during compression, revealing that the larger the proportion of a language in the training set and the more similar the language is to the calibration language, the better performance the language retains after compression. In conclusion, MBS presents an innovative approach to compressing multilingual LLMs, addressing the performance disparities and improving the language inclusivity of existing compression techniques. Keywords: Large Language Model, Multilingual Model Compression}
+}
+
+@inproceedings{kim-etal-2024-pruning,
+  title     = {{Pruning Multilingual Large Language Models for Multilingual Inference}},
+  author    = {Kim, Hwichan  and
+               Suzuki, Jun  and
+               Hirasawa, Tosho  and
+               Komachi, Mamoru},
+  editor    = {Al-Onaizan, Yaser  and
+               Bansal, Mohit  and
+               Chen, Yun-Nung},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},
+  month     = nov,
+  year      = {2024},
+  address   = {Miami, Florida, USA},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.findings-emnlp.580/},
+  doi       = {10.18653/v1/2024.findings-emnlp.580},
+  pages     = {9921--9942},
+  abstract  = {Multilingual large language models (MLLMs), trained on multilingual balanced data, demonstrate better zero-shot learning performance in non-English languages compared to large language models trained on English-dominant data. However, the disparity in performance between English and non-English languages remains a challenge yet to be fully addressed. This study introduces a promising direction for enhancing non-English performance through a specialized pruning approach. Specifically, we prune MLLMs using bilingual sentence pairs from English and other languages and empirically demonstrate that this pruning strategy can enhance the MLLMs' performance in non-English language.}
+}
