@@ -451,9 +451,9 @@ At this stage, a model is served on a target device, which can range from microc
 
 \paragraph{Challenge: Cost of inference \iconenergy{} are not uniform across languages \iconrepresentation{}}
 Several works have shown that inference accounts for a significant share of an LM's total energy consumption across its lifecycle \citep[\textit{inter alia}]{fu-etal-2025-llmco2,adamska2025greenprompting}, with some estimates reaching 90\% \citep{hutt2019inferentia}.
-This has a <some adverb> effect on a device's sustainability across workloads and the model's emissions.
-In the context of multilinguality, the cost of inference is affected by several factors: some models cannot efficiently tokenize other languages, and another reason.
-Aside from ensuring that a model is capable of handling a target language during the development stage (which we discussed in \S\ref{sec:pretraining}-\ref{sec:post_training}), addressing this challenge requires making client-side adjustments once a model is deployed.
+This has a considerable effect on device sustainability and overall emissions.
+Multilinguality exacerbates this cost unevenly: some languages are tokenized less efficiently \citep{ahia2023do,petrov2023language}, requiring more tokens per input, while others demand longer generations to express equivalent content, increasing the number of decoding steps \citep[``Token Tax,''][]{lundin-etal-2026-token}.
+While interventions during development can resolve these issues (\S\ref{sec:pretraining}--\ref{sec:post_training}), addressing this challenge also requires inference-time solutions once a model is deployed.
 
 % From Prompts to Power: Measuring the Energy Footprint of LLM Inference
 % https://arxiv.org/abs/2512.03024
