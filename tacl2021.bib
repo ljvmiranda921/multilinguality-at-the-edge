@@ -2668,27 +2668,6 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   series    = {KDD '24}
 }
 
-@inproceedings{weller-etal-2022-pretrained,
-  title     = {{Pretrained Models for Multilingual Federated Learning}},
-  author    = {Weller, Orion  and
-               Marone, Marc  and
-               Braverman, Vladimir  and
-               Lawrie, Dawn  and
-               Van Durme, Benjamin},
-  editor    = {Carpuat, Marine  and
-               de Marneffe, Marie-Catherine  and
-               Meza Ruiz, Ivan Vladimir},
-  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},
-  month     = jul,
-  year      = {2022},
-  address   = {Seattle, United States},
-  publisher = {Association for Computational Linguistics},
-  url       = {https://aclanthology.org/2022.naacl-main.101/},
-  doi       = {10.18653/v1/2022.naacl-main.101},
-  pages     = {1413--1421},
-  abstract  = {Since the advent of Federated Learning (FL), research has applied these methods to natural language processing (NLP) tasks. Despite a plethora of papers in FL for NLP, no previous works have studied how multilingual text impacts FL algorithms. Furthermore, multilingual text provides an interesting avenue to examine the impact of non-IID text (e.g. different languages) on FL in naturally occurring data. We explore three multilingual language tasks, language modeling, machine translation, and text classification using differing federated and non-federated learning algorithms. Our results show that using pretrained models reduces the negative effects of FL, helping them to perform near or better than centralized (no privacy) learning, even when using non-IID partitioning.}
-}
-
 @misc{beutel2022flowerfriendlyfederatedlearning,
   title         = {{Flower: A Friendly Federated Learning Research Framework}},
   author        = {Daniel J. Beutel and Taner Topal and Akhil Mathur and Xinchi Qiu and Javier Fernandez-Marques and Yan Gao and Lorenzo Sani and Kwing Hei Li and Titouan Parcollet and Pedro Porto Buarque de Gusmão and Nicholas D. Lane},
@@ -4876,4 +4855,54 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   url           = {https://arxiv.org/abs/2510.23949},
   doi           = {10.48550/arXiv.2510.23949},
   note          = {{c}s.CL/2510.23949v1}
+}
+
+@inproceedings{weller-etal-2022-pretrained,
+  title     = {Pretrained Models for Multilingual Federated Learning},
+  author    = {Weller, Orion  and
+               Marone, Marc  and
+               Braverman, Vladimir  and
+               Lawrie, Dawn  and
+               Van Durme, Benjamin},
+  editor    = {Carpuat, Marine  and
+               de Marneffe, Marie-Catherine  and
+               Meza Ruiz, Ivan Vladimir},
+  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},
+  month     = jul,
+  year      = {2022},
+  address   = {Seattle, United States},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2022.naacl-main.101/},
+  doi       = {10.18653/v1/2022.naacl-main.101},
+  pages     = {1413--1421},
+  abstract  = {Since the advent of Federated Learning (FL), research has applied these methods to natural language processing (NLP) tasks. Despite a plethora of papers in FL for NLP, no previous works have studied how multilingual text impacts FL algorithms. Furthermore, multilingual text provides an interesting avenue to examine the impact of non-IID text (e.g. different languages) on FL in naturally occurring data. We explore three multilingual language tasks, language modeling, machine translation, and text classification using differing federated and non-federated learning algorithms. Our results show that using pretrained models reduces the negative effects of FL, helping them to perform near or better than centralized (no privacy) learning, even when using non-IID partitioning.}
+}
+
+@inproceedings{li-etal-2025-multilingual-federated,
+  title     = {{Multilingual Federated Low-Rank Adaptation for Collaborative Content Anomaly Detection across Multilingual Social Media Participants}},
+  author    = {Li, Jiaxin  and
+               Zhao, Geng  and
+               Zhang, Xiaoci},
+  editor    = {Christodoulopoulos, Christos  and
+               Chakraborty, Tanmoy  and
+               Rose, Carolyn  and
+               Peng, Violet},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},
+  month     = nov,
+  year      = {2025},
+  address   = {Suzhou, China},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.emnlp-main.770/},
+  doi       = {10.18653/v1/2025.emnlp-main.770},
+  pages     = {15242--15262},
+  isbn      = {979-8-89176-332-6},
+  abstract  = {Recently, the rapid development of multilingual social media platforms (SNS) exacerbates new challenges in SNS content anomaly detection due to data islands and linguistic imbalance. While federated learning (FL) and parameter-efficient fine-tuning (PEFT) offer potential solutions in most cases, when every client is multilingual, existing solutions struggle with multilingual heterogeneity: 1) entangled language-specific knowledge during aggregation, 2) noise from minority languages, and 3) unstable cross-platform collaboration. Based on the asymmetric nature of LoRA, we propose MuLA-F, a multilingual Federated LoRA introducing SVD-based language-specific disentanglement of LoRA blocks and a local orthogonal tuning strategy. Evaluations across three SNS content anomaly detection tasks demonstrate MuLA-F{'}s superiority in multilingual performance while reducing multilingual knowledge conflicts and communication rounds.}
+}
+
+@inproceedings{zhao2024breaking,
+  title     = {Breaking Physical and Linguistic Borders: Multilingual Federated Prompt Tuning for Low-Resource Languages},
+  author    = {Wanru Zhao and Yihong Chen and Royson Lee and Xinchi Qiu and Yan Gao and Hongxiang Fan and Nicholas Donald Lane},
+  booktitle = {The Twelfth International Conference on Learning Representations},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=zzqn5G9fjn}
 }

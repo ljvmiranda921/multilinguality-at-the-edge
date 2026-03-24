@@ -440,7 +440,8 @@ Addressing this challenge requires performing such activities while reducing (or
 
 \paragraph{Methods}
 Adding capabilities with minimal retraining can be achieved via \textbf{model merging} \citep{yadav-etal-2023-tiesmerging}, which has shown to be effective in multilingual scenarios \citep[\textit{inter alia}]{huang-etal-2024-chat,aakanksha2024mix,tao-etal-2024-unlocking}.
-For removing capabilities, \textbf{machine unlearning} \citep{liu-etal-2025-rethinking} enables a model to forget specific knowledge without full retraining, for example by fine-tuning on synthetic data that overwrites sensitive information \citep{yu2022differentially,yue-etal-2023-synthetic,yu-etal-2024-privacy} or by perfroming model editing at a parameter level \citep{choi-etal-2024-cross,hwang2025uncoveringpotentialrisksunlearning,farashah2026multilingualamnesiatransferabilityunlearning}.
+For removing capabilities, \textbf{machine unlearning} \citep{liu-etal-2025-rethinking} enables a model to forget specific knowledge without full retraining, for example by fine-tuning on synthetic data that overwrites sensitive information \citep{yu2022differentially,yue-etal-2023-synthetic,yu-etal-2024-privacy} or by performing model editing at a parameter level \citep{choi-etal-2024-cross,hwang2025uncoveringpotentialrisksunlearning,farashah2026multilingualamnesiatransferabilityunlearning}.
+\textbf{Federated learning} addresses both directions: it allows distributed clients to collaboratively add language capabilities to a shared model while keeping private data on-device \citep{weller-etal-2022-pretrained}, with work spanning both pretraining \citep{weller-etal-2022-pretrained} and post-training settings \citep{zhao2024breaking,li-etal-2025-multilingual-federated}.
 
 
 
