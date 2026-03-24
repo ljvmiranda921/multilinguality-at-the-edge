@@ -416,13 +416,10 @@ We also group the literature on model compression and merging under this stage.
 This stage is typically less computationally expensive than pretraining, and oftentimes most language communities start development at this stage by finetuning an existing base model.
 
 \paragraph{Challenge 1: Models for finetuning \iconalignment{} tend to be too large to fit into memory \iconmemory{}}
-Since pretraining is often expensive, practitioners resort to finetuning existing open-weight models released in platforms such as HuggingFace \citep{davidson2023aicapabilitiessignificantlyimproved,wolfe-etal-2024-laboratory}.
-However, adapting a pretrained base LM often involves inheriting the architectural decisions made during the pretraining stage.
-If the model size of the base LM goes over the limit of what the target edge device could handle \citep{zheng2025reviewedgeLLM},
-then the resulting model will also be the same.
-Addressing this challenge may involve reducing the size of the final post-trained model, or finding ways to distill the large model's knowledge into a smaller base.
-
-
+Since pretraining is often expensive, practitioners resort to finetuning existing open-weight models released on platforms such as HuggingFace \citep{davidson2023aicapabilitiessignificantlyimproved,wolfe-etal-2024-laboratory}.
+However, adapting a pretrained base LM means inheriting its architectural decisions, including model size.
+If the base LM exceeds the memory constraints of the target edge device \citep{zheng2025reviewedgeLLM}, the finetuned model will as well.
+Addressing this challenge may involve compressing the final post-trained model, or distilling the large model's knowledge into a smaller one.
 
 \paragraph{Methods}
 % \textbf{Model compression} using knowledge distillation, quantization, and ..?
