@@ -4768,3 +4768,24 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {8705--8720},
   abstract  = {Adapting large language models (LLMs) to new languages typically involves continual pre-training (CT) followed by supervised fine-tuning (SFT). However, this CT-then-SFT approach struggles with limited data in the context of low-resource languages, failing to balance language modeling and task-solving capabilities. We thus propose a new model merging solution as an alternative for low-resource languages, combining models with distinct capabilities into a single model without additional training. We use model merging to develop task-solving LLMs for low-resource languages without SFT data in the target languages. Our experiments based on Llama-2-7B demonstrate that model merging effectively endows LLMs for low-resource languages with task-solving abilities, outperforming CT-then-SFT in scenarios with extremely scarce data. Observing performance saturation in model merging with increasingly more training tokens, we further analyze the merging process and introduce a slack variable to the model merging algorithm to mitigate the loss of important parameters, thereby enhancing model performance. We hope that model merging can benefit more human languages suffering from data scarcity with its higher data efficiency.}
 }
+
+@inproceedings{yu2022differentially,
+  title     = {{Differentially Private Fine-tuning of Language Models}},
+  author    = {Da Yu and Saurabh Naik and Arturs Backurs and Sivakanth Gopi and Huseyin A Inan and Gautam Kamath and Janardhan Kulkarni and Yin Tat Lee and Andre Manoel and Lukas Wutschitz and Sergey Yekhanin and Huishuai Zhang},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2022},
+  url       = {https://openreview.net/forum?id=Q42f0dfjECO}
+}
+
+@inproceedings{yu-etal-2024-privacy,
+  author    = {Yu, Da and Kairouz, Peter and Oh, Sewoong and Xu, Zheng},
+  title     = {{Privacy-preserving instructions for aligning large language models}},
+  year      = {2024},
+  publisher = {JMLR.org},
+  abstract  = {Service providers of large language model (LLM) applications collect user instructions in the wild and use them in further aligning LLMs with users' intentions. These instructions, which potentially contain sensitive information, are annotated by human workers in the process. This poses a new privacy risk not addressed by the typical private optimization. To this end, we propose using synthetic instructions to replace real instructions in data annotation and model fine-tuning. Formal differential privacy is guaranteed by generating those synthetic instructions using privately fine-tuned generators. Crucial in achieving the desired utility is our novel filtering algorithm that matches the distribution of the synthetic instructions to that of the real ones. In both supervised fine-tuning and reinforcement learning from human feedback, our extensive experiments demonstrate the high utility of the final set of synthetic instructions by showing comparable results to real instructions. In supervised fine-tuning, models trained with private synthetic instructions outperform leading open-source models such as Vicuna.},
+  booktitle = {Proceedings of the 41st International Conference on Machine Learning},
+  articleno = {2371},
+  numpages  = {27},
+  location  = {Vienna, Austria},
+  series    = {ICML'24}
+}
