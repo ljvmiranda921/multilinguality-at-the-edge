@@ -427,7 +427,9 @@ Compressing a model can happen before, during, or right after the post-training 
 A calibration dataset is used to determine the optimal quantization parameters (e.g., scaling factors and zero points) that minimize the loss of accuracy from reduced precision \citep{williams-aletras-2024-impact}.
 For multilingual models, this process often introduces performance degradation \citep{marchisio-etal-2024-quantization}, which can be mitigated by tailoring calibration datasets that are representative of the target language \citep{chimoto-etal-2026-calibrating,kurz-etal-2026-limitations}.
 \textbf{Knowledge distillation} is another method that transfers the capabilities of a larger LM (teacher) into a smaller LM (student) by training the student to mimic the teacher's behavior.
-Generating synthetic data from the teacher is one approach as discussed in \S\ref{sec:pretraining}, but it's also possible to learn this online.
+Generating synthetic data from the teacher is one approach as discussed in \S\ref{sec:pretraining} (off-policy), but it is also possible to learn this on-the-fly during training---an approach called on-policy distillation \citep[OPD,][]{agarwal2024onpolicydistillationlanguagemodels}.
+However, one problem with OPD is that the tokenizer of the teacher and student should match, so several works have attempted to perform OPD that resolves this restriction.
+
 % \textbf{Model compression} using knowledge distillation, quantization, and ..?
 % \textbf{Quantization} (talk about multilngual calibration,mpretraining and post-training quantization)
 % \textbf{Pruning} (is there multilingual versions of this?)
