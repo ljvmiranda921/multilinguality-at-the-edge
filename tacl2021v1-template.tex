@@ -423,9 +423,9 @@ Addressing this challenge may involve compressing the final post-trained model, 
 
 \paragraph{Methods}
 Compressing a model can happen before, during, or right after the post-training stage.
-\textbf{Quantization} is a common approach, in which a model's weights and activations are quantized into a lower precision.
-A calibration dataset is used in order to...
-In multilinguality, this process often introduce performance degradation \citep{marchisio-etal-2024-quantization}, which can be mitigated by choosing bespoke calibration datasets for the target language.
+\textbf{Quantization} is a common approach that represents a model's weights and activations in lower precision \citep{frantar2023optq,turc2025gguf,lin-etal-2025-awq}.
+A calibration dataset is used to determine the optimal quantization parameters (e.g., scaling factors and zero points) that minimize the loss of accuracy from reduced precision \citep{williams-aletras-2024-impact}.
+For multilingual models, this process often introduces performance degradation \citep{marchisio-etal-2024-quantization}, which can be mitigated by tailoring calibration datasets that are representative of the target language \citep{chimoto-etal-2026-calibrating,kurz-etal-2026-limitations}.
 % \textbf{Model compression} using knowledge distillation, quantization, and ..?
 % \textbf{Quantization} (talk about multilngual calibration,mpretraining and post-training quantization)
 % \textbf{Pruning} (is there multilingual versions of this?)

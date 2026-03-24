@@ -4575,3 +4575,57 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   doi           = {10.48550/arXiv.2512.04844},
   note          = {{c}s.CL/2512.04844v1}
 }
+
+@inproceedings{williams-aletras-2024-impact,
+  title     = {{On the Impact of Calibration Data in Post-training Quantization and Pruning}},
+  author    = {Williams, Miles  and
+               Aletras, Nikolaos},
+  editor    = {Ku, Lun-Wei  and
+               Martins, Andre  and
+               Srikumar, Vivek},
+  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = aug,
+  year      = {2024},
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.acl-long.544/},
+  doi       = {10.18653/v1/2024.acl-long.544},
+  pages     = {10100--10118},
+  abstract  = {Quantization and pruning form the foundation of compression for neural networks, enabling efficient inference for large language models (LLMs). Recently, various quantization and pruning techniques have demonstrated remarkable performance in a post-training setting. They rely upon calibration data, a small set of unlabeled examples that are used to generate layer activations. However, no prior work has systematically investigated how the calibration data impacts the effectiveness of model compression methods. In this paper, we present the first extensive empirical study on the effect of calibration data upon LLM performance. We trial a variety of quantization and pruning methods, datasets, tasks, and models. Surprisingly, we find substantial variations in downstream task performance, contrasting existing work that suggests a greater level of robustness to the calibration data. Finally, we make a series of recommendations for the effective use of calibration data in LLM quantization and pruning.}
+}
+
+@inproceedings{chimoto-etal-2026-calibrating,
+  title     = {{C}alibrating {B}eyond {E}nglish: {L}anguage {D}iversity for {B}etter {Q}uantized {M}ultilingual {LLM}s},
+  author    = {Chimoto, Everlyn Asiko  and
+               Elhoushi, Mostafa  and
+               Bassett, Bruce},
+  editor    = {Demberg, Vera  and
+               Inui, Kentaro  and
+               Marquez, Llu{\'i}s},
+  booktitle = {Proceedings of the 19th Conference of the {E}uropean Chapter of the {A}ssociation for {C}omputational {L}inguistics (Volume 1: Long Papers)},
+  month     = mar,
+  year      = {2026},
+  address   = {Rabat, Morocco},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2026.eacl-long.223/},
+  pages     = {4822--4838},
+  isbn      = {979-8-89176-380-7},
+  abstract  = {Quantization is an effective technique for reducing the storage footprint and computational costs of Large Language Models (LLMs), but it often results in performance degradation. Existing post-training quantization methods typically use small, English-only calibration sets; however, their impact on multilingual models remains underexplored. We systematically evaluate eight calibration settings (five single-language and three multilingual mixes) across two quantizers (GPTQ, AWQ) on data from 10 different languages. Our findings reveal a consistent trend: non-English and multilingual calibration sets significantly improve perplexity compared to English-only baselines. Specifically, we observe notable average perplexity gains across both quantizers on Llama3.1 8B and Qwen2.5 7B, with multilingual mixes achieving the largest overall reductions of up to 3.52 perplexity gain. Furthermore, our analysis indicates that tailoring calibration sets to the evaluation language yields the largest improvements for individual languages, underscoring the importance of linguistic alignment. We also identify specific failure cases where certain language-quantizer combinations degrade performance, which we trace to differences in activation range distributions across languages. These results highlight that static, one-size-fits-all calibration is suboptimal, and that tailoring calibration data, both in language and diversity, plays a crucial role in robustly quantizing multilingual LLMs.}
+}
+
+@article{kurz-etal-2026-limitations,
+  title     = {{On the Limitations of Language-targeted Pruning: Investigating the Calibration Language Impact in Multilingual LLM Pruning}},
+  author    = {Kurz, Simon  and
+               Chen, Jian-Jia  and
+               Flek, Lucie  and
+               Zhao, Zhixue},
+  journal   = {Transactions of the Association for Computational Linguistics},
+  volume    = {14},
+  year      = {2026},
+  address   = {Cambridge, MA},
+  publisher = {MIT Press},
+  url       = {https://aclanthology.org/2026.tacl-1.9/},
+  doi       = {10.1162/tacl.a.599},
+  pages     = {167--192},
+  abstract  = {Recent advances in large language model (LLM) pruning have shown state-of-the-art (SotA) compression results in post-training and retraining-free settings while maintaining high predictive performance. However, previous research mainly considered calibrating based on English text, despite the multilingual nature of modern LLMs and their frequent use in non-English languages. This analysis paper conducts an in-depth investigation of the performance and internal representation changes associated with pruning multilingual language models for monolingual applications. We present the first comprehensive empirical study, comparing different calibration languages for pruning multilingual models across diverse languages, tasks, models, and SotA pruning techniques. We further analyze the latent subspaces, pruning masks, and individual neurons within pruned models. Our results reveal that while calibration on the target language effectively retains perplexity and yields high signal-to-noise ratios, it does not consistently improve downstream task performance. Further analysis of internal representations at three different levels highlights broader limitations of current pruning approaches: While they effectively preserve dominant information like language-specific features, this is insufficient to counteract the loss of nuanced, language-agnostic features that are crucial for knowledge retention and reasoning.}
+}
