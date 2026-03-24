@@ -22,6 +22,7 @@
 \usepackage{comment}
 \usepackage{lipsum}
 \usepackage[edges]{forest}
+\usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{tcolorbox}
 \usepackage{subcaption}
@@ -105,7 +106,7 @@ TACL-submission anonymization requirements)}
   Studying these two fields together is both a \textit{need}, as linguistically diverse communities often face the most severe infrastructure constraints, and an \textit{opportunity}, as edge and multilingual NLP research remain largely siloed.
   In this work, we survey \numpapers{} papers that tackle this problem across the language modelling pipeline, from data collection to development and deployment.
   We also discuss open questions and provide actionable recommendations for different stakeholders in the NLP ecosystem.
-  Finally, we hope that this work contributes to the development of equitable and inclusive language technologies.
+  Finally, we hope that this work contributes to the development of equitable language technologies.
 \end{abstract}
 
 \section{Introduction}
@@ -166,7 +167,7 @@ Tackling the problems of efficiency or multilinguality in isolation has merit, b
 For example, research on model compression has largely focused on English, with several studies observing degradation in multilingual performance as models are made smaller \citep{ogueji-etal-2022-intriguing,mohammadshahi-etal-2022-compressed,marchisio-etal-2024-quantization}.
 Similarly, multilingual scaling laws \citep{longpre2025atlasadaptivetransferscaling,he-etal-2025-scaling} reveal a power-law relationship between multilingual performance and model scale, suggesting that smaller, more deployable models may struggle with low-resource languages.
 Approaching these lines of work in tandem is important, as \citet{ahia-etal-2021-low-resource} argue that language communities face constraints not only in terms of data, but also of compute (the ``low-resource double bind'').
-This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resourceness'' pertains to technology inasmuch as data.
+This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resourceness'' pertains to technology as much as data.
 Building on these insights, we then ask: \textit{``how can we develop language technologies and deploy them nearest to the communities that need them the most?''}
 
 We call this challenge as the \textit{last mile}, which refers to the intersection of multilinguality and edge deployment,
@@ -303,7 +304,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 The amount of memory in a device limits what LMs can be loaded and served.
 It is also relevant during finetuning, where it constrains the size of a training batch.
 In practice, a model's size (measured in number of parameters) and numerical precision jointly determine whether it can be loaded into memory.
-For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobileLM}, yet even a 7B-parameter model in half precision already requires over 8\,GB.
+For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobileLLM}, yet even a 7B-parameter model in half precision already requires over 8\,GB.
 
 \paragraph{\iconcompute{} Compute}
 The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
