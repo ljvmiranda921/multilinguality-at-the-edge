@@ -432,6 +432,8 @@ Generating synthetic data from the teacher is one approach as discussed in \S\re
 However, OPD typically requires the teacher and student to share the same tokenizer, and several works have attempted to address this restriction \citep{gholami-etal-2024-gold,minixhofer2025universal,boizard2025towards}.
 
 \paragraph{Challenge 2: Adding or removing capabilities \iconalignment{} requires expensive retraining \iconcompute{}}
+If the existing base model starting point lacks capabilities or has extraneous knowledge it learned during pretraining,
+then the naive approach is to perform retraining from scratch, which might consume a lot of resources.
 % \ljm{\lipsum[1]}
 
 
