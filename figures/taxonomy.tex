@@ -28,16 +28,16 @@
   [{\rotatebox{90}{\textsc{Multilingual Edge LLMs}}}, fill=white, minimum height=1.5em, minimum width=0em, name=tier1
     [\textbf{Data Collection} (\S\ref{sec:data_collection}), fill=clightgreen, for descendants={fill=clightgreen}, name=tier2
       [Limited capacity \iconmemory{} constrains language coverage and robustness to noise \icondata{}, name=tier3
-        [\textbf{Vocabulary sharing}: \citet{yuan-etal-2024-vocabulary,li2025rethinking}, name=tier4]
+        [\textbf{Data curation and filtering}: \citet{lignos-etal-2022-toward,ali-etal-2025-judging,shen2025dcad,langlais2026common,datologyai2026uberwebinsightsmultilingualcuration}]
         [\textbf{Synthetic data generation}: \citet{pombal2025mprometheus,mora2025artaskingmultilingualprompt,anugraha2026mr3multilingualrubricagnosticreward,chitale2026updeshsynthesizinggroundedinstruction}]
-        [\textbf{Data curation and filtering}: \citet{lignos-etal-2022-toward,ali-etal-2025-judging,shen2025dcad,langlais2025commoncorpuslargestcollection,datologyai2026uberwebinsightsmultilingualcuration}]
+        [\textbf{Vocabulary sharing}: \citet{yuan-etal-2024-vocabulary,li2025rethinking}, name=tier4]
         [\textbf{Noisy labels}: \citet{jin-etal-2021-instance,wang-etal-2023-noise,wu-etal-2023-noisywikihow}]
       ]
     ]
     [\textbf{Pretraining} (\S\ref{sec:pretraining}), fill=cjudgeyellow!25, for descendants={fill=cjudgeyellow!25}
-      [Multilingual performance scales with model size \iconrepresentation{}{,} which is limited in edge devices \iconcompute{}
-        [\textbf{Tokenizer design}]
-        [\textbf{Architecture design}]
+      [Multilingual performance scales with model size \iconrepresentation{}{,} which is limited in edge devices \iconmemory{}
+        [\textbf{Tokenizer design}: \citet{petrov2023language,ali-etal-2024-tokenizer,yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage}]
+        [\textbf{Continual pretraining}: \citet{kim2024efficienteffectivevocabularyexpansion,cui2024efficienteffectivetextencoding,elhady-etal-2025-emergent,li2025rethinking}]
       ]
       [Multilinguality adds complexity beyond task and domain \iconrepresentation{}{,} straining edge compute \iconcompute{}
         [\textbf{Parameter-efficient methods}: \citet{pfeiffer-etal-2020-mad,pfeiffer-etal-2021-unks,pfeiffer-etal-2022-lifting,parovic-etal-2023-cross,whitehouse-etal-2024-low,dong-etal-2025-mlas,zhan-etal-2024-prefix}]
@@ -45,13 +45,14 @@
       ]
     ]
     [\textbf{Post-training} (\S\ref{sec:post_training}), fill=clightpurple, for descendants={fill=clightpurple}
-      [Challenge 1
-        [Work A]
-        [Work B]
+      [Base models for finetuning \iconalignment{} tend to be too large to fit into device memory \iconmemory{}
+        [\textbf{Model Compression}: \citet{frantar2023optq,lin-etal-2025-awq,zeng-etal-2024-multilingual,kim-etal-2024-pruning,chimoto-etal-2026-calibrating,kurz-etal-2026-limitations}]
+        [\textbf{Knowledge Distillation}: \citet{agarwal2024onpolicydistillationlanguagemodels,gholami-etal-2024-gold,minixhofer2025universal,boizard2025towards}]
       ]
-      [Challenge 2
-        [Work A]
-        [Work B]
+      [Adding/removing capabilities \iconalignment{} requires expensive retraining \iconcompute{}
+        [\textbf{Model Merging}: \citet{yadav-etal-2023-tiesmerging,huang-etal-2024-chat,aakanksha2024mix,tao-etal-2024-unlocking}]
+        [\textbf{Machine Unlearning}: \citet{liu-etal-2025-rethinking,choi-etal-2024-cross,hwang2025uncoveringpotentialrisksunlearning,farashah2026multilingualamnesiatransferabilityunlearning}]
+        [\textbf{Federated Learning}: \citet{weller-etal-2022-pretrained,zhao2024breaking,li-etal-2025-multilingual-federated}]
       ]
     ]
     [\textbf{Inference} (\S\ref{sec:inference}), fill=clightcherry, for descendants={fill=clightcherry}
@@ -59,17 +60,9 @@
         [Work A]
         [Work B]
       ]
-      [Challenge 2
-        [Work A]
-        [Work B]
-      ]
     ]
     [\textbf{Evaluation} (\S\ref{sec:evaluation}), fill=cslate1, for descendants={fill=cslate1}
       [Challenge 1
-        [Work A]
-        [Work B]
-      ]
-      [Challenge 2
         [Work A]
         [Work B]
       ]

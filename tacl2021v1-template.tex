@@ -22,6 +22,7 @@
 \usepackage{comment}
 \usepackage{lipsum}
 \usepackage[edges]{forest}
+\usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{tcolorbox}
 \usepackage{subcaption}
@@ -87,7 +88,8 @@ TACL-submission anonymization requirements)}
   % A Survey of Methods and Challenges at the Last Mile of NLP
   % The Last Mile: The State of Multilinguality at the Edge
   % Multilinguality at the Edge: A Survey of the Last Mile of NLP
-  The Last Mile: A Survey of Multilinguality at the Edge
+  %The Last Mile: A Survey of Multilinguality at the Edge
+  A Survey of Multilinguality at the Edge
 }
 
 \input{authors.tex}
@@ -105,7 +107,7 @@ TACL-submission anonymization requirements)}
   Studying these two fields together is both a \textit{need}, as linguistically diverse communities often face the most severe infrastructure constraints, and an \textit{opportunity}, as edge and multilingual NLP research remain largely siloed.
   In this work, we survey \numpapers{} papers that tackle this problem across the language modelling pipeline, from data collection to development and deployment.
   We also discuss open questions and provide actionable recommendations for different stakeholders in the NLP ecosystem.
-  Finally, we hope that this work contributes to the development of equitable and inclusive language technologies.
+  Finally, we hope that this work contributes to the development of equitable language technologies.
 \end{abstract}
 
 \section{Introduction}
@@ -166,7 +168,7 @@ Tackling the problems of efficiency or multilinguality in isolation has merit, b
 For example, research on model compression has largely focused on English, with several studies observing degradation in multilingual performance as models are made smaller \citep{ogueji-etal-2022-intriguing,mohammadshahi-etal-2022-compressed,marchisio-etal-2024-quantization}.
 Similarly, multilingual scaling laws \citep{longpre2025atlasadaptivetransferscaling,he-etal-2025-scaling} reveal a power-law relationship between multilingual performance and model scale, suggesting that smaller, more deployable models may struggle with low-resource languages.
 Approaching these lines of work in tandem is important, as \citet{ahia-etal-2021-low-resource} argue that language communities face constraints not only in terms of data, but also of compute (the ``low-resource double bind'').
-This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resourceness'' pertains to technology inasmuch as data.
+This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resourceness'' pertains to technology as much as data.
 Building on these insights, we then ask: \textit{``how can we develop language technologies and deploy them nearest to the communities that need them the most?''}
 
 We call this challenge as the \textit{last mile}, which refers to the intersection of multilinguality and edge deployment,
@@ -179,7 +181,7 @@ For each stage, we describe how the constraints of edge deployment (\ref{sec:edg
 % Although we've been seeing LM releases that jointly address the \textit{last mile},%(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
 Our desideratum is to stimulate more work at this intersection of multilingual and edge NLP,
 and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
-Finally, we hope that this work contributes to the development of equitable and inclusive language technologies.
+Finally, we hope that this work contributes to the development of equitable language technologies.
 
 % In this work, we survey \numpapers{} methods, techniques, and challenges that tackle the development of multilingual LMs that can be deployed at the edge.
 % We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
@@ -201,7 +203,7 @@ In total, we obtain \numpapers{} papers.
 First, we gather studies from peer-reviewed academic papers in $^\star$CL (e.g., ACL/EMNLP/TACL) and machine learning venues (e.g. NeurIPS/ICLR/TMLR) using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
 Our search query includes keywords pertaining to multilingual NLP, efficiency, and LM deployment (\autoref{fig:search_keywords}).
 This step resulted in 2,473 papers.
-We further screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published last year (2025) should have at least 3.
+We screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published in 2025 should have at least 3.
 
 \paragraph{Filtering and Annotation}
 For each work, we perform human and LM-assisted filtering and annotation to identify key attributes such as the work's
@@ -303,7 +305,7 @@ Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM},
 The amount of memory in a device limits what LMs can be loaded and served.
 It is also relevant during finetuning, where it constrains the size of a training batch.
 In practice, a model's size (measured in number of parameters) and numerical precision jointly determine whether it can be loaded into memory.
-For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobileLM}, yet even a 7B-parameter model in half precision already requires over 8\,GB.
+For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobileLLM}, yet even a 7B-parameter model in half precision already requires over 8\,GB.
 
 \paragraph{\iconcompute{} Compute}
 The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
@@ -364,11 +366,11 @@ Addressing this challenge requires maximizing language coverage without sacrific
 Getting the right mixture of languages in the training dataset is effective for mitigating this challenge.
 Several approaches leverage \textbf{vocabulary sharing}, i.e.,  selecting languages for the data mix based on whether their inclusion boosts the performance of other languages \citep[\textit{inter alia}]{yuan-etal-2024-vocabulary,li2025rethinking}.
 \textbf{Synthetic data generation} can also induce an optimal mixture:
-by choosing a strong teacher model \ljm{(Miranda et al., 2026)},
+by choosing a strong teacher model,% \ljm{(Miranda et al., 2026)},
 crafting prompts \citep{mora2025artaskingmultilingualprompt},
 and performing quality validation \citep{anugraha2026mr3multilingualrubricagnosticreward,pombal2025mprometheus},
 one can produce high-quality training data for small multilingual models \citep{devine2026kakugodistillationlowresourcelanguages,kim2026dataefficientpretrainingscalingsynthetic}.
-\textbf{Data curation and filtering} remains a reliable and high-leverage intervention that involves careful filtering, deduplication, and quality control of multilingual web corpora \citep{kuduguntua-etal-2023-madlad400,langlais2025commoncorpuslargestcollection,datologyai2026uberwebinsightsmultilingualcuration},
+\textbf{Data curation and filtering} remains a reliable and high-leverage intervention that involves careful filtering, deduplication, and quality control of multilingual web corpora \citep{kuduguntua-etal-2023-madlad400,langlais2026common,datologyai2026uberwebinsightsmultilingualcuration},
 adapted to multilingual contexts \citep{ali-etal-2025-judging,shen2025dcad} and common data sources such as Wikipedia \citep{lignos-etal-2022-toward}.
 When working with low-resource annotation pipelines, handling \textbf{noisy labels} through noise-robust training methods is also effective \citep{jin-etal-2021-instance,wang-etal-2023-noise,wu-etal-2023-noisywikihow}.
 These methods are largely data-centric; in \S\ref{sec:pretraining}, we discuss how this challenge can also be addressed by expanding the model's capacity.
@@ -389,11 +391,9 @@ Addressing this challenge requires careful tradeoffs: for instance, some approac
 
 \paragraph{Methods}
 Model parameter sizes (e.g., 7B, 32B, 70B) are largely set by design choices prior to pretraining \citep{kaplan2020scalinglawsneurallanguage}, but there are ways to ensure that a fixed parameter budget still supports strong multilingual performance.
-\ljm{
-  \textbf{Tokenizer design}
-  \textbf{Knowledge distillation} has a pretraining version
-  \textbf{Continual pretraining}
-}
+One is through \textbf{tokenizer design}: choices such subword allocation \citep{petrov2023language,ali-etal-2024-tokenizer} and byte-level encoding \citep{yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage} affect how a fixed model represents diverse languages.
+Another is \textbf{continual pretraining}, which involves vocabulary expansion \citep{kim2024efficienteffectivevocabularyexpansion,cui2024efficienteffectivetextencoding} and further training on target-language data to adapt an existing model to new languages \citep{elhady-etal-2025-emergent,li2025rethinking} without retraining from scratch.
+The latter has been a common approach in most regional LMs such as in Southeast Asian \citep{ng2025sealionsoutheastasianlanguages} and Japanese \citep{fujii2024continual} languages.
 
 \paragraph{Challenge 2: Multilinguality adds complexity beyond task and domain \iconrepresentation{}, straining edge compute \iconcompute{}}
 Language models must already capture variation across tasks and domains.
@@ -405,11 +405,9 @@ This is particularly problematic on edge devices, where mobile GPUs peak at 2--6
 \paragraph{Methods}
 Minimizing an LM's compute footprint while retaining performance often involves architectural modifications or training strategies beyond the standard dense model.
 \textbf{Parameter-efficient methods} have been applied in multilingual settings across a variety of languages and tasks.
-These involve techniques such as adapters \citep{houlsby-etal-2019-parameter,pfeiffer-etal-2020-mad,pfeiffer-etal-2021-unks,pfeiffer-etal-2022-lifting,parovic-etal-2023-cross}, LoRA \citep{hu2022lora,whitehouse-etal-2024-low,dong-etal-2025-mlas}, and prefix tuning \citep{li-liang-2021-prefix,zhan-etal-2024-prefix}.
+These involve techniques such as adapters \citep{houlsby-etal-2019-parameter,pfeiffer-etal-2020-mad,pfeiffer-etal-2021-unks,pfeiffer-etal-2022-lifting,parovic-etal-2023-cross}, LoRA \citep{hu2022lora,whitehouse-etal-2024-low,dong-etal-2025-mlas,owodunni2025continuallyaddingnewlanguages}, and prefix tuning \citep{li-liang-2021-prefix,zhan-etal-2024-prefix}.
 Architectural interventions such as \textbf{language experts} have also been explored, where strong monolingual LMs are trained and combined through gating \citep{blevins-etal-2024-breaking,li-etal-2025-group} or routing \citep{zhao2024sparse,bandarkar2026multilingualroutingmixtureofexperts}.
-Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving model capacity.
-
-
+Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving capacity.
 
 
 \subsection{Post-training}
@@ -419,37 +417,59 @@ A base model is further adapted toward specific capabilities through techniques 
 We also group the literature on model compression and merging under this stage.
 This stage is typically less computationally expensive than pretraining, and oftentimes most language communities start development at this stage by finetuning an existing base model.
 
-\paragraph{Challenge 1}
-\ljm{\lipsum[1]}
-
-
-\paragraph{Methods}
-\ljm{\lipsum[1]}
-
-\paragraph{Challenge 2}
-\ljm{\lipsum[1]}
+\paragraph{Challenge 1: Models for finetuning \iconalignment{} tend to be too large to fit into memory \iconmemory{}}
+Since pretraining is often expensive, practitioners resort to finetuning existing open-weight models released on platforms such as HuggingFace \citep{davidson2023aicapabilitiessignificantlyimproved,wolfe-etal-2024-laboratory}.
+However, adapting a pretrained base LM means inheriting its architectural decisions, including model size.
+If the base LM exceeds the memory constraints of the target edge device \citep{zheng2025reviewedgeLLM}, the finetuned model will as well.
+Addressing this may involve compressing the final post-trained model, or distilling the large model's knowledge into a smaller one.
 
 \paragraph{Methods}
-\ljm{\lipsum[1]}
+Compressing a model can happen before, during, or right after the post-training stage.
+\textbf{Model compression} attempts to reduce the size of a model while retaining its capabilities.
+This can be achieved through quantization \citep{frantar2023optq,lin-etal-2025-awq}, which expresses model weights in lower precision, or
+pruning, which removes redundant weights from the network \citep{zeng-etal-2024-multilingual,kim-etal-2024-pruning}.
+Both methods rely on a calibration dataset to guide the compression process, and several works find that tailoring this dataset to the target language is important for preserving multilingual performance \citep{chimoto-etal-2026-calibrating,kurz-etal-2026-limitations}.
+\textbf{Knowledge distillation} is another method that transfers the capabilities of a larger LM (teacher) into a smaller LM (student) by training the student to mimic the teacher's behavior.
+Generating synthetic data from the teacher is one approach as discussed in \S\ref{sec:pretraining} (off-policy), but it is also possible to learn this on-the-fly during training---an approach called on-policy distillation \citep[OPD,][]{agarwal2024onpolicydistillationlanguagemodels}.
+However, OPD typically requires the teacher and student to share the same tokenizer, and several works have attempted to address this restriction \citep{gholami-etal-2024-gold,minixhofer2025universal,boizard2025towards}.
 
+\paragraph{Challenge 2: Adding or removing capabilities \iconalignment{} requires expensive retraining \iconcompute{}}
+If the base model lacks desired capabilities or retains extraneous knowledge from pretraining,
+the naive approach is to retrain from scratch, which can be expensive on resource-constrained hardware.
+Adding capabilities, such as support for a new language, is the more obvious case.
+However, removing capabilities is also important: for example, on-device models may need to unlearn sensitive or private information from pretraining to comply with data regulations or to free up capacity \citep{habernal-etal-2023-privacy}.
+Addressing this challenge requires performing such activities while reducing (or fully-eliminating) training costs.
+
+\paragraph{Methods}
+Adding capabilities with minimal retraining can be achieved via \textbf{model merging} \citep{yadav-etal-2023-tiesmerging}, which has shown to be effective in multilingual scenarios \citep[\textit{inter alia}]{huang-etal-2024-chat,aakanksha2024mix,tao-etal-2024-unlocking}.
+For removing capabilities, \textbf{machine unlearning} \citep{liu-etal-2025-rethinking} enables a model to forget specific knowledge without full retraining, for example by fine-tuning on synthetic data that overwrites sensitive information \citep{yu2022differentially,yue-etal-2023-synthetic,yu-etal-2024-privacy} or by performing model editing at a parameter level \citep{choi-etal-2024-cross,hwang2025uncoveringpotentialrisksunlearning,farashah2026multilingualamnesiatransferabilityunlearning}.
+\textbf{Federated learning} addresses both directions: it allows distributed clients to collaboratively add language capabilities to a shared model while keeping private data on-device.
+While initial work explored this in the pretraining setting \citep{weller-etal-2022-pretrained}, federated approaches are particularly suited to post-training, where community-held data can be used to finetune or align a base model without requiring centralized collection \citep{zhao2024breaking,li-etal-2025-multilingual-federated}.
 
 \subsection{Inference}
 \label{sec:inference}
 
-At this stage, a model is served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
+At this stage, a model is served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of device capabilities.
 
-\paragraph{Challenge 1}
-\ljm{\lipsum[1]}
+\paragraph{Challenge: Cost of inference \iconenergy{} is not uniform across languages \iconrepresentation{}}
+Several works have shown that inference accounts for a significant share of an LM's total energy consumption across its lifecycle \citep[\textit{inter alia}]{fu-etal-2025-llmco2,adamska2025greenprompting}, with some estimates reaching 90\% \citep{hutt2019inferentia}.
+This has a considerable effect on device sustainability and overall emissions.
+The length of a model's output has a directly proportional contribution to this cost \citep{jegham2025hungryaibenchmarkingenergy}, which in multilingual contexts, is affected by how efficient a model tokenizes a language \citep{rust-etal-2021-good,ahia2023do,petrov2023language}.
+Since a model might tokenize languages differently, a ``token tax'' \citep{lundin-etal-2026-token} is often accrued per query.
+While interventions during development can resolve these issues (\S\ref{sec:pretraining}--\ref{sec:post_training}), addressing this challenge also requires inference-time solutions once a model is deployed.
+
+% From Prompts to Power: Measuring the Energy Footprint of LLM Inference
+% https://arxiv.org/abs/2512.03024
 
 \paragraph{Methods}
 \ljm{\lipsum[1]}
 
 
-\paragraph{Challenge 1}
-\ljm{\lipsum[1]}
+% \paragraph{Challenge 1}
+% \ljm{\lipsum[1]}
 
-\paragraph{Methods}
-\ljm{\lipsum[1]}
+% \paragraph{Methods}
+% \ljm{\lipsum[1]}
 
 
 % The resulting model is then served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
@@ -473,6 +493,14 @@ Finally, model performance is measured across a variety of capabilities and doma
 \paragraph{Development in the Edge}
 Throughout this work, we assume that models are developed in a resource-rich environment such as a university research cluster \citep{khandelwal2025k} or frontier laboratory, and then deployed to the edge.
 However, development can also happen on the edge itself, which presents additional challenges in terms of compute access, alongside constraints in data availability and expertise.
+
+
+\paragraph{Future Outlook}
+
+
+\paragraph{Recommendations for Stakeholders}
+
+% distribution of constraints, where do they usually happen
 
 % \paragraph{Future Work}
 
