@@ -180,7 +180,7 @@ For each stage, we describe how the constraints of edge deployment (\ref{sec:edg
 % Although we've been seeing LM releases that jointly address the \textit{last mile},%(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
 Our desideratum is to stimulate more work at this intersection of multilingual and edge NLP,
 and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
-Finally, we hope that this work contributes to the development of equitable and inclusive language technologies.
+Finally, we hope that this work contributes to the development of equitable language technologies.
 
 % In this work, we survey \numpapers{} methods, techniques, and challenges that tackle the development of multilingual LMs that can be deployed at the edge.
 % We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
@@ -202,7 +202,7 @@ In total, we obtain \numpapers{} papers.
 First, we gather studies from peer-reviewed academic papers in $^\star$CL (e.g., ACL/EMNLP/TACL) and machine learning venues (e.g. NeurIPS/ICLR/TMLR) using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
 Our search query includes keywords pertaining to multilingual NLP, efficiency, and LM deployment (\autoref{fig:search_keywords}).
 This step resulted in 2,473 papers.
-We further screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published last year (2025) should have at least 3.
+We screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published in 2025 should have at least 3.
 
 \paragraph{Filtering and Annotation}
 For each work, we perform human and LM-assisted filtering and annotation to identify key attributes such as the work's
@@ -406,7 +406,7 @@ Minimizing an LM's compute footprint while retaining performance often involves 
 \textbf{Parameter-efficient methods} have been applied in multilingual settings across a variety of languages and tasks.
 These involve techniques such as adapters \citep{houlsby-etal-2019-parameter,pfeiffer-etal-2020-mad,pfeiffer-etal-2021-unks,pfeiffer-etal-2022-lifting,parovic-etal-2023-cross}, LoRA \citep{hu2022lora,whitehouse-etal-2024-low,dong-etal-2025-mlas,owodunni2025continuallyaddingnewlanguages}, and prefix tuning \citep{li-liang-2021-prefix,zhan-etal-2024-prefix}.
 Architectural interventions such as \textbf{language experts} have also been explored, where strong monolingual LMs are trained and combined through gating \citep{blevins-etal-2024-breaking,li-etal-2025-group} or routing \citep{zhao2024sparse,bandarkar2026multilingualroutingmixtureofexperts}.
-Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving model capacity.
+Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving capacity.
 
 
 \subsection{Post-training}
@@ -420,7 +420,7 @@ This stage is typically less computationally expensive than pretraining, and oft
 Since pretraining is often expensive, practitioners resort to finetuning existing open-weight models released on platforms such as HuggingFace \citep{davidson2023aicapabilitiessignificantlyimproved,wolfe-etal-2024-laboratory}.
 However, adapting a pretrained base LM means inheriting its architectural decisions, including model size.
 If the base LM exceeds the memory constraints of the target edge device \citep{zheng2025reviewedgeLLM}, the finetuned model will as well.
-Addressing this challenge may involve compressing the final post-trained model, or distilling the large model's knowledge into a smaller one.
+Addressing this may involve compressing the final post-trained model, or distilling the large model's knowledge into a smaller one.
 
 \paragraph{Methods}
 Compressing a model can happen before, during, or right after the post-training stage.
@@ -437,7 +437,7 @@ If the base model lacks desired capabilities or retains extraneous knowledge fro
 the naive approach is to retrain from scratch, which can be expensive on resource-constrained hardware.
 Adding capabilities, such as support for a new language, is the more obvious case.
 However, removing capabilities is also important: for example, on-device models may need to unlearn sensitive or private information from pretraining to comply with data regulations or to free up capacity \citep{habernal-etal-2023-privacy}.
-Addressing this challenge requires performing such activities while reducing (or fully-eliminating) the cost of training.
+Addressing this challenge requires performing such activities while reducing (or fully-eliminating) training costs.
 
 \paragraph{Methods}
 Adding capabilities with minimal retraining can be achieved via \textbf{model merging} \citep{yadav-etal-2023-tiesmerging}, which has shown to be effective in multilingual scenarios \citep[\textit{inter alia}]{huang-etal-2024-chat,aakanksha2024mix,tao-etal-2024-unlocking}.
