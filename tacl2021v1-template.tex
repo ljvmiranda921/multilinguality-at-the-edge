@@ -434,7 +434,9 @@ However, OPD typically requires the teacher and student to share the same tokeni
 \paragraph{Challenge 2: Adding or removing capabilities \iconalignment{} requires expensive retraining \iconcompute{}}
 If the base model lacks desired capabilities or retains extraneous knowledge from pretraining,
 the naive approach is to retrain from scratch, which can be expensive on resource-constrained hardware.
-% \ljm{\lipsum[1]}
+Adding capabilities, such as support for a new language, is the more obvious case.
+However, removing capabilities is also important: for example, on-device models may need to unlearn sensitive or private information from pretraining to comply with data regulations or to free up capacity \citep{habernal-etal-2023-privacy}.
+Addressing this challenge requires performing such activities while reducing (or fully-eliminating) the cost of training.
 
 
 
