@@ -422,12 +422,16 @@ If the base LM exceeds the memory constraints of the target edge device \citep{z
 Addressing this challenge may involve compressing the final post-trained model, or distilling the large model's knowledge into a smaller one.
 
 \paragraph{Methods}
+Compressing a model can happen before, during, or right after the post-training stage.
+\textbf{Quantization} is a common approach, in which a model's weights and activations are quantized into a lower precision.
+A calibration dataset is used in order to...
+In multilinguality, this process often introduce performance degradation \citep{marchisio-etal-2024-quantization}, which can be mitigated by choosing bespoke calibration datasets for the target language.
 % \textbf{Model compression} using knowledge distillation, quantization, and ..?
-\textbf{Quantization} (talk about multilngual calibration,mpretraining and post-training quantization)
-\textbf{Pruning} (is there multilingual versions of this?)
-\textbf{Knowledge distillation} (talk about blackbox and whitebox, we discussed blackbox in an earlier section)
-\textbf{Model Merging} (there should be some works re: this from Aya)
-\ljm{\lipsum[1]}
+% \textbf{Quantization} (talk about multilngual calibration,mpretraining and post-training quantization)
+% \textbf{Pruning} (is there multilingual versions of this?)
+% \textbf{Knowledge distillation} (talk about blackbox and whitebox, we discussed blackbox in an earlier section)
+% \textbf{Model Merging} (there should be some works re: this from Aya)
+% \ljm{\lipsum[1]}
 
 \paragraph{Challenge 2}
 \ljm{\lipsum[1]}
