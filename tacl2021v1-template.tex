@@ -426,7 +426,7 @@ This stage is typically less computationally expensive than pretraining, and oft
 Since pretraining is often expensive, practitioners resort to finetuning existing open-weight models released on platforms such as HuggingFace \citep{davidson2023aicapabilitiessignificantlyimproved,wolfe-etal-2024-laboratory}.
 However, adapting a pretrained base LM means inheriting its architectural decisions, including model size.
 If the base LM exceeds the memory constraints of the target edge device \citep{zheng2025reviewedgeLLM}, the finetuned model will as well.
-Addressing this may involve compressing the final post-trained model, or distilling the large model's knowledge into a smaller one.
+Addressing this may involve compressing the post-trained model, or distilling the large model's knowledge into a smaller one.
 
 \paragraph{Methods}
 Compressing a model can happen before, during, or right after the post-training stage.
