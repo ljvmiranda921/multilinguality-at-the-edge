@@ -290,11 +290,11 @@ OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
 In general, we identify five main stages: Data Collection, Pretraining, Post-training, Inference, and Evaluation.
 We describe each step in \S\ref{sec:survey}.
-We note the LM pipeline is organized in a linear fashion for simplicity.
-In practice, development and deployment decisions overlap one another, an LM developer might:
-skip pretraining and start with an open-weight base model or
+We note that the LM pipeline is organized linearly for simplicity.
+In practice, development and deployment decisions often overlap: an LM developer might
+skip pretraining and start from an open-weight base model, or
 evaluate iteratively during development before deploying a model for inference.
-Our survey of challenges and methods recognize this fact and reflect these nuances whenever appropriate.
+Our survey of challenges and methods recognizes this and reflects these nuances whenever appropriate.
 % The design choices made at each stage jointly determine how well a model serves multilingual communities on constrained hardware.
 
 \subsection{The Constraints the Edge Demands}
