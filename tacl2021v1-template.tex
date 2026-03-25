@@ -89,7 +89,8 @@ TACL-submission anonymization requirements)}
   % The Last Mile: The State of Multilinguality at the Edge
   % Multilinguality at the Edge: A Survey of the Last Mile of NLP
   %The Last Mile: A Survey of Multilinguality at the Edge
-  A Survey of Multilinguality at the Edge
+  % A Survey of Multilinguality at the Edge
+  Multilinguality at the Edge
 }
 
 \input{authors.tex}
@@ -289,7 +290,11 @@ OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
 In general, we identify five main stages: Data Collection, Pretraining, Post-training, Inference, and Evaluation.
 We describe each step in \S\ref{sec:survey}.
-
+We note that the LM pipeline is organized linearly for simplicity.
+In practice, development and deployment decisions often overlap: an LM developer might
+skip pretraining and start from an open-weight base model, or
+evaluate iteratively during development before deploying a model for inference.
+Our survey of challenges and methods recognizes this and reflects these nuances whenever appropriate.
 % The design choices made at each stage jointly determine how well a model serves multilingual communities on constrained hardware.
 
 \subsection{The Constraints the Edge Demands}
@@ -299,7 +304,7 @@ In this work, we define the \textit{Edge} as the deployment setting that imposes
 The edge typically involve commodity hardware such as mobile phones and laptops, and sometimes even microcontroller devices.
 Edge research is relevant because much of the Global South is constrained in digital infrastructure \citep{GSMA2025MobileEconomy,occhini2026artificialintelligencecreatingnew}, and the usual routes for deploying LMs, such as using high-end GPUs or cloud services, are often inaccessible.
 Successful edge deployment has been seen in domains such as healthcare \citep{hu-etal-2025-nlp-public-health-africa,rutunda2026LLMfrontline}, agriculture \citep{singh2024farmerchatscalingaipoweredagricultural,samuel2025agroLLMconnectingfarmersagricultural}, and law \citep{ariai-etal-2025-nlp-legal-domain}.
-Based on \citet{treviso-etal-2023-efficient} and \citet{zheng2025reviewedgeLLM}, we identify \textbf{constraints} for effective Edge LM deployment.
+Based on \citet{treviso-etal-2023-efficient}, \citet{lu-etal-2025-demystifying}, and \citet{zheng2025reviewedgeLLM}, we identify \textbf{constraints} for effective Edge LM deployment.
 
 \paragraph{\iconmemory{} Memory}
 The amount of memory in a device limits what LMs can be loaded and served.
@@ -360,7 +365,7 @@ a phenomenon often dubbed the curse of multilinguality \citep[\textit{inter alia
 Regional multilingual models may cover 10--20 languages \citep{pava2025mind}, such as SEA-LION \citep{ng2025sealionsoutheastasianlanguages} for Southeast Asia or Updesh \citep{chitale2026updeshsynthesizinggroundedinstruction} for Indic languages, yet scaling further risks degrading per-language quality.
 Second, this limited capacity renders a model more sensitive to noise \citep{havrilla2024understandingeffectnoiseLLM}, and low-resource languages suffer from this exact problem \citep{kreutzer-etal-2022-quality},
 as noise manifests in both pretraining \citep{chen2024understanding,longpre-etal-2024-pretrainers} and post-training \citep{ijcai2024p403,zhu-etal-2024-fine} data.
-Addressing this challenge requires maximizing language coverage without sacrificing per-language quality, given a fixed parameter budget.
+Addressing this challenge requires, given a fixed parameter budget, maximizing language coverage without sacrificing data quality.
 
 \paragraph{Methods}
 Getting the right mixture of languages in the training dataset is effective for mitigating this challenge.
@@ -421,7 +426,7 @@ This stage is typically less computationally expensive than pretraining, and oft
 Since pretraining is often expensive, practitioners resort to finetuning existing open-weight models released on platforms such as HuggingFace \citep{davidson2023aicapabilitiessignificantlyimproved,wolfe-etal-2024-laboratory}.
 However, adapting a pretrained base LM means inheriting its architectural decisions, including model size.
 If the base LM exceeds the memory constraints of the target edge device \citep{zheng2025reviewedgeLLM}, the finetuned model will as well.
-Addressing this may involve compressing the final post-trained model, or distilling the large model's knowledge into a smaller one.
+Addressing this may involve compressing the post-trained model, or distilling the large model's knowledge into a smaller one.
 
 \paragraph{Methods}
 Compressing a model can happen before, during, or right after the post-training stage.
@@ -454,51 +459,115 @@ At this stage, a model is served on a target device, which can range from microc
 \paragraph{Challenge: Cost of inference \iconenergy{} is not uniform across languages \iconrepresentation{}}
 Several works have shown that inference accounts for a significant share of an LM's total energy consumption across its lifecycle \citep[\textit{inter alia}]{fu-etal-2025-llmco2,adamska2025greenprompting}, with some estimates reaching 90\% \citep{hutt2019inferentia}.
 This has a considerable effect on device sustainability and overall emissions.
-The length of a model's output has a directly proportional contribution to this cost \citep{jegham2025hungryaibenchmarkingenergy}, which in multilingual contexts, is affected by how efficient a model tokenizes a language \citep{rust-etal-2021-good,ahia2023do,petrov2023language}.
+The length of a model's input or output is directly proportional to this cost \citep{jegham2025hungryaibenchmarkingenergy}, which in multilingual contexts is affected by how efficiently a model tokenizes a language \citep{rust-etal-2021-good,ahia2023do,petrov2023language}.
 Since a model might tokenize languages differently, a ``token tax'' \citep{lundin-etal-2026-token} is often accrued per query.
-While interventions during development can resolve these issues (\S\ref{sec:pretraining}--\ref{sec:post_training}), addressing this challenge also requires inference-time solutions once a model is deployed.
+While interventions during development can resolve these issues (\S\ref{sec:pretraining}--\ref{sec:post_training}), addressing this challenge also requires inference-time solutions.% once a model is deployed.
 
 % From Prompts to Power: Measuring the Energy Footprint of LLM Inference
 % https://arxiv.org/abs/2512.03024
 
 \paragraph{Methods}
-\ljm{\lipsum[1]}
-
-
-% \paragraph{Challenge 1}
-% \ljm{\lipsum[1]}
-
-% \paragraph{Methods}
-% \ljm{\lipsum[1]}
-
-
-% The resulting model is then served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of storage and compute capabilities.
-
+At inference, practitioners can reduce costs through two levers: making prompts more efficient or adjusting the deployed model's tokenization scheme.
+\textbf{Prompt compression} addresses prompt efficiency by removing unnecessary tokens from the original prompt while preserving its meaning \citep{li-etal-2025-prompt}.
+A notable line of work is the LLMLingua series \citep{jiang-etal-2023-llmlingua,pan-etal-2024-llmlingua,jiang-etal-2024-longllmlingua}, among others \citep{li-etal-2023-compressing,chuang-etal-2024-learning}.
+\textbf{Speculative decoding} is another class of methods that uses a smaller LM (drafter) to predict potential future tokens \citep{leviathan-etal-2023-fast}.
+\citet{yi-etal-2024-towards} showed that tuning these drafters to the target language can improve both performance and inference time in multilingual tasks such as translation.
+Although speculative decoding typically requires that the drafter and deployed LM share the same vocabulary, \citet{timor2025accelerating} showed that this requirement can be lifted.
+Finally, \textbf{inference-time adaptation} addresses the second lever by improving the deployed LM's tokenization efficiency or vocabulary for the target language without retraining.
+For example, \citet{kaplan2025from} and \citet{zheng2025broken} exploit an LM's internal representation to enable vocabulary expansion or handle unseen tokenization.
+Some works approach this problem by approximating out-of-vocabulary tokens and transfering this knowledge without retraining \citep[\textit{inter alia}]{goddard2025trainingfreetokenizertransplantationorthogonal}.
 
 \subsection{Evaluation}
 \label{sec:evaluation}
 
-Finally, model performance is measured across a variety of capabilities and domains, either on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+Model performance is measured across capabilities and domains, either on static benchmarks or on structured testbeds. %\citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+Evaluation can also happen during development to guide decisions before deployment.
+For multilingual evaluation, benchmarks are typically either task-specific, evaluating a single capability across many languages \citep[\textit{inter alia}]{shi2023language,singh-etal-2025-global,gureja-etal-2025-rewardbench}, or
+language-specific, evaluating a language (or a group of closely-related languages) across many tasks \citep{ojo-etal-2025-afrobench,miranda-etal-2025-filbench}.
+We highlight that evaluation is heavily siloed across multilinguality and edge-efficiency, as most multilingual papers evaluate on multilingual benchmarks alone and efficiency papers on efficiency benchmarks without any cross-pollination; we discuss this further in \S\ref{sec:evaluation_is_siloed}.
 
-\paragraph{Challenge 1}
-\ljm{\lipsum[1]}
+% \paragraph{Challenge 1: Multilingual and edge evaluation are isolated from one another}
+\paragraph{Challenge 1: Evaluating multilingual LMs \icondata{} for a specific task or language is expensive \iconcompute{}}
+Choosing or updating a model for deployment requires concrete quantitative evidence.
+However, these evaluations can significantly increase compute costs, as benchmarks often contain thousands of instances spanning many languages and capabilities.
+For example, Global-MMLU \citep{singh-etal-2025-global} contains 14.3k instances across 42 languages, while AfroBench \citep{ojo-etal-2025-afrobench} and FilBench \citep{miranda-etal-2025-filbench} span $>100\text{k}$ instances.
+Although most of these works provide recommendations of which specific LMs are the best at the time, they can easily get outdated as new LMs are released \citep{reiter2026comparing}.
+We consider this challenge an essential part of deployment because evaluating a model is quite prominent in the edge \citep{ramjee-etal-2025-ashabot,rutunda-etal-2026-large}, especially for context-specific use-cases.
+Addressing this challenge requires not only creating smaller and high-quality benchmarks, but also designing holistic approaches to evaluation outside of static datasets.
 
 \paragraph{Methods}
+Researchers have developed \textbf{lite benchmarks} as companion to the standard benchmarks they released \citep{singh-etal-2025-global,ojo-etal-2025-afrobench,micallef-borg-2025-melabenchv1}.
+These lite versions have a smaller scale in terms of the number of instances or languages that speeds up evaluation, making it ideal for fast iterative cycles of development and evaluation.
+They can also be generated automatically, either from a set of documents \citep{shashidhar2025yourbench} or from aggregating select instances from a collection of benchmarks \citep{kim2025benchhub}.
+Another set of approaches for evaluation moves away from the static benchmarking paradigm and uses techniques like IRT...
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.95\linewidth]{example-image}
+  \caption{Hello}
+\end{figure}
+
+
+\section{Analysis: What's In the Last Mile?}
+
+\ljm{\lipsum[1][1-7]}
+
+\subsection{Multilingual Edge LM Domains}
+
+\paragraph{Setup}
+\ljm{\lipsum[1][1-7]}
+
+
+\paragraph{Findings}
 \ljm{\lipsum[1]}
 
+
+% \subsection{Directionality of Methods}
+
+% % \paragraph{Not just applying X to Y (and vice versa)}
+% During the survey process, we find that a common approach to
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.95\linewidth]{example-image}
+  \caption{Hello}
+\end{figure}
+
+
+\subsection{Siloed Evaluation}
+\label{sec:evaluation_is_siloed}
+
+% analysis, from your survey, how many efficiency papers are evaluating on multilinguality
+
+\paragraph{Setup}
+\ljm{\lipsum[1][1-7]}
+
+
+\paragraph{Findings}
+\ljm{\lipsum[1]}
 
 \section{Discussion: Reaching the Last Mile}
 \label{sec:discussion}
 
-\paragraph{Development in the Edge}
+\subsection{Open Challenges}
+
+\paragraph{Development at the Edge}
 Throughout this work, we assume that models are developed in a resource-rich environment such as a university research cluster \citep{khandelwal2025k} or frontier laboratory, and then deployed to the edge.
 However, development can also happen on the edge itself, which presents additional challenges in terms of compute access, alongside constraints in data availability and expertise.
 
+\paragraph{Prioritize Multilinguality or Efficiency?}
+% we borrow from dev't economics.
+% two competing techniques are there...
+% one is to figure out the binding constraint
+% the second is to approach them fully
 
-\paragraph{Future Outlook}
+
+\subsection{Future Directions}
+
+% agents?
 
 
-\paragraph{Recommendations for Stakeholders}
+\subsection{Recommendations for Researchers}
 
 % distribution of constraints, where do they usually happen
 

@@ -3256,19 +3256,6 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   url          = {https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups},
   note         = {Accessed: 2026-02-15}
 }
-@article{rutunda2026llmfrontline,
-  title   = {{Large language models for frontline healthcare support in low-resource settings}},
-  author  = {Rutunda, Samuel and Williams, Gwydion and Kabanda, Kleber and Nkurunziza, Francis and Uwiduhaye, Solange and Rugegamanzi, Eulade and Nshimiyimana, Cyprien and Menon, Vaishnavi and Emmanuel-Fabula, Mira and Denniston, Alastair K. and Liu, Xiaoxuan and Hezagira, Emery and Mateen, Bilal A.},
-  journal = {Nature Health},
-  volume  = {1},
-  number  = {2},
-  pages   = {191--197},
-  year    = {2026},
-  doi     = {10.1038/s44360-025-00038-1},
-  url     = {https://www.nature.com/articles/s44360-025-00038-1}
-}
-
-
 @inproceedings{ahia2023do,
   title     = {{Do All Languages Cost the Same? Tokenization in the Era of Commercial Language Models}},
   author    = {Orevaoghene Ahia and Sachin Kumar and Hila Gonen and Jungo Kasai and David R Mortensen and Noah A. Smith and Yulia Tsvetkov},
@@ -4981,4 +4968,238 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   url           = {https://arxiv.org/abs/2505.09598},
   doi           = {10.48550/arXiv.2505.09598},
   note          = {{c}s.CY/2505.09598v6}
+}
+
+@inproceedings{li-etal-2023-compressing,
+  title     = {{Compressing Context to Enhance Inference Efficiency of Large Language Models}},
+  author    = {Li, Yucheng  and
+               Dong, Bo  and
+               Guerin, Frank  and
+               Lin, Chenghua},
+  editor    = {Bouamor, Houda  and
+               Pino, Juan  and
+               Bali, Kalika},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  month     = dec,
+  year      = {2023},
+  address   = {Singapore},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2023.emnlp-main.391/},
+  doi       = {10.18653/v1/2023.emnlp-main.391},
+  pages     = {6342--6353},
+  abstract  = {Large language models (LLMs) achieved remarkable performance across various tasks. However, they face challenges in managing long documents and extended conversations, due to significantly increased computational requirements, both in memory and inference time, and potential context truncation when the input exceeds the LLM{'}s fixed context length. This paper proposes a method called \textit{Selective Context} that enhances the inference efficiency of LLMs by identifying and pruning redundancy in the input context to make the input more compact. We test our approach using common data sources requiring long context processing: arXiv papers, news articles, and long conversations, on tasks of summarisation, question answering, and response generation. Experimental results show that Selective Context significantly reduces memory cost and decreases generation latency while maintaining comparable performance compared to that achieved when full context is used. Specifically, we achieve a 50{\%} reduction in context cost, resulting in a 36{\%} reduction in inference memory usage and a 32{\%} reduction in inference time, while observing only a minor drop of .023 in BERTscore and .038 in faithfulness on four downstream applications, indicating that our method strikes a good balance between efficiency and performance.}
+}
+
+@inproceedings{chuang-etal-2024-learning,
+  title     = {Learning to Compress Prompt in Natural Language Formats},
+  author    = {Chuang, Yu-Neng  and
+               Xing, Tianwei  and
+               Chang, Chia-Yuan  and
+               Liu, Zirui  and
+               Chen, Xun  and
+               Hu, Xia},
+  editor    = {Duh, Kevin  and
+               Gomez, Helena  and
+               Bethard, Steven},
+  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+  month     = jun,
+  year      = {2024},
+  address   = {Mexico City, Mexico},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.naacl-long.429/},
+  doi       = {10.18653/v1/2024.naacl-long.429},
+  pages     = {7756--7767},
+  abstract  = {Large language models (LLMs) are great at processing multiple natural language processing tasks, but their abilities are constrained by inferior performance with long context, slow inference speed, and the high cost of computing the results. Deploying LLMs with precise and informative context helps users process large-scale datasets more effectively and cost-efficiently. Existing works rely on compressing long prompt contexts into soft prompts. However, soft prompt compression encounters limitations in transferability across different LLMs, especially API-based LLMs. To this end, this work aims to compress lengthy prompts in the form of natural language with LLM transferability. This poses two challenges: (i) Natural Language (NL) prompts are incompatible with back-propagation, and (ii) NL prompts lack flexibility in imposing length constraints. In this work, we propose a Natural Language Prompt Encapsulation (Nano-Capsulator) framework compressing original prompts into NL formatted Capsule Prompt while maintaining prompt utility and transferability. Specifically, to tackle the first challenge, the Nano-Capsulator is optimized by a reward function that interacts with the proposed semantics preserving loss. To address the second question, the Nano-Capsulator is optimized by a reward function featuring length constraints. Experimental results demonstrate that the Capsule Prompt can reduce 81.4{\%} of the original length, decrease inference latency up to 4.5x, and save 80.1{\%} of budget overheads while providing transferability across diverse LLMs and different datasets.}
+}
+
+@inproceedings{li-etal-2025-prompt,
+  title     = {Prompt Compression for Large Language Models: A Survey},
+  author    = {Li, Zongqian  and
+               Liu, Yinhong  and
+               Su, Yixuan  and
+               Collier, Nigel},
+  editor    = {Chiruzzo, Luis  and
+               Ritter, Alan  and
+               Wang, Lu},
+  booktitle = {Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+  month     = apr,
+  year      = {2025},
+  address   = {Albuquerque, New Mexico},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.naacl-long.368/},
+  doi       = {10.18653/v1/2025.naacl-long.368},
+  pages     = {7182--7195},
+  isbn      = {979-8-89176-189-6},
+  abstract  = {Leveraging large language models (LLMs) for complex natural language tasks typically requires long-form prompts to convey detailed requirements and information, which results in increased memory usage and inference costs. To mitigate these challenges, multiple efficient methods have been proposed, with prompt compression gaining significant research interest. This survey provides an overview of prompt compression techniques, categorized into hard prompt methods and soft prompt methods. First, the technical approaches of these methods are compared, followed by an exploration of various ways to understand their mechanisms, including the perspectives of attention optimization, Parameter-Efficient Fine-Tuning (PEFT), modality integration, and new synthetic language. We also examine the downstream adaptations of various prompt compression techniques. Finally, the limitations of current prompt compression methods are analyzed, and several future directions are outlined, such as optimizing the compression encoder, combining hard and soft prompts methods, and leveraging insights from multimodality.}
+}
+
+@inproceedings{yi-etal-2024-towards,
+  title     = {{Towards Fast Multilingual LLM Inference: Speculative Decoding and Specialized Drafters}},
+  author    = {Yi, Euiin  and
+               Kim, Taehyeon  and
+               Jeung, Hongseok  and
+               Chang, Du-Seong  and
+               Yun, Se-Young},
+  editor    = {Al-Onaizan, Yaser  and
+               Bansal, Mohit  and
+               Chen, Yun-Nung},
+  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+  month     = nov,
+  year      = {2024},
+  address   = {Miami, Florida, USA},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.emnlp-main.602/},
+  doi       = {10.18653/v1/2024.emnlp-main.602},
+  pages     = {10789--10802},
+  abstract  = {Large language models (LLMs) have revolutionized natural language processing and broadened their applicability across diverse commercial applications. However, the deployment of these models is constrained by high inference time in multilingual settings. To mitigate this challenge, this paper explores a training recipe of an assistant model in speculative decoding, which are leveraged to draft and-then its future tokens are verified by the target LLM. We show that language-specific draft models, optimized through a targeted pretrain-and-finetune strategy, substantially brings a speedup of inference time compared to the previous methods. We validate these models across various languages in inference time, out-of-domain speedup, and GPT-4o evaluation.}
+}
+
+@inproceedings{leviathan-etal-2023-fast,
+  author    = {Leviathan, Yaniv and Kalman, Matan and Matias, Yossi},
+  title     = {Fast inference from transformers via speculative decoding},
+  year      = {2023},
+  publisher = {JMLR.org},
+  abstract  = {Inference from large autoregressive models like Transformers is slow - decoding K tokens takes K serial runs of the model. In this work we introduce speculative decoding - an algorithm to sample from autoregressive models faster without any changes to the outputs, by computing several tokens in parallel. At the heart of our approach lie the observations that (1) hard language-modeling tasks often include easier subtasks that can be approximated well by more efficient models, and (2) using speculative execution and a novel sampling method, we can make exact decoding from the large models faster, by running them in parallel on the outputs of the approximation models, potentially generating several tokens concurrently, and without changing the distribution. Our method can accelerate existing off-the-shelf models without retraining or architecture changes. We demonstrate it on T5-XXL and show a 2X-3X acceleration compared to the standard T5X implementation, with identical outputs.},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  articleno = {795},
+  numpages  = {13},
+  location  = {Honolulu, Hawaii, USA},
+  series    = {ICML'23}
+}
+
+@inproceedings{timor2025accelerating,
+  title     = {{Accelerating LLM Inference with Lossless Speculative Decoding Algorithms for Heterogeneous Vocabularies}},
+  author    = {Nadav Timor and Jonathan Mamou and Daniel Korat and Moshe Berchansky and Gaurav Jain and Oren Pereg and Moshe Wasserblat and David Harel},
+  booktitle = {Forty-second International Conference on Machine Learning},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=vQubr1uBUw}
+}
+
+@inproceedings{kaplan2025from,
+  title     = {{From Tokens to Words: On the Inner Lexicon of LLMs}},
+  author    = {Guy Kaplan and Matanel Oren and Yuval Reif and Roy Schwartz},
+  booktitle = {The Thirteenth International Conference on Learning Representations},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=328vch6tRs}
+}
+
+@inproceedings{zheng2025broken,
+  title     = {{Broken Tokens? Your Language Model can Secretly Handle Non-Canonical Tokenizations}},
+  author    = {Brian Siyuan Zheng and Alisa Liu and Orevaoghene Ahia and Jonathan Hayase and Yejin Choi and Noah A. Smith},
+  booktitle = {The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=WrYWolqKh3}
+}
+
+@misc{goddard2025trainingfreetokenizertransplantationorthogonal,
+  title         = {Training-Free Tokenizer Transplantation via Orthogonal Matching Pursuit},
+  author        = {Charles Goddard and Fernando Fernandes Neto},
+  year          = {2025},
+  eprint        = {2506.06607},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2506.06607},
+  doi           = {10.48550/arXiv.2506.06607},
+  note          = {{c}s.CL/2506.06607v1}
+}
+
+@inproceedings{lu-etal-2025-demystifying,
+  title     = {{Demystifying Small Language Models for Edge Deployment}},
+  author    = {Lu, Zhenyan  and
+               Li, Xiang  and
+               Cai, Dongqi  and
+               Yi, Rongjie  and
+               Liu, Fangming  and
+               Liu, Wei  and
+               Luan, Jian  and
+               Zhang, Xiwen  and
+               Lane, Nicholas D.  and
+               Xu, Mengwei},
+  editor    = {Che, Wanxiang  and
+               Nabende, Joyce  and
+               Shutova, Ekaterina  and
+               Pilehvar, Mohammad Taher},
+  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = jul,
+  year      = {2025},
+  address   = {Vienna, Austria},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.acl-long.718/},
+  doi       = {10.18653/v1/2025.acl-long.718},
+  pages     = {14747--14764},
+  isbn      = {979-8-89176-251-0},
+  abstract  = {Small language models (SLMs) have emerged as a promising solution for deploying resource-constrained devices, such as smartphones and Web of Things. This work presents the first comprehensive study of over 60 SLMs such as Microsoft Phi and Google Gemma that are publicly accessible. Our findings show that state-of-the-art SLMs outperform 7B models in general tasks, proving their practical viability. However, SLMs' in-context learning capabilities remain limited, and their efficiency has significant optimization potential. We identify key SLM optimization opportunities, including dynamic task-specific routing, model-hardware co-design, and vocabulary/KV cache compression. Overall, we expect the work to reveal an all-sided landscape of SLMs, benefiting the research community across algorithm, model, system, and hardware levels.}
+}
+
+@inproceedings{shi2023language,
+  title     = {Language models are multilingual chain-of-thought reasoners},
+  author    = {Freda Shi and Mirac Suzgun and Markus Freitag and Xuezhi Wang and Suraj Srivats and Soroush Vosoughi and Hyung Won Chung and Yi Tay and Sebastian Ruder and Denny Zhou and Dipanjan Das and Jason Wei},
+  booktitle = {The Eleventh International Conference on Learning Representations },
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=fR3wGCk-IXp}
+}
+
+ @misc{reiter2026comparing,
+  author       = {Reiter, Ehud},
+  title        = {Comparing Performance of {LLMs} is Not Very Interesting},
+  year         = {2026},
+  month        = mar,
+  howpublished = {Blog post},
+  note         = {Accessed on 2026-03-25},
+  url          = {https://ehudreiter.com/2026/03/24/comparing-performance-of-llms-is-not-very-interesting/}
+}
+
+
+@article{rutunda-etal-2026-large,
+  abstract   = {Large language models (LLMs) have demonstrated strong performance in medical contexts; however, existing benchmarks often fail to reflect the real-world complexity of low-resource health systems accurately. Here we develop a dataset of 5,609 clinical questions contributed by 101 community health workers across 4 Rwandan districts and compared responses generated by 5 LLMs (Gemini-2, GPT-4o, o3-mini, Deepseek R1 and Meditron-70B) with those from local clinicians. A subset of 524 question--answer pairs was evaluated using a rubric of 11 expert-rated metrics, scored on a 5-point Likert scale. Gemini-2 and GPT-4o were the best performers (achieving mean scores of 4.49 and 4.48 out of 5, respectively, across all 11 metrics). All LLMs significantly outperformed local clinicians (P < 0.001) across all metrics, with Gemini-2, for example, surpassing local general practitioners by an average of 0.83 points on every metric (range 0.38--1.10). Although performance degraded slightly when LLMs communicated in Kinyarwanda, the LLMs remained superior to clinicians and were over 500 times cheaper per response. These findings support the potential of LLMs to strengthen frontline care quality in low-resource, multilingual health systems.},
+  author     = {Rutunda, Samuel and Williams, Gwydion and Kabanda, Kleber and Nkurunziza, Francis and Uwiduhaye, Solange and Rugegamanzi, Eulade and Nshimiyimana, Cyprien and Menon, Vaishnavi and Emmanuel-Fabula, Mira and Denniston, Alastair K. and Liu, Xiaoxuan and Hezagira, Emery and Mateen, Bilal A.},
+  date       = {2026/02/01},
+  doi        = {10.1038/s44360-025-00038-1},
+  id         = {Rutunda2026},
+  isbn       = {3005-0693},
+  journal    = {Nature Health},
+  number     = {2},
+  pages      = {191--197},
+  title      = {Large language models for frontline healthcare support in low-resource settings},
+  url        = {https://doi.org/10.1038/s44360-025-00038-1},
+  volume     = {1},
+  year       = {2026},
+  bdsk-url-1 = {https://doi.org/10.1038/s44360-025-00038-1}
+}
+
+
+@inproceedings{micallef-borg-2025-melabenchv1,
+  title     = {{MELABenchv1: Benchmarking Large Language Models against Smaller Fine-Tuned Models for Low-Resource Maltese NLP}},
+  author    = {Micallef, Kurt  and
+               Borg, Claudia},
+  editor    = {Che, Wanxiang  and
+               Nabende, Joyce  and
+               Shutova, Ekaterina  and
+               Pilehvar, Mohammad Taher},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},
+  month     = jul,
+  year      = {2025},
+  address   = {Vienna, Austria},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.findings-acl.1053/},
+  doi       = {10.18653/v1/2025.findings-acl.1053},
+  pages     = {20505--20527},
+  isbn      = {979-8-89176-256-5},
+  abstract  = {Large Language Models (LLMs) have demonstrated remarkable performance across various Natural Language Processing (NLP) tasks, largely due to their generalisability and ability to perform tasks without additional training. However, their effectiveness for low-resource languages remains limited. In this study, we evaluate the performance of 55 publicly available LLMs on Maltese, a low-resource language, using a newly introduced benchmark covering 11 discriminative and generative tasks. Our experiments highlight that many models perform poorly, particularly on generative tasks, and that smaller fine-tuned models often perform better across all tasks. From our multidimensional analysis, we investigate various factors impacting performance. We conclude that prior exposure to Maltese during pre-training and instruction-tuning emerges as the most important factor. We also examine the trade-offs between fine-tuning and prompting, highlighting that while fine-tuning requires a higher initial cost, it yields better performance and lower inference costs. Through this work, we aim to highlight the need for more inclusive language technologies and recommend for researchers working with low-resource languages to consider more ``traditional'' language modelling approaches.}
+}
+
+@inproceedings{shashidhar2025yourbench,
+  title     = {{Yourbench: Dynamic Evaluation Set Generation with LLMs}},
+  author    = {Sumuk Shashidhar and Cl{\'e}mentine Fourrier and Alina Lozovskaya and Thomas Wolf and Gokhan Tur and Dilek Hakkani-T{\"u}r},
+  booktitle = {Second Conference on Language Modeling},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=bkWERVKzuP}
+}
+
+@inproceedings{kim2025benchhub,
+  title     = {{BenchHub: A Unified Benchmark Suite for Holistic and Customizable LLM Evaluation}},
+  author    = {Eunsu Kim and Haneul Yoo and Guijin Son and Hitesh Laxmichand Patel and Amit Agarwal and Alice Oh},
+  booktitle = {NeurIPS 2025 Workshop on Efficient Reasoning},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=ZNhY456SAV}
 }
