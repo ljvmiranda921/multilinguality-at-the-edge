@@ -21,9 +21,11 @@ Please classify this paper according to the following dimensions:
 7. Parameter sizes of the models released in billions (empty list if none or not specified).
 8. Is this paper primarily about efficiency, multilinguality, both, or neither?
 9. What type of contribution does this paper make (Method, Technique, Evaluation, Survey, Resource, Analysis)?
-10. Is this paper relevant in the context of multilingual NLP for edge devices? Score from 1 to 5.
-11. State your reason for the relevance score.
-12. Extract a list of free-form keywords that capture the paper's key concepts, methods, datasets, or findings.
+10. Is this paper primarily about efficiency, multilinguality, both, or neither?
+11. What is the research direction? That is, is this an efficiency technique extended to multilingual settings (efficiency_first), a multilingual problem solved with efficient methods (multilingual_first), or a method co-designed for both (co_designed)?
+12. Is this paper relevant in the context of multilingual NLP for edge devices? Score from 1 to 5.
+13. State your reason for the relevance score.
+14. Extract a list of free-form keywords that capture the paper's key concepts, methods, datasets, or findings.
 """
 
 
@@ -150,6 +152,25 @@ class ResearchPaperAnnotation(BaseModel):
             "Survey: reviews and summarizes existing literature. "
             "Resource: releases a dataset, benchmark, or tool. "
             "Analysis: provides empirical analysis or insights without proposing a new method."
+        ),
+    )
+    research_direction: Literal[
+        "efficiency_first",
+        "multilingual_first",
+        "co_designed",
+    ] = Field(
+        ...,
+        description=(
+            "The directionality of the paper's motivation. "
+            "efficiency_first: core contribution is an efficiency technique (quantization, pruning, distillation, "
+            "compact architecture); multilinguality is secondary evaluation or afterthought. The method is "
+            "language-agnostic and would exist even for English-only settings. "
+            "multilingual_first: core contribution addresses a multilingual or cross-lingual problem; efficiency "
+            "techniques (LoRA, small models, distillation) are practical tools to make the solution feasible. "
+            "The research question is about languages, not about compression. "
+            "co_designed: the paper explicitly designs a method that jointly addresses efficiency AND "
+            "multilinguality, or studies their interaction. Removing either dimension would fundamentally "
+            "change the paper."
         ),
     )
     relevance_score: int = Field(
