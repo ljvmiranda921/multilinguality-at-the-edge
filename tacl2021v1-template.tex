@@ -480,10 +480,11 @@ Some works approach this problem by approximating out-of-vocabulary tokens and t
 \subsection{Evaluation}
 \label{sec:evaluation}
 
-Finally, model performance is measured across capabilities and domains, either on static benchmarks or on structured testbeds. %\citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+Model performance is measured across capabilities and domains, either on static benchmarks or on structured testbeds. %\citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+Evaluation can also happen during development to guide decisions before deployment.
 For multilingual evaluation, benchmarks are typically either task-specific, evaluating a single capability across many languages \citep[\textit{inter alia}]{shi2023language,singh-etal-2025-global,gureja-etal-2025-rewardbench}, or
 language-specific, evaluating a language (or a group of closely-related languages) across many tasks \citep{ojo-etal-2025-afrobench,miranda-etal-2025-filbench}.
-Despite being at the end of the LM pipeline, evaluation can happen during development to guide decisions before deployment.
+We highlight that evaluation is heavily siloed across multilinguality and edge-efficiency, as most multilingual papers evaluate on multilingual benchmarks alone and efficiency papers on efficiency benchmarks without any cross-pollination---we discuss this further in \S\ref{sec:evaluation_is_siloed}.
 
 % \paragraph{Challenge 1: Multilingual and edge evaluation are isolated from one another}
 \paragraph{Challenge 1: Evaluating multilingual LMs \icondata{} for a specific task or language is expensive \iconcompute{}}
@@ -510,7 +511,8 @@ Another set of approaches for evaluation moves away from the static benchmarking
 During the survey process, we find that a common approach to
 
 \subsection{Evaluation is siloed}
-
+\label{sec:evaluation_is_siloed}
+% analysis, from your survey, how many efficiency papers are evaluating on multilinguality
 
 \section{Discussion: Reaching the Last Mile}
 \label{sec:discussion}
