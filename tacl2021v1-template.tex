@@ -465,7 +465,9 @@ While interventions during development can resolve these issues (\S\ref{sec:pret
 \paragraph{Methods}
 At inference, practitioners can reduce costs through two levers: making prompts more efficient or adjusting the deployed model's tokenization scheme.
 \textbf{Prompt compression} is an effective approach to handle the first, which involves removing unnecessary tokens from the original prompt while preserving its meaning \citep{li-etal-2025-prompt}.
-A notable work in prompt compression is the LLMLingua series \citep{jiang-etal-2023-llmlingua,pan-etal-2024-llmlingua,jiang-etal-2024-longllmlingua}, among other works \citep{li-etal-2023-compressing,chuang-etal-2024-learning}.
+A notable work in prompt compression is the LLMLingua series \citep{jiang-etal-2023-llmlingua,pan-etal-2024-llmlingua,jiang-etal-2024-longllmlingua}, among others\citep{li-etal-2023-compressing,chuang-etal-2024-learning}.
+\textbf{Speculative decoding} is another class of methods that uses a smaller LM (drafter) to predict potential future tokens \citep{leviathan-etal-2023-fast}.
+Recent works have shown that tuning these drafters to the target language can improve performance and inference time in multilingual tasks such as translation \citep{yi-etal-2024-towards}
 
 % \ljm{\lipsum[1]}
 
@@ -505,6 +507,10 @@ However, development can also happen on the edge itself, which presents addition
 
 
 \subsection{Future Directions}
+
+
+\paragraph{Not just applying X to Y (and vice versa)}
+During the survey process, we find that a common approach to
 
 \subsection{Recommendations for Researchers}
 
