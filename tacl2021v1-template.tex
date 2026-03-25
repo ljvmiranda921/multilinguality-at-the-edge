@@ -480,14 +480,13 @@ Some works approach this problem by approximating out-of-vocabulary tokens and t
 \subsection{Evaluation}
 \label{sec:evaluation}
 
-Finally, model performance is measured across a variety of capabilities and domains, either on static benchmarks \citep[\textit{inter alia}]{singh-etal-2025-global,adelani-etal-2022-masakhaner} or on structured testbeds \citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+Finally, model performance is measured across capabilities and domains, either on static benchmarks or on structured testbeds. %\citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
+For multilingual evaluation, benchmarks are typically either task-specific, evaluating a single capability across many languages \citep[\textit{inter alia}]{shi2023language,singh-etal-2025-global,gureja-etal-2025-rewardbench}, or
+language-specific, evaluating a language (or a group of closely-related languages) across many tasks \citep{ojo-etal-2025-afrobench,miranda-etal-2025-filbench}.
 
 % \paragraph{Challenge 1: Multilingual and edge evaluation are isolated from one another}
 \paragraph{Challenge 1: Evaluating multilingual LMs \iconalignment{} for a specific task or language is expensive \iconcompute{}}
 Choosing or updating a model for deployment requires concrete quantitative evidence.
-Multilingual benchmarks enable this by evaluating LMs on a variety of tasks and languages.
-Benchmarks can be \textit{task-specific}, i.e., evaluating a specific capability across a wide range of languages.
-They can also be \textit{language-specific}, i.e., evaluating a language (or a group of closely-related languages) across a wide range of tasks.
 
 % \ljm{\lipsum[1]}
 
@@ -502,7 +501,7 @@ They can also be \textit{language-specific}, i.e., evaluating a language (or a g
 
 \subsection{Edge LM Domains}
 
-\subsection{Not just applying X to Y (and vice versa)}
+\subsection{Directionality of methods}
 
 % \paragraph{Not just applying X to Y (and vice versa)}
 During the survey process, we find that a common approach to
