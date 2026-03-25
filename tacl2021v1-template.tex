@@ -290,7 +290,11 @@ OLMo \citep{walsh2025,olmo2025olmo3},
 Nemotron \citep{nvidia2025nvidianemotronnano2,nvidia2025nvidianemotron3efficient}, and Aya \citep{ustun-etal-2024-aya,dang2024ayaexpansecombiningresearch,salamanca2026tinyayabridgingscale} model series.
 In general, we identify five main stages: Data Collection, Pretraining, Post-training, Inference, and Evaluation.
 We describe each step in \S\ref{sec:survey}.
-
+We note the LM pipeline is organized in a linear fashion for simplicity.
+In practice, development and deployment decisions overlap one another, an LM developer might:
+skip pretraining and start with an open-weight base model or
+evaluate iteratively during development before deploying a model for inference.
+Our survey of challenges and methods recognize this fact and reflect these nuances whenever appropriate.
 % The design choices made at each stage jointly determine how well a model serves multilingual communities on constrained hardware.
 
 \subsection{The Constraints the Edge Demands}
@@ -361,7 +365,7 @@ a phenomenon often dubbed the curse of multilinguality \citep[\textit{inter alia
 Regional multilingual models may cover 10--20 languages \citep{pava2025mind}, such as SEA-LION \citep{ng2025sealionsoutheastasianlanguages} for Southeast Asia or Updesh \citep{chitale2026updeshsynthesizinggroundedinstruction} for Indic languages, yet scaling further risks degrading per-language quality.
 Second, this limited capacity renders a model more sensitive to noise \citep{havrilla2024understandingeffectnoiseLLM}, and low-resource languages suffer from this exact problem \citep{kreutzer-etal-2022-quality},
 as noise manifests in both pretraining \citep{chen2024understanding,longpre-etal-2024-pretrainers} and post-training \citep{ijcai2024p403,zhu-etal-2024-fine} data.
-Addressing this challenge requires maximizing language coverage without sacrificing per-language quality, given a fixed parameter budget.
+Addressing this challenge requires, given a fixed parameter budget, maximizing language coverage without sacrificing data quality.
 
 \paragraph{Methods}
 Getting the right mixture of languages in the training dataset is effective for mitigating this challenge.
