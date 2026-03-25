@@ -468,7 +468,7 @@ At inference, practitioners can reduce costs through two levers: making prompts 
 A notable work in prompt compression is the LLMLingua series \citep{jiang-etal-2023-llmlingua,pan-etal-2024-llmlingua,jiang-etal-2024-longllmlingua}, among others\citep{li-etal-2023-compressing,chuang-etal-2024-learning}.
 \textbf{Speculative decoding} is another class of methods that uses a smaller LM (drafter) to predict potential future tokens \citep{leviathan-etal-2023-fast}.
 \citet{yi-etal-2024-towards} have shown that tuning these drafters to the target language can improve performance and inference time in multilingual tasks such as translation.
-
+Speculative decoding also requires that the drafter model and the deployed LM share the same vocabulary, but \citet{timor2025accelerating} has shown that this can be generalized further.
 % \ljm{\lipsum[1]}
 
 
