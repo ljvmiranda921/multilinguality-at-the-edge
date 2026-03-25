@@ -469,7 +469,7 @@ A notable line of work is the LLMLingua series \citep{jiang-etal-2023-llmlingua,
 \textbf{Speculative decoding} is another class of methods that uses a smaller LM (drafter) to predict potential future tokens \citep{leviathan-etal-2023-fast}.
 \citet{yi-etal-2024-towards} showed that tuning these drafters to the target language can improve both performance and inference time in multilingual tasks such as translation.
 Although speculative decoding typically requires that the drafter and deployed LM share the same vocabulary, \citet{timor2025accelerating} showed that this requirement can be lifted.
-Finally, another approach is to improve the deployed LM's tokenization efficiency for the target language at inference.
+Finally, another approach is to perform \textbf{inference-time adaptation}, which is to improve the deployed LM's tokenization efficiency or vocabulary for the target language without retraining \citep{kaplan2025from,zheng2025broken,goddard2025trainingfreetokenizertransplantationorthogonal}.
 % \ljm{\lipsum[1]}
 
 
