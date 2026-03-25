@@ -488,8 +488,8 @@ Despite being at the end of the LM pipeline, evaluation can happen during develo
 % \paragraph{Challenge 1: Multilingual and edge evaluation are isolated from one another}
 \paragraph{Challenge 1: Evaluating multilingual LMs \iconalignment{} for a specific task or language is expensive \iconcompute{}}
 Choosing or updating a model for deployment requires concrete quantitative evidence.
-However, running these evaluations can significantly increase compute costs given that these benchmarks have thousands of instances to accommodate the full spectrum of languages and capabilities to be annotated.
-
+However, these evaluations can significantly increase compute costs, as benchmarks often contain thousands of instances spanning many languages and capabilities.
+For example, Global-MMLU \citep{singh-etal-2025-global} contains 14.3k instances across 42 languages, while AfroBench \citep{ojo-etal-2025-afrobench} and FilBench \citep{miranda-etal-2025-filbench} span $>100\text{k}$ instances.
 % \ljm{\lipsum[1]}
 
 
