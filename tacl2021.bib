@@ -4982,3 +4982,66 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   doi           = {10.48550/arXiv.2505.09598},
   note          = {{c}s.CY/2505.09598v6}
 }
+
+@inproceedings{li-etal-2023-compressing,
+  title     = {{Compressing Context to Enhance Inference Efficiency of Large Language Models}},
+  author    = {Li, Yucheng  and
+               Dong, Bo  and
+               Guerin, Frank  and
+               Lin, Chenghua},
+  editor    = {Bouamor, Houda  and
+               Pino, Juan  and
+               Bali, Kalika},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  month     = dec,
+  year      = {2023},
+  address   = {Singapore},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2023.emnlp-main.391/},
+  doi       = {10.18653/v1/2023.emnlp-main.391},
+  pages     = {6342--6353},
+  abstract  = {Large language models (LLMs) achieved remarkable performance across various tasks. However, they face challenges in managing long documents and extended conversations, due to significantly increased computational requirements, both in memory and inference time, and potential context truncation when the input exceeds the LLM{'}s fixed context length. This paper proposes a method called \textit{Selective Context} that enhances the inference efficiency of LLMs by identifying and pruning redundancy in the input context to make the input more compact. We test our approach using common data sources requiring long context processing: arXiv papers, news articles, and long conversations, on tasks of summarisation, question answering, and response generation. Experimental results show that Selective Context significantly reduces memory cost and decreases generation latency while maintaining comparable performance compared to that achieved when full context is used. Specifically, we achieve a 50{\%} reduction in context cost, resulting in a 36{\%} reduction in inference memory usage and a 32{\%} reduction in inference time, while observing only a minor drop of .023 in BERTscore and .038 in faithfulness on four downstream applications, indicating that our method strikes a good balance between efficiency and performance.}
+}
+
+@inproceedings{chuang-etal-2024-learning,
+  title     = {Learning to Compress Prompt in Natural Language Formats},
+  author    = {Chuang, Yu-Neng  and
+               Xing, Tianwei  and
+               Chang, Chia-Yuan  and
+               Liu, Zirui  and
+               Chen, Xun  and
+               Hu, Xia},
+  editor    = {Duh, Kevin  and
+               Gomez, Helena  and
+               Bethard, Steven},
+  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+  month     = jun,
+  year      = {2024},
+  address   = {Mexico City, Mexico},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2024.naacl-long.429/},
+  doi       = {10.18653/v1/2024.naacl-long.429},
+  pages     = {7756--7767},
+  abstract  = {Large language models (LLMs) are great at processing multiple natural language processing tasks, but their abilities are constrained by inferior performance with long context, slow inference speed, and the high cost of computing the results. Deploying LLMs with precise and informative context helps users process large-scale datasets more effectively and cost-efficiently. Existing works rely on compressing long prompt contexts into soft prompts. However, soft prompt compression encounters limitations in transferability across different LLMs, especially API-based LLMs. To this end, this work aims to compress lengthy prompts in the form of natural language with LLM transferability. This poses two challenges: (i) Natural Language (NL) prompts are incompatible with back-propagation, and (ii) NL prompts lack flexibility in imposing length constraints. In this work, we propose a Natural Language Prompt Encapsulation (Nano-Capsulator) framework compressing original prompts into NL formatted Capsule Prompt while maintaining prompt utility and transferability. Specifically, to tackle the first challenge, the Nano-Capsulator is optimized by a reward function that interacts with the proposed semantics preserving loss. To address the second question, the Nano-Capsulator is optimized by a reward function featuring length constraints. Experimental results demonstrate that the Capsule Prompt can reduce 81.4{\%} of the original length, decrease inference latency up to 4.5x, and save 80.1{\%} of budget overheads while providing transferability across diverse LLMs and different datasets.}
+}
+
+@inproceedings{li-etal-2025-prompt,
+  title     = {Prompt Compression for Large Language Models: A Survey},
+  author    = {Li, Zongqian  and
+               Liu, Yinhong  and
+               Su, Yixuan  and
+               Collier, Nigel},
+  editor    = {Chiruzzo, Luis  and
+               Ritter, Alan  and
+               Wang, Lu},
+  booktitle = {Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+  month     = apr,
+  year      = {2025},
+  address   = {Albuquerque, New Mexico},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.naacl-long.368/},
+  doi       = {10.18653/v1/2025.naacl-long.368},
+  pages     = {7182--7195},
+  isbn      = {979-8-89176-189-6},
+  abstract  = {Leveraging large language models (LLMs) for complex natural language tasks typically requires long-form prompts to convey detailed requirements and information, which results in increased memory usage and inference costs. To mitigate these challenges, multiple efficient methods have been proposed, with prompt compression gaining significant research interest. This survey provides an overview of prompt compression techniques, categorized into hard prompt methods and soft prompt methods. First, the technical approaches of these methods are compared, followed by an exploration of various ways to understand their mechanisms, including the perspectives of attention optimization, Parameter-Efficient Fine-Tuning (PEFT), modality integration, and new synthetic language. We also examine the downstream adaptations of various prompt compression techniques. Finally, the limitations of current prompt compression methods are analyzed, and several future directions are outlined, such as optimizing the compression encoder, combining hard and soft prompts methods, and leveraging insights from multimodality.}
+}
