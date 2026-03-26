@@ -458,7 +458,7 @@ At this stage, a model is served on a target device, which can range from microc
 Inference can occur either online, where a model runs on a remote server and is accessed via an API, or offline, where the model runs directly on the user's device.
 For the Global South, online inference is constrained by network connectivity \citep{itu-unesco-2025-state}, while offline inference is limited by memory (whether the model fits on the device) and energy (whether the device can sustain extended workloads).
 
-\paragraph{Challenge 1: Cost of inference \iconenergy{} is not uniform across languages \iconrepresentation{}}
+\paragraph{Challenge: Cost of inference \iconenergy{} is not uniform across languages \iconrepresentation{}}
 Several works have shown that inference accounts for a significant share of an LM's total energy consumption across its lifecycle \citep[\textit{inter alia}]{fu-etal-2025-llmco2,adamska2025greenprompting}, with some estimates reaching 90\% \citep{hutt2019inferentia}.
 This has a considerable effect on device sustainability and overall emissions.
 The length of a model's input or output is directly proportional to this cost \citep{jegham2025hungryaibenchmarkingenergy}, which in multilingual contexts is affected by how efficiently a model tokenizes a language \citep{rust-etal-2021-good,ahia2023do,petrov2023language}.
