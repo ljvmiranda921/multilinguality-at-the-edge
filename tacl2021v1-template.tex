@@ -530,9 +530,9 @@ Specifically, of the \numpapers{} papers surveyed, \numdeploymentpapers{} descri
 
 \paragraph{Setup}
 In order to map the domains in which an edge LM is deployed,
-we first classify each paper into the following domains, according to the works of \citet{rogers-etal-2023-qa} and \citet{chen2024a}:
+we first manually classify each paper into the following domains, according to the works of \citet{rogers-etal-2023-qa} and \citet{chen2024a}:
 Health, Finance, Legal, Agriculture, Education, and Crisis Response.
-To obtain more finegrained stuff, we extract keywords from the abstract using XXX, embed the abstract using YYY, and then perform UMAP then classify the keywords again...
+For finer-grained analysis, we embed each abstract using SPECTER2 \citep{singh-etal-2023-scirepeval}, reduce dimensionality with UMAP \citep{micinnes-etal-2018-umap}, cluster the results, and extract keywords using KeyBERT \citep{sammet-krestel-2023-domain} to characterize each cluster.
 
 
 \paragraph{Findings}
