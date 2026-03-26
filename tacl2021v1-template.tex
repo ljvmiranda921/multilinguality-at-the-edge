@@ -455,8 +455,11 @@ While initial work explored this in the pretraining setting \citep{weller-etal-2
 \label{sec:inference}
 
 At this stage, a model is served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of device capabilities.
+Inference can happen online, where a model is deployed in a more capable device and accessed via an API call.
+It can also happen offline, where the device where the model is loaded and where inference happens is the same.
+For the Global South, the former is still constrained by network connectivity, while the latter is constrained by memory.
 
-\paragraph{Challenge: Cost of inference \iconenergy{} is not uniform across languages \iconrepresentation{}}
+\paragraph{Challenge 1: Cost of inference \iconenergy{} is not uniform across languages \iconrepresentation{}}
 Several works have shown that inference accounts for a significant share of an LM's total energy consumption across its lifecycle \citep[\textit{inter alia}]{fu-etal-2025-llmco2,adamska2025greenprompting}, with some estimates reaching 90\% \citep{hutt2019inferentia}.
 This has a considerable effect on device sustainability and overall emissions.
 The length of a model's input or output is directly proportional to this cost \citep{jegham2025hungryaibenchmarkingenergy}, which in multilingual contexts is affected by how efficiently a model tokenizes a language \citep{rust-etal-2021-good,ahia2023do,petrov2023language}.
