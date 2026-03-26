@@ -499,7 +499,7 @@ Addressing this challenge requires not only creating smaller and high-quality be
 Researchers have developed \textbf{lite benchmarks} as companion to the standard benchmarks they released \citep{singh-etal-2025-global,ojo-etal-2025-afrobench,micallef-borg-2025-melabenchv1}.
 These lite versions have a smaller scale in terms of the number of instances or languages that speeds up evaluation, making it ideal for fast iterative cycles of development and evaluation.
 They can also be generated automatically, either from a set of documents \citep{shashidhar2025yourbench,hofmann2025fluid} or from aggregating select instances from a collection of benchmarks \citep{kim2025benchhub}.
-Another set of approaches for evaluation moves away from the static benchmarking paradigm and uses techniques like IRT...
+Another set of approaches for evaluation moves away from the static benchmarking paradigm and borrows from established methods like item response theory (IRT) for evaluation \citep{li2025active}
 
 \begin{figure}
   \centering
@@ -573,8 +573,8 @@ However, development can also happen on the edge itself, which presents addition
 The move towards edge LMs often entails specialization.
 Given that there is a capacity ceiling to a more edge model, the move then is to make it really good at a certain task.
 We predict that specialization can become more intentional across the LM pipeline.
-This is often apparent in post-training, where the goal is to finetune a more generally capable base model towards specific skills. 
-But we also see this happening in data collection, where adapting existing data to specific needs happens either through smart curation or synthetic means. 
+This is often apparent in post-training, where the goal is to finetune a more generally capable base model towards specific skills.
+But we also see this happening in data collection, where adapting existing data to specific needs happens either through smart curation or synthetic means.
 Evaliation is also getting more specialized as current benchmarks being evaluated do not necessarily correlate with the actual tasks or are more general.
 I mean even Tiny Aya is getting specialized. This can be in terms of language specialization, task specialization or both
 
