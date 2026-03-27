@@ -36,7 +36,20 @@ CLUSTER_COLORS = [
 ]
 
 # fmt: off
-GENERIC_TERMS = {
+ACCEPT_LIST = {
+    "quantization", "pruning", "distillation", "compression",
+    "multilingual", "low-resource", "cross-lingual",
+    "on-device", "edge", "mobile", "efficient", "lightweight",
+    "medical", "healthcare", "clinical",
+    "translation", "machine translation", "nmt",
+    "speech", "asr", "tts",
+    "bert", "transformer", "attention",
+    "fine-tuning", "adaptation", "transfer",
+    "embedding", "representation",
+    "inference", "latency", "throughput",
+}
+
+REMOVE_LIST = {
     "language model", "language models", "large language", "models", "model",
     "llms", "llm", "benchmark", "benchmarks", "training", "trained",
     "datasets", "dataset", "tasks", "task", "performance", "parameters",
@@ -44,6 +57,8 @@ GENERIC_TERMS = {
     "results", "paper", "study", "work", "using", "based", "show",
     "propose", "proposed", "novel", "new", "state art", "sota",
     "experiments", "evaluation", "evaluated", "https", "github",
+    "bottleneck", "pathways", "assessed", "larger", "free structured",
+    "leveraging", "crucial", "significant", "achieve", "demonstrate",
 }
 # fmt: on
 
@@ -127,17 +142,22 @@ def cluster_embeddings(
 
 
 def filter_keywords(keywords: list[str], top_n: int = 5) -> list[str]:
-    filtered = []
+    accepted = []
+    remaining = []
+
     for kw in keywords:
         kw_lower = kw.lower()
-        if kw_lower in GENERIC_TERMS:
+        if kw_lower in REMOVE_LIST or any(term in kw_lower for term in REMOVE_LIST):
             continue
-        if any(term in kw_lower for term in GENERIC_TERMS):
-            continue
-        filtered.append(kw)
-        if len(filtered) >= top_n:
-            break
-    return filtered
+        if kw_lower in ACCEPT_LIST or any(term in kw_lower for term in ACCEPT_LIST):
+            accepted.append(kw)
+        else:
+            remaining.append(kw)
+
+    result = accepted[:top_n]
+    if len(result) < top_n:
+        result.extend(remaining[: top_n - len(result)])
+    return result
 
 
 def extract_cluster_keywords(
@@ -267,10 +287,8 @@ def plot_clusters(
 
     ax.set_xlabel("")
     ax.set_ylabel("")
-    # ax.spines["top"].set_visible(False)
-    # ax.spines["right"].set_visible(False)
-    ax.set_xticklabels([])
-    ax.set_yticklabels([])
+    ax.set_xticks([])
+    ax.set_yticks([])
     ax.grid(False)
     fig.tight_layout()
     fig.savefig(OUTPUT_DIR / "literature_clusters_umap.pdf", bbox_inches="tight")
