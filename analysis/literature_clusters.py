@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import torch
 import umap
+from adjustText import adjust_text
 from keybert import KeyBERT
 from sentence_transformers import SentenceTransformer
 
