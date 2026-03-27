@@ -49,6 +49,15 @@ DOMAIN_COLORS = {
 
 TECHNIQUE_KEYWORDS = {
     # "RAG": ["retrieval-augmented", "retrieval augmented", " rag "],
+    "Data\nCuration": [
+        "data curation",
+        "data collectors",
+        "dataset of",
+        "multilingual dataset",
+        "multilingual corpus",
+        "multilingual collection",
+        "court rulings with summaries",
+    ],
     "LoRA/\nQLoRA": ["lora", "qlora", "peft"],
     "Quantization": ["quantiz", "int8", "int4", "ptq", "gguf"],
     "Distillation": ["distil", "student model", "teacher model"],
