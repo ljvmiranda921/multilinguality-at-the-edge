@@ -9,7 +9,7 @@ import umap
 from keybert import KeyBERT
 from sentence_transformers import SentenceTransformer
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
+from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, get_device
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -33,14 +33,6 @@ CLUSTER_COLORS = [
     COLORS["dark_crest"],
     COLORS["dark_purple"],
 ]
-
-
-def get_device() -> str:
-    if torch.backends.mps.is_available():
-        return "mps"
-    elif torch.cuda.is_available():
-        return "cuda"
-    return "cpu"
 
 
 def load_and_merge_data() -> tuple[pd.DataFrame, set[str]]:
