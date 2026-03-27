@@ -128,7 +128,7 @@ def plot_domain_technique_network(
     domain_techniques: dict,
     edge_weights: dict,
 ) -> None:
-    fig, ax = plt.subplots(figsize=(12, 8))
+    fig, ax = plt.subplots(figsize=(12, 10))
 
     domain_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"]
     technique_nodes = [
@@ -296,7 +296,7 @@ def plot_domain_technique_network(
             technique,
             ha="center",
             va="center",
-            fontsize=16,
+            fontsize=20,
             fontfamily="serif",
             color="black",
             zorder=4,
