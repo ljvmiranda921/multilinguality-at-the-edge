@@ -529,7 +529,7 @@ In order to map the domains in which an edge LM is deployed,
 we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no), obtaining \numdeploymentpapers{} papers in the process.
 An example of this is from \citet{ramjee-etal-2025-ashabot}, where they deployed an LM-based chatbot (ASHABot) for community health workers in Rajasthan, India.
 Then, we perform a second round of classification by tagging each paper according to their domain, based on the following categories from \citet{rogers-etal-2023-qa} and \citet{chen2024a}: Agriculture, Climate, Finance, Healthcare, Legal, Social, and Speech.
-We also situate these \numdeploymentpapers{} deployments in the context of the full \numpapers{} paper collection.
+We also visualize how these \numdeploymentpapers{} deployments relate to the broader literature.
 We achieve this by embedding the abstracts using MiniLM \citep{wang-etal-2020-minilm}, clustering them using UMAP \citep{micinnes-etal-2018-umap}, and extracting keywords for each cluster using KeyBERT \citep{grootendorst2020keybert}.
 % From the surveyed papers, we find \numdeploymentpapers{} works with actual deployments.
 % We then perform topic analysis by embedding each abstract using SPECTER2 \citep{singh-etal-2023-scirepeval}, and clustering them using UMAP \citep{micinnes-etal-2018-umap}.
