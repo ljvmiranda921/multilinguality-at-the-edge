@@ -63,13 +63,24 @@ TECHNIQUE_KEYWORDS = {
         "pre-trained on",
     ],
     # Deployment modalities
-    "On-device/Edge": ["on-device", "edge deploy", "on device", "edge asr", "neural engine"],
+    "On-device/Edge": [
+        "on-device",
+        "edge deploy",
+        "on device",
+        "edge asr",
+        "neural engine",
+    ],
     "ASR": ["asr", "speech recognition", "whisper", "transcription"],
     "Machine Translation": ["machine translation", " nmt ", " mt system", " mt model"],
     "Chatbot": ["chatbot", "conversational", "chat system", "whatsapp"],
     # Cross-cutting concerns
     "Benchmark": ["benchmark", "test set", "evaluation benchmark"],
-    "Low-resource NLP": ["low-resource", "under-resourced", "minority language", "underserved"],
+    "Low-resource NLP": [
+        "low-resource",
+        "under-resourced",
+        "minority language",
+        "underserved",
+    ],
 }
 
 
@@ -131,10 +142,12 @@ def plot_domain_technique_network(
     domain_techniques: dict,
     edge_weights: dict,
 ) -> None:
-    fig, ax = plt.subplots(figsize=(16, 14))
+    fig, ax = plt.subplots(figsize=(12, 8))
 
     domain_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"]
-    technique_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"]
+    technique_nodes = [
+        n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"
+    ]
 
     # Position domains on an outer ring
     pos = {}
@@ -150,7 +163,11 @@ def plot_domain_technique_network(
     for technique in technique_nodes:
         neighbors = list(G.neighbors(technique))
         if neighbors:
-            weights = [edge_weights.get((n, technique), edge_weights.get((technique, n), 1)) for n in neighbors if n in pos]
+            weights = [
+                edge_weights.get((n, technique), edge_weights.get((technique, n), 1))
+                for n in neighbors
+                if n in pos
+            ]
             xs = [pos[n][0] for n in neighbors if n in pos]
             ys = [pos[n][1] for n in neighbors if n in pos]
             if xs:
@@ -175,10 +192,14 @@ def plot_domain_technique_network(
         seed=42,
     )
 
-    # Clamp technique nodes so they don't fly too far from center
-    max_dist = radius * 0.75
+    # Clamp technique nodes: high-degree nodes pulled closer to center
+    max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
     for t in technique_nodes:
         x, y = full_pos[t]
+        degree = G.nodes[t].get("degree", 1)
+        # High degree → tighter max distance (closer to center)
+        frac = degree / max_degree
+        max_dist = radius * (0.75 - 0.35 * frac)
         dist = np.sqrt(x**2 + y**2)
         if dist > max_dist:
             scale = max_dist / dist
@@ -219,11 +240,21 @@ def plot_domain_technique_network(
         alpha=0.55,
     )
 
-    # Draw technique nodes: smaller dark circles, sized by how many domains connect
+    # Draw technique nodes: higher degree = larger, darker, and more central
+    max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
     technique_sizes = []
+    technique_colors = []
     for t in technique_nodes:
         degree = G.nodes[t].get("degree", 1)
-        technique_sizes.append(300 + degree * 200)
+        technique_sizes.append(300 + degree * 250)
+        # Interpolate gray: high degree = dark (slate_4), low = light (slate_2)
+        frac = degree / max_degree
+        r_lo, g_lo, b_lo = 0.71, 0.74, 0.78  # slate_2 approx
+        r_hi, g_hi, b_hi = 0.14, 0.16, 0.19  # slate_4 approx
+        r = r_lo + (r_hi - r_lo) * frac
+        g = g_lo + (g_hi - g_lo) * frac
+        b = b_lo + (b_hi - b_lo) * frac
+        technique_colors.append((r, g, b))
 
     nx.draw_networkx_nodes(
         G,
@@ -231,7 +262,7 @@ def plot_domain_technique_network(
         ax=ax,
         nodelist=technique_nodes,
         node_size=technique_sizes,
-        node_color=COLORS["slate_4"],
+        node_color=technique_colors,
         edgecolors="none",
         alpha=0.85,
     )
@@ -261,7 +292,7 @@ def plot_domain_technique_network(
             technique,
             ha="center",
             va="bottom",
-            fontsize=13,
+            fontsize=18,
             fontfamily="serif",
             color=COLORS["slate_4"],
             bbox=dict(
