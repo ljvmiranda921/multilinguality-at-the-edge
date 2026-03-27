@@ -284,7 +284,7 @@ def plot_domain_technique_network(
             domain,
             ha="center",
             va="center",
-            fontsize=18,
+            fontsize=28,
             fontweight="bold",
             fontfamily="serif",
             color="black",
