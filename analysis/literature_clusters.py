@@ -1,3 +1,4 @@
+import random
 from pathlib import Path
 
 import hdbscan
@@ -274,7 +275,8 @@ def plot_clusters(
         centroid = coords_2d[mask].mean(axis=0)
         keywords = cluster_keywords.get(label, [])
         if keywords:
-            label_text = "\n".join(f"``{kw}''" for kw in keywords[:2])
+            plot_kws = random.sample(keywords, min(3, len(keywords))) if len(keywords) > 3 else keywords[:3]
+            label_text = "\n".join(f"``{kw}''" for kw in plot_kws)
             t = ax.text(
                 centroid[0],
                 centroid[1],
