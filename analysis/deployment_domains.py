@@ -1,14 +1,12 @@
-from collections import Counter
-from itertools import combinations
+from collections import defaultdict
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import networkx as nx
+import numpy as np
 import pandas as pd
-from keybert import KeyBERT
-from sentence_transformers import SentenceTransformer
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, get_device
+from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -17,120 +15,180 @@ plt.rcParams.update(PLOT_PARAMS)
 
 DATA_PATH = ROOT / "data" / "papers_application.csv"
 
-STOPWORDS = {
-    "language", "languages", "model", "models", "llm", "llms", "large",
-    "multilingual", "paper", "study", "approach", "method", "methods",
-    "using", "based", "performance", "results", "data", "task", "tasks",
+DOMAIN_ORDER = [
+    "Agriculture",
+    "Climate",
+    "Finance",
+    "Healthcare",
+    "Legal",
+    "Social",
+    "Speech",
+]
+
+DOMAIN_MAP = {
+    "Crisis Response": "Social",
+    "Content Moderation": "Social",
+    "Education": "Social",
+    "Information Retrieval": "Social",
+    "Accessibility": "Social",
+}
+
+DOMAIN_COLORS = {
+    "Agriculture": COLORS["warm_green"],
+    "Climate": COLORS["dark_blue"],
+    "Finance": COLORS["green"],
+    "Healthcare": COLORS["cherry"],
+    "Legal": COLORS["slate_3"],
+    "Social": COLORS["crest"],
+    "Speech": COLORS["purple"],
+}
+
+METHOD_KEYWORDS = {
+    "RAG": ["rag", "retrieval-augmented", "retrieval augmented", "retrieval"],
+    "LoRA": ["lora", "qlora", "adapter", "peft"],
+    "Quantization": ["quantiz", "int8", "int4", "ptq", "gguf", "bit precision"],
+    "Distillation": ["distil", "student model", "teacher model"],
+    "Fine-tuning": ["fine-tun", "finetuning", "instruction tuning", "sft"],
+    "MoE": ["mixture of experts", "moe", "language family expert", "expert model"],
+    "Federated": ["federated", "privacy-preserving", "distributed learning"],
+    "Synthetic Data": ["synthetic data", "data augmentation", "generated data", "artificial data"],
+    "Continual Pretraining": ["continual pretrain", "continued pretrain", "further pretrain", "domain adaptation"],
+    "On-device": ["on-device", "edge deploy", "mobile", "lightweight", "on device"],
+    "ASR/Speech": ["asr", "speech recognition", "whisper", "transcription", "voice"],
+    "Translation": ["translation", "nmt", "machine translation", "mt system"],
+    "Chatbot": ["chatbot", "conversational", "dialog", "chat system", "whatsapp"],
+    "Benchmark": ["benchmark", "evaluation", "test set", "evaluated"],
+    "Medical/Health": ["medical", "healthcare", "clinical", "health worker", "biomedical"],
+    "Low-resource": ["low-resource", "under-resourced", "minority language", "underserved"],
 }
 
 
-def extract_keywords_per_paper(df: pd.DataFrame, top_n: int = 5) -> dict[int, list[str]]:
-    device = get_device()
-    kw_model = KeyBERT(model=SentenceTransformer("all-MiniLM-L6-v2", device=device))
+def extract_methods(abstract: str) -> list[str]:
+    abstract_lower = abstract.lower() if pd.notna(abstract) else ""
+    methods = []
+    for method, keywords in METHOD_KEYWORDS.items():
+        if any(kw in abstract_lower for kw in keywords):
+            methods.append(method)
+    return methods
 
-    paper_keywords = {}
-    for idx, row in df.iterrows():
-        abstract = row["abstract"] if pd.notna(row["abstract"]) else ""
-        if len(abstract) < 50:
+
+def build_domain_method_graph(df: pd.DataFrame) -> nx.Graph:
+    df = df.copy()
+    df["domain"] = df["domain"].replace(DOMAIN_MAP)
+
+    domain_methods = defaultdict(set)
+    for _, row in df.iterrows():
+        domain = row["domain"]
+        if domain not in DOMAIN_ORDER:
             continue
+        methods = extract_methods(row["abstract"])
+        for method in methods:
+            domain_methods[domain].add(method)
 
-        kws = kw_model.extract_keywords(
-            abstract,
-            keyphrase_ngram_range=(1, 2),
-            stop_words="english",
-            use_mmr=True,
-            diversity=0.5,
-            top_n=top_n * 2,
-        )
-
-        filtered = []
-        for kw, score in kws:
-            kw_lower = kw.lower()
-            if not any(sw in kw_lower for sw in STOPWORDS):
-                filtered.append(kw_lower)
-            if len(filtered) >= top_n:
-                break
-
-        paper_keywords[idx] = filtered
-
-    return paper_keywords
-
-
-def build_cooccurrence(paper_keywords: dict[int, list[str]]) -> Counter:
-    cooccur = Counter()
-    for keywords in paper_keywords.values():
-        for kw1, kw2 in combinations(sorted(set(keywords)), 2):
-            cooccur[(kw1, kw2)] += 1
-    return cooccur
-
-
-def plot_keyword_network(cooccur: Counter, min_count: int = 1) -> None:
     G = nx.Graph()
 
-    for (kw1, kw2), count in cooccur.items():
-        if count >= min_count:
-            G.add_edge(kw1, kw2, weight=count)
+    for domain in DOMAIN_ORDER:
+        if domain in domain_methods:
+            G.add_node(domain, node_type="domain")
 
-    if len(G.nodes()) == 0:
-        print("No edges meet the min_count threshold")
-        return
+    all_methods = set()
+    for methods in domain_methods.values():
+        all_methods.update(methods)
 
-    degrees = dict(G.degree())
-    node_sizes = [300 + degrees[n] * 150 for n in G.nodes()]
+    for method in all_methods:
+        G.add_node(method, node_type="method")
 
-    fig, ax = plt.subplots(figsize=(12, 10))
+    for domain, methods in domain_methods.items():
+        for method in methods:
+            G.add_edge(domain, method)
 
-    pos = nx.spring_layout(G, k=2, iterations=50, seed=42)
+    return G, domain_methods
 
-    edges = G.edges(data=True)
-    weights = [e[2]["weight"] for e in edges]
-    max_weight = max(weights) if weights else 1
+
+def plot_domain_method_network(G: nx.Graph, domain_methods: dict) -> None:
+    fig, ax = plt.subplots(figsize=(14, 12))
+
+    domain_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"]
+    method_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "method"]
+
+    pos = {}
+    n_domains = len(domain_nodes)
+    for i, domain in enumerate(domain_nodes):
+        angle = 2 * 3.14159 * i / n_domains - 3.14159 / 2
+        pos[domain] = (2.5 * np.cos(angle), 2.5 * np.sin(angle))
+
+    method_subgraph = G.subgraph(method_nodes)
+    method_pos = nx.spring_layout(method_subgraph, k=1.5, iterations=50, seed=42, center=(0, 0))
+    for method, (x, y) in method_pos.items():
+        pos[method] = (x * 0.8, y * 0.8)
 
     nx.draw_networkx_edges(
         G, pos, ax=ax,
-        width=[1 + (w / max_weight) * 3 for w in weights],
-        alpha=0.4,
+        width=2,
+        alpha=0.35,
         edge_color=COLORS["slate_2"],
+    )
+
+    domain_colors = [DOMAIN_COLORS.get(n, COLORS["slate_3"]) for n in domain_nodes]
+    nx.draw_networkx_nodes(
+        G, pos, ax=ax,
+        nodelist=domain_nodes,
+        node_size=3500,
+        node_color=domain_colors,
+        edgecolors=COLORS["slate_4"],
+        linewidths=2,
     )
 
     nx.draw_networkx_nodes(
         G, pos, ax=ax,
-        node_size=node_sizes,
-        node_color=COLORS["warm_blue"],
-        edgecolors=COLORS["slate_4"],
+        nodelist=method_nodes,
+        node_size=1200,
+        node_color=COLORS["slate_1"],
+        edgecolors=COLORS["slate_3"],
         linewidths=1,
+        node_shape="s",
     )
 
+    domain_labels = {n: n for n in domain_nodes}
     nx.draw_networkx_labels(
         G, pos, ax=ax,
-        font_size=10,
+        labels=domain_labels,
+        font_size=16,
+        font_weight="bold",
+        font_family="serif",
+    )
+
+    method_labels = {n: n for n in method_nodes}
+    nx.draw_networkx_labels(
+        G, pos, ax=ax,
+        labels=method_labels,
+        font_size=11,
         font_family="serif",
     )
 
     ax.axis("off")
+    ax.set_xlim(-3.5, 3.5)
+    ax.set_ylim(-3.5, 3.5)
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "keyword_cooccurrence_network.pdf", bbox_inches="tight")
+    fig.savefig(OUTPUT_DIR / "domain_method_network.pdf", bbox_inches="tight")
     plt.close(fig)
-    print(f"Saved to {OUTPUT_DIR / 'keyword_cooccurrence_network.pdf'}")
+    print(f"Saved to {OUTPUT_DIR / 'domain_method_network.pdf'}")
 
 
 def main():
     df = pd.read_csv(DATA_PATH)
     print(f"Loaded: {len(df)} papers")
 
-    print("Extracting keywords...")
-    paper_keywords = extract_keywords_per_paper(df, top_n=5)
+    G, domain_methods = build_domain_method_graph(df)
 
-    print("\nKeywords per paper:")
-    for idx, kws in list(paper_keywords.items())[:5]:
-        print(f"  {df.loc[idx, 'title'][:50]}...: {kws}")
+    print("\nDomain -> Methods:")
+    for domain in DOMAIN_ORDER:
+        if domain in domain_methods:
+            methods = sorted(domain_methods[domain])
+            print(f"  {domain}: {', '.join(methods)}")
 
-    cooccur = build_cooccurrence(paper_keywords)
-    print(f"\nTop co-occurrences:")
-    for (kw1, kw2), count in cooccur.most_common(15):
-        print(f"  {kw1} + {kw2}: {count}")
-
-    plot_keyword_network(cooccur, min_count=1)
+    print(f"\nGraph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+    plot_domain_method_network(G, domain_methods)
 
 
 if __name__ == "__main__":
