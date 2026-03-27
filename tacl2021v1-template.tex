@@ -537,6 +537,7 @@ We achieve this by embedding all \numpapers{} abstracts using MiniLM \citep{wang
     Central nodes represent methods used to develop and deploy real-world edge LMs.
     Edge color indicates connectivity, while darker nodes indicate high sharing among domains.
   }
+  \label{fig:domain_method_network}
 \end{figure}
 
 \begin{figure}
@@ -548,12 +549,14 @@ We achieve this by embedding all \numpapers{} abstracts using MiniLM \citep{wang
     (e.g., encoder translation, dialog datasets, distillation method, quantization, etc.),
     suggesting that real-world deployments share common methodological characteristics.
   }
+  \label{fig:literature_clusters_map}
 \end{figure}
 
 
 \paragraph{Findings}
-Edge models are more specialized??? this can be its own subsection
-\ljm{\lipsum[1]}
+\autoref{fig:domain_method_network} shows a network visualization of each multilingual edge LM domain and the methods they implemented according to their abstracts.
+We find that some methods are consistently used across domains such as synthetic data generation, data curation, SFT, and LoRA.
+Healthcare and Social exhibit the broadest coverage (number of edges), while Legal and Agriculture connect through fewer and more generic methods.
 
 
 % \subsection{Directionality of Methods}
