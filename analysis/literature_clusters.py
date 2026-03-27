@@ -254,7 +254,7 @@ def main():
     df = load_and_merge_data()
     print(f"Loaded {len(df)} papers with abstracts")
     model_name = "all-MiniLM-L12-v2"
-    random_state = 42
+    random_state = 21
     embeddings = embed_abstracts(df, model_name=model_name)
     coords_2d, labels = cluster_embeddings(
         embeddings,
