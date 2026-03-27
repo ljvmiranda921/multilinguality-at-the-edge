@@ -37,16 +37,25 @@ CLUSTER_COLORS = [
 
 # fmt: off
 ACCEPT_LIST = {
-    "quantization", "pruning", "distillation", "compression",
-    "multilingual", "low-resource", "cross-lingual",
-    "on-device", "edge", "mobile", "efficient", "lightweight",
-    "medical", "healthcare", "clinical",
-    "translation", "machine translation", "nmt",
-    "speech", "asr", "tts",
-    "bert", "transformer", "attention",
-    "fine-tuning", "adaptation", "transfer",
-    "embedding", "representation",
-    "inference", "latency", "throughput",
+    "bert quantization", "smaller memory", 
+    "gpu resource", "compression language", "memory challenges",
+    "corpus benchmark", "health worker", "deployed kenya", "multilingual humanitarian",
+    "budget forcing", "bigbench hard", "reasoning performance",
+    "pruning llms", "model compression",
+    "experts model", "layer router", 
+    "embeddings semantic", "vocabulary capacity", "cultural nuances", 
+    "machine translation", "self supervised",
+    "multilngual models", "large corpora", "continued pretraining",
+    # "quantization", "bit training", "pruning", "distillation", "compression",
+    # "multilingual", "low-resource", "cross-lingual",
+    # "on-device", "edge", "mobile", "efficient", "lightweight",
+    # "medical", "healthcare", "clinical",
+    # "translation", "machine translation", "nmt",
+    # "speech", "asr", "tts",
+    # "bert", "transformer", "attention",
+    # "fine-tuning", "adaptation", "transfer",
+    # "embedding", "representation",
+    # "inference", "latency", "throughput",
 }
 
 REMOVE_LIST = {
@@ -59,6 +68,7 @@ REMOVE_LIST = {
     "experiments", "evaluation", "evaluated", "https", "github",
     "bottleneck", "pathways", "assessed", "larger", "free structured",
     "leveraging", "crucial", "significant", "achieve", "demonstrate",
+    "humanitarian", "learned", "large"
 }
 # fmt: on
 
@@ -264,7 +274,7 @@ def plot_clusters(
         centroid = coords_2d[mask].mean(axis=0)
         keywords = cluster_keywords.get(label, [])
         if keywords:
-            label_text = "\n".join(keywords[:2])
+            label_text = "\n".join(f"``{kw}''" for kw in keywords[:2])
             t = ax.text(
                 centroid[0],
                 centroid[1],
