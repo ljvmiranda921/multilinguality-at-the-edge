@@ -249,7 +249,7 @@ def plot_clusters(
                 centroid[0],
                 centroid[1],
                 label_text,
-                fontsize=12,
+                fontsize=16,
                 fontweight="bold",
                 ha="center",
                 va="center",
@@ -263,12 +263,12 @@ def plot_clusters(
     ax.scatter(
         [], [], c=COLORS["slate_3"], s=80, marker="x", label="Real-world Deployment"
     )
-    ax.legend(frameon=False, loc="lower right", fontsize=14)
+    ax.legend(frameon=False, loc="lower right", fontsize=16)
 
-    ax.set_xlabel("UMAP 1")
-    ax.set_ylabel("UMAP 2")
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+    # ax.spines["top"].set_visible(False)
+    # ax.spines["right"].set_visible(False)
     ax.set_xticklabels([])
     ax.set_yticklabels([])
     ax.grid(False)
