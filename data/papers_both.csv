@@ -11,10 +11,9 @@ abdceff7d7983cdede9a5aabe6a476d4c72e41a3,Phi-3 Technical Report: A Highly Capabl
 b6d6c33298b852cf63edac233deca70530d69a2a,PaLM 2 Technical Report,https://www.semanticscholar.org/paper/b6d6c33298b852cf63edac233deca70530d69a2a,none,both,just looks at compute and memory
 c0b454e0a6aa51ff3ba56778787d0c43932ef6ba,Yi: Open Foundation Models by 01.AI,https://www.semanticscholar.org/paper/c0b454e0a6aa51ff3ba56778787d0c43932ef6ba,none,both,We particularly highlight the 4-bit quantization results as 4-bit quantization substantially reduces the memory requirement while the model performance nearly does not drop. This observation serve as the foundation of serving the model on consumer-grade devices.
 arxiv_2603.11510,Tiny Aya: Bridging Scale and Multilingual Depth,,https://arxiv.org/pdf/2603.11510,both, compute memory energy We run the MLX-converted model on devices separated by roughly four years: iPhone 17 Pro and iPhone 13. The iPhone 13 is a particularly instructive baseline: it predates the LLM moment and much of the current on-device LLM wave yet it remains representative of a large installed base. For a standardized workload of 100 input tokens and 100 output tokens in Figure 13 we report both prefill and decode throughput (tokens/s) to reflect the user-visible experience
-arxiv_2503.19786,Gemma 3 Technical Report,,https://arxiv.org/pdf/2503.19786
-arxiv_2601.09012,TranslateGemma Technical Report,,https://arxiv.org/pdf/2601.09012
-arxiv_2207.04672,No Language Left Behind: Scaling Human-Centered Machine Translation,,https://arxiv.org/pdf/2207.04672
-arxiv_2407.21783,The Llama 3 Herd of Models,,https://arxiv.org/pdf/2407.21783
-arxiv_2409.16235,EuroLLM: Multilingual Language Models for Europe,,https://arxiv.org/pdf/2409.16235
-arxiv_2401.13303,MaLA-500: Massive Language Adaptation of Large Language Models,,https://arxiv.org/pdf/2401.13303
-arxiv_2404.06138,Cendol: Open Instruction-tuned Generative Large Language Models for Indonesian Languages,,https://arxiv.org/pdf/2404.06138
+arxiv_2503.19786,Gemma 3 Technical Report,,https://arxiv.org/pdf/2503.19786,both, just a brief mention of memory due to their parameter size but no actual experiments were performed - These models are designed to run on standard consumer-grade hardware such as phones, laptops, and high-end GPUs.
+arxiv_2601.09012,TranslateGemma Technical Report,,https://arxiv.org/pdf/2601.09012,both, just a brief mention of memory due to their parameter size - However the enhancements brought by the TranslateGemma finetuning are such that smaller TranslateGemma models can achieve performance levels comparable to or even exceeding those of larger baseline models. Notably the 12B TranslateGemma model surpasses the performance of the larger 27B baseline Gemma 3 mode
+arxiv_2207.04672,No Language Left Behind: Scaling Human-Centered Machine Translation,,https://arxiv.org/pdf/2207.04672,multilingual,just evaluated on multilingual stuff
+arxiv_2407.21783,The Llama 3 Herd of Models,,https://arxiv.org/pdf/2407.21783,both,wow they actually looked at quantization and inference so memory and compute
+arxiv_2409.16235,EuroLLM: Multilingual Language Models for Europe,,https://arxiv.org/pdf/2409.16235,multilingual,just multilingual
+arxiv_2401.13303,MaLA-500: Massive Language Adaptation of Large Language Models,,https://arxiv.org/pdf/2401.13303,multilingual,just multilingual
