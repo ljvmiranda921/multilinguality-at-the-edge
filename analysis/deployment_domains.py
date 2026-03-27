@@ -200,14 +200,22 @@ def plot_domain_technique_network(
         seed=42,
     )
 
+    # Re-center technique cloud: shift so centroid is at origin
+    tech_xs = [full_pos[t][0] for t in technique_nodes]
+    tech_ys = [full_pos[t][1] for t in technique_nodes]
+    cx_off = np.mean(tech_xs)
+    cy_off = np.mean(tech_ys)
+    for t in technique_nodes:
+        x, y = full_pos[t]
+        full_pos[t] = (x - cx_off, y - cy_off)
+
     # Clamp technique nodes: high-degree nodes pulled closer to center
     max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
     for t in technique_nodes:
         x, y = full_pos[t]
         degree = G.nodes[t].get("degree", 1)
-        # High degree → tighter max distance (closer to center)
         frac = degree / max_degree
-        max_dist = radius * (0.75 - 0.35 * frac)
+        max_dist = radius * (0.65 - 0.30 * frac)
         dist = np.sqrt(x**2 + y**2)
         if dist > max_dist:
             scale = max_dist / dist
