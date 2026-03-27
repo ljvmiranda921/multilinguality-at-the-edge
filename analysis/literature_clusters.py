@@ -38,15 +38,17 @@ CLUSTER_COLORS = [
 
 # fmt: off
 ACCEPT_LIST = {
-    "bert quantization", "smaller memory", 
+    "bert quantization", "smaller memory", "distillation method", 
     "gpu resource", "compression language", "memory challenges",
     "corpus benchmark", "health worker", "deployed kenya", "multilingual humanitarian",
     "budget forcing", "bigbench hard", "reasoning performance",
     "pruning llms", "model compression",
-    "experts model", "layer router", 
+    "experts model", "layer router", "language combine" 
     "embeddings semantic", "vocabulary capacity", "cultural nuances", 
     "machine translation", "self supervised",
-    "multilngual models", "large corpora", "continued pretraining",
+    "asr", "tuning vocabulary",
+    "multilingual models", "large corpora", "continued pretraining",
+    "americas nli", "masakhaner", "bilingual llm"
     # "quantization", "bit training", "pruning", "distillation", "compression",
     # "multilingual", "low-resource", "cross-lingual",
     # "on-device", "edge", "mobile", "efficient", "lightweight",
@@ -60,16 +62,16 @@ ACCEPT_LIST = {
 }
 
 REMOVE_LIST = {
-    "language model", "language models", "large language", "models", "model",
-    "llms", "llm", "benchmark", "benchmarks", "training", "trained",
-    "datasets", "dataset", "tasks", "task", "performance", "parameters",
-    "billion parameters", "methods", "method", "approach", "approaches",
-    "results", "paper", "study", "work", "using", "based", "show",
-    "propose", "proposed", "novel", "new", "state art", "sota",
-    "experiments", "evaluation", "evaluated", "https", "github",
-    "bottleneck", "pathways", "assessed", "larger", "free structured",
-    "leveraging", "crucial", "significant", "achieve", "demonstrate",
-    "humanitarian", "learned", "large"
+    # "language model", "language models", "large language", "models", "model",
+    # "llms", "llm", "benchmark", "benchmarks", "training", "trained",
+    # "datasets", "dataset", "tasks", "task", "performance", "parameters",
+    # "billion parameters", "methods", "method", "approach", "approaches",
+    # "results", "paper", "study", "work", "using", "based", "show",
+    # "propose", "proposed", "novel", "new", "state art", "sota",
+    # "experiments", "evaluation", "evaluated", "https", "github",
+    # "bottleneck", "pathways", "assessed", "larger", "free structured",
+    # "leveraging", "crucial", "significant", "achieve", "demonstrate",
+    # "learned", "large"
 }
 # fmt: on
 
@@ -154,7 +156,6 @@ def cluster_embeddings(
 
 def filter_keywords(keywords: list[str], top_n: int = 5) -> list[str]:
     accepted = []
-    remaining = []
 
     for kw in keywords:
         kw_lower = kw.lower()
@@ -162,13 +163,10 @@ def filter_keywords(keywords: list[str], top_n: int = 5) -> list[str]:
             continue
         if kw_lower in ACCEPT_LIST or any(term in kw_lower for term in ACCEPT_LIST):
             accepted.append(kw)
-        else:
-            remaining.append(kw)
 
-    result = accepted[:top_n]
-    if len(result) < top_n:
-        result.extend(remaining[: top_n - len(result)])
-    return result
+    if len(accepted) > top_n:
+        return random.sample(accepted, top_n)
+    return accepted
 
 
 def extract_cluster_keywords(
@@ -237,7 +235,7 @@ def plot_clusters(
                 c=COLORS["slate_2"],
                 s=40,
                 alpha=0.5,
-                marker="x",
+                marker="*",
             )
 
     texts = []
@@ -265,9 +263,9 @@ def plot_clusters(
                 coords_2d[deploy_mask, 0],
                 coords_2d[deploy_mask, 1],
                 c=color,
-                s=80,
+                s=95,
                 alpha=0.9,
-                marker="x",
+                marker="*",
                 edgecolors=COLORS["slate_4"],
                 linewidths=0.5,
             )
@@ -275,7 +273,11 @@ def plot_clusters(
         centroid = coords_2d[mask].mean(axis=0)
         keywords = cluster_keywords.get(label, [])
         if keywords:
-            plot_kws = random.sample(keywords, min(3, len(keywords))) if len(keywords) > 3 else keywords[:3]
+            plot_kws = (
+                random.sample(keywords, min(3, len(keywords)))
+                if len(keywords) > 3
+                else keywords[:3]
+            )
             label_text = "\n".join(f"``{kw}''" for kw in plot_kws)
             t = ax.text(
                 centroid[0],
@@ -291,11 +293,9 @@ def plot_clusters(
 
     adjust_text(texts, ax=ax)
 
-    ax.scatter([], [], c=COLORS["slate_3"], s=50, marker="o", label="Edge ML Methods")
-    ax.scatter(
-        [], [], c=COLORS["slate_3"], s=80, marker="x", label="Real-world Deployment"
-    )
-    ax.legend(frameon=False, loc="lower right", fontsize=16)
+    ax.scatter([], [], c=COLORS["slate_3"], s=50, marker="o", label="Edge ML Methods")  # fmt: skip
+    ax.scatter([], [], c=COLORS["slate_3"], s=80, marker="*", label="Real-world Deployment")  # fmt: skip
+    ax.legend(frameon=False, loc="lower right", fontsize=18)
 
     ax.set_xlabel("")
     ax.set_ylabel("")
