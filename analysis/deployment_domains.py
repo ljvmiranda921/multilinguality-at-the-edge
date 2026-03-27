@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import matplotlib.patches as mpatches
+from matplotlib.path import Path as MplPath
+from matplotlib.patches import PathPatch
+from matplotlib.colors import to_rgba
 
 from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
 
@@ -81,35 +84,59 @@ def build_cooccurrence_matrix(df: pd.DataFrame) -> pd.DataFrame:
     return matrix
 
 
-def plot_heatmap(matrix: pd.DataFrame) -> None:
-    fig, ax = plt.subplots(figsize=(12, 7))
+def draw_bezier(ax, start, end, color, alpha=0.6, linewidth=2):
+    x0, y0 = start
+    x1, y1 = end
+    mid_x = (x0 + x1) / 2
 
-    data = matrix.values
-    ax.imshow(data, cmap="Blues", aspect="auto", vmin=0, vmax=1)
+    verts = [(x0, y0), (mid_x, y0), (mid_x, y1), (x1, y1)]
+    codes = [MplPath.MOVETO, MplPath.CURVE4, MplPath.CURVE4, MplPath.CURVE4]
+    path = MplPath(verts, codes)
 
-    for i in range(data.shape[0]):
-        for j in range(data.shape[1]):
-            symbol = r"$\bullet$" if data[i, j] == 1 else r"$\circ$"
-            color = COLORS["white"] if data[i, j] == 1 else COLORS["slate_2"]
-            ax.text(j, i, symbol, ha="center", va="center", fontsize=20, color=color)
+    patch = PathPatch(path, facecolor="none", edgecolor=color, alpha=alpha, linewidth=linewidth)
+    ax.add_patch(patch)
 
-    ax.set_xticks(np.arange(len(matrix.columns)))
-    ax.set_yticks(np.arange(len(matrix.index)))
-    ax.set_xticklabels(matrix.columns, rotation=45, ha="right", fontsize=14)
-    ax.set_yticklabels(matrix.index, fontsize=14)
 
-    ax.set_xticks(np.arange(-0.5, len(matrix.columns), 1), minor=True)
-    ax.set_yticks(np.arange(-0.5, len(matrix.index), 1), minor=True)
-    ax.grid(which="minor", color=COLORS["slate_1"], linestyle="-", linewidth=0.5)
-    ax.tick_params(which="minor", bottom=False, left=False)
+def plot_bipartite(matrix: pd.DataFrame) -> None:
+    fig, ax = plt.subplots(figsize=(10, 8))
 
-    for spine in ax.spines.values():
-        spine.set_visible(False)
+    domains = list(matrix.index)
+    methods = list(matrix.columns)
+
+    domain_x = 0.15
+    method_x = 0.85
+    domain_y = np.linspace(0.9, 0.1, len(domains))
+    method_y = np.linspace(0.9, 0.1, len(methods))
+
+    domain_colors = [
+        COLORS["cherry"], COLORS["crest"], COLORS["green"], COLORS["purple"],
+        COLORS["indigo"], COLORS["warm_blue"], COLORS["dark_blue"], COLORS["slate_3"],
+    ]
+
+    for i, (domain, y) in enumerate(zip(domains, domain_y)):
+        color = domain_colors[i % len(domain_colors)]
+
+        for j, method in enumerate(methods):
+            if matrix.loc[domain, method] == 1:
+                draw_bezier(ax, (domain_x, y), (method_x, method_y[j]), color)
+
+    for i, (domain, y) in enumerate(zip(domains, domain_y)):
+        color = domain_colors[i % len(domain_colors)]
+        ax.scatter(domain_x, y, s=800, c=color, zorder=3, edgecolors=COLORS["slate_4"], linewidths=1)
+        ax.text(domain_x - 0.03, y, domain, ha="right", va="center", fontsize=14, fontweight="bold")
+
+    for j, (method, y) in enumerate(zip(methods, method_y)):
+        ax.scatter(method_x, y, s=600, c=COLORS["slate_2"], zorder=3, edgecolors=COLORS["slate_4"], linewidths=1, marker="s")
+        ax.text(method_x + 0.03, y, method, ha="left", va="center", fontsize=12)
+
+    ax.set_xlim(-0.1, 1.1)
+    ax.set_ylim(0, 1)
+    ax.axis("off")
 
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "domain_method_heatmap.pdf", bbox_inches="tight")
+    fig.savefig(OUTPUT_DIR / "domain_method_bipartite.pdf", bbox_inches="tight")
     plt.close(fig)
-    print(f"Saved to {OUTPUT_DIR / 'domain_method_heatmap.pdf'}")
+    print(f"Saved to {OUTPUT_DIR / 'domain_method_bipartite.pdf'}")
 
 
 def main():
@@ -123,7 +150,7 @@ def main():
     print(f"\nMethods with presence: {list(matrix.columns)}")
     print(f"Methods with no presence: {[m for m in METHOD_CATEGORIES if m not in matrix.columns]}")
 
-    plot_heatmap(matrix)
+    plot_bipartite(matrix)
 
 
 if __name__ == "__main__":
