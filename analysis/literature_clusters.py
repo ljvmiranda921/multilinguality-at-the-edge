@@ -65,7 +65,9 @@ def load_and_merge_data() -> tuple[pd.DataFrame, set[str]]:
     combined["is_deployment"] = combined["_key"].isin(deployment_keys)
     combined = combined.drop(columns=["_key"], errors="ignore")
 
-    combined = combined[combined["abstract"].notna() & (combined["abstract"].str.len() > 50)]
+    combined = combined[
+        combined["abstract"].notna() & (combined["abstract"].str.len() > 50)
+    ]
     combined = combined.drop_duplicates(subset=["title"])
 
     return combined.reset_index(drop=True)
@@ -125,8 +127,7 @@ def extract_cluster_keywords(
     top_n: int = 5,
 ) -> dict[int, list[str]]:
     device = get_device()
-    sentence_model = SentenceTransformer(model_name, device=device)
-    kw_model = KeyBERT(model=sentence_model)
+    kw_model = KeyBERT(model=SentenceTransformer(model_name, device=device))
 
     cluster_keywords = {}
     unique_labels = sorted(set(labels))
@@ -158,7 +159,7 @@ def plot_clusters(
     cluster_keywords: dict[int, list[str]],
     df: pd.DataFrame,
 ) -> None:
-    fig, ax = plt.subplots(figsize=(12, 10))
+    fig, ax = plt.subplots(figsize=(8, 6))
 
     unique_labels = sorted(set(labels))
 
@@ -184,7 +185,7 @@ def plot_clusters(
                 c=COLORS["slate_2"],
                 s=40,
                 alpha=0.5,
-                marker="X",
+                marker="x",
             )
 
     for i, label in enumerate([l for l in unique_labels if l != -1]):
@@ -251,27 +252,18 @@ def main():
     # Load data
     df = load_and_merge_data()
     print(f"Loaded {len(df)} papers with abstracts")
+    model_name = "all-MiniLM-L6-v2"
+    embeddings = embed_abstracts(df, model_name=model_name)
+    coords_2d, labels = cluster_embeddings(embeddings, min_cluster_size=8, min_samples=3)  # fmt: skip
 
-    # Embed
-    embeddings = embed_abstracts(df)
-
-    # Cluster
-    coords_2d, labels = cluster_embeddings(embeddings, min_cluster_size=8, min_samples=3)
-
-    # Extract keywords
-    print("Extracting keywords per cluster...")
-    cluster_keywords = extract_cluster_keywords(df, labels, top_n=5)
-
-    # Print summary
+    cluster_keywords = extract_cluster_keywords(df, labels, top_n=5, model_name=model_name)  # fmt: skip
     print("\nCluster keywords:")
     for label, keywords in sorted(cluster_keywords.items()):
         count = (labels == label).sum()
         print(f"  Cluster {label} (n={count}): {', '.join(keywords)}")
 
     df["cluster"] = labels
-    df["cluster_keywords"] = df["cluster"].map(
-        lambda x: ", ".join(cluster_keywords.get(x, [])) if x != -1 else "unclustered"
-    )
+    df["cluster_keywords"] = df["cluster"].map(lambda x: ", ".join(cluster_keywords.get(x, [])) if x != -1 else "unclustered")  # fmt: skip
 
     output_path = ROOT / "data" / "papers_with_clusters.csv"
     df.to_csv(output_path, index=False)
