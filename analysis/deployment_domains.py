@@ -6,6 +6,8 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 
+from adjustText import adjust_text
+
 from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
 
 CWD = Path(__file__).resolve().parent
@@ -283,15 +285,16 @@ def plot_domain_technique_network(
             zorder=5,
         )
 
-    # Technique labels: boxed labels like the reference image
+    # Technique labels: placed with adjustText to avoid overlaps
+    technique_texts = []
     for technique in technique_nodes:
         x, y = pos[technique]
-        ax.text(
+        t = ax.text(
             x,
-            y + 0.18,
+            y,
             technique,
             ha="center",
-            va="bottom",
+            va="center",
             fontsize=18,
             fontfamily="serif",
             color=COLORS["slate_4"],
@@ -304,6 +307,15 @@ def plot_domain_technique_network(
             ),
             zorder=4,
         )
+        technique_texts.append(t)
+
+    adjust_text(
+        technique_texts,
+        ax=ax,
+        expand=(1.5, 1.5),
+        force_text=(0.5, 0.5),
+        force_points=(0.3, 0.3),
+    )
 
     ax.axis("off")
     margin = 1.0
