@@ -186,8 +186,8 @@ def plot_domain_technique_network(
         G,
         pos=fixed_pos,
         fixed=domain_nodes,
-        k=1.8,
-        iterations=200,
+        k=2.5,
+        iterations=300,
         seed=42,
     )
 
@@ -199,6 +199,27 @@ def plot_domain_technique_network(
     for t in technique_nodes:
         x, y = full_pos[t]
         full_pos[t] = (x - cx_off, y - cy_off)
+
+    # Push apart overlapping technique nodes
+    min_separation = 0.6
+    for _ in range(50):
+        moved = False
+        for i, t1 in enumerate(technique_nodes):
+            for t2 in technique_nodes[i + 1 :]:
+                x1, y1 = full_pos[t1]
+                x2, y2 = full_pos[t2]
+                dx = x2 - x1
+                dy = y2 - y1
+                dist = np.sqrt(dx**2 + dy**2)
+                if dist < min_separation and dist > 0:
+                    push = (min_separation - dist) / 2
+                    nx_dir = dx / dist
+                    ny_dir = dy / dist
+                    full_pos[t1] = (x1 - nx_dir * push, y1 - ny_dir * push)
+                    full_pos[t2] = (x2 + nx_dir * push, y2 + ny_dir * push)
+                    moved = True
+        if not moved:
+            break
 
     # Clamp: high-degree nodes closer to center
     max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
