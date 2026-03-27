@@ -93,6 +93,7 @@ def cluster_embeddings(
     embeddings: np.ndarray,
     min_cluster_size: int = 10,
     min_samples: int = 5,
+    random_state: int = 42,
 ) -> tuple[np.ndarray, np.ndarray]:
     print("Reducing dimensions with UMAP...")
     reducer = umap.UMAP(
@@ -100,7 +101,7 @@ def cluster_embeddings(
         n_neighbors=15,
         min_dist=0.1,
         metric="cosine",
-        random_state=42,
+        random_state=random_state,
     )
     coords_2d = reducer.fit_transform(embeddings)
 
@@ -214,7 +215,7 @@ def plot_clusters(
                 c=color,
                 s=80,
                 alpha=0.9,
-                marker="X",
+                marker="x",
                 edgecolors=COLORS["slate_4"],
                 linewidths=0.5,
             )
@@ -252,9 +253,15 @@ def main():
     # Load data
     df = load_and_merge_data()
     print(f"Loaded {len(df)} papers with abstracts")
-    model_name = "all-MiniLM-L6-v2"
+    model_name = "all-MiniLM-L12-v2"
+    random_state = 42
     embeddings = embed_abstracts(df, model_name=model_name)
-    coords_2d, labels = cluster_embeddings(embeddings, min_cluster_size=8, min_samples=3)  # fmt: skip
+    coords_2d, labels = cluster_embeddings(
+        embeddings,
+        min_cluster_size=8,
+        min_samples=3,
+        random_state=random_state,
+    )
 
     cluster_keywords = extract_cluster_keywords(df, labels, top_n=5, model_name=model_name)  # fmt: skip
     print("\nCluster keywords:")
