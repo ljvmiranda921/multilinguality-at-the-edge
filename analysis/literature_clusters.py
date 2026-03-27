@@ -153,7 +153,7 @@ def plot_clusters(
     cluster_keywords: dict[int, list[str]],
     df: pd.DataFrame,
 ) -> None:
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(8, 8))
 
     unique_labels = sorted(set(labels))
 
@@ -234,12 +234,14 @@ def plot_clusters(
 
     ax.scatter([], [], c=COLORS["slate_3"], s=50, marker="o", label="Method")
     ax.scatter([], [], c=COLORS["slate_3"], s=80, marker="x", label="Deployment")
-    ax.legend(frameon=False, loc="upper right", fontsize=14)
+    ax.legend(frameon=False, loc="lower right", fontsize=14)
 
     ax.set_xlabel("UMAP 1")
     ax.set_ylabel("UMAP 2")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
     ax.grid(False)
     fig.tight_layout()
     fig.savefig(OUTPUT_DIR / "literature_clusters_umap.pdf", bbox_inches="tight")
