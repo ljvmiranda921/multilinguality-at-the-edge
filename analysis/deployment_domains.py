@@ -200,9 +200,21 @@ def plot_domain_technique_network(
         x, y = full_pos[t]
         full_pos[t] = (x - cx_off, y - cy_off)
 
+    # Clamp first, then separate — so separation isn't undone by clamping
+    max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
+    for t in technique_nodes:
+        x, y = full_pos[t]
+        degree = G.nodes[t].get("degree", 1)
+        frac = degree / max_degree
+        max_dist = radius * (0.65 - 0.30 * frac)
+        dist = np.sqrt(x**2 + y**2)
+        if dist > max_dist:
+            scale = max_dist / dist
+            full_pos[t] = (x * scale, y * scale)
+
     # Push apart overlapping technique nodes
-    min_separation = 0.6
-    for _ in range(50):
+    min_separation = 1.2
+    for _ in range(200):
         moved = False
         for i, t1 in enumerate(technique_nodes):
             for t2 in technique_nodes[i + 1 :]:
@@ -220,18 +232,6 @@ def plot_domain_technique_network(
                     moved = True
         if not moved:
             break
-
-    # Clamp: high-degree nodes closer to center
-    max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
-    for t in technique_nodes:
-        x, y = full_pos[t]
-        degree = G.nodes[t].get("degree", 1)
-        frac = degree / max_degree
-        max_dist = radius * (0.65 - 0.30 * frac)
-        dist = np.sqrt(x**2 + y**2)
-        if dist > max_dist:
-            scale = max_dist / dist
-            full_pos[t] = (x * scale, y * scale)
 
     pos.update({t: full_pos[t] for t in technique_nodes})
 
