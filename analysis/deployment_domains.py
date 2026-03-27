@@ -178,8 +178,10 @@ def plot_domain_technique_network(
                 total_w = sum(weights)
                 wx = sum(x * w for x, w in zip(xs, weights)) / total_w
                 wy = sum(y * w for y, w in zip(ys, weights)) / total_w
-                # Pull toward center but not all the way (0.5 factor)
-                init_pos[technique] = (wx * 0.5, wy * 0.5)
+                # High-degree nodes start closer to center (stronger pull)
+                degree = G.nodes[technique].get("degree", 1)
+                pull = 0.5 - 0.15 * (degree / max(G.nodes[t].get("degree", 1) for t in technique_nodes))
+                init_pos[technique] = (wx * pull, wy * pull)
             else:
                 init_pos[technique] = (0, 0)
         else:
@@ -305,7 +307,7 @@ def plot_domain_technique_network(
             zorder=5,
         )
 
-    # Technique labels: placed with adjustText to avoid overlaps
+    # Technique labels: no box, with small arrows pointing to nodes
     technique_texts = []
     for technique in technique_nodes:
         x, y = pos[technique]
@@ -315,16 +317,9 @@ def plot_domain_technique_network(
             technique,
             ha="center",
             va="center",
-            fontsize=18,
+            fontsize=16,
             fontfamily="serif",
             color="black",
-            bbox=dict(
-                boxstyle="round,pad=0.2",
-                facecolor="white",
-                edgecolor=COLORS["slate_2"],
-                linewidth=0.5,
-                alpha=0.9,
-            ),
             zorder=4,
         )
         technique_texts.append(t)
@@ -332,9 +327,14 @@ def plot_domain_technique_network(
     adjust_text(
         technique_texts,
         ax=ax,
-        expand=(1.5, 1.5),
-        force_text=(0.5, 0.5),
-        force_points=(0.3, 0.3),
+        expand=(1.8, 1.8),
+        force_text=(0.8, 0.8),
+        force_points=(0.5, 0.5),
+        arrowprops=dict(
+            arrowstyle="-",
+            color=COLORS["slate_2"],
+            linewidth=0.8,
+        ),
     )
 
     ax.axis("off")
