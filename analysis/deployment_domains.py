@@ -49,29 +49,34 @@ DOMAIN_COLORS = {
 
 TECHNIQUE_KEYWORDS = {
     # "RAG": ["retrieval-augmented", "retrieval augmented", " rag "],
-    "LoRA/QLoRA": ["lora", "qlora", "peft"],
+    "LoRA/\nQLoRA": ["lora", "qlora", "peft"],
     "Quantization": ["quantiz", "int8", "int4", "ptq", "gguf"],
     "Distillation": ["distil", "student model", "teacher model"],
-    "Fine-tuning": ["fine-tun", "finetuning", "instruction tuning", " sft "],
-    "MoE": ["mixture of experts", " moe ", "language family expert"],
-    "Federated Learning": ["federated learning", "federated few-shot"],
+    "Supervised\nFine-tuning": [
+        "fine-tun",
+        "finetuning",
+        "instruction tuning",
+        " sft ",
+    ],
+    "Mixtures-of-Experts": ["mixture of experts", " moe ", "language family expert"],
+    "Federated\nLearning": ["federated learning", "federated few-shot"],
     "Synthetic\nData": ["synthetic data", "data augmentation", "synthetic qa"],
-    "Continual Pretraining": [
+    "Continual\nPretraining": [
         "continual pretrain",
         "continued pretrain",
         "further pretrain",
         "pre-trained on",
     ],
     "ASR": ["asr", "speech recognition", "whisper", "transcription"],
-    "Machine Translation": ["machine translation", " nmt ", " mt system", " mt model"],
-    "Chatbot": ["chatbot", "conversational", "chat system", "whatsapp"],
+    "Machine\nTranslation": ["machine translation", " nmt ", " mt system", " mt model"],
+    "Dialogue\nSystems": ["chatbot", "conversational", "chat system", "whatsapp"],
     "Benchmark": ["benchmark", "test set", "evaluation benchmark"],
-    "Low-resource NLP": [
-        "low-resource",
-        "under-resourced",
-        "minority language",
-        "underserved",
-    ],
+    # "Low-resource\nNLP": [
+    #     "low-resource",
+    #     "under-resourced",
+    #     "minority language",
+    #     "underserved",
+    # ],
 }
 
 
@@ -292,10 +297,11 @@ def plot_domain_technique_network(
         x, y = pos[technique]
         t = ax.text(
             x,
-            y,
+            y - 0.1,
             technique,
             ha="center",
             va="center",
+            ma="left",
             fontsize=20,
             fontfamily="serif",
             color="black",
@@ -308,7 +314,7 @@ def plot_domain_technique_network(
         ax=ax,
         expand=(1.2, 1.2),
         force_text=(0.3, 0.3),
-        force_points=(1.0, 1.0),
+        force_points=(0.65, 0.75),
         arrowprops=dict(arrowstyle="-", color=COLORS["slate_2"], linewidth=0.8),
     )
 
