@@ -519,10 +519,10 @@ Finally, another class of techniques create \textbf{dynamic evaluation} either f
 \section{Analysis: What's In the Last Mile?}
 
 Thus far, we have discussed the challenges and potential methods that researchers and practitioners may face when developing and deploying multilingual edge LMs.
-We now turn to existing deployments in our sample of papers.
+% We now turn to existing deployments in our sample of papers.
 % By examining successful deployments (we define success loosely as end-to-end development and deployment of an LM solution), we hope to glean the contexts that characterize the edge.
-By examining successful deployments (defined here as completed end-to-end LM solutions), we aim to identify the contexts that characterize the last mile.
-Specifically, of the \numpapers{} papers surveyed, \numdeploymentpapers{} describe deployments where a model was integrated into a system to address a real-world use case.
+% By examining successful deployments (defined here as completed end-to-end LM solutions), we aim to identify the contexts that characterize the last mile.
+% Specifically, of the \numpapers{} papers surveyed, \numdeploymentpapers{} describe deployments where a model was integrated into a system to address a real-world use case.
 % In this section, we look into existing multilingual edge LM deployments.
 
 
@@ -530,9 +530,11 @@ Specifically, of the \numpapers{} papers surveyed, \numdeploymentpapers{} descri
 
 \paragraph{Setup}
 In order to map the domains in which an edge LM is deployed,
-we first manually classify each paper into the following domains, according to the works of \citet{rogers-etal-2023-qa} and \citet{chen2024a}:
-Health, Finance, Legal, Agriculture, Education, and Crisis Response.
-For finer-grained analysis, we embed each abstract using SPECTER2 \citep{singh-etal-2023-scirepeval}, reduce dimensionality with UMAP \citep{micinnes-etal-2018-umap}, cluster the results, and extract keywords using KeyBERT \citep{sammet-krestel-2023-domain} to characterize each cluster.
+we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no).
+
+% we first manually classify each paper into the following domains, according to the works of \citet{rogers-etal-2023-qa} and \citet{chen2024a}:
+% Health, Finance, Legal, Agriculture, Education, and Crisis Response.
+% For finer-grained analysis, we embed each abstract using SPECTER2 \citep{singh-etal-2023-scirepeval}, reduce dimensionality with UMAP \citep{micinnes-etal-2018-umap}, cluster the results, and extract keywords using KeyBERT \citep{sammet-krestel-2023-domain} to characterize each cluster.
 
 
 \paragraph{Findings}
