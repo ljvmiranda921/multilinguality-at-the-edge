@@ -180,7 +180,9 @@ def plot_domain_technique_network(
                 wy = sum(y * w for y, w in zip(ys, weights)) / total_w
                 # High-degree nodes start closer to center (stronger pull)
                 degree = G.nodes[technique].get("degree", 1)
-                pull = 0.5 - 0.15 * (degree / max(G.nodes[t].get("degree", 1) for t in technique_nodes))
+                pull = 0.20 - 0.15 * (
+                    degree / max(G.nodes[t].get("degree", 1) for t in technique_nodes)
+                )
                 init_pos[technique] = (wx * pull, wy * pull)
             else:
                 init_pos[technique] = (0, 0)
