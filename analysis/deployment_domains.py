@@ -5,7 +5,6 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
-import torch
 from keybert import KeyBERT
 from sentence_transformers import SentenceTransformer
 
