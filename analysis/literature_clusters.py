@@ -39,16 +39,23 @@ CLUSTER_COLORS = [
 # fmt: off
 ACCEPT_LIST = {
     "bert quantization", "smaller memory", "distillation method", 
-    "gpu resource", "compression language", "memory challenges",
-    "corpus benchmark", "health worker", "deployed kenya", "multilingual humanitarian",
-    "budget forcing", "bigbench hard", "reasoning performance",
-    "pruning llms", "model compression",
-    "experts model", "layer router", "language combine" 
-    "embeddings semantic", "vocabulary capacity", "cultural nuances", 
-    "machine translation", "self supervised",
-    "asr", "tuning vocabulary",
-    "multilingual models", "large corpora", "continued pretraining",
-    "americas nli", "masakhaner", "bilingual llm"
+    "thinking capabilities", "inference boost", "reasoning performance",
+    "faster draft", "higher throughput", "context window",
+    "prompt compression", "information entropy", "efficiency llms",
+    "pruning llms", "model compression", "language tasks",
+    "architecture tokenizer", "context size", "datasets diverse",
+    "ai healthcare", "dialog datasets", "specialized domains",
+    "encoder translation", "learn subwords", "embedding benchmark",
+    # "gpu resource", "compression language", "memory challenges",
+    # "corpus benchmark", "health worker", "deployed kenya", "multilingual humanitarian",
+    # "budget forcing", "bigbench hard", "reasoning performance",
+    # "pruning llms", "model compression",
+    # "experts model", "layer router", "language combine" 
+    # "embeddings semantic", "vocabulary capacity", "cultural nuances", 
+    # "machine translation", "self supervised",
+    # "asr", "tuning vocabulary",
+    # "multilingual models", "large corpora", "continued pretraining",
+    # "americas nli", "masakhaner", "bilingual llm"
     # "quantization", "bit training", "pruning", "distillation", "compression",
     # "multilingual", "low-resource", "cross-lingual",
     # "on-device", "edge", "mobile", "efficient", "lightweight",
@@ -198,7 +205,10 @@ def extract_cluster_keywords(
             top_n=20,
         )
         all_kws = [kw for kw, _ in kws]
+        # cluster_keywords[label] = all_kws
         cluster_keywords[label] = filter_keywords(all_kws, top_n=top_n)
+
+    # breakpoint()
 
     return cluster_keywords
 
@@ -295,7 +305,7 @@ def plot_clusters(
 
     ax.scatter([], [], c=COLORS["slate_3"], s=50, marker="o", label="Edge ML Methods")  # fmt: skip
     ax.scatter([], [], c=COLORS["slate_3"], s=80, marker="*", label="Real-world Deployment")  # fmt: skip
-    ax.legend(frameon=False, loc="lower right", fontsize=18)
+    ax.legend(frameon=False, loc="lower left", fontsize=18)
 
     ax.set_xlabel("")
     ax.set_ylabel("")
