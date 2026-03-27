@@ -43,134 +43,247 @@ DOMAIN_COLORS = {
     "Speech": COLORS["purple"],
 }
 
-METHOD_KEYWORDS = {
-    "RAG": ["rag", "retrieval-augmented", "retrieval augmented", "retrieval"],
-    "LoRA": ["lora", "qlora", "adapter", "peft"],
-    "Quantization": ["quantiz", "int8", "int4", "ptq", "gguf", "bit precision"],
+# Keywords are organized by technique/approach type to avoid mixing methods
+# with application topics. Each keyword list uses specific multi-word phrases
+# to reduce false positives (e.g., "retrieval-augmented" instead of "retrieval").
+TECHNIQUE_KEYWORDS = {
+    # Efficiency & compression techniques
+    "RAG": ["retrieval-augmented", "retrieval augmented", " rag "],
+    "LoRA/QLoRA": ["lora", "qlora", "peft"],
+    "Quantization": ["quantiz", "int8", "int4", "ptq", "gguf"],
     "Distillation": ["distil", "student model", "teacher model"],
-    "Fine-tuning": ["fine-tun", "finetuning", "instruction tuning", "sft"],
-    "MoE": ["mixture of experts", "moe", "language family expert", "expert model"],
-    "Federated": ["federated", "privacy-preserving", "distributed learning"],
-    "Synthetic Data": ["synthetic data", "data augmentation", "generated data", "artificial data"],
-    "Continual Pretraining": ["continual pretrain", "continued pretrain", "further pretrain", "domain adaptation"],
-    "On-device": ["on-device", "edge deploy", "mobile", "lightweight", "on device"],
-    "ASR/Speech": ["asr", "speech recognition", "whisper", "transcription", "voice"],
-    "Translation": ["translation", "nmt", "machine translation", "mt system"],
-    "Chatbot": ["chatbot", "conversational", "dialog", "chat system", "whatsapp"],
-    "Benchmark": ["benchmark", "evaluation", "test set", "evaluated"],
-    "Medical/Health": ["medical", "healthcare", "clinical", "health worker", "biomedical"],
-    "Low-resource": ["low-resource", "under-resourced", "minority language", "underserved"],
+    "Fine-tuning": ["fine-tun", "finetuning", "instruction tuning", " sft "],
+    "MoE": ["mixture of experts", " moe ", "language family expert"],
+    "Federated Learning": ["federated learning", "federated few-shot"],
+    "Synthetic Data": ["synthetic data", "data augmentation", "synthetic qa"],
+    "Continual Pretraining": [
+        "continual pretrain",
+        "continued pretrain",
+        "further pretrain",
+        "pre-trained on",
+    ],
+    # Deployment modalities
+    "On-device/Edge": ["on-device", "edge deploy", "on device", "edge asr", "neural engine"],
+    "ASR": ["asr", "speech recognition", "whisper", "transcription"],
+    "Machine Translation": ["machine translation", " nmt ", " mt system", " mt model"],
+    "Chatbot": ["chatbot", "conversational", "chat system", "whatsapp"],
+    # Cross-cutting concerns
+    "Benchmark": ["benchmark", "test set", "evaluation benchmark"],
+    "Low-resource NLP": ["low-resource", "under-resourced", "minority language", "underserved"],
 }
 
 
-def extract_methods(abstract: str) -> list[str]:
-    abstract_lower = abstract.lower() if pd.notna(abstract) else ""
-    methods = []
-    for method, keywords in METHOD_KEYWORDS.items():
-        if any(kw in abstract_lower for kw in keywords):
-            methods.append(method)
-    return methods
+def extract_techniques(text: str) -> list[str]:
+    """Extract techniques from abstract + description combined text."""
+    text_lower = text.lower() if pd.notna(text) else ""
+    techniques = []
+    for technique, keywords in TECHNIQUE_KEYWORDS.items():
+        if any(kw in text_lower for kw in keywords):
+            techniques.append(technique)
+    return techniques
 
 
-def build_domain_method_graph(df: pd.DataFrame) -> nx.Graph:
+def build_domain_technique_graph(
+    df: pd.DataFrame,
+) -> tuple[nx.Graph, dict, dict]:
     df = df.copy()
     df["domain"] = df["domain"].replace(DOMAIN_MAP)
 
-    domain_methods = defaultdict(set)
+    # Combine abstract and description for richer matching
+    df["combined_text"] = df["abstract"].fillna("") + " " + df["description"].fillna("")
+
+    # Track both set membership and paper counts for edge weights
+    domain_techniques: dict[str, set] = defaultdict(set)
+    edge_weights: dict[tuple[str, str], int] = defaultdict(int)
+
     for _, row in df.iterrows():
         domain = row["domain"]
         if domain not in DOMAIN_ORDER:
             continue
-        methods = extract_methods(row["abstract"])
-        for method in methods:
-            domain_methods[domain].add(method)
+        techniques = extract_techniques(row["combined_text"])
+        for technique in techniques:
+            domain_techniques[domain].add(technique)
+            edge_weights[(domain, technique)] += 1
 
     G = nx.Graph()
 
     for domain in DOMAIN_ORDER:
-        if domain in domain_methods:
+        if domain in domain_techniques:
             G.add_node(domain, node_type="domain")
 
-    all_methods = set()
-    for methods in domain_methods.values():
-        all_methods.update(methods)
+    all_techniques = set()
+    for techniques in domain_techniques.values():
+        all_techniques.update(techniques)
 
-    for method in all_methods:
-        G.add_node(method, node_type="method")
+    for technique in all_techniques:
+        # Count how many domains connect to this technique
+        degree = sum(1 for d in domain_techniques if technique in domain_techniques[d])
+        G.add_node(technique, node_type="technique", degree=degree)
 
-    for domain, methods in domain_methods.items():
-        for method in methods:
-            G.add_edge(domain, method)
+    for (domain, technique), weight in edge_weights.items():
+        G.add_edge(domain, technique, weight=weight)
 
-    return G, domain_methods
+    return G, domain_techniques, edge_weights
 
 
-def plot_domain_method_network(G: nx.Graph, domain_methods: dict) -> None:
-    fig, ax = plt.subplots(figsize=(14, 12))
+def plot_domain_technique_network(
+    G: nx.Graph,
+    domain_techniques: dict,
+    edge_weights: dict,
+) -> None:
+    fig, ax = plt.subplots(figsize=(16, 14))
 
     domain_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"]
-    method_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "method"]
+    technique_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"]
 
+    # Position domains on an outer ring
     pos = {}
     n_domains = len(domain_nodes)
+    radius = 4.5
     for i, domain in enumerate(domain_nodes):
-        angle = 2 * 3.14159 * i / n_domains - 3.14159 / 2
-        pos[domain] = (2.5 * np.cos(angle), 2.5 * np.sin(angle))
+        angle = 2 * np.pi * i / n_domains - np.pi / 2
+        pos[domain] = (radius * np.cos(angle), radius * np.sin(angle))
 
-    method_subgraph = G.subgraph(method_nodes)
-    method_pos = nx.spring_layout(method_subgraph, k=1.5, iterations=50, seed=42, center=(0, 0))
-    for method, (x, y) in method_pos.items():
-        pos[method] = (x * 0.8, y * 0.8)
+    # Initialize technique positions as weighted centroid of connected domains
+    # Weight by edge weight so techniques are pulled toward their primary domain
+    init_pos = {}
+    for technique in technique_nodes:
+        neighbors = list(G.neighbors(technique))
+        if neighbors:
+            weights = [edge_weights.get((n, technique), edge_weights.get((technique, n), 1)) for n in neighbors if n in pos]
+            xs = [pos[n][0] for n in neighbors if n in pos]
+            ys = [pos[n][1] for n in neighbors if n in pos]
+            if xs:
+                total_w = sum(weights)
+                wx = sum(x * w for x, w in zip(xs, weights)) / total_w
+                wy = sum(y * w for y, w in zip(ys, weights)) / total_w
+                # Pull toward center but not all the way (0.5 factor)
+                init_pos[technique] = (wx * 0.5, wy * 0.5)
+            else:
+                init_pos[technique] = (0, 0)
+        else:
+            init_pos[technique] = (0, 0)
 
-    nx.draw_networkx_edges(
-        G, pos, ax=ax,
-        width=2,
-        alpha=0.35,
-        edge_color=COLORS["slate_2"],
+    # Spring layout with fixed domain positions
+    fixed_pos = {**pos, **init_pos}
+    full_pos = nx.spring_layout(
+        G,
+        pos=fixed_pos,
+        fixed=domain_nodes,
+        k=1.8,
+        iterations=200,
+        seed=42,
     )
 
+    # Clamp technique nodes so they don't fly too far from center
+    max_dist = radius * 0.75
+    for t in technique_nodes:
+        x, y = full_pos[t]
+        dist = np.sqrt(x**2 + y**2)
+        if dist > max_dist:
+            scale = max_dist / dist
+            full_pos[t] = (x * scale, y * scale)
+
+    pos.update({t: full_pos[t] for t in technique_nodes})
+
+    # Draw edges colored by domain, with width proportional to weight
+    for (u, v), weight in edge_weights.items():
+        domain_node = u if u in domain_nodes else v
+        color = DOMAIN_COLORS.get(domain_node, COLORS["slate_3"])
+        nx.draw_networkx_edges(
+            G,
+            pos,
+            ax=ax,
+            edgelist=[(u, v)],
+            width=1.0 + weight * 1.5,
+            alpha=0.4,
+            edge_color=[color],
+        )
+
+    # Draw domain nodes: large colored circles, sized by total paper count
     domain_colors = [DOMAIN_COLORS.get(n, COLORS["slate_3"]) for n in domain_nodes]
+    domain_sizes = []
+    for d in domain_nodes:
+        total_papers = sum(w for (dom, _), w in edge_weights.items() if dom == d)
+        domain_sizes.append(4000 + total_papers * 500)
+
     nx.draw_networkx_nodes(
-        G, pos, ax=ax,
+        G,
+        pos,
+        ax=ax,
         nodelist=domain_nodes,
-        node_size=3500,
+        node_size=domain_sizes,
         node_color=domain_colors,
-        edgecolors=COLORS["slate_4"],
-        linewidths=2,
+        edgecolors="white",
+        linewidths=2.5,
+        alpha=0.55,
     )
+
+    # Draw technique nodes: smaller dark circles, sized by how many domains connect
+    technique_sizes = []
+    for t in technique_nodes:
+        degree = G.nodes[t].get("degree", 1)
+        technique_sizes.append(300 + degree * 200)
 
     nx.draw_networkx_nodes(
-        G, pos, ax=ax,
-        nodelist=method_nodes,
-        node_size=1200,
-        node_color=COLORS["slate_1"],
-        edgecolors=COLORS["slate_3"],
-        linewidths=1,
-        node_shape="s",
+        G,
+        pos,
+        ax=ax,
+        nodelist=technique_nodes,
+        node_size=technique_sizes,
+        node_color=COLORS["slate_4"],
+        edgecolors="none",
+        alpha=0.85,
     )
 
-    domain_labels = {n: n for n in domain_nodes}
-    nx.draw_networkx_labels(
-        G, pos, ax=ax,
-        labels=domain_labels,
-        font_size=16,
-        font_weight="bold",
-        font_family="serif",
-    )
+    # Domain labels: bold, white text on the colored node
+    for domain in domain_nodes:
+        x, y = pos[domain]
+        ax.text(
+            x,
+            y,
+            domain,
+            ha="center",
+            va="center",
+            fontsize=20,
+            fontweight="bold",
+            fontfamily="serif",
+            color=COLORS["slate_4"],
+            zorder=5,
+        )
 
-    method_labels = {n: n for n in method_nodes}
-    nx.draw_networkx_labels(
-        G, pos, ax=ax,
-        labels=method_labels,
-        font_size=11,
-        font_family="serif",
-    )
+    # Technique labels: boxed labels like the reference image
+    for technique in technique_nodes:
+        x, y = pos[technique]
+        ax.text(
+            x,
+            y + 0.18,
+            technique,
+            ha="center",
+            va="bottom",
+            fontsize=13,
+            fontfamily="serif",
+            color=COLORS["slate_4"],
+            bbox=dict(
+                boxstyle="round,pad=0.2",
+                facecolor="white",
+                edgecolor=COLORS["slate_2"],
+                linewidth=0.5,
+                alpha=0.9,
+            ),
+            zorder=4,
+        )
 
     ax.axis("off")
-    ax.set_xlim(-3.5, 3.5)
-    ax.set_ylim(-3.5, 3.5)
+    margin = 1.0
+    all_x = [p[0] for p in pos.values()]
+    all_y = [p[1] for p in pos.values()]
+    ax.set_xlim(min(all_x) - margin, max(all_x) + margin)
+    ax.set_ylim(min(all_y) - margin, max(all_y) + margin)
+
     fig.tight_layout()
     fig.savefig(OUTPUT_DIR / "domain_method_network.pdf", bbox_inches="tight")
+    fig.savefig(OUTPUT_DIR / "domain_method_network.png", bbox_inches="tight", dpi=150)
     plt.close(fig)
     print(f"Saved to {OUTPUT_DIR / 'domain_method_network.pdf'}")
 
@@ -179,16 +292,20 @@ def main():
     df = pd.read_csv(DATA_PATH)
     print(f"Loaded: {len(df)} papers")
 
-    G, domain_methods = build_domain_method_graph(df)
+    G, domain_techniques, edge_weights = build_domain_technique_graph(df)
 
-    print("\nDomain -> Methods:")
+    print("\nDomain -> Techniques:")
     for domain in DOMAIN_ORDER:
-        if domain in domain_methods:
-            methods = sorted(domain_methods[domain])
-            print(f"  {domain}: {', '.join(methods)}")
+        if domain in domain_techniques:
+            techniques = sorted(domain_techniques[domain])
+            print(f"  {domain}: {', '.join(techniques)}")
 
     print(f"\nGraph: {len(G.nodes())} nodes, {len(G.edges())} edges")
-    plot_domain_method_network(G, domain_methods)
+    print("\nEdge weights:")
+    for (d, t), w in sorted(edge_weights.items()):
+        print(f"  {d} -- {t}: {w}")
+
+    plot_domain_technique_network(G, domain_techniques, edge_weights)
 
 
 if __name__ == "__main__":
