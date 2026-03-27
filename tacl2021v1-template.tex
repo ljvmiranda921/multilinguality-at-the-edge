@@ -526,7 +526,7 @@ These include real-world edge deployments, where a model is integrated into a la
 
 \paragraph{Setup}
 In order to map the domains in which an edge LM is deployed,
-we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no), obtaining \numdeploymentpapers{} in the process.
+we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no), obtaining \numdeploymentpapers{} papers in the process.
 An example of this is from \citet{ramjee-etal-2025-ashabot}, where they deployed an LM-based chatbot (ASHABot) for community health workers in Rajasthan, India.
 Then, we perform a second round of classification by tagging each paper according to their domain, based on the following categories from \citet{rogers-etal-2023-qa} and \citet{chen2024a}: Agriculture, Climate, Finance, Healthcare, Legal, Social, and Speech.
 We also situate these \numdeploymentpapers{} deployments in the context of the full \numpapers{} paper collection.
@@ -539,7 +539,7 @@ We achieve this by embedding the abstracts using MiniLM \citep{wang-etal-2020-mi
   \centering
   \includegraphics[width=0.95\linewidth]{figures/literature_clusters_umap.pdf}
   \caption{
-    \textbf{Clustering of \numpapers{} surveyed papers by abstract similarity.}
+    \textbf{Clustering of \numpapers{} sampled papers by abstract similarity.}
     Although real-world deployments ($\star$, n=\numdeploymentpapers{}) are present in some clusters, they tend to concentrate near select keywords
     (e.g., encoder translation, dialog datasets, distillation method, quantization, etc.),
     suggesting that real-world deployments share common methodological characteristics.
