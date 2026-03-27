@@ -70,7 +70,7 @@ TECHNIQUE_KEYWORDS = {
     "ASR": ["asr", "speech recognition", "whisper", "transcription"],
     "Machine\nTranslation": ["machine translation", " nmt ", " mt system", " mt model"],
     "Dialogue\nSystems": ["chatbot", "conversational", "chat system", "whatsapp"],
-    "Benchmark": ["benchmark", "test set", "evaluation benchmark"],
+    "Benchmarking": ["benchmark", "test set", "evaluation benchmark"],
     # "Low-resource\nNLP": [
     #     "low-resource",
     #     "under-resourced",
