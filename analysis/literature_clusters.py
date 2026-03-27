@@ -296,7 +296,8 @@ def main():
     print("\nCluster keywords:")
     for label, keywords in sorted(cluster_keywords.items()):
         count = (labels == label).sum()
-        print(f"  Cluster {label} (n={count}): {', '.join(keywords)}")
+        kw_str = ", ".join(f'"{kw}"' for kw in keywords)
+        print(f"  Cluster {label} (n={count}): {kw_str}")
 
     df["cluster"] = labels
     df["cluster_keywords"] = df["cluster"].map(lambda x: ", ".join(cluster_keywords.get(x, [])) if x != -1 else "unclustered")  # fmt: skip
@@ -308,7 +309,8 @@ def main():
     print("\nCluster sizes:")
     for label, keywords in sorted(cluster_keywords.items()):
         count = (labels == label).sum()
-        print(f"  {', '.join(keywords[:2])}: {count}")
+        kw_str = ", ".join(f'"{kw}"' for kw in keywords[:2])
+        print(f"  {kw_str}: {count}")
 
     plot_clusters(coords_2d, labels, cluster_keywords, df)
 
