@@ -306,20 +306,21 @@ def plot_domain_technique_network(
     )
 
     # Domain labels
+    domain_texts = []
     for domain in domain_nodes:
         x, y = pos[domain]
-        ax.text(
+        dt = ax.text(
             x,
             y,
-            domain,
+            r"\textsc{" + domain + r"}",
             ha="center",
             va="center",
             fontsize=28,
-            fontweight="bold",
             fontfamily="serif",
             color="black",
             zorder=5,
         )
+        domain_texts.append(dt)
 
     # Technique labels with arrows
     technique_texts = []
@@ -332,7 +333,7 @@ def plot_domain_technique_network(
             ha="center",
             va="center",
             ma="left",
-            fontsize=20,
+            fontsize=24,
             fontfamily="serif",
             color="black",
             zorder=4,
@@ -342,6 +343,7 @@ def plot_domain_technique_network(
     adjust_text(
         technique_texts,
         ax=ax,
+        add_objects=domain_texts,
         expand=(1.2, 1.2),
         force_text=(0.3, 0.3),
         force_points=(0.65, 0.75),
