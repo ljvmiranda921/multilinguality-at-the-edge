@@ -47,12 +47,8 @@ DOMAIN_COLORS = {
     "Speech": COLORS["warm_purple"],
 }
 
-# Keywords are organized by technique/approach type to avoid mixing methods
-# with application topics. Each keyword list uses specific multi-word phrases
-# to reduce false positives (e.g., "retrieval-augmented" instead of "retrieval").
 TECHNIQUE_KEYWORDS = {
-    # Efficiency & compression techniques
-    "RAG": ["retrieval-augmented", "retrieval augmented", " rag "],
+    # "RAG": ["retrieval-augmented", "retrieval augmented", " rag "],
     "LoRA/QLoRA": ["lora", "qlora", "peft"],
     "Quantization": ["quantiz", "int8", "int4", "ptq", "gguf"],
     "Distillation": ["distil", "student model", "teacher model"],
@@ -66,18 +62,9 @@ TECHNIQUE_KEYWORDS = {
         "further pretrain",
         "pre-trained on",
     ],
-    # Deployment modalities
-    "On-device/Edge": [
-        "on-device",
-        "edge deploy",
-        "on device",
-        "edge asr",
-        "neural engine",
-    ],
     "ASR": ["asr", "speech recognition", "whisper", "transcription"],
     "Machine Translation": ["machine translation", " nmt ", " mt system", " mt model"],
     "Chatbot": ["chatbot", "conversational", "chat system", "whatsapp"],
-    # Cross-cutting concerns
     "Benchmark": ["benchmark", "test set", "evaluation benchmark"],
     "Low-resource NLP": [
         "low-resource",
@@ -89,7 +76,6 @@ TECHNIQUE_KEYWORDS = {
 
 
 def extract_techniques(text: str) -> list[str]:
-    """Extract techniques from abstract + description combined text."""
     text_lower = text.lower() if pd.notna(text) else ""
     techniques = []
     for technique, keywords in TECHNIQUE_KEYWORDS.items():
@@ -103,11 +89,8 @@ def build_domain_technique_graph(
 ) -> tuple[nx.Graph, dict, dict]:
     df = df.copy()
     df["domain"] = df["domain"].replace(DOMAIN_MAP)
-
-    # Combine abstract and description for richer matching
     df["combined_text"] = df["abstract"].fillna("") + " " + df["description"].fillna("")
 
-    # Track both set membership and paper counts for edge weights
     domain_techniques: dict[str, set] = defaultdict(set)
     edge_weights: dict[tuple[str, str], int] = defaultdict(int)
 
@@ -131,7 +114,6 @@ def build_domain_technique_graph(
         all_techniques.update(techniques)
 
     for technique in all_techniques:
-        # Count how many domains connect to this technique
         degree = sum(1 for d in domain_techniques if technique in domain_techniques[d])
         G.add_node(technique, node_type="technique", degree=degree)
 
@@ -153,7 +135,6 @@ def plot_domain_technique_network(
         n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"
     ]
 
-    # Position domains on an outer ring
     pos = {}
     n_domains = len(domain_nodes)
     radius = 4.5
@@ -161,8 +142,6 @@ def plot_domain_technique_network(
         angle = 2 * np.pi * i / n_domains - np.pi / 2
         pos[domain] = (radius * np.cos(angle), radius * np.sin(angle))
 
-    # Initialize technique positions as weighted centroid of connected domains
-    # Weight by edge weight so techniques are pulled toward their primary domain
     init_pos = {}
     for technique in technique_nodes:
         neighbors = list(G.neighbors(technique))
@@ -178,7 +157,6 @@ def plot_domain_technique_network(
                 total_w = sum(weights)
                 wx = sum(x * w for x, w in zip(xs, weights)) / total_w
                 wy = sum(y * w for y, w in zip(ys, weights)) / total_w
-                # High-degree nodes start closer to center (stronger pull)
                 degree = G.nodes[technique].get("degree", 1)
                 pull = 0.20 - 0.15 * (
                     degree / max(G.nodes[t].get("degree", 1) for t in technique_nodes)
@@ -189,7 +167,6 @@ def plot_domain_technique_network(
         else:
             init_pos[technique] = (0, 0)
 
-    # Spring layout with fixed domain positions
     fixed_pos = {**pos, **init_pos}
     full_pos = nx.spring_layout(
         G,
@@ -200,7 +177,7 @@ def plot_domain_technique_network(
         seed=42,
     )
 
-    # Re-center technique cloud: shift so centroid is at origin
+    # Re-center technique cloud
     tech_xs = [full_pos[t][0] for t in technique_nodes]
     tech_ys = [full_pos[t][1] for t in technique_nodes]
     cx_off = np.mean(tech_xs)
@@ -209,7 +186,7 @@ def plot_domain_technique_network(
         x, y = full_pos[t]
         full_pos[t] = (x - cx_off, y - cy_off)
 
-    # Clamp technique nodes: high-degree nodes pulled closer to center
+    # Clamp: high-degree nodes closer to center
     max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
     for t in technique_nodes:
         x, y = full_pos[t]
@@ -223,13 +200,12 @@ def plot_domain_technique_network(
 
     pos.update({t: full_pos[t] for t in technique_nodes})
 
-    # Draw edges as bezier curves colored by domain
+    # Bezier curve edges colored by domain
     for (u, v), weight in edge_weights.items():
         domain_node = u if u in domain_nodes else v
         color = DOMAIN_COLORS.get(domain_node, COLORS["slate_3"])
         x0, y0 = pos[u]
         x1, y1 = pos[v]
-        # Control point: offset perpendicular to the midpoint toward center
         mx, my = (x0 + x1) / 2, (y0 + y1) / 2
         dx, dy = x1 - x0, y1 - y0
         length = np.sqrt(dx**2 + dy**2)
@@ -237,13 +213,10 @@ def plot_domain_technique_network(
             nx_perp, ny_perp = -dy / length, dx / length
         else:
             nx_perp, ny_perp = 0, 0
-        # Curve toward center (0,0) by biasing the control point
         curvature = 0.2 * length
-        cx = mx + nx_perp * curvature * np.sign(mx * ny_perp - my * nx_perp)
-        cy = my + ny_perp * curvature * np.sign(mx * ny_perp - my * nx_perp)
-        # Pull control point slightly toward origin for aesthetic
-        cx = cx * 0.85
-        cy = cy * 0.85
+        sign = np.sign(mx * ny_perp - my * nx_perp)
+        cx = (mx + nx_perp * curvature * sign) * 0.85
+        cy = (my + ny_perp * curvature * sign) * 0.85
         path = mpath.Path(
             [(x0, y0), (cx, cy), (x1, y1)],
             [mpath.Path.MOVETO, mpath.Path.CURVE3, mpath.Path.CURVE3],
@@ -258,33 +231,29 @@ def plot_domain_technique_network(
         )
         ax.add_patch(patch)
 
-    # Draw domain nodes: uniform size, higher alpha to cover edge origins
+    # Domain nodes
     domain_colors = [DOMAIN_COLORS.get(n, COLORS["slate_3"]) for n in domain_nodes]
-    domain_size = 5000
-
     nx.draw_networkx_nodes(
         G,
         pos,
         ax=ax,
         nodelist=domain_nodes,
-        node_size=domain_size,
+        node_size=5000,
         node_color=domain_colors,
         edgecolors="white",
         linewidths=2.5,
         alpha=0.85,
     )
 
-    # Draw technique nodes: higher degree = larger, darker, and more central
-    max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
+    # Technique nodes: degree -> size and darkness
     technique_sizes = []
     technique_colors = []
     for t in technique_nodes:
         degree = G.nodes[t].get("degree", 1)
         technique_sizes.append(300 + degree * 250)
-        # Interpolate gray: high degree = dark (slate_4), low = light (slate_2)
         frac = degree / max_degree
-        r_lo, g_lo, b_lo = 0.71, 0.74, 0.78  # slate_2 approx
-        r_hi, g_hi, b_hi = 0.14, 0.16, 0.19  # slate_4 approx
+        r_lo, g_lo, b_lo = 0.71, 0.74, 0.78
+        r_hi, g_hi, b_hi = 0.14, 0.16, 0.19
         r = r_lo + (r_hi - r_lo) * frac
         g = g_lo + (g_hi - g_lo) * frac
         b = b_lo + (b_hi - b_lo) * frac
@@ -301,7 +270,7 @@ def plot_domain_technique_network(
         alpha=0.85,
     )
 
-    # Domain labels: black text on light-colored nodes
+    # Domain labels
     for domain in domain_nodes:
         x, y = pos[domain]
         ax.text(
@@ -317,7 +286,7 @@ def plot_domain_technique_network(
             zorder=5,
         )
 
-    # Technique labels: no box, with small arrows pointing to nodes
+    # Technique labels with arrows
     technique_texts = []
     for technique in technique_nodes:
         x, y = pos[technique]
@@ -340,11 +309,7 @@ def plot_domain_technique_network(
         expand=(1.8, 1.8),
         force_text=(0.8, 0.8),
         force_points=(0.5, 0.5),
-        arrowprops=dict(
-            arrowstyle="-",
-            color=COLORS["slate_2"],
-            linewidth=0.8,
-        ),
+        arrowprops=dict(arrowstyle="-", color=COLORS["slate_2"], linewidth=0.8),
     )
 
     ax.axis("off")
