@@ -1,5 +1,3 @@
-"""Cluster NLP literature by abstract embeddings and extract keywords per cluster."""
-
 from pathlib import Path
 
 import hdbscan
@@ -21,7 +19,6 @@ plt.rcParams.update(PLOT_PARAMS)
 MAIN_DATA_PATH = ROOT / "data" / "papers_multilingual_edge_llm.csv"
 APP_DATA_PATH = ROOT / "data" / "papers_application.csv"
 
-# Color palette for clusters
 CLUSTER_COLORS = [
     COLORS["cherry"],
     COLORS["crest"],
@@ -39,7 +36,6 @@ CLUSTER_COLORS = [
 
 
 def get_device() -> str:
-    """Get the best available device (MPS for Mac, CUDA, or CPU)."""
     if torch.backends.mps.is_available():
         return "mps"
     elif torch.cuda.is_available():
@@ -47,31 +43,28 @@ def get_device() -> str:
     return "cpu"
 
 
-def load_and_merge_data() -> pd.DataFrame:
-    """Load and merge the main literature data with application papers."""
+def load_and_merge_data() -> tuple[pd.DataFrame, set[str]]:
     main_df = pd.read_csv(MAIN_DATA_PATH)
     app_df = pd.read_csv(APP_DATA_PATH)
 
-    # Normalize titles for deduplication
     def norm(s: pd.Series) -> pd.Series:
         return s.str.lower().str.replace(r"[^a-z0-9]+", " ", regex=True).str.strip()
 
     main_df["_key"] = norm(main_df["title"])
     app_df["_key"] = norm(app_df["title"])
 
-    # Keep main_df papers, add app_df papers not already in main
+    deployment_keys = set(app_df["_key"])
+
     existing_keys = set(main_df["_key"])
     new_app = app_df[~app_df["_key"].isin(existing_keys)].copy()
 
-    # For app papers without abstracts, use description
     if "abstract" not in new_app.columns:
         new_app["abstract"] = new_app.get("description", "")
 
-    # Combine
     combined = pd.concat([main_df, new_app], ignore_index=True)
+    combined["is_deployment"] = combined["_key"].isin(deployment_keys)
     combined = combined.drop(columns=["_key"], errors="ignore")
 
-    # Filter to papers with abstracts
     combined = combined[combined["abstract"].notna() & (combined["abstract"].str.len() > 50)]
     combined = combined.drop_duplicates(subset=["title"])
 
@@ -82,7 +75,6 @@ def embed_abstracts(
     df: pd.DataFrame,
     model_name: str = "all-MiniLM-L6-v2",
 ) -> np.ndarray:
-    """Embed abstracts using sentence-transformers."""
     device = get_device()
     print(f"Embedding abstracts using device: {device}")
 
@@ -100,7 +92,6 @@ def cluster_embeddings(
     min_cluster_size: int = 10,
     min_samples: int = 5,
 ) -> tuple[np.ndarray, np.ndarray]:
-    """Reduce dimensionality with UMAP and cluster with HDBSCAN."""
     print("Reducing dimensions with UMAP...")
     reducer = umap.UMAP(
         n_components=2,
@@ -133,7 +124,6 @@ def extract_cluster_keywords(
     model_name: str = "all-MiniLM-L6-v2",
     top_n: int = 5,
 ) -> dict[int, list[str]]:
-    """Extract keywords for each cluster by concatenating abstracts."""
     device = get_device()
     sentence_model = SentenceTransformer(model_name, device=device)
     kw_model = KeyBERT(model=sentence_model)
@@ -143,13 +133,12 @@ def extract_cluster_keywords(
 
     for label in unique_labels:
         if label == -1:
-            continue  # Skip noise
+            continue
 
         mask = labels == label
         cluster_abstracts = df.loc[mask, "abstract"].tolist()
         combined_text = " ".join(cluster_abstracts)
 
-        # Extract keywords with diversity
         kws = kw_model.extract_keywords(
             combined_text,
             keyphrase_ngram_range=(1, 2),
@@ -169,40 +158,66 @@ def plot_clusters(
     cluster_keywords: dict[int, list[str]],
     df: pd.DataFrame,
 ) -> None:
-    """Plot UMAP projection with cluster colors and keyword labels."""
     fig, ax = plt.subplots(figsize=(12, 10))
 
     unique_labels = sorted(set(labels))
-    n_clusters = len([l for l in unique_labels if l != -1])
 
-    # Plot noise points first (gray, smaller)
+    is_deployment = df["is_deployment"].values
+
     noise_mask = labels == -1
     if noise_mask.any():
-        ax.scatter(
-            coords_2d[noise_mask, 0],
-            coords_2d[noise_mask, 1],
-            c=COLORS["slate_2"],
-            s=20,
-            alpha=0.3,
-            label="Unclustered",
-        )
+        noise_method = noise_mask & ~is_deployment
+        noise_deploy = noise_mask & is_deployment
+        if noise_method.any():
+            ax.scatter(
+                coords_2d[noise_method, 0],
+                coords_2d[noise_method, 1],
+                c=COLORS["slate_2"],
+                s=20,
+                alpha=0.3,
+                marker="o",
+            )
+        if noise_deploy.any():
+            ax.scatter(
+                coords_2d[noise_deploy, 0],
+                coords_2d[noise_deploy, 1],
+                c=COLORS["slate_2"],
+                s=40,
+                alpha=0.5,
+                marker="X",
+            )
 
-    # Plot each cluster
     for i, label in enumerate([l for l in unique_labels if l != -1]):
         mask = labels == label
         color = CLUSTER_COLORS[i % len(CLUSTER_COLORS)]
 
-        ax.scatter(
-            coords_2d[mask, 0],
-            coords_2d[mask, 1],
-            c=color,
-            s=50,
-            alpha=0.7,
-            edgecolors=COLORS["slate_4"],
-            linewidths=0.3,
-        )
+        method_mask = mask & ~is_deployment
+        deploy_mask = mask & is_deployment
 
-        # Add cluster centroid label
+        if method_mask.any():
+            ax.scatter(
+                coords_2d[method_mask, 0],
+                coords_2d[method_mask, 1],
+                c=color,
+                s=50,
+                alpha=0.7,
+                marker="o",
+                edgecolors=COLORS["slate_4"],
+                linewidths=0.3,
+            )
+
+        if deploy_mask.any():
+            ax.scatter(
+                coords_2d[deploy_mask, 0],
+                coords_2d[deploy_mask, 1],
+                c=color,
+                s=80,
+                alpha=0.9,
+                marker="X",
+                edgecolors=COLORS["slate_4"],
+                linewidths=0.5,
+            )
+
         centroid = coords_2d[mask].mean(axis=0)
         keywords = cluster_keywords.get(label, [])
         if keywords:
@@ -217,6 +232,10 @@ def plot_clusters(
                 bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
             )
 
+    ax.scatter([], [], c=COLORS["slate_3"], s=50, marker="o", label="Method")
+    ax.scatter([], [], c=COLORS["slate_3"], s=80, marker="X", label="Deployment")
+    ax.legend(frameon=False, loc="upper right", fontsize=14)
+
     ax.set_xlabel("UMAP 1")
     ax.set_ylabel("UMAP 2")
     ax.spines["top"].set_visible(False)
@@ -226,45 +245,6 @@ def plot_clusters(
     fig.savefig(OUTPUT_DIR / "literature_clusters_umap.pdf", bbox_inches="tight")
     plt.close(fig)
     print(f"Saved to {OUTPUT_DIR / 'literature_clusters_umap.pdf'}")
-
-
-def plot_cluster_sizes(
-    labels: np.ndarray,
-    cluster_keywords: dict[int, list[str]],
-) -> None:
-    """Plot cluster sizes as horizontal bar chart with keyword labels."""
-    unique_labels = [l for l in sorted(set(labels)) if l != -1]
-    sizes = [(labels == l).sum() for l in unique_labels]
-    names = [", ".join(cluster_keywords.get(l, [f"Cluster {l}"])[:2]) for l in unique_labels]
-
-    # Sort by size
-    sorted_data = sorted(zip(sizes, names, unique_labels), reverse=True)
-    sizes, names, unique_labels = zip(*sorted_data) if sorted_data else ([], [], [])
-
-    fig, ax = plt.subplots(figsize=(10, max(6, len(names) * 0.5)))
-    colors = [CLUSTER_COLORS[i % len(CLUSTER_COLORS)] for i in range(len(names))]
-
-    y_pos = range(len(names))
-    ax.barh(
-        list(names)[::-1],
-        list(sizes)[::-1],
-        color=colors[::-1],
-        edgecolor=COLORS["slate_4"],
-        linewidth=0.5,
-    )
-
-    for i, (name, size) in enumerate(zip(list(names)[::-1], list(sizes)[::-1])):
-        ax.text(size + 1, i, str(size), va="center", fontsize=14)
-
-    ax.set_xlabel("Number of papers")
-    ax.set_xlim(0, max(sizes) * 1.15 if sizes else 10)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.grid(False)
-    fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "literature_clusters_sizes.pdf", bbox_inches="tight")
-    plt.close(fig)
-    print(f"Saved to {OUTPUT_DIR / 'literature_clusters_sizes.pdf'}")
 
 
 def main():
@@ -288,20 +268,21 @@ def main():
         count = (labels == label).sum()
         print(f"  Cluster {label} (n={count}): {', '.join(keywords)}")
 
-    # Add cluster labels to df for inspection
     df["cluster"] = labels
     df["cluster_keywords"] = df["cluster"].map(
         lambda x: ", ".join(cluster_keywords.get(x, [])) if x != -1 else "unclustered"
     )
 
-    # Save annotated data
     output_path = ROOT / "data" / "papers_with_clusters.csv"
     df.to_csv(output_path, index=False)
     print(f"\nSaved annotated data to {output_path}")
 
-    # Plot
+    print("\nCluster sizes:")
+    for label, keywords in sorted(cluster_keywords.items()):
+        count = (labels == label).sum()
+        print(f"  {', '.join(keywords[:2])}: {count}")
+
     plot_clusters(coords_2d, labels, cluster_keywords, df)
-    plot_cluster_sizes(labels, cluster_keywords)
 
 
 if __name__ == "__main__":
