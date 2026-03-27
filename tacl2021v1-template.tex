@@ -504,17 +504,11 @@ These versions are intended to speed up evaluation during iterative development,
 Other techniques borrow from established methods such as item response theory (IRT) and reinforcement learning (RL) to perform \textbf{instance selection}, identifying the most informative items for evaluation \citep{hofmann2025fluid,zouhar-etal-2025-how,li2025active}.
 Finally, another class of techniques create \textbf{dynamic evaluation} either from an existing evaluation dataset \citep{kim2025benchhub} or a set of unstructured documents \citep{shashidhar2025yourbench}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.95\linewidth]{example-image}
-  \caption{Hello}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.95\linewidth]{example-image}
-  \caption{Hello}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.95\linewidth]{example-image}
+%   \caption{Hello}
+% \end{figure}
 
 \section{Analysis: What's in the Last Mile?}
 
@@ -540,6 +534,12 @@ We achieve this by embedding the abstracts using MiniLM \citep{wang-etal-2020-mi
 % From the surveyed papers, we find \numdeploymentpapers{} works with actual deployments.
 % We then perform topic analysis by embedding each abstract using SPECTER2 \citep{singh-etal-2023-scirepeval}, and clustering them using UMAP \citep{micinnes-etal-2018-umap}.
 % For each cluster, we extract keywords using KeyBERT \citep{sammet-krestel-2023-domain} to surface relevant texts that might correspond to a domain.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/literature_clusters_umap.pdf}
+  \caption{Hello}
+\end{figure}
 
 
 \paragraph{Findings}
