@@ -295,6 +295,7 @@ def plot_clusters(
                 label_text,
                 fontsize=16,
                 fontweight="bold",
+                color=color,
                 ha="center",
                 va="center",
                 bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
