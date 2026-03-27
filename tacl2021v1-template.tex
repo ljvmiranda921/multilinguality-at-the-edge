@@ -531,10 +531,10 @@ Thus far, we have discussed the challenges and potential methods that researcher
 \paragraph{Setup}
 In order to map the domains in which an edge LM is deployed,
 we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no).
-
-% we first manually classify each paper into the following domains, according to the works of \citet{rogers-etal-2023-qa} and \citet{chen2024a}:
-% Health, Finance, Legal, Agriculture, Education, and Crisis Response.
-% For finer-grained analysis, we embed each abstract using SPECTER2 \citep{singh-etal-2023-scirepeval}, reduce dimensionality with UMAP \citep{micinnes-etal-2018-umap}, cluster the results, and extract keywords using KeyBERT \citep{sammet-krestel-2023-domain} to characterize each cluster.
+An example of this is from \citet{ramjee-etal-2025-ashabot}, where they deployed an LM-based chatbot (ASHABot) for community health workers in Rajasthan, India.
+From the surveyed papers, we find \numdeploymentpapers{} works with actual deployments.
+We then perform topic analysis by embedding each abstract using SPECTER2 \citep{singh-etal-2023-scirepeval}, and clustering them using UMAP \citep{micinnes-etal-2018-umap}.
+For each cluster, we extract keywords using KeyBERT \citep{sammet-krestel-2023-domain} to surface relevant texts that might correspond to a domain.
 
 
 \paragraph{Findings}
