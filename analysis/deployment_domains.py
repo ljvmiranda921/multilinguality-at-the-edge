@@ -1,6 +1,8 @@
 from collections import defaultdict
 from pathlib import Path
 
+import matplotlib.patches as mpatches
+import matplotlib.path as mpath
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
@@ -37,12 +39,12 @@ DOMAIN_MAP = {
 
 DOMAIN_COLORS = {
     "Agriculture": COLORS["warm_green"],
-    "Climate": COLORS["dark_blue"],
+    "Climate": COLORS["warm_blue"],
     "Finance": COLORS["green"],
-    "Healthcare": COLORS["cherry"],
-    "Legal": COLORS["slate_3"],
+    "Healthcare": COLORS["warm_cherry"],
+    "Legal": COLORS["slate_2"],
     "Social": COLORS["crest"],
-    "Speech": COLORS["purple"],
+    "Speech": COLORS["warm_purple"],
 }
 
 # Keywords are organized by technique/approach type to avoid mixing methods
@@ -209,37 +211,55 @@ def plot_domain_technique_network(
 
     pos.update({t: full_pos[t] for t in technique_nodes})
 
-    # Draw edges colored by domain, with width proportional to weight
+    # Draw edges as bezier curves colored by domain
     for (u, v), weight in edge_weights.items():
         domain_node = u if u in domain_nodes else v
         color = DOMAIN_COLORS.get(domain_node, COLORS["slate_3"])
-        nx.draw_networkx_edges(
-            G,
-            pos,
-            ax=ax,
-            edgelist=[(u, v)],
-            width=1.0 + weight * 1.5,
-            alpha=0.4,
-            edge_color=[color],
+        x0, y0 = pos[u]
+        x1, y1 = pos[v]
+        # Control point: offset perpendicular to the midpoint toward center
+        mx, my = (x0 + x1) / 2, (y0 + y1) / 2
+        dx, dy = x1 - x0, y1 - y0
+        length = np.sqrt(dx**2 + dy**2)
+        if length > 0:
+            nx_perp, ny_perp = -dy / length, dx / length
+        else:
+            nx_perp, ny_perp = 0, 0
+        # Curve toward center (0,0) by biasing the control point
+        curvature = 0.2 * length
+        cx = mx + nx_perp * curvature * np.sign(mx * ny_perp - my * nx_perp)
+        cy = my + ny_perp * curvature * np.sign(mx * ny_perp - my * nx_perp)
+        # Pull control point slightly toward origin for aesthetic
+        cx = cx * 0.85
+        cy = cy * 0.85
+        path = mpath.Path(
+            [(x0, y0), (cx, cy), (x1, y1)],
+            [mpath.Path.MOVETO, mpath.Path.CURVE3, mpath.Path.CURVE3],
         )
+        patch = mpatches.FancyArrowPatch(
+            path=path,
+            arrowstyle="-",
+            linewidth=1.0 + weight * 1.2,
+            color=color,
+            alpha=0.35,
+            zorder=1,
+        )
+        ax.add_patch(patch)
 
-    # Draw domain nodes: large colored circles, sized by total paper count
+    # Draw domain nodes: uniform size, higher alpha to cover edge origins
     domain_colors = [DOMAIN_COLORS.get(n, COLORS["slate_3"]) for n in domain_nodes]
-    domain_sizes = []
-    for d in domain_nodes:
-        total_papers = sum(w for (dom, _), w in edge_weights.items() if dom == d)
-        domain_sizes.append(4000 + total_papers * 500)
+    domain_size = 5000
 
     nx.draw_networkx_nodes(
         G,
         pos,
         ax=ax,
         nodelist=domain_nodes,
-        node_size=domain_sizes,
+        node_size=domain_size,
         node_color=domain_colors,
         edgecolors="white",
         linewidths=2.5,
-        alpha=0.55,
+        alpha=0.85,
     )
 
     # Draw technique nodes: higher degree = larger, darker, and more central
@@ -269,7 +289,7 @@ def plot_domain_technique_network(
         alpha=0.85,
     )
 
-    # Domain labels: bold, white text on the colored node
+    # Domain labels: black text on light-colored nodes
     for domain in domain_nodes:
         x, y = pos[domain]
         ax.text(
@@ -278,10 +298,10 @@ def plot_domain_technique_network(
             domain,
             ha="center",
             va="center",
-            fontsize=20,
+            fontsize=18,
             fontweight="bold",
             fontfamily="serif",
-            color=COLORS["slate_4"],
+            color="black",
             zorder=5,
         )
 
@@ -297,7 +317,7 @@ def plot_domain_technique_network(
             va="center",
             fontsize=18,
             fontfamily="serif",
-            color=COLORS["slate_4"],
+            color="black",
             bbox=dict(
                 boxstyle="round,pad=0.2",
                 facecolor="white",
