@@ -35,6 +35,18 @@ CLUSTER_COLORS = [
     COLORS["dark_purple"],
 ]
 
+# fmt: off
+GENERIC_TERMS = {
+    "language model", "language models", "large language", "models", "model",
+    "llms", "llm", "benchmark", "benchmarks", "training", "trained",
+    "datasets", "dataset", "tasks", "task", "performance", "parameters",
+    "billion parameters", "methods", "method", "approach", "approaches",
+    "results", "paper", "study", "work", "using", "based", "show",
+    "propose", "proposed", "novel", "new", "state art", "sota",
+    "experiments", "evaluation", "evaluated", "https", "github",
+}
+# fmt: on
+
 
 def load_and_merge_data() -> tuple[pd.DataFrame, set[str]]:
     main_df = pd.read_csv(MAIN_DATA_PATH)
@@ -114,6 +126,20 @@ def cluster_embeddings(
     return coords_2d, labels
 
 
+def filter_keywords(keywords: list[str], top_n: int = 5) -> list[str]:
+    filtered = []
+    for kw in keywords:
+        kw_lower = kw.lower()
+        if kw_lower in GENERIC_TERMS:
+            continue
+        if any(term in kw_lower for term in GENERIC_TERMS):
+            continue
+        filtered.append(kw)
+        if len(filtered) >= top_n:
+            break
+    return filtered
+
+
 def extract_cluster_keywords(
     df: pd.DataFrame,
     labels: np.ndarray,
@@ -140,9 +166,10 @@ def extract_cluster_keywords(
             stop_words="english",
             use_mmr=True,
             diversity=0.5,
-            top_n=top_n,
+            top_n=20,
         )
-        cluster_keywords[label] = [kw for kw, _ in kws]
+        all_kws = [kw for kw, _ in kws]
+        cluster_keywords[label] = filter_keywords(all_kws, top_n=top_n)
 
     return cluster_keywords
 
@@ -232,8 +259,10 @@ def plot_clusters(
 
     adjust_text(texts, ax=ax)
 
-    ax.scatter([], [], c=COLORS["slate_3"], s=50, marker="o", label="Method")
-    ax.scatter([], [], c=COLORS["slate_3"], s=80, marker="x", label="Deployment")
+    ax.scatter([], [], c=COLORS["slate_3"], s=50, marker="o", label="Edge ML Methods")
+    ax.scatter(
+        [], [], c=COLORS["slate_3"], s=80, marker="x", label="Real-world Deployment"
+    )
     ax.legend(frameon=False, loc="lower right", fontsize=14)
 
     ax.set_xlabel("UMAP 1")
