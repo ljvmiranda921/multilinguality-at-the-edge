@@ -182,6 +182,7 @@ def plot_clusters(
                 marker="x",
             )
 
+    texts = []
     for i, label in enumerate([l for l in unique_labels if l != -1]):
         mask = labels == label
         color = CLUSTER_COLORS[i % len(CLUSTER_COLORS)]
@@ -216,19 +217,23 @@ def plot_clusters(
         centroid = coords_2d[mask].mean(axis=0)
         keywords = cluster_keywords.get(label, [])
         if keywords:
-            label_text = ", ".join(keywords[:2])
-            ax.annotate(
+            label_text = "\n".join(keywords[:2])
+            t = ax.text(
+                centroid[0],
+                centroid[1],
                 label_text,
-                centroid,
                 fontsize=12,
                 fontweight="bold",
                 ha="center",
                 va="center",
                 bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
             )
+            texts.append(t)
+
+    adjust_text(texts, ax=ax)
 
     ax.scatter([], [], c=COLORS["slate_3"], s=50, marker="o", label="Method")
-    ax.scatter([], [], c=COLORS["slate_3"], s=80, marker="X", label="Deployment")
+    ax.scatter([], [], c=COLORS["slate_3"], s=80, marker="x", label="Deployment")
     ax.legend(frameon=False, loc="upper right", fontsize=14)
 
     ax.set_xlabel("UMAP 1")
@@ -246,8 +251,8 @@ def main():
     # Load data
     df = load_and_merge_data()
     print(f"Loaded {len(df)} papers with abstracts")
-    model_name = "all-MiniLM-L12-v2"
-    random_state = 21
+    model_name = "all-MiniLM-L6-v2"
+    random_state = 42
     embeddings = embed_abstracts(df, model_name=model_name)
     coords_2d, labels = cluster_embeddings(
         embeddings,
