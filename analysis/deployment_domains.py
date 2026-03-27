@@ -55,7 +55,7 @@ TECHNIQUE_KEYWORDS = {
     "Fine-tuning": ["fine-tun", "finetuning", "instruction tuning", " sft "],
     "MoE": ["mixture of experts", " moe ", "language family expert"],
     "Federated Learning": ["federated learning", "federated few-shot"],
-    "Synthetic Data": ["synthetic data", "data augmentation", "synthetic qa"],
+    "Synthetic\nData": ["synthetic data", "data augmentation", "synthetic qa"],
     "Continual Pretraining": [
         "continual pretrain",
         "continued pretrain",
@@ -306,9 +306,9 @@ def plot_domain_technique_network(
     adjust_text(
         technique_texts,
         ax=ax,
-        expand=(1.8, 1.8),
-        force_text=(0.8, 0.8),
-        force_points=(0.5, 0.5),
+        expand=(1.2, 1.2),
+        force_text=(0.3, 0.3),
+        force_points=(1.0, 1.0),
         arrowprops=dict(arrowstyle="-", color=COLORS["slate_2"], linewidth=0.8),
     )
 
