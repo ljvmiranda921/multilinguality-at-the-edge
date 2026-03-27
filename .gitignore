@@ -21,3 +21,4 @@ outputs/
 
 data/s2_papers/*.csv
 data/llm_annotate/*.csv
+drafts/

@@ -1,4 +1,15 @@
 from pathlib import Path
+import torch
+
+
+def get_device() -> str:
+    """Get the best available device (MPS for Mac, CUDA, or CPU)."""
+    if torch.backends.mps.is_available():
+        return "mps"
+    elif torch.cuda.is_available():
+        return "cuda"
+    return "cpu"
+
 
 FONT_SIZES = {"small": 14, "medium": 18, "large": 24}
 
