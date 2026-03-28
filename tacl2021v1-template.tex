@@ -554,6 +554,14 @@ This suggests that edge LM deployments tend to favor specific methods, leaving s
 \paragraph{Setup}
 \ljm{\lipsum[1][1-7]}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.95\linewidth]{example-image}
+  \caption{
+    \textbf{Placeholder: Institution type co-occurrence in edge LM systems.}
+  }
+  \label{fig:institution_upset}
+\end{figure}
 
 \paragraph{Findings}
 \ljm{\lipsum[1]}
@@ -561,7 +569,7 @@ This suggests that edge LM deployments tend to favor specific methods, leaving s
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.95\linewidth, trim={0 1.5cm 0 0}]{figures/domain_method_network.pdf}
+  \includegraphics[width=0.90\linewidth, trim={0 1.5cm 0 0}]{figures/domain_method_network.pdf}
   \caption{
     \textbf{Edge LM real-world deployment domains network.}
     Central nodes represent methods used to develop and deploy real-world edge LMs.
@@ -583,7 +591,7 @@ Then, we extract mentions of different methods by keyword matching via KeyBERT, 
 \autoref{fig:domain_method_network} shows a network visualization linking multilingual edge LM deployment domains to the methods mentioned in their abstracts.
 We find that some methods are consistently used across domains, such as synthetic data generation, data curation, SFT, and LoRA.
 Healthcare and Social exhibit the broadest coverage (most edges), while Legal and Agriculture connect through fewer, more generic methods.
-This suggests that methodological diversity in edge LM systems is uneven across domains, with some seeing broad experimentation while others remain concentrated around a few common techniques.
+This suggests that the diversity of methods in edge LM systems is uneven across domains, with some seeing broad experimentation while others remain concentrated around a few common techniques.
 
 
 
