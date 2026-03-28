@@ -528,6 +528,8 @@ clustering them using UMAP and HDBSCAN \citep{mcinnes-etal-2017-hdbscan,micinnes
 and extracting keywords for each cluster using KeyBERT \citep{grootendorst2020keybert}.
 
 \paragraph{Findings}
+\autoref{tab:lm_pipeline_edge_lm_systems} shows which methods were implemented by edge LM systems across the whole pipeline.
+We find that synthetic data generation is a common approach for data collection, while model compression via quantization is prevalent during post-training.
 \autoref{fig:literature_clusters_map} shows the embeddings (reduced to 2-dim) of each paper, with edge LM systems marked.
 When viewed alongside the other surveyed papers, these deployments concentrate near select keywords, indicating methodological commonalities.
 This suggests that edge LM deployments tend to favor specific methods, leaving significant opportunities to explore alternatives.
