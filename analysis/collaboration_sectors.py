@@ -84,7 +84,7 @@ def plot_chord(matrix: np.ndarray) -> None:
         arc_mids[idx] = mid
         angle += span + pad_deg
 
-    label_r = 0.82
+    label_r = 1.28
     for idx, mid_deg in arc_mids.items():
         a = np.radians(mid_deg)
         x = label_r * np.cos(a)
@@ -93,9 +93,23 @@ def plot_chord(matrix: np.ndarray) -> None:
         ax.text(
             x, y, str(count),
             ha="center", va="center",
-            fontsize=20, color="white", fontweight="bold",
+            fontsize=20, color="black", fontweight="bold",
             zorder=10,
         )
+
+    # Add subtle edge only to the outer ideogram arcs (Wedge patches),
+    # not to the inner chords (PathPatch)
+    from matplotlib.colors import to_rgb
+    from matplotlib.patches import Wedge
+
+    for patch in ax.patches:
+        if isinstance(patch, Wedge):
+            fc = patch.get_facecolor()
+            if hasattr(fc, "__len__") and len(fc) >= 3:
+                r, g, b = to_rgb(fc[:3])
+                darker = (r * 0.65, g * 0.65, b * 0.65)
+                patch.set_edgecolor(darker)
+                patch.set_linewidth(0.8)
 
     fig.tight_layout()
     fig.savefig(OUTPUT_DIR / "collaboration_sectors.pdf", bbox_inches="tight")
