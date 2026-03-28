@@ -519,6 +519,19 @@ we manually classify each of the \numpapers{} papers whether an actual model dep
 \subsection{How Are Edge LM Systems Made?}
 \label{sec:how_are_edge_lm_systems_made}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.95\linewidth, trim={0 0.5cm 0 0}]{figures/literature_clusters_umap.pdf}
+  \caption{
+    \textbf{Clustering of \numpapers{} sampled papers by abstract similarity.}
+    Although real-world deployments ($\star$, n=\numdeploymentpapers{}) are present in some clusters, they tend to concentrate near select keywords
+    (e.g., encoder translation, dialog datasets, distillation method, quantization, etc.),
+    suggesting that real-world deployments share common methodological characteristics.
+  }
+  \label{fig:literature_clusters_map}
+\end{figure}
+
+
 \paragraph{Setup}
 To understand how edge LM systems are made, we manually tag the methods each system uses across the LM pipeline.
 In addition, to understand how these works relate to the other \numpapers{} surveyed papers,
@@ -562,18 +575,6 @@ This suggests that edge LM deployments tend to favor specific methods, leaving s
     Edge color indicates connectivity, while darker nodes indicate high sharing among domains.
   }
   \label{fig:domain_method_network}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.95\linewidth, trim={0 0.5cm 0 0}]{figures/literature_clusters_umap.pdf}
-  \caption{
-    \textbf{Clustering of \numpapers{} sampled papers by abstract similarity.}
-    Although real-world deployments ($\star$, n=\numdeploymentpapers{}) are present in some clusters, they tend to concentrate near select keywords
-    (e.g., encoder translation, dialog datasets, distillation method, quantization, etc.),
-    suggesting that real-world deployments share common methodological characteristics.
-  }
-  \label{fig:literature_clusters_map}
 \end{figure}
 
 
@@ -752,7 +753,7 @@ We hope that this work paves the way for more inclusive and equitable language t
   \centering
   \input{figures/taxonomy.tex}
   \caption{
-    \textbf{Organization of the work.}
+    \textbf{Organization of \S\ref{sec:survey}.}
     We organize the literature along the five stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}),
     identifying key challenges between edge deployment constraints (\S\ref{sec:edge_constraints}, Memory \iconmemory{}, Compute \iconcompute{}, and Energy \iconenergy{})
     and properties that influence multilingual capabilities (\S\ref{sec:multilingual_constraints}, Data \icondata{}, Representation \iconrepresentation{}, and Alignment \iconalignment{}).
@@ -760,6 +761,9 @@ We hope that this work paves the way for more inclusive and equitable language t
   }
   \label{fig:taxonomy}
 \end{figure*}
+
+
+\input{tables/lm_pipeline_edge_lm_systems.tex}
 
 
 \end{document}
