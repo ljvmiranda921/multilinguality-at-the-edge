@@ -524,10 +524,13 @@ To understand how edge LM systems are made, we manually tag the methods each sys
 In addition, to understand how these works relate to the other \numpapers{} surveyed papers,
 we visualize their embeddings.
 We achive this by embedding all \numpapers{} abstracts using MiniLM \citep{wang-etal-2020-minilm},
-clustering them using UMAP \citep{micinnes-etal-2018-umap},
+clustering them using UMAP and HDBSCAN \citep{mcinnes-etal-2017-hdbscan,micinnes-etal-2018-umap},
 and extracting keywords for each cluster using KeyBERT \citep{grootendorst2020keybert}.
 
 \paragraph{Findings}
+\autoref{fig:literature_clusters_map} shows the embeddings (reduced to 2-dim) of each paper, with edge LM systems marked.
+When viewed alongside the other surveyed papers, these deployments concentrate near select keywords, indicating methodological commonalities.
+This suggests that edge LM deployments tend to favor specific methods, leaving significant opportunities to explore alternatives.
 
 \subsection{Who Develops Edge LM Systems?}
 \label{sec:who_develops_edge_lm_systems}
