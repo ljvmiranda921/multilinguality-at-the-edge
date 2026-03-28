@@ -56,12 +56,46 @@ def plot_chord(matrix: np.ndarray) -> None:
         ax=ax,
         names=SECTOR_ORDER,
         colors=SECTOR_COLORS,
-        fontsize=18,
+        fontsize=24,
         use_gradient=True,
         sort="size",
         rotate_names=False,
         alpha=0.6,
+        start_at=90,
     )
+
+    # Annotate arc midpoints with paper counts
+    total_per_sector = matrix.sum(axis=1)
+    grand_total = total_per_sector.sum()
+    pad_deg = 2
+    total_pad = pad_deg * len(SECTOR_ORDER)
+    available = 360 - total_pad
+
+    # Recompute arc positions to match the library's layout
+    # sort="size" means sectors are ordered by descending total degree
+    order = np.argsort(-total_per_sector)
+    spans = (total_per_sector / grand_total) * available
+
+    angle = 90  # start_at=90
+    arc_mids = {}
+    for idx in order:
+        span = spans[idx]
+        mid = angle + span / 2
+        arc_mids[idx] = mid
+        angle += span + pad_deg
+
+    label_r = 0.82
+    for idx, mid_deg in arc_mids.items():
+        a = np.radians(mid_deg)
+        x = label_r * np.cos(a)
+        y = label_r * np.sin(a)
+        count = int(total_per_sector[idx])
+        ax.text(
+            x, y, str(count),
+            ha="center", va="center",
+            fontsize=20, color="white", fontweight="bold",
+            zorder=10,
+        )
 
     fig.tight_layout()
     fig.savefig(OUTPUT_DIR / "collaboration_sectors.pdf", bbox_inches="tight")
