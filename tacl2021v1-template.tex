@@ -520,8 +520,12 @@ we manually classify each of the \numpapers{} papers whether an actual model dep
 \label{sec:how_are_edge_lm_systems_made}
 
 \paragraph{Setup}
-In order to understand how edge LM systems were made, we manually tag which method they used across the LM pipeline.
-
+To understand how edge LM systems are made, we manually tag the methods each system uses across the LM pipeline.
+In addition, to understand how these works relate to the other \numpapers{} surveyed papers,
+we visualize their embeddings.
+We achive this by embedding all \numpapers{} abstracts using MiniLM \citep{wang-etal-2020-minilm},
+clustering them using UMAP \citep{micinnes-etal-2018-umap},
+and extracting keywords for each cluster using KeyBERT \citep{grootendorst2020keybert}.
 
 \paragraph{Findings}
 
