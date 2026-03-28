@@ -33,7 +33,9 @@ def build_collaboration_matrix(df: pd.DataFrame) -> np.ndarray:
     idx = {s: i for i, s in enumerate(labels)}
 
     for _, row in df.iterrows():
-        types = [t.strip() for t in str(row["affiliation_types"]).split(";") if t.strip()]
+        types = [
+            t.strip() for t in str(row["affiliation_types"]).split(";") if t.strip()
+        ]
         unique_types = [t for t in set(types) if t in idx]
 
         # Diagonal: each paper contributes once per sector it contains
@@ -65,37 +67,37 @@ def plot_chord(matrix: np.ndarray) -> None:
     )
 
     # Annotate arc midpoints with paper counts
-    total_per_sector = matrix.sum(axis=1)
-    grand_total = total_per_sector.sum()
-    pad_deg = 2
-    total_pad = pad_deg * len(SECTOR_ORDER)
-    available = 360 - total_pad
+    # total_per_sector = matrix.sum(axis=1)
+    # grand_total = total_per_sector.sum()
+    # pad_deg = 2
+    # total_pad = pad_deg * len(SECTOR_ORDER)
+    # available = 360 - total_pad
 
-    # Recompute arc positions to match the library's layout
-    # sort="size" means sectors are ordered by descending total degree
-    order = np.argsort(-total_per_sector)
-    spans = (total_per_sector / grand_total) * available
+    # # Recompute arc positions to match the library's layout
+    # # sort="size" means sectors are ordered by descending total degree
+    # order = np.argsort(-total_per_sector)
+    # spans = (total_per_sector / grand_total) * available
 
-    angle = 90  # start_at=90
-    arc_mids = {}
-    for idx in order:
-        span = spans[idx]
-        mid = angle + span / 2
-        arc_mids[idx] = mid
-        angle += span + pad_deg
+    # angle = 90  # start_at=90
+    # arc_mids = {}
+    # for idx in order:
+    #     span = spans[idx]
+    #     mid = angle + span / 2
+    #     arc_mids[idx] = mid
+    #     angle += span + pad_deg
 
-    label_r = 1.28
-    for idx, mid_deg in arc_mids.items():
-        a = np.radians(mid_deg)
-        x = label_r * np.cos(a)
-        y = label_r * np.sin(a)
-        count = int(total_per_sector[idx])
-        ax.text(
-            x, y, str(count),
-            ha="center", va="center",
-            fontsize=20, color="black", fontweight="bold",
-            zorder=10,
-        )
+    # label_r = 1.28
+    # for idx, mid_deg in arc_mids.items():
+    #     a = np.radians(mid_deg)
+    #     x = label_r * np.cos(a)
+    #     y = label_r * np.sin(a)
+    #     count = int(total_per_sector[idx])
+    #     ax.text(
+    #         x, y, str(count),
+    #         ha="center", va="center",
+    #         fontsize=20, color="black", fontweight="bold",
+    #         zorder=10,
+    #     )
 
     # Add subtle edge only to the outer ideogram arcs (Wedge patches),
     # not to the inner chords (PathPatch)
