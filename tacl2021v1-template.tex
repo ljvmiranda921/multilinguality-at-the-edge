@@ -545,6 +545,32 @@ We find that synthetic data generation is a prevalent approach for data collecti
 These deployments concentrate near a few clusters such as ``model compression'' and ``dialog datasets,'' while clusters like ``reasoning performance'' or ``prompt compression'' have little to no representation.
 This suggests that edge LM deployments favor specific methods, leaving significant opportunities to explore alternatives.
 
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth,trim={0 0 0 0}]{figures/collaboration_sectors.pdf}
+    \caption{
+      \textbf{Affiliation type of authors from papers that deployed edge LM systems.}
+      Numbers on the chords show how many papers are shared between (or within) sectors.
+      Academia has the largest proportion of collaborations, while government participation remains limited.
+    }
+    \label{fig:collaboration_sectors}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, trim={0 1.7cm 0 0}]{figures/domain_method_network.pdf}
+    \caption{
+      \textbf{Edge LM real-world deployment domains network.}
+      Central nodes represent methods used to develop and deploy real-world edge LMs.
+      Edge color indicates connectivity, while darker nodes indicate high sharing among domains.
+    }
+    \label{fig:domain_method_network}
+  \end{subfigure}
+\end{figure*}
+
+
 \subsection{Who Develops Edge LM Systems?}
 \label{sec:who_develops_edge_lm_systems}
 
@@ -560,17 +586,6 @@ For authors with multiple affiliations, each affiliation is counted separately.
 We then measure cross-sector \textit{collaborations} by counting how often each pair of sectors co-occurs within the same paper.
 % \ljm{\lipsum[1][1-7]}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.95\linewidth,trim={0 1cm 0 0}]{figures/collaboration_sectors.pdf}
-  \caption{
-    \textbf{Affiliation type of authors from papers that deployed edge LM systems.}
-    Numbers on the chords show how many papers are shared between (or within) sectors.
-    Academia has the largest proportion of collaborations, while government participation remains limited.
-  }
-  \label{fig:collaboration_sectors}
-\end{figure}
-
 \paragraph{Findings}
 \autoref{fig:collaboration_sectors} shows a chord diagram of different sectors and their collaborations across the \numdeploymentpapers{} papers.
 Academia is well-represented, followed by research collectives and the industry.
@@ -585,17 +600,6 @@ This suggests that most edge LM deployments involve cross-sector collaborations,
 In order to map the domains in which an edge LM is deployed,
 we perform a round of classification by tagging each paper according to their \textbf{domain}, based on the following categories from \citet{rogers-etal-2023-qa} and \citet{chen2024a}: Agriculture, Climate, Finance, Healthcare, Legal, Social, and Speech.
 Then, we extract mentions of different methods by keyword matching via KeyBERT, and visualize the domain-method connections as a network graph.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.90\linewidth, trim={0 1.7cm 0 0}]{figures/domain_method_network.pdf}
-  \caption{
-    \textbf{Edge LM real-world deployment domains network.}
-    Central nodes represent methods used to develop and deploy real-world edge LMs.
-    Edge color indicates connectivity, while darker nodes indicate high sharing among domains.
-  }
-  \label{fig:domain_method_network}
-\end{figure}
 
 
 
