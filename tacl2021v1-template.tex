@@ -591,15 +591,11 @@ In order to map the domains in which an edge LM is deployed,
 we perform a round of classification by tagging each paper according to their \textbf{domain}, based on the following categories from \citet{rogers-etal-2023-qa} and \citet{chen2024a}: Agriculture, Climate, Finance, Healthcare, Legal, Social, and Speech.
 Then, we extract mentions of different methods by keyword matching via KeyBERT, and visualize the domain-method connections as a network graph.
 
-
-
 \paragraph{Findings}
 \autoref{fig:domain_method_network} shows a network visualization linking multilingual edge LM deployment domains to the methods mentioned in their abstracts.
 We find that some methods are consistently used across domains, such as synthetic data generation, data curation, SFT, and LoRA.
 Healthcare and Social exhibit the broadest coverage (most edges), while Legal and Agriculture connect through fewer, more generic methods.
 This suggests that the diversity of methods in edge LM systems is uneven across domains, with some seeing broad experimentation while others remain concentrated around a few common techniques.
-
-
 
 \section{Discussion: Reaching the Last Mile}
 \label{sec:discussion}
@@ -607,8 +603,6 @@ This suggests that the diversity of methods in edge LM systems is uneven across 
 In this section, we discuss what it takes for the field to reach the last mile and deploy useful LMs
 nearest to the communities that need these technologies the most.
 Here, we discuss some challenges, potential opportunities, and recommendations.
-
-
 
 \subsection{Open Questions and Challenges}
 
