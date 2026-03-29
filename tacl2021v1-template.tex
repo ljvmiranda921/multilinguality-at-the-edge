@@ -303,7 +303,7 @@ Our survey of challenges and methods recognizes this and reflects these nuances 
 In this work, we define the \textit{Edge} as the deployment setting that imposes hardware constraints.
 The edge typically involve commodity hardware such as mobile phones and laptops, and sometimes even microcontroller devices.
 Edge research is relevant because much of the Global South is constrained in digital infrastructure \citep{GSMA2025MobileEconomy,occhini2026artificialintelligencecreatingnew}, and the usual routes for deploying LMs, such as using high-end GPUs or cloud services, are often inaccessible.
-Successful edge deployment has been seen in domains such as healthcare \citep{hu-etal-2025-nlp-public-health-africa,rutunda2026LLMfrontline}, agriculture \citep{singh2024farmerchatscalingaipoweredagricultural,samuel2025agroLLMconnectingfarmersagricultural}, and law \citep{ariai-etal-2025-nlp-legal-domain}.
+Successful edge deployment has been seen in domains such as healthcare \citep{hu-etal-2025-nlp-public-health-africa,rutunda-etal-2026-large}, agriculture \citep{singh2024farmerchatscalingaipoweredagricultural,samuel2025agroLLMconnectingfarmersagricultural}, and law \citep{ariai-etal-2025-nlp-legal-domain}.
 Based on \citet{treviso-etal-2023-efficient}, \citet{lu-etal-2025-demystifying}, and \citet{zheng2025reviewedgeLLM}, we identify \textbf{constraints} for effective Edge LM deployment.
 
 \paragraph{\iconmemory{} Memory}
@@ -348,8 +348,8 @@ Alignment also extends to safety, as communities differ in what they consider al
 \section{Challenges and Methods for Building Multilingual Edge Language Models}
 \label{sec:survey}
 
-In this section, we examine \textit{challenges}, i.e., how the constraints of edge deployment and the requirements of multilinguality compete at each stage of the LM pipeline,
-and survey different \textit{methods} that address them.
+In this section, we examine \textbf{challenges}, i.e., how the constraints of edge deployment and the requirements of multilinguality compete at each stage of the LM pipeline,
+and survey different \textbf{methods} that address them.
 \autoref{fig:taxonomy} in the Appendix shows an overview of this section.
 
 \subsection{Data Collection}
@@ -455,6 +455,8 @@ While initial work explored this in the pretraining setting \citep{weller-etal-2
 \label{sec:inference}
 
 At this stage, a model is served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of device capabilities.
+Inference can occur either online, where a model runs on a remote server and is accessed via an API, or offline, where the model runs directly on the user's device.
+For the Global South, online inference is constrained by network connectivity \citep{itu-unesco-2025-state}, while offline inference is limited by memory (whether the model fits on the device) and energy (whether the device can sustain extended workloads).
 
 \paragraph{Challenge: Cost of inference \iconenergy{} is not uniform across languages \iconrepresentation{}}
 Several works have shown that inference accounts for a significant share of an LM's total energy consumption across its lifecycle \citep[\textit{inter alia}]{fu-etal-2025-llmco2,adamska2025greenprompting}, with some estimates reaching 90\% \citep{hutt2019inferentia}.
@@ -484,10 +486,8 @@ Model performance is measured across capabilities and domains, either on static 
 Evaluation can also happen during development to guide decisions before deployment.
 For multilingual evaluation, benchmarks are typically either task-specific, evaluating a single capability across many languages \citep[\textit{inter alia}]{shi2023language,singh-etal-2025-global,gureja-etal-2025-rewardbench}, or
 language-specific, evaluating a language (or a group of closely-related languages) across many tasks \citep{ojo-etal-2025-afrobench,miranda-etal-2025-filbench}.
-We highlight that evaluation is heavily siloed across multilinguality and edge-efficiency, as most multilingual papers evaluate on multilingual benchmarks alone and efficiency papers on efficiency benchmarks without any cross-pollination; we discuss this further in \S\ref{sec:evaluation_is_siloed}.
 
-% \paragraph{Challenge 1: Multilingual and edge evaluation are isolated from one another}
-\paragraph{Challenge 1: Evaluating multilingual LMs \icondata{} for a specific task or language is expensive \iconcompute{}}
+\paragraph{Challenge: Evaluating multilingual LMs \icondata{} for a specific task or language is expensive \iconcompute{}}
 Choosing or updating a model for deployment requires concrete quantitative evidence.
 However, these evaluations can significantly increase compute costs, as benchmarks often contain thousands of instances spanning many languages and capabilities.
 For example, Global-MMLU \citep{singh-etal-2025-global} contains 14.3k instances across 42 languages, while AfroBench \citep{ojo-etal-2025-afrobench} and FilBench \citep{miranda-etal-2025-filbench} span $>100\text{k}$ instances.
@@ -496,75 +496,155 @@ We consider this challenge an essential part of deployment because evaluating a 
 Addressing this challenge requires not only creating smaller and high-quality benchmarks, but also designing holistic approaches to evaluation outside of static datasets.
 
 \paragraph{Methods}
-Researchers have developed \textbf{lite benchmarks} as companion to the standard benchmarks they released \citep{singh-etal-2025-global,ojo-etal-2025-afrobench,micallef-borg-2025-melabenchv1}.
-These lite versions have a smaller scale in terms of the number of instances or languages that speeds up evaluation, making it ideal for fast iterative cycles of development and evaluation.
-They can also be generated automatically, either from a set of documents \citep{shashidhar2025yourbench} or from aggregating select instances from a collection of benchmarks \citep{kim2025benchhub}.
-Another set of approaches for evaluation moves away from the static benchmarking paradigm and uses techniques like IRT...
+In order to reduce the amount of instances for evaluation,
+researchers have developed \textbf{lite benchmarks} as companions to the standard benchmarks they released \citep{singh-etal-2025-global,ojo-etal-2025-afrobench,micallef-borg-2025-melabenchv1}.
+These versions are intended to speed up evaluation during iterative development, rather than to serve as the final leaderboard scores reported at model release.
+% These lite versions reduce the number of instances or languages to speed up evaluation, making them ideal for fast iterative cycles of development.
+Other techniques borrow from established methods such as item response theory (IRT) and reinforcement learning (RL) to perform \textbf{instance selection}, identifying the most informative items for evaluation \citep{hofmann2025fluid,zouhar-etal-2025-how,li2025active}.
+Finally, another class of techniques create \textbf{dynamic evaluation} either from an existing evaluation dataset \citep{kim2025benchhub} or a set of unstructured documents \citep{shashidhar2025yourbench}.
+
+\section{Analysis: From Methods to Systems}
+
+Thus far, we have discussed the challenges and potential methods that researchers and practitioners may encounter when developing and deploying multilingual edge LMs.
+In this section, we turn to completed edge LM efforts that have been integrated into real-world applications, which we refer to as \textbf{edge LM systems}, and examine
+how they are made (\S\ref{sec:how_are_edge_lm_systems_made}),
+who develops them (\S\ref{sec:who_develops_edge_lm_systems}),
+and which domains they are deployed to (\S\ref{sec:which_domains_are_edge_lm_systems}).
+An example of this is \citet{ramjee-etal-2025-ashabot}, describing how an industry laboratory, NGO, and academic institution collaborated to deploy an LM-based chatbot (ASHABot) for community health workers in Rajasthan, India.
+In order to identify an edge LM system,
+we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no), obtaining \numdeploymentpapers{} papers in the process.
+
+
+\subsection{How Are Edge LM Systems Made?}
+\label{sec:how_are_edge_lm_systems_made}
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.95\linewidth]{example-image}
-  \caption{Hello}
+  \includegraphics[width=0.90\linewidth, trim={0 0.5cm 0 0}]{figures/literature_clusters_umap.pdf}
+  \caption{
+    \textbf{Clustering of \numpapers{} sampled papers by abstract similarity.}
+    Although real-world deployments ($\star$, n=\numdeploymentpapers{}) are present in some clusters, they tend to concentrate near select keywords
+    (e.g., dialog datasets, distillation method, quantization, etc.),
+    suggesting that real-world deployments share common methodological characteristics.
+  }
+  \label{fig:literature_clusters_map}
 \end{figure}
 
 
-\section{Analysis: What's In the Last Mile?}
-
-\ljm{\lipsum[1][1-7]}
-
-\subsection{Multilingual Edge LM Domains}
-
 \paragraph{Setup}
-\ljm{\lipsum[1][1-7]}
-
+In order to examine how edge LM systems are made, we manually tag the methods each system uses across the LM pipeline.
+We also situate these works within the broader \numpapers{} surveyed papers by visualizing their embeddings.
+We achieve this by embedding all \numpapers{} abstracts using MiniLM \citep{wang-etal-2020-minilm},
+clustering them using UMAP and HDBSCAN \citep{mcinnes-etal-2017-hdbscan,micinnes-etal-2018-umap},
+and extracting keywords for each cluster using KeyBERT \citep{grootendorst2020keybert}.
 
 \paragraph{Findings}
-\ljm{\lipsum[1]}
+\autoref{tab:lm_pipeline_edge_lm_systems} shows which methods were implemented by edge LM systems across the whole pipeline.
+We find that synthetic data generation is a prevalent approach for data collection, while model compression via quantization is common during post-training.
+\autoref{fig:literature_clusters_map} shows the embeddings (reduced to 2-dim) of each paper, with edge LM systems marked.
+These deployments concentrate near a few clusters such as ``model compression'' and ``dialog datasets,'' while clusters like ``reasoning performance'' or ``prompt compression'' have little to no representation.
+This suggests that edge LM deployments favor specific methods, leaving significant opportunities to explore alternatives.
 
-
-% \subsection{Directionality of Methods}
-
-% % \paragraph{Not just applying X to Y (and vice versa)}
-% During the survey process, we find that a common approach to
-
-\begin{figure}
+\begin{figure*}[t]
   \centering
-  \includegraphics[width=0.95\linewidth]{example-image}
-  \caption{Hello}
-\end{figure}
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth,trim={0 0 0 0}]{figures/collaboration_sectors.pdf}
+    \caption{
+      \textbf{Affiliation type of authors from papers that deployed edge LM systems.}
+      Numbers on the chords show how many papers are shared between (or within) sectors.
+      Academia has the largest proportion of collaborations, while government participation remains limited.
+    }
+    \label{fig:collaboration_sectors}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, trim={0 1.7cm 0 0}]{figures/domain_method_network.pdf}
+    \caption{
+      \textbf{Edge LM real-world deployment domains network.}
+      Central nodes represent methods used to develop and deploy real-world edge LMs.
+      Edge color indicates connectivity, while darker nodes indicate high sharing among domains.
+    }
+    \label{fig:domain_method_network}
+  \end{subfigure}
+\end{figure*}
 
 
-\subsection{Siloed Evaluation}
-\label{sec:evaluation_is_siloed}
+\subsection{Who Develops Edge LM Systems?}
+\label{sec:who_develops_edge_lm_systems}
 
-% analysis, from your survey, how many efficiency papers are evaluating on multilinguality
 
 \paragraph{Setup}
-\ljm{\lipsum[1][1-7]}
+In order to identify who develops edge LM systems, we manually classify the affiliations of the authors from the \numdeploymentpapers{} system papers
+according to various \textbf{sectors} in \citet{maslej2025artificialintelligenceindexreport}'s taxonomy, which includes
+Academia (universities and affiliated research institutions),
+Government (state-affiliated institutes or public sectors like hospitals),
+Industry (ranges from startups such as to enterprise companies),
+and Research collective (non-profit research organizations).
+For authors with multiple affiliations, each affiliation is counted separately.
+We then measure cross-sector \textit{collaborations} by counting how often each pair of sectors co-occurs within the same paper.
+% \ljm{\lipsum[1][1-7]}
+
+\paragraph{Findings}
+\autoref{fig:collaboration_sectors} shows a chord diagram of different sectors and their collaborations across the \numdeploymentpapers{} papers.
+Academia is well-represented, followed by research collectives and the industry.
+Cross-sector collaborations are also common especially across academia and research collectives.
+Government participation remains limited and is mostly driven by cross-sector collaborations with academia.
+This suggests that most edge LM deployments involve cross-sector collaborations, likely because the combined challenges of compute constraints and capabilities benefit from complementary expertise across sectors.
+
+\subsection{Which Domains are Edge LM Systems Deployed to?}
+\label{sec:which_domains_are_edge_lm_systems}
+
+\paragraph{Setup}
+In order to map the domains in which an edge LM is deployed,
+we perform a round of classification by tagging each paper according to their \textbf{domain}, based on the following categories from \citet{rogers-etal-2023-qa} and \citet{chen2024a}: Agriculture, Climate, Finance, Healthcare, Legal, Social, and Speech.
+Then, we extract mentions of different methods by keyword matching via KeyBERT, and visualize the domain-method connections as a network graph.
+
 
 
 \paragraph{Findings}
-\ljm{\lipsum[1]}
+\autoref{fig:domain_method_network} shows a network visualization linking multilingual edge LM deployment domains to the methods mentioned in their abstracts.
+We find that some methods are consistently used across domains, such as synthetic data generation, data curation, SFT, and LoRA.
+Healthcare and Social exhibit the broadest coverage (most edges), while Legal and Agriculture connect through fewer, more generic methods.
+This suggests that the diversity of methods in edge LM systems is uneven across domains, with some seeing broad experimentation while others remain concentrated around a few common techniques.
+
+
 
 \section{Discussion: Reaching the Last Mile}
 \label{sec:discussion}
 
-\subsection{Open Challenges}
 
-\paragraph{Development at the Edge}
+\subsection{Development at the Edge}
 Throughout this work, we assume that models are developed in a resource-rich environment such as a university research cluster \citep{khandelwal2025k} or frontier laboratory, and then deployed to the edge.
 However, development can also happen on the edge itself, which presents additional challenges in terms of compute access, alongside constraints in data availability and expertise.
 
-\paragraph{Prioritize Multilinguality or Efficiency?}
+
+\paragraph{Constraints that hinder edge development}
+\citep{occhini2026artificialintelligencecreatingnew} defines a community's AI readiness through three factors: data, digital infrastructure, and socioeconomic capability. This work focuses on the first two, but here we see that edge development also entails readiness...
+
+
 % we borrow from dev't economics.
 % two competing techniques are there...
 % one is to figure out the binding constraint
 % the second is to approach them fully
 
 
-\subsection{Future Directions}
+\subsection{Future Work and Outlook}
 
-% agents?
+\paragraph{Model specialization}
+The move towards edge LMs often entails specialization.
+Given that there is a capacity ceiling to a more edge model, the move then is to make it really good at a certain task.
+We predict that specialization can become more intentional across the LM pipeline.
+This is often apparent in post-training, where the goal is to finetune a more generally capable base model towards specific skills.
+But we also see this happening in data collection, where adapting existing data to specific needs happens either through smart curation or synthetic means.
+Evaliation is also getting more specialized as current benchmarks being evaluated do not necessarily correlate with the actual tasks or are more general.
+I mean even Tiny Aya is getting specialized. This can be in terms of language specialization, task specialization or both
+
+
+\paragraph{Grassroots Approaches to Edge LM Development}
+More and more people are building loose networks, or a plurality. (see bennett school paper)
+This is expected because sometimes the people at the edge knows the condition of their deploment contexts.
 
 
 \subsection{Recommendations for Researchers}
@@ -682,7 +762,7 @@ We hope that this work paves the way for more inclusive and equitable language t
   \centering
   \input{figures/taxonomy.tex}
   \caption{
-    \textbf{Organization of the work.}
+    \textbf{Organization of \S\ref{sec:survey}.}
     We organize the literature along the five stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}),
     identifying key challenges between edge deployment constraints (\S\ref{sec:edge_constraints}, Memory \iconmemory{}, Compute \iconcompute{}, and Energy \iconenergy{})
     and properties that influence multilingual capabilities (\S\ref{sec:multilingual_constraints}, Data \icondata{}, Representation \iconrepresentation{}, and Alignment \iconalignment{}).
@@ -690,6 +770,9 @@ We hope that this work paves the way for more inclusive and equitable language t
   }
   \label{fig:taxonomy}
 \end{figure*}
+
+
+\input{tables/lm_pipeline_edge_lm_systems.tex}
 
 
 \end{document}
