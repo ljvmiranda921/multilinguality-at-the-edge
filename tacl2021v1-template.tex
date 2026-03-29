@@ -557,6 +557,8 @@ Government (state-affiliated institutes or public sectors like hospitals),
 Industry (ranges from startups to enterprise companies),
 and Research collective (non-profit research organizations).
 For authors with multiple affiliations, each affiliation is counted separately.
+Then, we count the number of sector \textit{collaborations}, i.e.,
+we count the number of papers involving each sector and how often two sectors appear together in the same paper.
 % \ljm{\lipsum[1][1-7]}
 
 \begin{figure}
@@ -564,16 +566,16 @@ For authors with multiple affiliations, each affiliation is counted separately.
   \includegraphics[width=0.95\linewidth,trim={0 1cm 0 0}]{figures/collaboration_sectors.pdf}
   \caption{
     \textbf{Affiliation type of authors from papers that deployed edge LM systems.}
-    Academia accounts for the largest share, with 30 out of 36 papers
-    Cross-sector collaborations are common, particularly between academia and research collectives (11 papers) and academia and industry (8 papers). Chord widths indicate the number of shared papers between sectors.
+    Numbers on the chords show how many papers are shared between (or within) sectors.
+    Academia has the largest proportion of collaborations, while government participation remains limited.
   }
   \label{fig:collaboration_sectors}
 \end{figure}
 
 \paragraph{Findings}
 \autoref{fig:collaboration_sectors} shows a chord diagram of different sectors and their collaborations across the \numdeploymentpapers{} papers.
-Academia is well-represented, with 30 out of 36 papers, followed by industry and research collectives.
-Cross-sector collaborations are also common especially across academia and research collectives (11).
+Academia is well-represented, followed by research collectives and the industry.
+Cross-sector collaborations are also common especially across academia and research collectives.
 Government participation remains limited and is mostly driven by cross-sector collaborations with academia.
 This suggests that most edge LM deployments involve cross-sector collaborations, likely because the combined challenges of compute constraints and capabilities benefit from complementary expertise across sectors.
 
