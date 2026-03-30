@@ -5569,3 +5569,40 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {2340--2354},
   abstract  = {The prototypical NLP experiment trains a standard architecture on labeled English data and optimizes for accuracy, without accounting for other dimensions such as fairness, interpretability, or computational efficiency. We show through a manual classification of recent NLP research papers that this is indeed the case and refer to it as the square one experimental setup. We observe that NLP research often goes beyond the square one setup, e.g, focusing not only on accuracy, but also on fairness or interpretability, but typically only along a single dimension. Most work targeting multilinguality, for example, considers only accuracy; most work on fairness or interpretability considers only English; and so on. Such one-dimensionality of most research means we are only exploring a fraction of the NLP research search space. We provide historical and recent examples of how the square one bias has led researchers to draw false conclusions or make unwise choices, point to promising yet unexplored directions on the research manifold, and make practical recommendations to enable more multi-dimensional research. We open-source the results of our annotations to enable further analysis.}
 }
+
+@inproceedings{candello-etal-2024-designing,
+  author    = {Candello, Heloisa and Soella, Gabriel and Nascimento, Leandro},
+  title     = {Designing multi-model conversational {AI} financial systems: understanding sensitive values of women entrepreneurs in {B}razil},
+  year      = {2024},
+  isbn      = {9798400717949},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3672406.3672409},
+  doi       = {10.1145/3672406.3672409},
+  abstract  = {Small business owners (SBOs), specially women, face several challenges in everyday life, especially when asking for microcredit loans from financial institutions. Usual difficulties include low credit scores, unbaked situations, outstanding debts, informal employment situations, inability to showcase their payable capacity, and lack of financial guarantor. Moreover, SBOs often need help applying for microcredit loans due to the lack of information on how to proceed. The task of asking for a loan is a complex practice, and asymmetric power relationships might emerge, but that benefits micro-entrepreneurs only sometimes. In this paper, we interviewed 20 women entrepreneurs living in a low-income community in Brazil. We wanted to unveil value tensions derived from this practice that might influence the design of AI technologies for the public. In doing so, we used a conversational system as a probe to understand the opportunities for empowering their practices with the support of AI multimedia conversational systems. We derived seven recommendations for designing AI systems for evaluating micro-business health in low-income communities.},
+  booktitle = {Proceedings of the 2024 ACM International Conference on Interactive Media Experiences Workshops},
+  pages     = {11–18},
+  numpages  = {8},
+  keywords  = {Artificial Intelligence, Conversational Systems, Vulnerable population},
+  location  = {Stockholm, Sweden},
+  series    = {IMXw '24}
+}
+
+@article{builtjes-etal-2025-leveraging,
+  author   = {Builtjes, Luc and Bosma, Joeran and Prokop, Mathias and van Ginneken, Bram and Hering, Alessa},
+  title    = {Leveraging open-source large language models for clinical information extraction in resource-constrained settings},
+  journal  = {JAMIA Open},
+  volume   = {8},
+  number   = {5},
+  pages    = {ooaf109},
+  year     = {2025},
+  month    = {10},
+  abstract = {We aimed to evaluate the zero-shot performance of open-source generative large language models (LLMs) on clinical information extraction from Dutch medical reports using the Diagnostic Report Analysis: General Optimization of NLP (DRAGON) benchmark.We developed and released the llm\_extractinator framework, a scalable, open-source tool for automating information extraction from clinical texts using LLMs. We evaluated 9 multilingual open-source LLMs across 28 tasks in the DRAGON benchmark, covering classification, regression, and named entity recognition (NER). All tasks were performed in a zero-shot setting. Model performance was quantified using task-specific metrics and aggregated into a DRAGON utility score. Additionally, we investigated the effect of in-context translation to English.Llama-3.3-70B achieved the highest utility score (0.760), followed by Phi-4-14B (0.751), Qwen-2.5-14B (0.748), and DeepSeek-R1-14B (0.744). These models outperformed or matched a fine-tuned RoBERTa baseline on 17 of 28 tasks, particularly in regression and structured classification. NER performance was consistently low across all models. Translation to English consistently reduced performance.Generative LLMs demonstrated strong zero-shot capabilities on clinical natural language processing tasks involving structured inference. Models around 14B parameters performed well overall, with Llama-3.3-70B leading but at high computational cost. Generative models excelled in regression tasks, but were hindered by token-level output formats for NER. Translation to English reduced performance, emphasizing the need for native language support.Open-source generative LLMs provide a viable zero-shot alternative for clinical information extraction from Dutch medical texts, particularly in low-resource and multilingual settings.Our study tested the ability of open-source artificial intelligence (AI) language models to understand and extract information from Dutch medical reports without any prior training on the tasks. Using our custom llm\_extractinator tool, we evaluated 9 models on 28 clinical tasks in the DRAGON 2024 benchmark. Several models around 14 billion parameters performed competitively, coming close to matching a top-performing, fine-tuned system built specifically for these tasks. Surprisingly, even without training, the generative models often outperformed the specialized model on several tasks, especially those involving numbers and structured reasoning. However, all models struggled with tasks that required identifying specific medical terms, likely due to the format required by the challenge. We also found that translating Dutch reports into English before analysis made results worse. Overall, our results suggest that modern generative AI can support clinical data analysis in Dutch with minimal setup, offering a flexible alternative to traditional models that require large amounts of labeled training data.},
+  issn     = {2574-2531},
+  doi      = {10.1093/jamiaopen/ooaf109},
+  url      = {https://doi.org/10.1093/jamiaopen/ooaf109},
+  eprint   = {https://academic.oup.com/jamiaopen/article-pdf/8/5/ooaf109/64465454/ooaf109.pdf}
+}
+
+
+
