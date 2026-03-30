@@ -185,33 +185,6 @@ Our desideratum is to stimulate more work at this intersection of multilingual a
 and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
 Finally, we hope that this work contributes to the development of equitable language technologies.
 
-\section{Methodology}
-\label{sec:methodology}
-
-To understand the landscape of multilingual edge LMs,
-we collect research from 2021 onwards on multilinguality, edge and efficient NLP, and work that combines both.
-In total, we obtain \numpapers{} papers.
-
-\paragraph{Initial Paper Screening}
-First, we gather studies from peer-reviewed academic papers in $^\star$CL (e.g., ACL/EMNLP/TACL) and machine learning venues (e.g. NeurIPS/ICLR/TMLR) using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
-Our search query includes keywords pertaining to multilingual NLP, efficiency, and LM deployment (\autoref{fig:search_keywords}).
-This step resulted in 2,473 papers.
-We screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published in 2025 should have at least 3.
-
-\paragraph{Filtering and Annotation}
-For each work, we perform human and LM-assisted filtering and annotation to identify key attributes such as the work's
-focus in the LM pipeline,
-whether it focuses on multilinguality, efficiency, or both,
-and deployment device.
-We bootstrap annotations with GPT 4.1 Mini by including the work's title and abstract in a prompt (\autoref{fig:appendix_annotation_prompt}),
-and then perform human validation to correct the annotations.
-
-\paragraph{Final Validation}
-Finally, we conduct a round of human validation to correct and refine the annotations.
-In total, we collected \numpapers{} works across the whole language modelling pipeline.
-% Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
-
-
 \section{Multilinguality at the Edge}
 \label{sec:multilinguality_at_the_edge}
 
@@ -336,6 +309,33 @@ Even if a model is fluent in a certain language, it does not necessarily mean th
 Alignment also extends to safety, as communities differ in what they consider allowable \citep{yong-etal-2025-state}.
 
 % \input{tables/survey_comparisons.tex}
+\section{Methodology}
+\label{sec:methodology}
+
+To understand the landscape of multilingual edge LMs,
+we collect research from 2021 onwards on multilinguality, edge and efficient NLP, and work that combines both.
+In total, we obtain \numpapers{} papers.
+
+\paragraph{Initial Paper Screening}
+First, we gather studies from peer-reviewed academic papers in $^\star$CL (e.g., ACL/EMNLP/TACL) and machine learning venues (e.g. NeurIPS/ICLR/TMLR) using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
+Our search query includes keywords pertaining to multilingual NLP, efficiency, and LM deployment (\autoref{fig:search_keywords}).
+This step resulted in 2,473 papers.
+We screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published in 2025 should have at least 3.
+
+\paragraph{Filtering and Annotation}
+For each work, we perform human and LM-assisted filtering and annotation to identify key attributes such as the work's
+focus in the LM pipeline,
+whether it focuses on multilinguality, efficiency, or both,
+and deployment device.
+We bootstrap annotations with GPT 4.1 Mini by including the work's title and abstract in a prompt (\autoref{fig:appendix_annotation_prompt}),
+and then perform human validation to correct the annotations.
+
+\paragraph{Final Validation}
+Finally, we conduct a round of human validation to correct and refine the annotations.
+In total, we collected \numpapers{} works across the whole language modelling pipeline.
+% Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
+
+
 
 \section{Challenges and Methods for Building Multilingual Edge Language Models}
 \label{sec:survey}
