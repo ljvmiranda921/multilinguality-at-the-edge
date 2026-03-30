@@ -636,20 +636,32 @@ The challenge then is to ensure that these collaborations are participatory \cit
 
 \subsection{Recommendations to Stakeholders}
 
-\begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
-  \item \textbf{For NLP researchers and model developers:}
-        First, it is important that \textit{evaluation of edge models considers other constraints} (\S\ref{sec:edge_constraints}) such as energy or compute.
-        Our analysis in \autoref{tab:lm_pipeline_edge_lm_systems} shows that most EdgeLMs focus on memory (parameter size), yet several communities might face other constraints that prohibit access to even these tiny models.
+\paragraph{For NLP researchers and model developers}
+First, it is important that \textit{evaluation of edge models considers other constraints} (\S\ref{sec:edge_constraints}) such as energy or compute.
+Our analysis in \autoref{tab:lm_pipeline_edge_lm_systems} shows that most EdgeLMs focus on memory (parameter size), yet several communities might face other constraints that prohibit access to even these tiny models.
+In addition, our finding that edge deployments cluster around a narrow set of methods (\autoref{fig:literature_clusters_map}) suggests that
+exploring underrepresented clusters like prompt compression could yield better edge LMs.
 
-        In addition, our finding that edge deployments cluster around a narrow set of methods (\autoref{fig:literature_clusters_map}) suggests that
-        exploring underrepresented clusters like prompt compression could yield better edge LMs.
+\paragraph{For deployment practitioners and communities at the edge}
+We find that successful edge LM deployments are often in cases where research collectives develop partnerships with other sectors (\autoref{fig:collaboration_sectors}).
+Thus, encouraging these types of partnerships is paramount.
+At the same time, we echo \citet{pillai-etal-2023-community} and \citet{petti2025coact} in saying that communities in the edge should take a more active role in development,
+not as consultants, but as collaborators.
 
-  \item \textbf{For deployment practitioners and communities at the edge:}
-        We find that successful edge LM deployments are often in cases where research collectives develop partnerships with other sectors (\autoref{fig:collaboration_sectors}).
-        Thus, encouraging these types of partnerships is paramount.
-        At the same time, we echo \citet{pillai-etal-2023-community} and \citet{petti2025coact} in saying that communities in the edge should take a more active role in development,
-        not as consultants, but as collaborators.
-\end{itemize}
+% \begin{itemize}[leftmargin=5mm,topsep=0mm,itemsep=0mm]
+%   \item \textbf{For NLP researchers and model developers:}
+%         First, it is important that \textit{evaluation of edge models considers other constraints} (\S\ref{sec:edge_constraints}) such as energy or compute.
+%         Our analysis in \autoref{tab:lm_pipeline_edge_lm_systems} shows that most EdgeLMs focus on memory (parameter size), yet several communities might face other constraints that prohibit access to even these tiny models.
+
+%         In addition, our finding that edge deployments cluster around a narrow set of methods (\autoref{fig:literature_clusters_map}) suggests that
+%         exploring underrepresented clusters like prompt compression could yield better edge LMs.
+
+%   \item \textbf{For deployment practitioners and communities at the edge:}
+%         We find that successful edge LM deployments are often in cases where research collectives develop partnerships with other sectors (\autoref{fig:collaboration_sectors}).
+%         Thus, encouraging these types of partnerships is paramount.
+%         At the same time, we echo \citet{pillai-etal-2023-community} and \citet{petti2025coact} in saying that communities in the edge should take a more active role in development,
+%         not as consultants, but as collaborators.
+% \end{itemize}
 
 % \paragraph{Evaluate on other aspects of edge constraints (\S\ref{sec:edge_constraints}) when developing edge LMs}
 
