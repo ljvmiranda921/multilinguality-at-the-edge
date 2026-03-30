@@ -5459,3 +5459,50 @@ b@misc{kaplan2020scalinglawsneurallanguage,
   pages     = {4--13},
   abstract  = {In an evolving landscape of crisis communication, the need for robust and adaptable Machine Translation (MT) systems is more pressing than ever, particularly for low-resource languages. This study presents a comprehensive exploration of leveraging Large Language Models (LLMs) and Multilingual LLMs (MLLMs) to enhance MT capabilities in such scenarios. By focusing on the unique challenges posed by crisis situations where speed, accuracy, and the ability to handle a wide range of languages are paramount, this research outlines a novel approach that combines the cutting-edge capabilities of LLMs with fine-tuning techniques and community-driven corpus development strategies. At the core of this study is the development and empirical evaluation of MT systems tailored for two low-resource language pairs, illustrating the process from initial model selection and fine-tuning through to deployment. Bespoke systems are developed and modelled on the recent Covid-19 pandemic. The research highlights the importance of community involvement in creating highly specialised, crisis-specific datasets and compares custom GPTs with NLLB-adapted MLLM models. It identifies fine-tuned MLLM models as offering superior performance compared with their LLM counterparts. A scalable and replicable model for rapid MT system development in crisis scenarios is outlined. Our approach enhances the field of humanitarian technology by offering a blueprint for developing multilingual communication systems during emergencies.}
 }
+
+@inproceedings{anikina-2023-towards,
+  title     = {{Towards Efficient Dialogue Processing in the Emergency Response Domain}},
+  author    = {Anikina, Tatiana},
+  editor    = {Padmakumar, Vishakh  and
+               Vallejo, Gisela  and
+               Fu, Yao},
+  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 4: Student Research Workshop)},
+  month     = jul,
+  year      = {2023},
+  address   = {Toronto, Canada},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2023.acl-srw.31/},
+  doi       = {10.18653/v1/2023.acl-srw.31},
+  pages     = {212--225},
+  abstract  = {In this paper we describe the task of adapting NLP models to dialogue processing in the emergency response domain. Our goal is to provide a recipe for building a system that performs dialogue act classification and domain-specific slot tagging while being efficient, flexible and robust. We show that adapter models Pfeiffer et al. (2020) perform well in the emergency response domain and benefit from additional dialogue context and speaker information. Comparing adapters to standard fine-tuned Transformer models we show that they achieve competitive results and can easily accommodate new tasks without significant memory increase since the base model can be shared between the adapters specializing on different tasks. We also address the problem of scarce annotations in the emergency response domain and evaluate different data augmentation techniques in a low-resource setting.}
+}
+
+@inproceedings{abilov-etal-2025-operationalizing,
+  title     = {{O}perationalizing {AI} for {G}ood: {S}potlight on {D}eployment and {I}ntegration of {AI} {M}odels in {H}umanitarian {W}ork},
+  author    = {Abilov, Anton  and
+               Zhang, Ke  and
+               Lamba, Hemank  and
+               Olson, Elizabeth M.  and
+               Tetreault, Joel  and
+               Jaimes, Alex},
+  editor    = {Atwell, Katherine  and
+               Biester, Laura  and
+               Borah, Angana  and
+               Dementieva, Daryna  and
+               Ignat, Oana  and
+               Kotonya, Neema  and
+               Liu, Ziyi  and
+               Wan, Ruyuan  and
+               Wilson, Steven  and
+               Zhao, Jieyu},
+  booktitle = {Proceedings of the Fourth Workshop on NLP for Positive Impact (NLP4PI)},
+  month     = jul,
+  year      = {2025},
+  address   = {Vienna, Austria},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2025.nlp4pi-1.16/},
+  doi       = {10.18653/v1/2025.nlp4pi-1.16},
+  pages     = {189--195},
+  isbn      = {978-1-959429-19-7},
+  abstract  = {Publications in the AI for Good space have tended to focus on the research and model development that can support high-impact applications. However, very few AI for Good papers discuss the process of deploying and collaborating with the partner organization, and the resulting real-world impact. In this work, we share details about the close collaboration with a humanitarian-to-humanitarian (H2H) organization and how to not only deploy the AI model in a resource-constrained environment, but also how to maintain it for continuous performance updates, and share key takeaways for practitioners.}
+}
