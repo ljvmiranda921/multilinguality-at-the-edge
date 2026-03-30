@@ -1,18 +1,30 @@
 \begin{table*}[ht]
     \small
     \centering
-    \begin{tabular}{l cccc}
-        \toprule
-        \textbf{System} & \textbf{Data} & \textbf{Training} & \textbf{Post-Training} & \textbf{Inference} \\
-        \midrule
-        % TODO: Fill in each row with the methods used at each pipeline stage.
-        % Use checkmarks (\checkmark) or brief method names.
-        % \citet{ramjee-etal-2025-ashabot} & Synthetic & Fine-tuning & Quantization & -- \\
-        \bottomrule
-    \end{tabular}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{l p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm}}
+            \toprule
+            % \begin{noindent}
+    \textbf{System} & \textbf{Data Coll.} & \textbf{Pretraining} & \textbf{Post-Training} & \textbf{Inference} & \textbf{Evaluation} \\
+    \midrule
+    \citet{chen2023meditron70bscalingmedicalpretraining} \\
+    \citet{anikina-2023-towards} \\
+    \citet{qiu-etal-2024-towards} \\
+    \citet{zheng2025efficiently} \\
+    \citet{durmus2025whisperkit} \\
+    \citet{ramjee-etal-2025-ashabot} \\
+    \citet{abilov-etal-2025-operationalizing} \\
+    \citet{king2025flavorsmoonshinetinyspecialized} \\
+    \citet{feng2025edgeasrlowbitquantizationautomatic} \\
+    \citet{rutunda-etal-2026-large} \\
+    \citet{jinzhen2026lightweightllmframeworkdisaster} \\
+    \bottomrule
+% \end{noindent}
+        \end{tabular}}
     \caption{
-        \textbf{Methods used by edge LM systems across the LM pipeline.}
-        Each column corresponds to a stage in the pipeline, and entries indicate the method(s) employed by each system.
+        \textbf{Complementary: Methods used by edge LM systems across the LM pipeline.}
+        We show a representative sample of the \numdeploymentpapers{} deployed systems from the full \numpapers{} surveyed papers, and describe which methods (\S\ref{sec:survey}) they used across the LM development pipeline (\S\ref{sec:lm_pipeline}).
+        Rows are color-coded based on their domain (see \S\ref{sec:which_domains_are_edge_lm_systems}): \colorbox{cwarmcherry!40}{Healthcare}, \colorbox{cgreen!40}{Finance}, \colorbox{cwarmblue!40}{Climate}, \colorbox{cwarmgreen!40}{Agriculture}, \colorbox{cwarmpurple!40}{Speech}, \colorbox{ccrest!40}{Social}, and \colorbox{cslate2!40}{Legal}.
     }
     \label{tab:lm_pipeline_edge_lm_systems}
 \end{table*}

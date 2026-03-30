@@ -88,7 +88,7 @@ TACL-submission anonymization requirements)}
   % A Survey of Methods and Challenges at the Last Mile of NLP
   % The Last Mile: The State of Multilinguality at the Edge
   % Multilinguality at the Edge: A Survey of the Last Mile of NLP
-  %The Last Mile: A Survey of Multilinguality at the Edge
+  %The Last Mile: A Survey of Multilinguality'   at the Edge
   % A Survey of Multilinguality at the Edge
   Multilinguality at the Edge
 }
@@ -116,9 +116,11 @@ TACL-submission anonymization requirements)}
 Language models (LMs) have made remarkable progress in recent years and are increasingly integrated into everyday work and life \citep{microsoft2026aidiffusion}.
 This progress is evident in both multilingual coverage, with models now speaking hundreds of languages \citep{ustun-etal-2024-aya,gemmateam2025gemma3technicalreport},
 and in efficiency, with capable models now small enough to deploy on smartphones and other edge devices \citep[\textit{inter alia}]{treviso-etal-2023-efficient}.
-Yet despite these advances, a wide gap persists in who can actually deploy and use these models, particularly between the Global North and the Global South \citep{khan2024ailics,pava2025mind}.
+
+
+Yet despite these advances, a wide gap persists in who can actually deploy and use these models, particularly between the Global North and the Global South \citep{joshi-etal-2020-state,khan2024ailics,pava2025mind}.
 We can point to several factors that contribute to this disparity.
-Most LMs are not trained on the long tail of the world's 7,000 languages and thus lack the performance necessary for downstream tasks \citep{occhini2026artificialintelligencecreatingnew}.
+Most LMs are not trained on the long tail of the world's 7,000 languages and thus lack the performance necessary for downstream applications \citep{occhini2026artificialintelligencecreatingnew}.
 In addition, infrastructure constraints such as limited connectivity and low smartphone penetration, especially in the Global South, further restrict the use of both cloud-based and on-device models \citep{GSMA2025MobileEconomy,itu-2025-facts}.
 As LMs become central to economic productivity, these barriers threaten to widen the divide further.
 
@@ -179,46 +181,9 @@ In addition, decisions made during development can directly affect whether a mod
 
 In this work, we define the challenge of the \textit{last mile} (\S\ref{sec:motivation}) and present a survey of \numpapers{} papers that describe methods attempting to solve this problem at different stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}).
 For each stage, we describe how the constraints of edge deployment (\ref{sec:edge_constraints}) and the requirements of multilinguality (\ref{sec:multilingual_constraints}) can impose competing demands, and how existing work resolves the gap (\S\ref{sec:survey}).
-% Although we've been seeing LM releases that jointly address the \textit{last mile},%(e.g., Tiny Aya \citep{salamanca2026tinyayabridgingscale} with support for 70 languages while being under 3.35B and Omnilingual ASR \citep{omnilingualasrteam2025omnilingualasropensourcemultilingual} that covers 1.6k languages with a 300M parameter variant),
 Our desideratum is to stimulate more work at this intersection of multilingual and edge NLP,
 and so, we discuss opportunities on how it can be done in practice and provide actionable recommendations for different stakeholders (\S\ref{sec:discussion}).
 Finally, we hope that this work contributes to the development of equitable language technologies.
-
-% In this work, we survey \numpapers{} methods, techniques, and challenges that tackle the development of multilingual LMs that can be deployed at the edge.
-% We first motivate why studying multilinguality at the edge is relevant (\S\ref{sec:motivation}), highlighting a clear need and a strong research opportunity.
-% We organize our discussion around the large language modeling pipeline (\S\ref{sec:lm_pipeline}), covering data collection, development, and deployment, and describe relevant techniques at each stage.
-% We then define the constraints of Edge LMs (\S\ref{sec:edge_constraints})
-% and the requirements for building quality multilingual models (\S\ref{sec:multilingual_constraints}),
-% and highlight how the two often impose competing demands,% (\S\ref{sec:the_tension}),
-% which is precisely what makes the \textit{last mile} so challenging.
-% Our survey (\S\ref{sec:survey}) then examines how these tensions manifest and are being addressed at each stage of the LM pipeline (see Figure~\ref{fig:lm_pipeline}).
-
-\section{Methodology}
-\label{sec:methodology}
-
-To understand the landscape of multilingual edge LMs,
-we collect research from 2021 onwards on multilinguality, edge and efficient NLP, and work that combines both.
-In total, we obtain \numpapers{} papers.
-
-\paragraph{Initial Paper Screening}
-First, we gather studies from peer-reviewed academic papers in $^\star$CL (e.g., ACL/EMNLP/TACL) and machine learning venues (e.g. NeurIPS/ICLR/TMLR) using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
-Our search query includes keywords pertaining to multilingual NLP, efficiency, and LM deployment (\autoref{fig:search_keywords}).
-This step resulted in 2,473 papers.
-We screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published in 2025 should have at least 3.
-
-\paragraph{Filtering and Annotation}
-For each work, we perform human and LM-assisted filtering and annotation to identify key attributes such as the work's
-focus in the LM pipeline,
-whether it focuses on multilinguality, efficiency, or both,
-and deployment device.
-We bootstrap annotations with GPT 4.1 Mini by including the work's title and abstract in a prompt (\autoref{fig:appendix_annotation_prompt}),
-and then perform human validation to correct the annotations.
-
-\paragraph{Final Validation}
-Finally, we conduct a round of human validation to correct and refine the annotations.
-In total, we collected \numpapers{} works across the whole language modelling pipeline.
-% Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
-
 
 \section{Multilinguality at the Edge}
 \label{sec:multilinguality_at_the_edge}
@@ -301,7 +266,7 @@ Our survey of challenges and methods recognizes this and reflects these nuances 
 \label{sec:edge_constraints}
 
 In this work, we define the \textit{Edge} as the deployment setting that imposes hardware constraints.
-The edge typically involve commodity hardware such as mobile phones and laptops, and sometimes even microcontroller devices.
+The edge typically involves commodity hardware such as mobile phones and laptops, and sometimes even microcontroller devices.
 Edge research is relevant because much of the Global South is constrained in digital infrastructure \citep{GSMA2025MobileEconomy,occhini2026artificialintelligencecreatingnew}, and the usual routes for deploying LMs, such as using high-end GPUs or cloud services, are often inaccessible.
 Successful edge deployment has been seen in domains such as healthcare \citep{hu-etal-2025-nlp-public-health-africa,rutunda-etal-2026-large}, agriculture \citep{singh2024farmerchatscalingaipoweredagricultural,samuel2025agroLLMconnectingfarmersagricultural}, and law \citep{ariai-etal-2025-nlp-legal-domain}.
 Based on \citet{treviso-etal-2023-efficient}, \citet{lu-etal-2025-demystifying}, and \citet{zheng2025reviewedgeLLM}, we identify \textbf{constraints} for effective Edge LM deployment.
@@ -344,6 +309,33 @@ Even if a model is fluent in a certain language, it does not necessarily mean th
 Alignment also extends to safety, as communities differ in what they consider allowable \citep{yong-etal-2025-state}.
 
 % \input{tables/survey_comparisons.tex}
+\section{Methodology}
+\label{sec:methodology}
+
+To understand the landscape of multilingual edge LMs,
+we collect research from 2021 onwards on multilinguality, edge and efficient NLP, and work that combines both.
+In total, we obtain \numpapers{} papers.
+
+\paragraph{Initial Paper Screening}
+First, we gather studies from peer-reviewed academic papers in $^\star$CL (e.g., ACL/EMNLP/TACL) and machine learning venues (e.g. NeurIPS/ICLR/TMLR) using the Semantic Scholar API.\footnote{\url{https://www.semanticscholar.org/product/api}}
+Our search query includes keywords pertaining to multilingual NLP, efficiency, and LM deployment (\autoref{fig:search_keywords}).
+This step resulted in 2,473 papers.
+We screened for relevance by filtering for citations in a staggered manner, i.e., papers published in 2021 should have $\geq 100$ citations while those published in 2025 should have at least 3.
+
+\paragraph{Filtering and Annotation}
+For each work, we perform human and LM-assisted filtering and annotation to identify key attributes such as the work's
+focus in the LM pipeline,
+whether it focuses on multilinguality, efficiency, or both,
+and deployment device.
+We bootstrap annotations with GPT 4.1 Mini by including the work's title and abstract in a prompt (\autoref{fig:appendix_annotation_prompt}),
+and then perform human validation to correct the annotations.
+
+\paragraph{Final Validation}
+Finally, we conduct a round of human validation to correct and refine the annotations.
+In total, we collected \numpapers{} works across the whole language modelling pipeline.
+% Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
+
+
 
 \section{Challenges and Methods for Building Multilingual Edge Language Models}
 \label{sec:survey}
@@ -513,23 +505,22 @@ and which domains they are deployed to (\S\ref{sec:which_domains_are_edge_lm_sys
 An example of this is \citet{ramjee-etal-2025-ashabot}, describing how an industry laboratory, NGO, and academic institution collaborated to deploy an LM-based chatbot (ASHABot) for community health workers in Rajasthan, India.
 In order to identify an edge LM system,
 we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no), obtaining \numdeploymentpapers{} papers in the process.
-
+We will center the analyses in the next subsections on these papers.
 
 \subsection{How Are Edge LM Systems Made?}
 \label{sec:how_are_edge_lm_systems_made}
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.90\linewidth, trim={0 0.5cm 0 0}]{figures/literature_clusters_umap.pdf}
+  \includegraphics[width=\linewidth, trim={0 0.5cm 0 0}]{figures/literature_clusters_umap.pdf}
   \caption{
-    \textbf{Clustering of \numpapers{} sampled papers by abstract similarity.}
+    \textbf{Clustering of \numpapers{} surveyed papers by abstract similarity.}
     Although real-world deployments ($\star$, n=\numdeploymentpapers{}) are present in some clusters, they tend to concentrate near select keywords
     (e.g., dialog datasets, distillation method, quantization, etc.),
     suggesting that real-world deployments share common methodological characteristics.
   }
   \label{fig:literature_clusters_map}
 \end{figure}
-
 
 \paragraph{Setup}
 In order to examine how edge LM systems are made, we manually tag the methods each system uses across the LM pipeline.
@@ -580,7 +571,7 @@ In order to identify who develops edge LM systems, we manually classify the affi
 according to various \textbf{sectors} in \citet{maslej2025artificialintelligenceindexreport}'s taxonomy, which includes
 Academia (universities and affiliated research institutions),
 Government (state-affiliated institutes or public sectors like hospitals),
-Industry (ranges from startups such as to enterprise companies),
+Industry (ranges from startups to enterprise companies that release frontier LMs),
 and Research collective (non-profit research organizations).
 For authors with multiple affiliations, each affiliation is counted separately.
 We then measure cross-sector \textit{collaborations} by counting how often each pair of sectors co-occurs within the same paper.
@@ -601,55 +592,70 @@ In order to map the domains in which an edge LM is deployed,
 we perform a round of classification by tagging each paper according to their \textbf{domain}, based on the following categories from \citet{rogers-etal-2023-qa} and \citet{chen2024a}: Agriculture, Climate, Finance, Healthcare, Legal, Social, and Speech.
 Then, we extract mentions of different methods by keyword matching via KeyBERT, and visualize the domain-method connections as a network graph.
 
-
-
 \paragraph{Findings}
 \autoref{fig:domain_method_network} shows a network visualization linking multilingual edge LM deployment domains to the methods mentioned in their abstracts.
 We find that some methods are consistently used across domains, such as synthetic data generation, data curation, SFT, and LoRA.
 Healthcare and Social exhibit the broadest coverage (most edges), while Legal and Agriculture connect through fewer, more generic methods.
 This suggests that the diversity of methods in edge LM systems is uneven across domains, with some seeing broad experimentation while others remain concentrated around a few common techniques.
 
-
-
 \section{Discussion: Reaching the Last Mile}
 \label{sec:discussion}
 
+In this section, we discuss what it takes for the field to reach the last mile and deploy useful LMs
+nearest to the communities that need these technologies the most.
+Here, we discuss some open challenges and recommendations to various stakeholders.
 
-\subsection{Development at the Edge}
-Throughout this work, we assume that models are developed in a resource-rich environment such as a university research cluster \citep{khandelwal2025k} or frontier laboratory, and then deployed to the edge.
-However, development can also happen on the edge itself, which presents additional challenges in terms of compute access, alongside constraints in data availability and expertise.
+% \subsection{Open Challenges}
 
-
-\paragraph{Constraints that hinder edge development}
-\citep{occhini2026artificialintelligencecreatingnew} defines a community's AI readiness through three factors: data, digital infrastructure, and socioeconomic capability. This work focuses on the first two, but here we see that edge development also entails readiness...
-
-
-% we borrow from dev't economics.
-% two competing techniques are there...
-% one is to figure out the binding constraint
-% the second is to approach them fully
-
-
-\subsection{Future Work and Outlook}
-
-\paragraph{Model specialization}
-The move towards edge LMs often entails specialization.
-Given that there is a capacity ceiling to a more edge model, the move then is to make it really good at a certain task.
-We predict that specialization can become more intentional across the LM pipeline.
-This is often apparent in post-training, where the goal is to finetune a more generally capable base model towards specific skills.
-But we also see this happening in data collection, where adapting existing data to specific needs happens either through smart curation or synthetic means.
-Evaliation is also getting more specialized as current benchmarks being evaluated do not necessarily correlate with the actual tasks or are more general.
-I mean even Tiny Aya is getting specialized. This can be in terms of language specialization, task specialization or both
+\subsection{Development in the edge}
+Throughout this work, we assume that models are developed in a resource-rich environment such as a university research cluster or industry laboratory, and then deployed to the edge.
+But development can also happen on the edge itself, given that communities on the edge have the knowledge and unique perspective of their contexts and might prefer to be involved not only as consultants but as active contributors in research teams \citep{pillai-etal-2023-community}.
+However, active involvement implies readiness, and \citet{occhini2026artificialintelligencecreatingnew} defines a community's AI readiness through the confluence of three factors: data and model resources, digital infrastructure, and socioeconomic capability.
+Our work maps to the first two---multilingual capabilities (\S\ref{sec:multilingual_constraints}) as a function of data resources, and edge constraints (\S\ref{sec:edge_constraints}) as digital infrastructure.
+Although socioeconomic constraints remain unaddressed in this work,
+we find that communities bypass these through research collectives, which as we've seen in \S\ref{sec:who_develops_edge_lm_systems}, tend to have a high level of collaboration with other sectors.
+The challenge then is to ensure that these collaborations are participatory \citep{petti2025coact}, and to determine how one can relax varying constraints in resources, infrastructure, and socioeconomic capabilities for a community.
 
 
-\paragraph{Grassroots Approaches to Edge LM Development}
-More and more people are building loose networks, or a plurality. (see bennett school paper)
-This is expected because sometimes the people at the edge knows the condition of their deploment contexts.
+
+% \subsection{Future Work and Outlook}
+
+% \paragraph{Model specialization}
+% The move towards edge LMs often entails specialization.
+% Given that there is a capacity ceiling to a more edge model, the move then is to make it really good at a certain task.
+% We predict that specialization can become more intentional across the LM pipeline.
+% This is often apparent in post-training, where the goal is to finetune a more generally capable base model towards specific skills.
+% But we also see this happening in data collection, where adapting existing data to specific needs happens either through smart curation or synthetic means.
+% Evaliation is also getting more specialized as current benchmarks being evaluated do not necessarily correlate with the actual tasks or are more general.
+% I mean even Tiny Aya is getting specialized. This can be in terms of language specialization, task specialization or both
 
 
-\subsection{Recommendations for Researchers}
+% \paragraph{Grassroots Approaches to Edge LM Development}
+% More and more people are building loose networks, or a plurality. (see bennett school paper)
+% This is expected because sometimes the people at the edge knows the condition of their deploment contexts.
 
-% distribution of constraints, where do they usually happen
+
+\subsection{Recommendations to Stakeholders}
+
+Cognizant of the fact that multilingual capabilities and edge constraints interact at various stages of the LM pipeline,
+we now outline our recommendations to different stakeholders in order to develop and deploy capable edge LMs.
+
+\begin{itemize}[leftmargin=5mm,itemsep=0mm]
+  \item \textbf{For NLP researchers and model developers:}
+        First, it is important that \textit{evaluation of edge models considers other constraints} (\S\ref{sec:edge_constraints}) such as energy or compute.
+        Our analysis in \autoref{tab:lm_pipeline_edge_lm_systems} shows that most edge LMs focus on memory (parameter size), yet several communities might face other constraints that prohibit access to even these tiny models.
+        In addition, our finding that edge deployments cluster around a narrow set of methods (\autoref{fig:literature_clusters_map}) suggests that
+        \textit{exploring underrepresented methods} could yield better edge LMs.
+  \item \textbf{For deployment practitioners and communities at the edge:}
+        We find that successful edge LM deployments often involve research collectives partnering with other sectors (\autoref{fig:collaboration_sectors}).
+        Thus, \textit{encouraging these types of partnerships} is paramount.
+        For example, ASHABot \citep{ramjee-etal-2025-ashabot} involved collaboration between an industry laboratory, NGO, and academic institution to deploy a healthcare chatbot in India, while \citet{rutunda-etal-2026-large} followed a similar model in Rwanda.
+        At the same time, we echo \citet{pillai-etal-2023-community} and \citet{petti2025coact} in saying that \textit{communities on the edge should take a more active role} in development,
+        not as consultants, but as collaborators.
+  \item \textbf{For policymakers and funders:}
+        \autoref{fig:infra_lingdiv_ict} shows that 12 out of 21 countries with 100+ living languages are low or middle-income, suggesting that funding should point not only towards model development but the infrastructure and devices that make these deployments accessible.
+        In addition, we observe from our surveyed papers that government participation is limited (\autoref{fig:collaboration_sectors}), reinforcing the importance of active involvement from the government.
+\end{itemize}
 
 % \paragraph{Future Work}
 
@@ -713,7 +719,7 @@ We hope that this work paves the way for more inclusive and equitable language t
     }
   \end{minipage}
   \caption{
-    \textbf{Search Keywords.}
+    \textbf{Replication: Search Keywords.}
     Using the Semantic Scholar Bulk API, we use the following search keywords to obtain a broad set of literature spanning multilinguality and edge NLP.
   }
   \label{fig:search_keywords}
@@ -748,8 +754,8 @@ We hope that this work paves the way for more inclusive and equitable language t
     }
   \end{minipage}
   \caption{
-    \textbf{LM Annotation Prompt.}
-    Using GPT 4.1 Mini (\texttt{gpt-4.1-mini-2025-04-14}), we annotate several
+    \textbf{Replication: LM Annotation Prompt.}
+    Using GPT 4.1 Mini (gpt-4.1-mini-2025-04-14), we annotate several
     papers based on their title and abstract across several dimensions.
     We use the \texttt{outlines} library for structured output generation \citep{willard2023efficientguidedgenerationlarge}.
   }
@@ -762,7 +768,7 @@ We hope that this work paves the way for more inclusive and equitable language t
   \centering
   \input{figures/taxonomy.tex}
   \caption{
-    \textbf{Organization of \S\ref{sec:survey}.}
+    \textbf{Complementary: Organization of the Survey (\S\ref{sec:survey}).}
     We organize the literature along the five stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}),
     identifying key challenges between edge deployment constraints (\S\ref{sec:edge_constraints}, Memory \iconmemory{}, Compute \iconcompute{}, and Energy \iconenergy{})
     and properties that influence multilingual capabilities (\S\ref{sec:multilingual_constraints}, Data \icondata{}, Representation \iconrepresentation{}, and Alignment \iconalignment{}).
