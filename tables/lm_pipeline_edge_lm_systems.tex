@@ -1,10 +1,11 @@
 \begin{table*}[ht]
     \small
     \centering
-    \begin{tabular}{l p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm}}
-        \toprule
-        % \begin{noindent}
-    \textbf{System} & \textbf{Data} & \textbf{Pretraining} & \textbf{Post-Training} & \textbf{Inference} & \textbf{Evaluation} \\
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{l p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm}}
+            \toprule
+            % \begin{noindent}
+    \textbf{System} & \textbf{Data Coll.} & \textbf{Pretraining} & \textbf{Post-Training} & \textbf{Inference} & \textbf{Evaluation} \\
     \midrule
     \citet{ramjee-etal-2025-ashabot} \\
     \citet{rutunda-etal-2026-large} \\
@@ -13,7 +14,7 @@
     % \citet{ramjee-etal-2025-ashabot} & Synthetic & Fine-tuning & Quantization & -- \\
     \bottomrule
 % \end{noindent}
-    \end{tabular}
+        \end{tabular}}
     \caption{
         \textbf{Methods used by edge LM systems across the LM pipeline.}
         Each column corresponds to a stage in the pipeline, and entries indicate the method(s) employed by each system.
