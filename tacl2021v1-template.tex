@@ -178,7 +178,7 @@ Approaching these lines of work in tandem is important, as \citet{ahia-etal-2021
 This view is echoed by \citet{nigatu-etal-2024-zenos}, who show that ``low-resourceness'' pertains to technology as much as data.
 Building on these insights, we then ask: \textit{``how can we develop language technologies and deploy them nearest to the communities that need them the most?''}
 
-We call this challenge as the \textit{last mile}, which refers to the intersection of multilinguality and edge deployment,
+We call this challenge the \textit{last mile}, which refers to the intersection of multilinguality and edge deployment,
 reaching communities that need both a model that understands their language and the efficiency to run on their available hardware devices.
 This challenge is non-trivial, as we show that while the goals of edge deployment and multilinguality are aligned, their technical requirements often compete.
 In addition, decisions made during development can directly affect whether a model is deployable on constrained hardware.
@@ -355,7 +355,7 @@ The LM pipeline often begins with sourcing and curating text corpora for both pr
 Pretraining corpora tend to be unstructured web-crawled text, while post-training datasets are more structured.
 
 \paragraph{Challenge: Limited model capacity \iconmemory{} limits language coverage while being susceptible to noise \icondata{}}
-The parameter-sharing paradigm prevalent on LMs imposes a limit on their capacity, creating two challenges for multilingual edge models.
+The parameter-sharing paradigm prevalent in LMs imposes a limit on their capacity, creating two challenges for multilingual edge models.
 First, adding more languages dilutes the model's capacity for existing ones \citep{doddapaneni2025primer},
 a phenomenon often dubbed the curse of multilinguality \citep[\textit{inter alia}]{chang-etal-2024-multilinguality,longpre2025atlasadaptivetransferscaling}.
 Regional multilingual models may cover 10--20 languages \citep{pava2025mind}, such as SEA-LION \citep{ng2025sealionsoutheastasianlanguages} for Southeast Asia or Updesh \citep{chitale2026updeshsynthesizinggroundedinstruction} for Indic languages, yet scaling further risks degrading per-language quality.
@@ -392,7 +392,7 @@ Addressing this challenge requires careful tradeoffs: for instance, some approac
 
 \paragraph{Methods}
 Model parameter sizes (e.g., 7B, 32B, 70B) are largely set by design choices prior to pretraining \citep{kaplan2020scalinglawsneurallanguage}, but there are ways to ensure that a fixed parameter budget still supports strong multilingual performance.
-One is through \textbf{tokenizer design}: choices such subword allocation \citep{petrov2023language,ali-etal-2024-tokenizer} and byte-level encoding \citep{yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage} affect how a fixed model represents diverse languages.
+One is through \textbf{tokenizer design}: choices such as subword allocation \citep{petrov2023language,ali-etal-2024-tokenizer} and byte-level encoding \citep{yu-etal-2023-megabyte,minixhofer2026bolmobyteifyinggenerationlanguage} affect how a fixed model represents diverse languages.
 Another is \textbf{continual pretraining}, which involves vocabulary expansion \citep{kim2024efficienteffectivevocabularyexpansion,cui2024efficienteffectivetextencoding} and further training on target-language data to adapt an existing model to new languages \citep{elhady-etal-2025-emergent,li2025rethinking} without retraining from scratch.
 The latter has been a common approach in most regional LMs such as in Southeast Asian \citep{ng2025sealionsoutheastasianlanguages} and Japanese \citep{fujii2024continual} languages.
 
@@ -508,7 +508,7 @@ who develops them (\S\ref{sec:who_develops_edge_lm_systems}),
 and which domains they are deployed to (\S\ref{sec:which_domains_are_edge_lm_systems}).
 An example of this is \citet{ramjee-etal-2025-ashabot}, describing how an industry laboratory, NGO, and academic institution collaborated to deploy an LM-based chatbot (ASHABot) for community health workers in Rajasthan, India.
 In order to identify an edge LM system,
-we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no), obtaining \numdeploymentpapers{} papers in the process.
+we manually classify each of the \numpapers{} papers on whether an actual model deployment took place (yes/no), obtaining \numdeploymentpapers{} papers in the process.
 % We will center the analyses in the next subsections on these papers.
 
 \subsection{How Are Edge LM Systems Made?}
@@ -659,8 +659,8 @@ we now outline our recommendations to different stakeholders in order to develop
         At the same time, we echo \citet{pillai-etal-2023-community} and \citet{petti2025coact} in saying that \textit{communities on the edge should take a more active role} in development,
         not as consultants, but as collaborators.
   \item \textbf{For policymakers and funders:}
-        \autoref{fig:infra_lingdiv_ict} shows that 12 out of 21 countries with 100+ living languages are low or middle-income, suggesting that funding should point not only towards model development but the infrastructure and devices that make these deployments accessible.
-        In addition, we observe from our surveyed papers that government participation is limited (\autoref{fig:collaboration_sectors}), reinforcing the importance of active involvement from the government.
+        \autoref{fig:infra_lingdiv_ict} shows that 12 out of 21 countries with 100+ living languages are low or middle-income, suggesting that funding should point not only towards model development but also towards the infrastructure and devices that make these deployments accessible.
+        In addition, we observe from our surveyed papers that government participation is limited (\autoref{fig:collaboration_sectors}), reinforcing the need for government involvement.
 \end{itemize}
 
 Finally, we highlight that reaching the \textit{last mile} does not mean that it is a problem that can be solved once and for all.
