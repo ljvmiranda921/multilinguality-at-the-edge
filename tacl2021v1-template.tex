@@ -284,7 +284,7 @@ For example, mobile DRAM is typically 6--12\,GB \citep{liu2024mobileLLM}, yet ev
 \paragraph{\iconcompute{} Compute}
 The processing power of edge devices governs both the feasibility of finetuning techniques and the latency of models during inference.
 Compute cost is also affected by model architecture: for example, mixture-of-experts (MoE) models tend to be more efficient than dense models because they activate only a subset of the network's parameters per input \citep{muennighoff2025olmoe}.
-The gap between LM requirements (TFLOPs) and edge device throughput continues to widen \citep{zheng2025reviewedgeLLM}.
+The gap between LM requirements (TFLOPs) and device throughput widens \citep{zheng2025reviewedgeLLM}.
 
 \paragraph{\iconenergy{} Energy}
 Sustained inference can quickly drain a device's battery, restricting how long and how intensively a model can run.
@@ -509,7 +509,7 @@ and which domains they are deployed to (\S\ref{sec:which_domains_are_edge_lm_sys
 An example of this is \citet{ramjee-etal-2025-ashabot}, describing how an industry laboratory, NGO, and academic institution collaborated to deploy an LM-based chatbot (ASHABot) for community health workers in Rajasthan, India.
 In order to identify an edge LM system,
 we manually classify each of the \numpapers{} papers whether an actual model deployment took place (binary yes/no), obtaining \numdeploymentpapers{} papers in the process.
-We will center the analyses in the next subsections on these papers.
+% We will center the analyses in the next subsections on these papers.
 
 \subsection{How Are Edge LM Systems Made?}
 \label{sec:how_are_edge_lm_systems_made}
@@ -588,7 +588,7 @@ We then measure cross-sector \textit{collaborations} by counting how often each 
 Academia is well-represented, followed by research collectives and the industry.
 Cross-sector collaborations are also common especially across academia and research collectives.
 Government participation remains limited and is mostly driven by cross-sector collaborations with academia.
-This suggests that most edge LM deployments involve cross-sector collaborations, likely because the combined challenges of compute constraints and capabilities benefit from complementary expertise across sectors.
+This suggests that most edge LM deployments involve cross-sector collaborations, likely because the combined challenges of hardware and capabilities benefit from complementary expertise across sectors.
 
 \subsection{Which Domains are Edge LM Systems Deployed to?}
 \label{sec:which_domains_are_edge_lm_systems}
