@@ -527,15 +527,16 @@ We will center the analyses in the next subsections on these papers.
 
 
 \paragraph{Setup}
-In order to examine how edge LM systems are made, we manually tag the methods each system uses across the LM pipeline.
+In order to examine how edge LM systems are made, we manually tag the methods each system uses across the LM pipeline (we show a representative sample in \autoref{tab:lm_pipeline_edge_lm_systems}).
 We also situate these works within the broader \numpapers{} surveyed papers by visualizing their embeddings.
 We achieve this by embedding all \numpapers{} abstracts using MiniLM \citep{wang-etal-2020-minilm},
 clustering them using UMAP and HDBSCAN \citep{mcinnes-etal-2017-hdbscan,micinnes-etal-2018-umap},
 and extracting keywords for each cluster using KeyBERT \citep{grootendorst2020keybert}.
 
 \paragraph{Findings}
-\autoref{tab:lm_pipeline_edge_lm_systems} shows which methods were implemented by edge LM systems across the whole pipeline.
-In addition, \autoref{fig:literature_clusters_map} shows the embeddings (reduced to 2-dim) of each paper, with edge LM systems marked.
+% \autoref{tab:lm_pipeline_edge_lm_systems} shows which methods were implemented by edge LM systems across the whole pipeline.
+% In addition, 
+\autoref{fig:literature_clusters_map} shows the embeddings (reduced to 2-dim) of each paper, with edge LM systems marked.
 These deployments concentrate near a few clusters such as ``model compression'' and ``dialog datasets,'' while clusters like ``reasoning performance'' or ``prompt compression'' have little to no representation.
 We also find that synthetic data generation is a prevalent approach for data collection, while model compression via quantization is common during post-training.
 This suggests that edge LM deployments favor specific methods, leaving significant opportunities to explore alternatives.
