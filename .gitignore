@@ -20,5 +20,6 @@ outputs/
 .ipynb_checkpoints
 
 data/s2_papers/*.csv
+data/s2_papers/*.pdf
 data/llm_annotate/*.csv
 drafts/
