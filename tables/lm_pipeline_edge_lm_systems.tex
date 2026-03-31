@@ -8,22 +8,26 @@
             % \begin{noindent}
     \textbf{System} & \textbf{Data Coll.} & \textbf{Pretraining} & \textbf{Post-Training} & \textbf{Inference} & \textbf{Evaluation} \\
     \midrule
-    \agriculture{\citet{singh2024farmerchatscalingaipoweredagricultural}} 
-        & Hello
-    \\
-    \healthcare{\citet{chen2023meditron70bscalingmedicalpretraining}}
-        & Data curation and filtering from PubMed. Synth. data for general knowledge.
-        & Continued pretraining on Llama-2 using 16 nodes of Nvidia A100 80GB GPUs.
-        & SFT on the MedMCQA dataset \citep{pal-etal-2022-medmcqa}. 
-        & Implemented top-token selection, chain-of-thought (CoT) reasoning, and self-CoT.
-        & Evaluated mostly on medical benchmarks (MedQA, Medical-MMLU, MedMCQA test set).
-    \\ 
+    % \healthcare{\citet{chen2023meditron70bscalingmedicalpretraining}}
+    %     & Data curation and filtering from PubMed. Synth. data for general knowledge.
+    %     & Continued pretraining on Llama-2 using 16 nodes of Nvidia A100 80GB GPUs.
+    %     & SFT on the MedMCQA dataset \citep{pal-etal-2022-medmcqa}. 
+    %     & Implemented top-token selection, chain-of-thought (CoT) reasoning, and self-CoT.
+    %     & Evaluated mostly on medical benchmarks (MedQA, Medical-MMLU, MedMCQA test set).
+    % \\ 
     \social{\citet{anikina-2023-towards}} 
         & Data curation of dialogues during robot-assisted disaster response training sessions.
         & Parameter-efficient finetuning using adapters trained on top of the BERT encoder model.
         & --
         & --
         & Evaluation on slot-tagging and dialogue classification tasks. Performed model size comparisons vs. vanilla BERT.
+    \\
+    \agriculture{\citet{singh2024farmerchatscalingaipoweredagricultural}} 
+        & Data curation of a knowledge base consisting of agricultural practices, product catalogs, and papers.
+        & --
+        & Start with a base model with reasoning and tool-use, integrated into a RAG system.
+        & Inference is chat-centered, and deployed as an API-accessible application using Telegram.
+        & Evaluation consists of testing on a held-out test set and user interviews.
     \\
     % \healthcare{\citet{qiu-etal-2024-towards}}
     %     & Data curation of MMedC with 25.5B tokens across six languages.
