@@ -1,9 +1,9 @@
 \begin{table*}[ht]
-    \small
+    % \small
     \centering
-    \renewcommand{\arraystretch}{0.9}
+    % \renewcommand{\arraystretch}{0.9}
     \resizebox{\textwidth}{!}{%
-        \begin{tabular}{p{2.7cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm}}
+        \begin{tabular}{p{3cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm}}
             \toprule
             % \begin{noindent}
     \textbf{System} & \textbf{Data Coll.} & \textbf{Pretraining} & \textbf{Post-Training} & \textbf{Inference} & \textbf{Evaluation} \\
@@ -34,6 +34,10 @@
     \speech{\bfseries\citetalias{omnilingualasrteam2025omnilingualasropensourcemultilingual} \citeyearpar{omnilingualasrteam2025omnilingualasropensourcemultilingual}} 
     Industry-focused with deployments to health practitioners in Nigeria to transcribe Hausa.
         & Data curation from existing ASR data and collection of new data from partners from Mozilla Foundation's Common Voice.
+        & Continual pretraining of existing speech encoders on four sizes: 300M, 1B, 3B, and 7B. 
+        & Finetuning on low-resource languages and creating a template conditioned on language codes for future SFT.
+        & --  
+        & Evaluation on 1600+ languages across different dimensions (family, resource availability, etc.)
     \\
     % \healthcare{\citet{qiu-etal-2024-towards}}
     %     & Data curation of MMedC with 25.5B tokens across six languages.
