@@ -1,33 +1,96 @@
+% to save space, let's just how 1 representative paper for each domain...
 \begin{table*}[ht]
     \small
     \centering
+    % \renewcommand{\arraystretch}{0.9}
     \resizebox{\textwidth}{!}{%
-        \begin{tabular}{l p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm}}
+        \begin{tabular}{p{3cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm}}
             \toprule
             % \begin{noindent}
     \textbf{System} & \textbf{Data Coll.} & \textbf{Pretraining} & \textbf{Post-Training} & \textbf{Inference} & \textbf{Evaluation} \\
     \midrule
-    \citet{chen2023meditron70bscalingmedicalpretraining} \\
-    \citet{anikina-2023-towards} \\
-    \citet{qiu-etal-2024-towards} \\
-    \citet{candello-etal-2024-designing} \\
-    \citet{singh2024farmerchatscalingaipoweredagricultural} \\
-    \citet{zheng2025efficiently} \\
-    \citet{durmus2025whisperkit} \\
-    \citet{builtjes-etal-2025-leveraging} \\
-    \citet{ramjee-etal-2025-ashabot} \\
-    \citet{abilov-etal-2025-operationalizing} \\
-    \citet{king2025flavorsmoonshinetinyspecialized} \\
-    \citet{feng2025edgeasrlowbitquantizationautomatic} \\
-    \citet{rutunda-etal-2026-large} \\
-    \citet{jinzhen2026lightweightllmframeworkdisaster} \\
+    \textbf{\citet{anikina-2023-towards}}
+        Multilingual dialogue model for disaster response optimized for small memory capacity.
+        & Data curation of dialogues during robot-assisted disaster response training sessions.
+        & Parameter-efficient finetuning using adapters trained on top of the BERT encoder model.
+        & --
+        & --
+        & Evaluation on slot-tagging and dialogue classification tasks. Performed model size comparisons vs. vanilla BERT.
+    \\
+    \textbf{\citet{singh2024farmerchatscalingaipoweredagricultural}}
+        Telegram-based chatbot to help farmers in Kenya, India, Ethiopia, and Nigeria.
+        & Data curation of a knowledge base consisting of agricultural practices, product catalogs, and papers.
+        & --
+        & Start with a base model with reasoning and tool-use, integrated into a RAG system.
+        & Inference is chat-centered, and deployed as an API-accessible application using Telegram.
+        & Evaluation consists of testing on a held-out test set and user interviews.
+    \\
+    \textbf{\citetalias{omnilingualasrteam2025omnilingualasropensourcemultilingual} \citeyearpar{omnilingualasrteam2025omnilingualasropensourcemultilingual}}
+    Industry-focused with deployments to health practitioners in Nigeria to transcribe Hausa.
+        & Data curation from existing ASR data and collection of new data from partners from Mozilla Foundation's Common Voice.
+        & Continual pretraining of existing speech encoders on four sizes: 300M, 1B, 3B, and 7B. 
+        & Finetuning on low-resource languages and creating a template conditioned on language codes for future SFT.
+        & --  
+        & Evaluation on 1600+ languages across different dimensions (family, resource availability, etc.)
+    \\
+    \textbf{\citet{ramjee-etal-2025-ashabot}}
+        WhatsApp-based chatbot to address the information needs of community-health workers in rural India.
+        & Data curation of a knowledge base in partnership with a research collective (Khushi Baby). Synthetic data for prompt optimization.
+        & --
+        & Start with a strong base model (GPT-4) where the context is improved continuously using past dialogues and expert inputs.
+        & Inference is chat-centered and deployed as an API via WhatsApp.
+        & Evaluation is qualitative, centering on user interviews. Evaluation on expert-annotated golden test set.
+    \\
+    \textbf{\citet{ye-etal-2025-federated}}
+        Federated few-shot hate speech detection for marginalized communities in low-resource languages.
+        & Prompt-based collection from social media, forums, and news in Afrikaans, Ukrainian, Russian, and Korean. Released as the REACT dataset.
+        & Used multilingual BERT (179M) and multilingual DistilBERT (135M) as compact backbone models.
+        & Few-shot federated finetuning with personalization via FedPer (private final layers) and adapters.
+        & Simulated federated deployment using the Flower framework with one server and four client instances.
+        & Macro-F1 across zero-shot and few-shot settings, compared against Perspective API and single-target finetuning baselines.
+    \\
+    \textbf{\citet{rutunda-etal-2026-large}}
+        LLM-based clinical decision support for community health workers in Rwanda (English and Kinyarwanda).
+        & 5,609 clinical vignettes from 101 CHWs across 4 Rwandan districts, collected as voice recordings via a custom mobile app (Mbaza), transcribed and translated by linguists.
+        & --
+        & Prompt engineering with a system prompt tailored to the Rwandan CHW context. Meditron-70B self-hosted on 2 A100 GPUs.
+        & API-based inference for commercial models. Meditron-70B hosted on a private cloud instance (GCP). Data collection via custom Mbaza mobile app.
+        & 506 Q\&A pairs evaluated by expert clinicians on 11 metrics (adapted Med-PaLM-2 framework) using a 5-point Likert scale, in both English and Kinyarwanda.
+    \\
+    % \textbf{\citet{chen2023meditron70bscalingmedicalpretraining}}
+    %     Medical language model 
+    %     & Data curation and filtering from PubMed. Synth. data for general knowledge.
+    %     & Continued pretraining on Llama-2 using 16 nodes of Nvidia A100 80GB GPUs.
+    %     & SFT on the MedMCQA dataset \citep{pal-etal-2022-medmcqa}. 
+    %     & Implemented top-token selection, chain-of-thought (CoT) reasoning, and self-CoT.
+    %     & Evaluated mostly on medical benchmarks (MedQA, Medical-MMLU, MedMCQA test set).
+    % \\ 
+    % \citet{abilov-etal-2025-operationalizing} \\
+    % \citet{king2025flavorsmoonshinetinyspecialized} \\
+    % \citet{feng2025edgeasrlowbitquantizationautomatic} \\
+    % \healthcare{\citet{qiu-etal-2024-towards}}
+    %     & Data curation of MMedC with 25.5B tokens across six languages.
+    %     & Continued pretraining on Llama-3.
+    % \\
+    % \citet{candello-etal-2024-designing} \\
+    % \citet{zheng2025efficiently} \\
+    % \citet{builtjes-etal-2025-leveraging} \\
+    % \citet{jinzhen2026lightweightllmframeworkdisaster} \\
+    % \healthcare{\citet{chen2023meditron70bscalingmedicalpretraining}}
+    %     & Data curation and filtering from PubMed. Synth. data for general knowledge.
+    %     & Continued pretraining on Llama-2 using 16 nodes of Nvidia A100 80GB GPUs.
+    %     & SFT on the MedMCQA dataset \citep{pal-etal-2022-medmcqa}. 
+    %     & Implemented top-token selection, chain-of-thought (CoT) reasoning, and self-CoT.
+    %     & Evaluated mostly on medical benchmarks (MedQA, Medical-MMLU, MedMCQA test set).
+    % \\ 
     \bottomrule
 % \end{noindent}
         \end{tabular}}
     \caption{
         \textbf{Complementary: Methods used by edge LM systems across the LM pipeline.}
         We show a representative sample of the \numdeploymentpapers{} deployed systems from the full \numpapers{} surveyed papers, and describe which methods (\S\ref{sec:survey}) they used across the LM development pipeline (\S\ref{sec:lm_pipeline}).
-        Rows are color-coded based on their domain (see \S\ref{sec:which_domains_are_edge_lm_systems}): \colorbox{cwarmcherry!40}{Healthcare}, \colorbox{cgreen!40}{Finance}, \colorbox{cwarmblue!40}{Climate}, \colorbox{cwarmgreen!40}{Agriculture}, \colorbox{cwarmpurple!40}{Speech}, \colorbox{ccrest!40}{Social}, and \colorbox{cslate2!40}{Legal}.
+        A ``--'' indicates that the step was not applicable or not discussed in the paper.
+        % Systems are color-coded based on their domain (see \S\ref{sec:which_domains_are_edge_lm_systems}): \colorbox{cwarmcherry!40}{Healthcare}, \colorbox{cgreen!40}{Finance}, \colorbox{cwarmblue!40}{Climate}, \colorbox{cwarmgreen!40}{Agriculture}, \colorbox{cwarmpurple!40}{Speech}, \colorbox{ccrest!40}{Social}, and \colorbox{cslate2!40}{Legal}.
     }
     \label{tab:lm_pipeline_edge_lm_systems}
 \end{table*}
