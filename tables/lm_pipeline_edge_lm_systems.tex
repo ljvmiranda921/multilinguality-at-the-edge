@@ -41,6 +41,14 @@
         & Inference is chat-centered and deployed as an API via WhatsApp.
         & Evaluation is qualitative, centering on user interviews. Evaluation on expert-annotated golden test set.
     \\
+    \textbf{\citet{ye-etal-2025-federated}}
+        Federated few-shot hate speech detection for marginalized communities in low-resource languages.
+        & Prompt-based collection from social media, forums, and news in Afrikaans, Ukrainian, Russian, and Korean. Released as the REACT dataset.
+        & Used multilingual BERT (179M) and multilingual DistilBERT (135M) as compact backbone models.
+        & Few-shot federated finetuning with personalization via FedPer (private final layers) and adapters.
+        & Simulated federated deployment using the Flower framework with one server and four client instances.
+        & Macro-F1 across zero-shot and few-shot settings, compared against Perspective API and single-target finetuning baselines.
+    \\
     % \textbf{\citet{chen2023meditron70bscalingmedicalpretraining}}
     %     Medical language model 
     %     & Data curation and filtering from PubMed. Synth. data for general knowledge.
