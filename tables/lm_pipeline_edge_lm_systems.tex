@@ -50,6 +50,12 @@
         & Macro-F1 across zero-shot and few-shot settings, compared against Perspective API and single-target finetuning baselines.
     \\
     \textbf{\citet{rutunda-etal-2026-large}}
+        LLM-based clinical decision support for community health workers in Rwanda (English and Kinyarwanda).
+        & 5,609 clinical vignettes from 101 CHWs across 4 Rwandan districts, collected as voice recordings via a custom mobile app (Mbaza), transcribed and translated by linguists.
+        & --
+        & Prompt engineering with a system prompt tailored to the Rwandan CHW context. Meditron-70B self-hosted on 2 A100 GPUs.
+        & API-based inference for commercial models. Meditron-70B hosted on a private cloud instance (GCP). Data collection via custom Mbaza mobile app.
+        & 506 Q\&A pairs evaluated by expert clinicians on 11 metrics (adapted Med-PaLM-2 framework) using a 5-point Likert scale, in both English and Kinyarwanda.
     \\
     % \textbf{\citet{chen2023meditron70bscalingmedicalpretraining}}
     %     Medical language model 
