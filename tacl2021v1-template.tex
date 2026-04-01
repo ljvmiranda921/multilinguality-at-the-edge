@@ -362,14 +362,10 @@ We now provide an overview of the papers collected for this survey.
 Out of the \numpapers{} papers, 10.3\% are model releases, 76.9\% describe methodologies for developing these edge LMs, while the rest are real-world system deployments.
 
 \paragraph{Language Coverage}
-When focusing on the models, we see that
-\ljm{\lipsum[1][1-8]}
-
-
-\paragraph{Model Size}
-We find that
-\ljm{\lipsum[1][1-12]}
-
+Edge-only work is overwhelmingly monolingual (\autoref{fig:language_coverage}):
+25 out of 29 single-language papers target edge deployment alone, while none of the edge-only papers cover more than 10 languages.
+In contrast, multilinguality-focused papers skew toward broader coverage, with 15 papers supporting 50+ languages.
+Papers that address both edge deployment and multilinguality remain relatively scarce, particularly at higher language counts, suggesting that the intersection of these two areas is still underexplored.
 
 \begin{figure}[t]
   \centering
@@ -379,6 +375,10 @@ We find that
   }
   \label{fig:language_coverage}
 \end{figure}
+
+\paragraph{Model Size}
+We find that
+\ljm{\lipsum[1][1-12]}
 
 \begin{figure}[t]
   \centering
