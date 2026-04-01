@@ -15,7 +15,6 @@ plt.rcParams.update(PLOT_PARAMS)
 
 DATA_PATH = ROOT / "data" / "papers_both.csv"
 
-# Short display names for models
 NAME_MAP = {
     "EmbeddingGemma: Powerful and Lightweight Text Representations": "EmbeddingGemma",
     "Falcon-H1: A Family of Hybrid-Head Language Models Redefining Efficiency and Performance": "Falcon-H1",
@@ -51,7 +50,6 @@ NAME_MAP = {
 def main():
     df = pd.read_csv(DATA_PATH)
 
-    # Parse model sizes
     records = []
     for _, row in df.iterrows():
         s = str(row["model_size"])
@@ -75,7 +73,6 @@ def main():
                 }
             )
 
-    # Sort by year (oldest on top, newest at bottom), then by min size within year
     records.sort(key=lambda r: (r["year"], r["min"]))
 
     fig, ax = plt.subplots(figsize=(9, 9))
@@ -84,7 +81,6 @@ def main():
     for i, rec in enumerate(records):
         sizes = rec["sizes"]
         if len(sizes) == 1:
-            # Single dot
             ax.plot(
                 sizes[0],
                 i,
@@ -96,7 +92,6 @@ def main():
                 zorder=3,
             )
         else:
-            # Line spanning min to max
             ax.plot(
                 [sizes[0], sizes[-1]],
                 [i, i],
@@ -105,7 +100,6 @@ def main():
                 solid_capstyle="round",
                 zorder=2,
             )
-            # Dots for each size
             ax.plot(
                 sizes,
                 [i] * len(sizes),
@@ -117,7 +111,6 @@ def main():
                 zorder=3,
             )
 
-    # Add year group separators and labels
     years = [r["year"] for r in records]
     prev_year = None
     for i, yr in enumerate(years):
@@ -125,7 +118,6 @@ def main():
             ax.axhline(i - 0.5, color=COLORS["slate_2"], linewidth=0.8, linestyle="-")
         prev_year = yr
 
-    # Year labels on the right
     year_groups = {}
     for i, yr in enumerate(years):
         year_groups.setdefault(yr, []).append(i)
@@ -147,18 +139,15 @@ def main():
     ax.set_xscale("log")
     ax.set_xlabel("Model size (B parameters)")
 
-    # Custom x ticks
     tick_vals = [0.3, 1, 3, 7, 14, 30, 70, 130, 400]
     ax.set_xticks(tick_vals)
     ax.set_xticklabels([str(v) for v in tick_vals])
     ax.set_xlim(0.2, 600)
 
-    # Size category shading
     ax.axvspan(0.2, 8, alpha=0.10, color=COLORS["cambridge_blue"], zorder=0)
     ax.axvspan(8, 80, alpha=0.10, color=COLORS["judge_yellow"], zorder=0)
     ax.axvspan(80, 600, alpha=0.10, color=COLORS["dark_crest"], zorder=0)
 
-    # Category labels at the top
     label_y = len(records) - 0.1
     ax.text(
         1.3,

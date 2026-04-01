@@ -76,13 +76,11 @@ def main():
     df["_langs"] = df["languages_supported"].apply(_parse_langs)
     df["num_langs"] = df.apply(_get_num_langs, axis=1)
 
-    # Keep only papers with a reported language count (> 0)
     df_known = df[df["num_langs"] > 0].copy()
     print(f"Papers with reported language setup: {len(df_known)}")
 
     df_known["lang_bin"] = df_known["num_langs"].apply(_bin_langs)
 
-    # Count per bin
     bin_counts = df_known["lang_bin"].value_counts().reindex(LANG_BINS, fill_value=0)
     total = bin_counts.sum()
 
@@ -91,7 +89,6 @@ def main():
         n = bin_counts[b]
         print(f"  {b}: {n} ({n / total * 100:.1f}%)")
 
-    # Stacked bar chart by research focus
     FOCUS_ORDER = ["Efficiency", "Multilinguality", "Both"]
     FOCUS_STYLE = {
         "Efficiency": {
@@ -115,9 +112,7 @@ def main():
     }
 
     counts = (
-        df_known.groupby(["lang_bin", "research_focus"])
-        .size()
-        .unstack(fill_value=0)
+        df_known.groupby(["lang_bin", "research_focus"]).size().unstack(fill_value=0)
     )
     counts = counts.reindex(index=LANG_BINS, fill_value=0)
     counts = counts.reindex(columns=FOCUS_ORDER, fill_value=0)
@@ -156,7 +151,6 @@ def main():
                 )
         bottom += vals
 
-    # Total labels on top
     for i, b in enumerate(LANG_BINS):
         total_val = counts.loc[b].sum()
         ax.text(
