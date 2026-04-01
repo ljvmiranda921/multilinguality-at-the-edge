@@ -44,6 +44,7 @@ NAME_MAP = {
     "Textbooks Are All You Need": "Phi-1",
     "Textbooks Are All You Need II: phi-1.5 Technical Report": "Phi-1.5",
     "Phi-2: The Surprising Power of Small Language Models": "Phi-2",
+    "Omnilingual ASR: Open-Source Multilingual Speech Recognition for 1600+ Languages": "Omnilingual ASR",
 }
 
 
@@ -77,7 +78,7 @@ def main():
     # Sort by year (oldest on top, newest at bottom), then by min size within year
     records.sort(key=lambda r: (r["year"], r["min"]))
 
-    fig, ax = plt.subplots(figsize=(8, 9))
+    fig, ax = plt.subplots(figsize=(9, 9))
     y_positions = np.arange(len(records))
 
     for i, rec in enumerate(records):
