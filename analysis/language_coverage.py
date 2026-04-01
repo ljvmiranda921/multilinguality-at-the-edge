@@ -32,8 +32,21 @@ def _get_num_langs(row):
     specific = [l for l in langs if l != "multilingual"]
     has_multi = "multilingual" in langs
 
-    if specific:
-        return len(specific)
+    # Check if any "specific" entry is actually a count like '100 languages'
+    extracted_count = 0
+    real_codes = []
+    for lang in specific:
+        m = re.match(r"(\d+)\+?\s*language", lang, re.IGNORECASE)
+        if m:
+            extracted_count = max(extracted_count, int(m.group(1)))
+        elif len(lang) <= 5 and lang.isalpha():
+            real_codes.append(lang)
+
+    if extracted_count > 0:
+        return max(extracted_count, len(real_codes))
+
+    if real_codes:
+        return len(real_codes)
 
     if has_multi:
         text = str(row.get("title", "")) + " " + str(row.get("abstract", ""))
@@ -78,34 +91,94 @@ def main():
         n = bin_counts[b]
         print(f"  {b}: {n} ({n / total * 100:.1f}%)")
 
-    # Histogram-style bar chart
+    # Stacked bar chart by research focus
+    FOCUS_ORDER = ["Efficiency", "Multilinguality", "Both"]
+    FOCUS_STYLE = {
+        "Efficiency": {
+            "facecolor": COLORS["light_blue"],
+            "edgecolor": COLORS["warm_blue"],
+            "hatch": "//",
+            "label": "Edge",
+        },
+        "Multilinguality": {
+            "facecolor": COLORS["light_crest"],
+            "edgecolor": COLORS["crest"],
+            "hatch": "\\\\",
+            "label": "Multilinguality",
+        },
+        "Both": {
+            "facecolor": COLORS["slate_2"],
+            "edgecolor": COLORS["slate_4"],
+            "hatch": "",
+            "label": "Both",
+        },
+    }
+
+    counts = (
+        df_known.groupby(["lang_bin", "research_focus"])
+        .size()
+        .unstack(fill_value=0)
+    )
+    counts = counts.reindex(index=LANG_BINS, fill_value=0)
+    counts = counts.reindex(columns=FOCUS_ORDER, fill_value=0)
+
+    print("\nBy research focus and language bin:")
+    print(counts.to_string())
+
     fig, ax = plt.subplots(figsize=(6, 5))
     x = np.arange(len(LANG_BINS))
-    bars = ax.bar(
-        x,
-        bin_counts.values,
-        color=COLORS["cambridge_blue"],
-        edgecolor=COLORS["dark_blue"],
-        linewidth=1.0,
-        width=0.6,
-    )
+    bottom = np.zeros(len(LANG_BINS))
 
-    # Add count labels on top of each bar
-    for i, (bar, val) in enumerate(zip(bars, bin_counts.values)):
+    for focus in FOCUS_ORDER:
+        style = FOCUS_STYLE[focus]
+        vals = counts[focus].values
+        ax.bar(
+            x,
+            vals,
+            bottom=bottom,
+            label=style["label"],
+            color=style["facecolor"],
+            edgecolor=style["edgecolor"],
+            hatch=style["hatch"],
+            linewidth=1.0,
+            width=0.6,
+        )
+        for i, (v, b) in enumerate(zip(vals, bottom)):
+            if v >= 3:
+                ax.text(
+                    x[i],
+                    b + v / 2,
+                    str(v),
+                    ha="center",
+                    va="center",
+                    fontsize=18,
+                    fontweight="bold",
+                )
+        bottom += vals
+
+    # Total labels on top
+    for i, b in enumerate(LANG_BINS):
+        total_val = counts.loc[b].sum()
         ax.text(
-            bar.get_x() + bar.get_width() / 2,
-            bar.get_height() + 1,
-            str(val),
+            x[i],
+            total_val + 0.8,
+            str(int(total_val)),
             ha="center",
             va="bottom",
-            fontsize=20,
-            fontweight="bold",
+            fontsize=16,
+            color=COLORS["slate_3"],
         )
 
     ax.set_xlabel("Number of languages")
     ax.set_ylabel("Number of papers")
     ax.set_xticks(x)
     ax.set_xticklabels(LANG_BINS)
+    ax.legend(
+        frameon=False,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.18),
+        ncol=3,
+    )
     ax.grid(False)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
