@@ -372,13 +372,23 @@ Papers that address both edge deployment and multilinguality remain relatively s
   \includegraphics[width=\linewidth]{figures/language_coverage.pdf}
   \caption{
     \textbf{Language coverage.}
+    We only kept 78 papers (of \numpapers{}) that report a concrete number of evaluated languages and binned them into four brackets:
+    monolingual (1),
+    few (2--10),
+    many (11--50), and
+    massive (50+),
+    categorized by research focus
+    (edge, multilinguality, or both).
   }
   \label{fig:language_coverage}
 \end{figure}
 
 \paragraph{Model Size}
-We find that
-\ljm{\lipsum[1][1-12]}
+We find that most model families now offer at least one variant in the small ($\leq$8B) range (\autoref{fig:model_sizes}).
+Earlier releases such as GLM-130B and NLLB (2022) were concentrated in the medium-to-large regime,
+but from 2023 onward, model families increasingly span a wider range of sizes, with small variants becoming the norm.
+For example, Qwen2.5 and Gemma 3 both offer variants from under 1B to over 30B parameters.
+This trend reflects a growing emphasis on making multilingual models accessible for edge deployment.
 
 \begin{figure}[t]
   \centering
