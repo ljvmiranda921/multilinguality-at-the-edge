@@ -339,6 +339,20 @@ Finally, we conduct a round of human validation to correct and refine the annota
 In total, we collected \numpapers{} works across the whole language modelling pipeline.
 % Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
 
+\begin{figure*}[ht]
+  \centering
+  \input{figures/taxonomy.tex}
+  \caption{
+    \textbf{Organization of the Survey (\S\ref{sec:survey}).}
+    We organize the literature along the five stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}),
+    identifying key challenges between edge deployment constraints (\S\ref{sec:edge_constraints}, Memory \iconmemory{}, Compute \iconcompute{}, and Energy \iconenergy{})
+    and properties that influence multilingual capabilities (\S\ref{sec:multilingual_constraints}, Data \icondata{}, Representation \iconrepresentation{}, and Alignment \iconalignment{}).
+    Finally, we describe works that address these challenges (\S\ref{sec:survey}).
+  }
+  \label{fig:taxonomy}
+\end{figure*}
+
+
 
 
 \section{Challenges and Methods for Building Multilingual Edge Language Models}
@@ -691,7 +705,7 @@ We hope that this work paves the way for more equitable language technologies.
   \section*{Acknowledgments}
   We would like to thank the TACL editors and reviewers who have helped us improve this paper.
   Additionally, this work is supported by the UK Research and Innovation (UKRI) Frontier Research Grant EP/Y031350/1 (EQUATE) awarded to AK at the University of Cambridge.
-  LJVM would also like to thank the Microsoft Research Grant for the compute credits used to access GPT-4.1 for annotation.
+  LJVM would also like to thank the Microsoft Research Grant for the compute credits used to access GPT-4.1.
   % Acknowledgments appear immediately before the references.  Do not number this
   % section.\footnote{In \LaTeX, one can use {\tt {\textbackslash}section*} instead
   %   of {\tt {\textbackslash}section}.} If you found the reviewers' or Action
@@ -770,20 +784,6 @@ We hope that this work paves the way for more equitable language technologies.
 \end{figure*}
 
 % \input{tables/survey_comparisons.tex}
-
-\begin{figure*}[ht]
-  \centering
-  \input{figures/taxonomy.tex}
-  \caption{
-    \textbf{Complementary: Organization of the Survey (\S\ref{sec:survey}).}
-    We organize the literature along the five stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}),
-    identifying key challenges between edge deployment constraints (\S\ref{sec:edge_constraints}, Memory \iconmemory{}, Compute \iconcompute{}, and Energy \iconenergy{})
-    and properties that influence multilingual capabilities (\S\ref{sec:multilingual_constraints}, Data \icondata{}, Representation \iconrepresentation{}, and Alignment \iconalignment{}).
-    Finally, we describe works that address these challenges (\S\ref{sec:survey}).
-  }
-  \label{fig:taxonomy}
-\end{figure*}
-
 
 \input{tables/lm_pipeline_edge_lm_systems.tex}
 
