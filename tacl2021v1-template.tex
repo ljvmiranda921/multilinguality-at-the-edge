@@ -192,18 +192,12 @@ Finally, we hope that this work contributes to the development of equitable lang
 \section{Multilinguality at the Edge}
 \label{sec:multilinguality_at_the_edge}
 
-% In this section, we discuss 
-
-% There is a strong case for studying multilinguality within the context of edge deployment (or vice versa).
-% However, the intersection of these two imposes distinct, and often competing, requirements on every stage of the modelling pipeline.
-
 \subsection{Why Study the Two Fields Together?}
 \label{sec:motivation}
 
 While Edge LM and Multilinguality have each been studied in isolation,
 we observe trends suggesting that they must be studied together.
 
-% TODO: improve this paragraph
 \paragraph{Need: Multilingual communities face infrastructure constraints}
 The first trend is that communities with the highest linguistic diversity often face the most severe infrastructure constraints. %  such as network connectivity or ICT adoption.
 As shown in \autoref{fig:infra_lingdiv_ict}, countries such as Papua New Guinea, Nigeria, and Chad are linguistically diverse yet among the least active on the Internet.
@@ -352,6 +346,10 @@ and then perform human validation to correct the annotations.
 \paragraph{Final Validation}
 Finally, we conduct a round of human validation to correct and refine the annotations.
 In total, we collected \numpapers{} works across the whole language modelling pipeline.
+\iftaclpubformat
+  We release our survey dataset in HuggingFace: \url{cambridgeltl/multilinguality-at-the-edge}
+\else
+\fi
 % Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
 
 \section{Results of the Survey}
