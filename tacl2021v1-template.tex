@@ -353,16 +353,19 @@ In total, we collected \numpapers{} works across the whole language modelling pi
 \end{figure*}
 
 
+\section{Results of the Survey}
+
+\subsection{Overview of Multilingual Edge LM}
 
 
-\section{Challenges and Methods for Building Multilingual Edge Language Models}
+\subsection{Challenges and Methods for Building Multilingual Edge Language Models}
 \label{sec:survey}
 
 In this section, we examine \textbf{challenges}, i.e., how the constraints of edge deployment and the requirements of multilinguality compete at each stage of the LM pipeline,
 and survey different \textbf{methods} that address them.
 \autoref{fig:taxonomy} in the Appendix shows an overview of this section.
 
-\subsection{Data Collection}
+\subsubsection{Data Collection}
 \label{sec:data_collection}
 
 The LM pipeline often begins with sourcing and curating text corpora for both pretraining and post-training.
@@ -391,7 +394,7 @@ When working with low-resource annotation pipelines, handling \textbf{noisy labe
 These methods are largely data-centric; in \S\ref{sec:pretraining}, we discuss how this challenge can also be addressed by expanding the model's capacity.
 
 
-\subsection{Pretraining}
+\subsubsection{Pretraining}
 \label{sec:pretraining}
 
 Web-crawled text is then used to train a base model to learn general language representations.
@@ -425,7 +428,7 @@ Architectural interventions such as \textbf{language experts} have also been exp
 Compared to a dense model, this class of methods only activates a subset of parameters per input while preserving capacity.
 
 
-\subsection{Post-training}
+\subsubsection{Post-training}
 \label{sec:post_training}
 
 A base model is further adapted toward specific capabilities through techniques such as supervised finetuning \citep[SFT,][]{ouyang2022traininglanguagemodelsfollow} or reinforcement learning.
@@ -461,7 +464,7 @@ For removing capabilities, \textbf{machine unlearning} \citep{liu-etal-2025-reth
 \textbf{Federated learning} addresses both directions: it allows distributed clients to collaboratively add language capabilities to a shared model while keeping private data on-device.
 While initial work explored this in the pretraining setting \citep{weller-etal-2022-pretrained}, federated approaches are particularly suited to post-training, where community-held data can be used to finetune or align a base model without requiring centralized collection \citep{zhao2024breaking,li-etal-2025-multilingual-federated}.
 
-\subsection{Inference}
+\subsubsection{Inference}
 \label{sec:inference}
 
 At this stage, a model is served on a target device, which can range from microcontrollers to data center-scale GPUs in terms of device capabilities.
@@ -489,7 +492,7 @@ Finally, \textbf{inference-time adaptation} addresses the second lever by improv
 For example, \citet{kaplan2025from} and \citet{zheng2025broken} exploit an LM's internal representation to enable vocabulary expansion or handle unseen tokenization.
 Some works approach this problem by approximating out-of-vocabulary tokens and transfering this knowledge without retraining \citep[\textit{inter alia}]{goddard2025trainingfreetokenizertransplantationorthogonal}.
 
-\subsection{Evaluation}
+\subsubsection{Evaluation}
 \label{sec:evaluation}
 
 Model performance is measured across capabilities and domains, either on static benchmarks or on structured testbeds. %\citep{reddi-etal-2020-mlperf,peng2023efficiencypentathlonstandardizedarena}.
