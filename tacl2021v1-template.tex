@@ -312,6 +312,21 @@ Across the LM pipeline, this is affected by design decisions such as tokenizer v
 Even if a model is fluent in a certain language, it does not necessarily mean that it adheres to the cultural norms and nuances of that language's community \citep{adilazuarda-etal-2024-towards,liu-etal-2025-culturally}.
 Alignment also extends to safety, as communities differ in what they consider allowable \citep{yong-etal-2025-state}.
 
+\begin{figure*}[ht]
+  \centering
+  \input{figures/taxonomy.tex}
+  \caption{
+    \textbf{Organization of the Survey (\S\ref{sec:survey}).}
+    We organize the literature along the five stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}),
+    identifying key challenges between edge deployment constraints (\S\ref{sec:edge_constraints}, Memory \iconmemory{}, Compute \iconcompute{}, and Energy \iconenergy{})
+    and properties that influence multilingual capabilities (\S\ref{sec:multilingual_constraints}, Data \icondata{}, Representation \iconrepresentation{}, and Alignment \iconalignment{}).
+    Finally, we describe works that address these challenges (\S\ref{sec:survey}).
+  }
+  \label{fig:taxonomy}
+\end{figure*}
+
+
+
 % \input{tables/survey_comparisons.tex}
 \section{Methodology}
 \label{sec:methodology}
@@ -338,20 +353,6 @@ and then perform human validation to correct the annotations.
 Finally, we conduct a round of human validation to correct and refine the annotations.
 In total, we collected \numpapers{} works across the whole language modelling pipeline.
 % Appendix \ref{appendix:extended_survey_methodology} provides details of our collection methodology.
-
-\begin{figure*}[ht]
-  \centering
-  \input{figures/taxonomy.tex}
-  \caption{
-    \textbf{Organization of the Survey (\S\ref{sec:survey}).}
-    We organize the literature along the five stages of the language modelling pipeline (\S\ref{sec:lm_pipeline}),
-    identifying key challenges between edge deployment constraints (\S\ref{sec:edge_constraints}, Memory \iconmemory{}, Compute \iconcompute{}, and Energy \iconenergy{})
-    and properties that influence multilingual capabilities (\S\ref{sec:multilingual_constraints}, Data \icondata{}, Representation \iconrepresentation{}, and Alignment \iconalignment{}).
-    Finally, we describe works that address these challenges (\S\ref{sec:survey}).
-  }
-  \label{fig:taxonomy}
-\end{figure*}
-
 
 \section{Results of the Survey}
 
