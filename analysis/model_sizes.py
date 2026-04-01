@@ -75,7 +75,7 @@ def main():
 
     records.sort(key=lambda r: (r["year"], r["min"]))
 
-    fig, ax = plt.subplots(figsize=(9, 9))
+    fig, ax = plt.subplots(figsize=(9.5, 9.5))
     y_positions = np.arange(len(records))
 
     for i, rec in enumerate(records):
@@ -152,28 +152,28 @@ def main():
     ax.text(
         1.3,
         label_y,
-        r"\textit{Small} ($\leq$8B)",
+        r"Small",
         ha="center",
         va="bottom",
-        fontsize=14,
+        fontsize=22,
         color=COLORS["dark_blue"],
     )
     ax.text(
         25,
         label_y,
-        r"\textit{Medium} (8--80B)",
+        r"Medium",
         ha="center",
         va="bottom",
-        fontsize=14,
+        fontsize=22,
         color=COLORS["slate_4"],
     )
     ax.text(
         220,
         label_y,
-        r"\textit{Large} (80B+)",
+        r"Large",
         ha="center",
         va="bottom",
-        fontsize=14,
+        fontsize=22,
         color=COLORS["dark_crest"],
     )
 
