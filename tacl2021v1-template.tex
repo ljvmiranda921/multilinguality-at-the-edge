@@ -697,8 +697,8 @@ For example, we see efforts on building collaborative human-AI tools to obtain g
 Throughout this work, we assume that a multilingual edge LM is a single model capable of performing a downstream task (e.g., assistant capability, translation, etc.).
 However, agentic paradigms explore how to improve performance by orchestrating a variety of tools and models.
 While coding and mathematical reasoning have benefited from these approaches, we posit that the challenges in the Global South are also well-suited for them.
-For example, an orchestrator model could integrate specialized LMs and expert-created tools to solve a complex task.
-Since these orchestrator models only need to perform a single verifiable task (e.g., tool-calling), they can be made smaller.
+For example, an orchestrator model could integrate strong multilingual LMs, expert-created tools, and translation models to solve a complex task \citep{nielsen2026learning}.
+Since these orchestrator models only need to perform a single verifiable task (e.g., tool-calling), they can be made smaller \citep{erdogan-etal-2024-tinyagent,belcak2025smalllanguagemodelsfuture}.
 The challenge then lies in ensuring that these orchestrator LMs invoke the right tools or LMs, figuring out the right mix of tools to put in the orchestrator's context, and finetuning them to understand the problem at hand.
 
 
