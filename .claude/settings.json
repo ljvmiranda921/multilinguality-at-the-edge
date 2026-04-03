@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://api.semanticscholar.org/graph/v1/paper/search?query=finetuning+small+language+models+tool+calling+function+calling&limit=5&fields=title,authors,year,venue,citationCount\")"
+    ]
+  }
+}
