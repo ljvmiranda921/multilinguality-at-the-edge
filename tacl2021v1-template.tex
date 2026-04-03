@@ -370,7 +370,7 @@ Papers that address both edge deployment and multilinguality remain relatively s
   \includegraphics[width=\linewidth]{figures/language_coverage.pdf}
   \caption{
     \textbf{Reported language coverage of edge LM papers.}
-    We show 78 papers (of \numpapers{}) that report a concrete number of evaluated languages and binned them into four brackets:
+    We show 78 papers (of \numpapers{}) that report a concrete number of evaluated languages and bin them into four brackets:
     monolingual (1),
     few (2--10),
     many (11--50), and
@@ -460,7 +460,7 @@ The latter has been a common approach in most regional LMs such as in Southeast 
 
 \paragraph{Challenge 2: Multilinguality adds complexity beyond task and domain \iconrepresentation{}, straining edge compute \iconcompute{}}
 Language models must already capture variation across tasks and domains.
-Multilinguality introduces yet another axis of complexity such as morphology and orthography to name a few \citep{tsvetkov2017lowresource}.
+Multilinguality introduces yet another axis of complexity such as morphology and orthography, to name a few \citep{tsvetkov2017lowresource}.
 In a standard dense architecture, all parameters are activated for every input regardless of language, making compute costs proportional to total model complexity.
 This is particularly problematic on edge devices, where mobile GPUs peak at 2--6.5 TFLOPS (FP16) with 26--63 GB/s memory bandwidth \citep{xiao2026llmpockets}, orders of magnitude below datacenter capacity.
 
@@ -535,7 +535,7 @@ A notable line of work is the LLMLingua series \citep{jiang-etal-2023-llmlingua,
 Although speculative decoding typically requires that the drafter and deployed LM share the same vocabulary, \citet{timor2025accelerating} showed that this requirement can be lifted.
 Finally, \textbf{inference-time adaptation} addresses the second lever by improving the deployed LM's tokenization efficiency or vocabulary for the target language without retraining.
 For example, \citet{kaplan2025from} and \citet{zheng2025broken} exploit an LM's internal representation to enable vocabulary expansion or handle unseen tokenization.
-Some works approach this problem by approximating out-of-vocabulary tokens and transfering this knowledge without retraining \citep[\textit{inter alia}]{goddard2025trainingfreetokenizertransplantationorthogonal}.
+Some works approach this problem by approximating out-of-vocabulary tokens and transferring this knowledge without retraining \citep[\textit{inter alia}]{goddard2025trainingfreetokenizertransplantationorthogonal}.
 
 \subsubsection{Evaluation}
 \label{sec:evaluation}
@@ -550,7 +550,7 @@ Choosing or updating a model for deployment requires concrete quantitative evide
 However, these evaluations can significantly increase compute costs, as benchmarks often contain thousands of instances spanning many languages and capabilities.
 For example, Global-MMLU \citep{singh-etal-2025-global} contains 14.3k instances across 42 languages, while AfroBench \citep{ojo-etal-2025-afrobench} and FilBench \citep{miranda-etal-2025-filbench} span $>100\text{k}$ instances.
 Although most of these works provide recommendations of which specific LMs are the best at the time, they can easily get outdated as new LMs are released \citep{reiter2026comparing}.
-We consider this challenge an essential part of deployment because evaluating a model is quite prominent in the edge \citep{ramjee-etal-2025-ashabot,rutunda-etal-2026-large}, especially for context-specific use-cases.
+We consider this challenge an essential part of deployment because evaluating a model is quite prominent at the edge \citep{ramjee-etal-2025-ashabot,rutunda-etal-2026-large}, especially for context-specific use-cases.
 Addressing this challenge requires not only creating smaller and high-quality benchmarks, but also designing holistic approaches to evaluation outside of static datasets.
 
 \paragraph{Methods}
@@ -686,12 +686,12 @@ The challenge then is to ensure that these collaborations are participatory \cit
 In this section, we discuss open challenges that go beyond the pipeline-level concerns in our survey (\S\ref{sec:survey}) and outline directions for future work.
 
 \paragraph{Extremely Low-Resource (XLR) Languages}
-Most of the methods in the data collection section (\S\ref{sec:data_collection}) work well for languages that have decent representation in the Internet.
+Most of the methods in the data collection section (\S\ref{sec:data_collection}) work well for languages that have decent representation on the Internet.
 However, the extremely low-resource (XLR) regime is characterized by $\leq$10M tokens \citep{conneau-etal-2020-unsupervised} or languages with no established orthography or written tradition \citep{pava2026digitization}
 that are not easily mitigated by naively curating or synthesizing data.
 Some works address this by tuning the synthetic data pipeline for the target language, e.g., by optimizing the prompt \citep{mora2025artaskingmultilingualprompt} or the underlying generator model \citep{mitra2024agentinstructgenerativeteachingagentic}.
 Ultimately, the best way to drive innovations in data collection for these languages is to include the communities that speak them, going beyond simply crawling the Web.
-For example, we see efforts on building collaborative human-AI tools to obtain grounded datasets for LM training \citep{f-p-dossou-aidasso-2025-towards} or application of methods such as reinforcement learning to learn from limited data \citep{sutawika2026gainedtranslationprivilegedpairwise,attia2026improvinglowresourcemachinetranslation}.
+For example, we see efforts to build collaborative human-AI tools to obtain grounded datasets for LM training \citep{f-p-dossou-aidasso-2025-towards} or application of methods such as reinforcement learning to learn from limited data \citep{sutawika2026gainedtranslationprivilegedpairwise,attia2026improvinglowresourcemachinetranslation}.
 
 \paragraph{Orchestrating Edge LMs}
 Throughout this work, we assume that a multilingual edge LM is a single model capable of performing a downstream task (e.g., assistant capability, translation, etc.).
@@ -703,7 +703,7 @@ The challenge then lies in ensuring that these orchestrator LMs invoke the right
 
 
 \paragraph{Conceptual Frameworks for \textit{Tackling} Overlapping Constraints}
-There are many conceptual frameworks in NLP that describe this problem of overlapping constraints between data and infrastructure for the Global South: the low-resource double bind \citep{ahia-etal-2021-low-resource}, square-one bias \citep{ruder-etal-2022-square}, and Zeno's paradox \citep{nigatu-etal-2024-zenos}, among other things.
+There are many conceptual frameworks in NLP that describe this problem of overlapping constraints between data and infrastructure for the Global South: the low-resource double bind \citep{ahia-etal-2021-low-resource}, square-one bias \citep{ruder-etal-2022-square}, and Zeno's paradox \citep{nigatu-etal-2024-zenos}, among others.
 However, there are fewer conceptual frameworks that seek to address these problems.
 We surmise that such frameworks can be drawn from other fields, such as economics or natural sciences, where reasoning about overlapping constraints is the norm.
 For example, \citet{hausmann2005growth} from development economics posit that despite overlapping constraints, one only needs to identify and address the most binding constraint.
