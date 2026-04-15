@@ -1,7 +1,6 @@
-<img src="assets/ltl_logo2.svg" height="90" align="right" />
-<img src="assets/cambridge_logo.png" height="80" align="right" />
+<img src="assets/cambridge_logo.png" height="80" />&nbsp;&nbsp;&nbsp;<img src="assets/ltl_logo2.svg" height="90" />
 
-# Multilingual Edge LLMs: Survey of Methods and Challenges
+# Multilinguality at the Edge: Developing Language Models for the Global South
 
 This repository contains all the experiments for the Multilingual Edge LLM project.
 The first portion of this work as a survey, which looks at existing literature in multilingual and efficient NLP to condense a potential recipe for multilingual edge LLMs.
