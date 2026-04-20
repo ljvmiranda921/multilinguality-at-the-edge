@@ -190,7 +190,7 @@ def plot_domain_technique_network(
         seed=42,
     )
 
-    # Re-center technique cloud
+    # adjust the cloud
     tech_xs = [full_pos[t][0] for t in technique_nodes]
     tech_ys = [full_pos[t][1] for t in technique_nodes]
     cx_off = np.mean(tech_xs)
@@ -199,7 +199,6 @@ def plot_domain_technique_network(
         x, y = full_pos[t]
         full_pos[t] = (x - cx_off, y - cy_off)
 
-    # Clamp first, then separate — so separation isn't undone by clamping
     max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
     for t in technique_nodes:
         x, y = full_pos[t]
@@ -211,7 +210,6 @@ def plot_domain_technique_network(
             scale = max_dist / dist
             full_pos[t] = (x * scale, y * scale)
 
-    # Push apart overlapping technique nodes
     min_separation = 1.2
     for _ in range(200):
         moved = False
@@ -234,7 +232,7 @@ def plot_domain_technique_network(
 
     pos.update({t: full_pos[t] for t in technique_nodes})
 
-    # Bezier curve edges colored by domain
+    # better curves: basically draw a simple bezier curve
     for (u, v), weight in edge_weights.items():
         domain_node = u if u in domain_nodes else v
         color = DOMAIN_COLORS.get(domain_node, COLORS["slate_3"])
@@ -265,7 +263,6 @@ def plot_domain_technique_network(
         )
         ax.add_patch(patch)
 
-    # Domain nodes
     domain_colors = [DOMAIN_COLORS.get(n, COLORS["slate_3"]) for n in domain_nodes]
     nx.draw_networkx_nodes(
         G,
@@ -279,13 +276,13 @@ def plot_domain_technique_network(
         alpha=0.85,
     )
 
-    # Technique nodes: degree -> size and darkness
     technique_sizes = []
     technique_colors = []
     for t in technique_nodes:
         degree = G.nodes[t].get("degree", 1)
         technique_sizes.append(300 + degree * 250)
         frac = degree / max_degree
+        # use cam colors
         r_lo, g_lo, b_lo = 0.71, 0.74, 0.78
         r_hi, g_hi, b_hi = 0.14, 0.16, 0.19
         r = r_lo + (r_hi - r_lo) * frac
@@ -304,7 +301,6 @@ def plot_domain_technique_network(
         alpha=0.85,
     )
 
-    # Domain labels
     domain_texts = []
     for domain in domain_nodes:
         x, y = pos[domain]
@@ -321,7 +317,6 @@ def plot_domain_technique_network(
         )
         domain_texts.append(dt)
 
-    # Technique labels with arrows
     technique_texts = []
     for technique in technique_nodes:
         x, y = pos[technique]

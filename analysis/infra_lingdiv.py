@@ -47,7 +47,6 @@ def main():
         .last()[["entity", "classification"]]
         .rename(columns={"entity": "country", "classification": "income_group"})
     )
-    # Filter to only countries that appear in World Bank income groups
     language_df = language_df[language_df["country"].isin(income_latest["country"])]
     network_2023 = (
         network_df[network_df["year"] == 2023][["entity", "_9_c_1__it_mob_4gntwk"]]
@@ -62,7 +61,6 @@ def main():
         .dropna(subset=["internet_users"])
     )
 
-    # Network adoption
     df_net = network_2023.merge(language_df, on="country").merge(
         income_latest, on="country"
     )
@@ -112,7 +110,6 @@ def main():
             s=60,
             alpha=0.85,
         )
-    # Annotate notable outliers
     annotate_countries = [
         "Papua New Guinea",
         "Nigeria",

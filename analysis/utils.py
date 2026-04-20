@@ -4,7 +4,6 @@ import torch
 
 
 def get_device() -> str:
-    """Get the best available device (MPS for Mac, CUDA, or CPU)."""
     if torch.backends.mps.is_available():
         return "mps"
     elif torch.cuda.is_available():
@@ -27,6 +26,7 @@ PLOT_PARAMS = {
     "text.usetex": True,
 }
 
+# https://www.cam.ac.uk/brand-resources/guidelines/colour (with the help of claude)
 COLORS = {
     # Core palette
     "cambridge_blue": "#8EE8D8",

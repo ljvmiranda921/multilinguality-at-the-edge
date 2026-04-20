@@ -70,13 +70,11 @@ def main():
     stage_counts = stage_counts.reindex(columns=STAGE_ORDER, fill_value=0)
     stage_counts = stage_counts.reindex(FOCUS_ORDER, fill_value=0)
 
-    # Proportional pipeline stage chart (horizontal stacked bars)
     # Reverse so Data Collection is at top
     stage_order_rev = STAGE_ORDER[::-1]
     stage_props = stage_counts.div(stage_counts.sum(axis=0), axis=1) * 100
     stage_props = stage_props.reindex(columns=stage_order_rev, fill_value=0)
 
-    # Build y-axis labels: "Short Name (N=count)"
     stage_totals = stage_counts.sum(axis=0)
     y_labels = [
         f"{STAGE_LABELS[s]} (N={int(stage_totals[s])})" for s in stage_order_rev

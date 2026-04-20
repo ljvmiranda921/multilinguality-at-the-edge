@@ -37,12 +37,8 @@ def build_collaboration_matrix(df: pd.DataFrame) -> np.ndarray:
             t.strip() for t in str(row["affiliation_types"]).split(";") if t.strip()
         ]
         unique_types = [t for t in set(types) if t in idx]
-
-        # Diagonal: each paper contributes once per sector it contains
         for t in unique_types:
             matrix[idx[t], idx[t]] += 1
-
-        # Off-diagonal: one count per unique pair per paper
         for a, b in combinations(sorted(unique_types), 2):
             matrix[idx[a], idx[b]] += 1
             matrix[idx[b], idx[a]] += 1
@@ -66,15 +62,12 @@ def plot_chord(matrix: np.ndarray) -> None:
         start_at=90,
     )
 
-    # Annotate arc midpoints with paper counts
     # total_per_sector = matrix.sum(axis=1)
     # grand_total = total_per_sector.sum()
     # pad_deg = 2
     # total_pad = pad_deg * len(SECTOR_ORDER)
     # available = 360 - total_pad
 
-    # # Recompute arc positions to match the library's layout
-    # # sort="size" means sectors are ordered by descending total degree
     # order = np.argsort(-total_per_sector)
     # spans = (total_per_sector / grand_total) * available
 
@@ -99,8 +92,6 @@ def plot_chord(matrix: np.ndarray) -> None:
     #         zorder=10,
     #     )
 
-    # Add subtle edge only to the outer ideogram arcs (Wedge patches),
-    # not to the inner chords (PathPatch)
     from matplotlib.colors import to_rgb
     from matplotlib.patches import Wedge
 
