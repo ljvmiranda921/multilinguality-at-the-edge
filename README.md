@@ -2,8 +2,7 @@
 
 # Multilinguality at the Edge: Developing Language Models for the Global South
 
-This repository contains all the experiments for the Multilingual Edge LLM project.
-The first portion of this work as a survey, which looks at existing literature in multilingual and efficient NLP to condense a potential recipe for multilingual edge LLMs.
+This repository contains all the experiments and analyses for the paper ["Multilinguality at the Edge: Developing Language Models for the Global South"]().
 
 ## Installation & Usage
 
