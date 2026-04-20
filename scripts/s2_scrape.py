@@ -212,7 +212,9 @@ def fetch_papers(
 
         retrieved_papers.extend(batch)
         total = data.get("total", "?")
-        logging.info(f"Retrieved {len(retrieved_papers)} papers so far (total: {total})")
+        logging.info(
+            f"Retrieved {len(retrieved_papers)} papers so far (total: {total})"
+        )
 
         if isinstance(total, int) and len(retrieved_papers) >= total:
             logging.info("Fetched all available papers")

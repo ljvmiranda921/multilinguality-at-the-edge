@@ -55,7 +55,9 @@ def main():
         azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
         azure_key = os.getenv("AZURE_OPENAI_API_KEY")
         if not azure_endpoint or not azure_key:
-            logging.error("AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set in .env")
+            logging.error(
+                "AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY must be set in .env"
+            )
             sys.exit(1)
     else:
         api_key = os.getenv("OPENAI_API_KEY")
@@ -80,7 +82,9 @@ def main():
             sys.exit(1)
         existing_df = pd.read_csv(output_path)
         done_ids = set(existing_df[args.id_column].dropna().astype(str))
-        logging.info(f"Resuming from {output_path} ({len(done_ids)} papers already annotated)")
+        logging.info(
+            f"Resuming from {output_path} ({len(done_ids)} papers already annotated)"
+        )
     else:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_path = output_dir / f"{timestamp}_llm_annotations.csv"
@@ -103,7 +107,9 @@ def main():
         )
         requests_list.append(request)
 
-    logging.info(f"{len(requests_list)} papers to annotate ({len(done_ids)} already done)")
+    logging.info(
+        f"{len(requests_list)} papers to annotate ({len(done_ids)} already done)"
+    )
 
     if not requests_list:
         logging.info("Nothing to do!")
@@ -165,14 +171,16 @@ async def submit_async_requests(
             max_retries=max_retries,
         )
 
-        # Merge with input data and append to CSV
+        # append mode
         results_df = pd.DataFrame(results)
         batch_ids = results_df[id_column].tolist()
         input_subset = input_df[input_df[id_column].astype(str).isin(batch_ids)]
         merged = input_subset.merge(results_df, on=id_column, how="left")
         merged.to_csv(output_path, mode="a", header=write_header, index=False)
         write_header = False
-        logging.info(f"Batch {batch_num}/{total_batches}: appended {len(merged)} rows to {output_path}")
+        logging.info(
+            f"Batch {batch_num}/{total_batches}: appended {len(merged)} rows to {output_path}"
+        )
 
         if batch_num < total_batches:
             logging.info(f"Waiting {delay_between_batches}s before next batch...")
@@ -224,12 +232,16 @@ async def _process_single_request(
             parsed_output = response.choices[0].message.parsed.model_dump()
             return {id_column: s2_id, **parsed_output}
         except RateLimitError as e:
-            wait = 2 ** attempt
-            logging.warning(f"Rate limited on {s2_id}, retrying in {wait}s (attempt {attempt + 1}/{max_retries}): {e}")
+            wait = 2**attempt
+            logging.warning(
+                f"Rate limited on {s2_id}, retrying in {wait}s (attempt {attempt + 1}/{max_retries}): {e}"
+            )
             await asyncio.sleep(wait)
         except APIError as e:
-            wait = 2 ** attempt
-            logging.warning(f"API error on {s2_id}, retrying in {wait}s (attempt {attempt + 1}/{max_retries}): {e}")
+            wait = 2**attempt
+            logging.warning(
+                f"API error on {s2_id}, retrying in {wait}s (attempt {attempt + 1}/{max_retries}): {e}"
+            )
             await asyncio.sleep(wait)
     logging.error(f"Failed after {max_retries} retries for {s2_id}")
     return {id_column: s2_id}
