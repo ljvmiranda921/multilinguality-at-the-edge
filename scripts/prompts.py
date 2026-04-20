@@ -112,7 +112,8 @@ class ResearchPaperAnnotation(BaseModel):
         description="Languages studied or supported. Use ISO 639-1 codes (e.g., en, fr, de). Use 'multilingual' if >10 languages.",
     )
     models_released: List[str] = Field(
-        ..., description="Names of any models released by the authors. Empty list if none."
+        ...,
+        description="Names of any models released by the authors. Empty list if none.",
     )
     model_sizes: List[float] = Field(
         ...,
