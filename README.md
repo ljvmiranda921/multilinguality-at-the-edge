@@ -9,6 +9,12 @@ Studying these two fields together is both a need, as linguistically diverse com
 and an opportunity, 
 as edge and multilingual NLP research remain largely siloed.
 
+<p align="center">
+<img src="/assets/lm_pipeline.png" alt="Competing requirements in the LM Pipeline" width="700" style="display: block; margin: 0 auto;"/>
+<br/>
+<i>Competing requirements at each step of the language modelling pipeline. Edge LM deployment imposes constraints on memory, compute, and energy, which can conflict with the requirements for building capable multilingual models</i>
+</p>
+
 To understand the state of the art and the challenges of combining the two areas, we survey 232 papers that tackle this problem across the language modelling pipeline, from
 data collection to development and deployment. This repository contains all the experiments and analyses for this work and serves as an accompaniment for the survey paper, ["Multilinguality at the Edge: Developing Language Models for the Global South"]().
 
