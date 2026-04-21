@@ -2,7 +2,15 @@
 
 # Multilinguality at the Edge: Developing Language Models for the Global South
 
-This repository contains all the experiments and analyses for the paper ["Multilinguality at the Edge: Developing Language Models for the Global South"]().
+Where and how language models (LMs) are deployed determines who can benefit from them. 
+However, there are several challenges that prevent effective deployment of LMs in non-English-speaking and hardware-constrained communities in the Global South.
+We call this challenge the last mile: the intersection of multilinguality and edge deployment, where the goals are aligned but the technical requirements often compete.
+Studying these two fields together is both a need, as linguistically diverse communities often face the most severe infrastructure constraints, 
+and an opportunity, 
+as edge and multilingual NLP research remain largely siloed.
+
+To understand the state of the art and the challenges of combining the two areas, we survey 232 papers that tackle this problem across the language modelling pipeline, from
+data collection to development and deployment. This repository contains all the experiments and analyses for this work and serves as an accompaniment for the survey paper, ["Multilinguality at the Edge: Developing Language Models for the Global South"]().
 
 ## Installation & Usage
 
