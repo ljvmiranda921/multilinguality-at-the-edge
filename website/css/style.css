@@ -217,6 +217,56 @@ section + section {
   margin: 0;
 }
 
+/* ---------- primitive: callout ----------
+   Big Tomato Grotesk statement used to emphasise a single-sentence
+   thesis ("The Problem.", "The Challenge.", "Our Approach."). The
+   leading label goes in a <strong> and is coloured accent blue. */
+
+.callout {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 400;
+  color: var(--fg);
+  margin: 1.75rem 0;
+  letter-spacing: -0.005em;
+}
+.callout strong {
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 0.25em;
+}
+
+/* Smaller variant for when a callout needs to sit inline with body
+   copy without dominating. */
+.callout.callout-sm {
+  font-size: 1.35rem;
+}
+
+@media (max-width: 640px) {
+  .callout { font-size: 1.3rem; }
+  .callout.callout-sm { font-size: 1.1rem; }
+}
+
+/* ---------- intro section (replaces the old abstract) ---------- */
+
+#intro { margin: 1rem 0 3rem; }
+#intro p:not(.callout) {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--fg);
+  margin: 1.25rem 0;
+}
+#intro em { font-style: italic; color: var(--fg); }
+
+.figure-mount {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
 /* ---------- pipeline hero ---------- */
 
 #pipeline-hero { margin: 2.5rem 0 3rem; }
