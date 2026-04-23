@@ -118,6 +118,16 @@ a:hover { color: var(--accent-warm); border-color: var(--accent-warm); }
   margin-bottom: 1.5rem;
 }
 
+/* ---------- abstract ---------- */
+
+#abstract { margin-bottom: 2rem; }
+.abstract-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 70ch;
+  color: var(--fg-primary);
+}
+
 /* ---------- section 2: pipeline ---------- */
 
 #pipeline-hero { margin: 2rem 0 3rem; }
