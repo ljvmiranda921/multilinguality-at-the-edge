@@ -128,11 +128,31 @@ a:hover { color: var(--accent-warm); border-color: var(--accent-warm); }
 
 /* ---------- abstract ---------- */
 
-#abstract { margin-bottom: 2rem; }
+.abstract-box {
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem 1.5rem;
+  /* softer than default pixel-frame: thinner border, smaller shadow */
+  border-width: 1px;
+  box-shadow:
+    2px 0 0 var(--shadow),
+    0 2px 0 var(--shadow),
+    2px 2px 0 var(--shadow);
+  background: transparent;
+}
+.abstract-heading {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin: 0 0 0.75rem;
+}
 .abstract-body {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--fg-primary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+  margin: 0;
 }
 
 /* ---------- section 2: pipeline ---------- */
