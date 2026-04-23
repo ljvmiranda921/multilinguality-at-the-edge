@@ -99,6 +99,14 @@ a:hover { color: var(--accent-warm); border-color: var(--accent-warm); }
   margin: 0 0 0.5rem;
   font-size: 0.95rem;
 }
+.site-header .authors a {
+  color: inherit;
+  border-bottom: none;
+}
+.site-header .authors a:hover {
+  color: var(--accent);
+  border-bottom: 1px dashed var(--accent);
+}
 .site-header .top-links {
   font-size: 0.95rem;
   color: var(--fg-muted);
@@ -124,7 +132,6 @@ a:hover { color: var(--accent-warm); border-color: var(--accent-warm); }
 .abstract-body {
   font-size: 1rem;
   line-height: 1.7;
-  max-width: 70ch;
   color: var(--fg-primary);
 }
 
