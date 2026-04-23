@@ -84,14 +84,20 @@ const BOTTOM_BAND = ["req-data", "req-representation", "req-alignment"];
 
 function renderPipeline(mount) {
   mount.innerHTML = "";
-  mount.appendChild(buildBand("↑ requirements of the edge", TOP_BAND));
-  mount.appendChild(buildStageRow());
-  mount.appendChild(buildBand("↓ requirements for multilingual capability", BOTTOM_BAND));
+
+  const stack = document.createElement("div");
+  stack.className = "pipeline-stack";
+
+  stack.appendChild(buildBand("Requirements of the Edge", TOP_BAND, "top"));
+  stack.appendChild(buildStrip());
+  stack.appendChild(buildBand("Requirements for Multilingual Capability", BOTTOM_BAND, "bottom"));
+
+  mount.appendChild(stack);
 }
 
-function buildBand(label, ids) {
+function buildBand(label, ids, pos) {
   const wrap = document.createElement("div");
-  wrap.className = "pipeline-band-wrap";
+  wrap.className = `pipeline-band-wrap pipeline-band-${pos}`;
 
   const labelEl = document.createElement("div");
   labelEl.className = "pipeline-band";
@@ -114,25 +120,19 @@ function buildBand(label, ids) {
   return wrap;
 }
 
-function buildStageRow() {
-  const row = document.createElement("div");
-  row.className = "pipeline-stages";
-  STAGE_ORDER.forEach((id, i) => {
+function buildStrip() {
+  const strip = document.createElement("div");
+  strip.className = "pipeline-strip";
+  STAGE_ORDER.forEach((id) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "pipeline-stage";
+    btn.className = "pipeline-segment";
     btn.dataset.stage = id;
     btn.textContent = PIPELINE_STAGES[id].title;
     btn.addEventListener("click", () => toggleStage(id));
-    row.appendChild(btn);
-    if (i < STAGE_ORDER.length - 1) {
-      const arrow = document.createElement("span");
-      arrow.className = "pipeline-arrow";
-      arrow.textContent = ">";
-      row.appendChild(arrow);
-    }
+    strip.appendChild(btn);
   });
-  return row;
+  return strip;
 }
 
 let openStage = null;
@@ -145,7 +145,7 @@ function toggleStage(id) {
     openStage = id;
     renderDetail(id);
   }
-  document.querySelectorAll(".pipeline-stage, .pipeline-req").forEach((el) => {
+  document.querySelectorAll(".pipeline-segment, .pipeline-req").forEach((el) => {
     el.classList.toggle("is-active", el.dataset.stage === openStage);
   });
 }
