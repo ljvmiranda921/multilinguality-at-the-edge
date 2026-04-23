@@ -248,17 +248,17 @@ section + section {
    Label becomes a small uppercase kicker above the statement. */
 .callout-question {
   font-family: var(--font-heading);
-  font-size: 3.25rem;
-  line-height: 1.15;
+  font-size: 2.25rem;
+  line-height: 1.2;
   font-weight: 400;
   font-style: italic;
   color: var(--fg);
   text-align: center;
-  margin: 3.5rem 0;
-  padding: 3rem 1.5rem;
+  margin: 3rem 0;
+  padding: 2.5rem 1.5rem;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 .callout-question strong {
   display: block;
@@ -272,10 +272,10 @@ section + section {
 }
 
 @media (max-width: 820px) {
-  .callout-question { font-size: 2.3rem; padding: 2.25rem 1rem; }
+  .callout-question { font-size: 1.75rem; padding: 2rem 1rem; }
 }
 @media (max-width: 640px) {
-  .callout-question { font-size: 1.6rem; padding: 1.75rem 0.5rem; margin: 2.5rem 0; }
+  .callout-question { font-size: 1.35rem; padding: 1.5rem 0.5rem; margin: 2.25rem 0; }
 }
 
 @media (max-width: 640px) {
@@ -286,7 +286,7 @@ section + section {
 /* ---------- intro section (replaces the old abstract) ---------- */
 
 #intro { margin: 1rem 0 3rem; }
-#intro p:not(.callout) {
+#intro p:not(.callout):not(.callout-question) {
   font-size: 1.05rem;
   line-height: 1.65;
   color: var(--fg);
