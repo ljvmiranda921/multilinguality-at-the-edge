@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --font-pixel: 'VT323', ui-monospace, monospace;
-  --font-mono:  'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: 'Press Start 2P', ui-monospace, monospace; /* title only */
+  --font-pixel:   'VT323', ui-monospace, monospace;           /* headers */
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;   /* body */
 }
