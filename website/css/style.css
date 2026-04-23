@@ -116,29 +116,19 @@ a:hover { color: var(--accent-warm); border-color: var(--accent-warm); }
 /* ---------- pixel frame ---------- */
 
 .pixel-frame {
-  background: var(--bg-panel);
-  border: 2px solid var(--fg-primary);
+  background: transparent;
+  border: 1px solid var(--fg-primary);
   box-shadow:
-    4px 0 0 var(--shadow),
-    0 4px 0 var(--shadow),
-    4px 4px 0 var(--shadow);
-  padding: 1.5rem;
+    2px 0 0 var(--shadow),
+    0 2px 0 var(--shadow),
+    2px 2px 0 var(--shadow);
+  padding: 1.25rem 1.5rem;
   margin-bottom: 1.5rem;
 }
 
 /* ---------- abstract ---------- */
 
-.abstract-box {
-  margin: 1.5rem 0 2rem;
-  padding: 1.25rem 1.5rem;
-  /* softer than default pixel-frame: thinner border, smaller shadow */
-  border-width: 1px;
-  box-shadow:
-    2px 0 0 var(--shadow),
-    0 2px 0 var(--shadow),
-    2px 2px 0 var(--shadow);
-  background: transparent;
-}
+.abstract-box { margin: 1.5rem 0 2rem; }
 .abstract-heading {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -179,8 +169,8 @@ a:hover { color: var(--accent-warm); border-color: var(--accent-warm); }
   font-family: var(--font-pixel);
   font-size: 1.25rem;
   color: var(--fg-primary);
-  background: var(--bg-panel);
-  border: 2px solid var(--fg-primary);
+  background: transparent;
+  border: 1px solid var(--fg-primary);
   padding: 0.6rem 1rem;
   cursor: pointer;
   text-align: center;
