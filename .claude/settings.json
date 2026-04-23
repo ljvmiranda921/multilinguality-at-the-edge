@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '{print $9, \"\\(\" $5 \"\\)\"}')"
+    ]
+  }
+}
