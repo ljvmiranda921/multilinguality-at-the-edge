@@ -259,12 +259,59 @@ section + section {
 }
 #intro em { font-style: italic; color: var(--fg); }
 
-.figure-mount {
-  min-height: 260px;
+/* ---------- primitive: inline citation ----------
+   Use: <a class="cite" href="...">(Author et al., 2021)</a>
+   Smaller, muted-blue, no underline at rest; underlines on hover. */
+
+a.cite {
+  font-family: var(--font-body);
+  font-size: 0.88em;
+  color: var(--accent);
+  border-bottom: none;
+  white-space: nowrap;
+  margin-left: 0.2em;
+}
+a.cite:hover { border-bottom: 1px solid var(--accent); }
+
+/* Square figure + caption-on-the-right row. Figure is intentionally
+   wider than the caption so the image reads as the lead element. */
+.figure-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 0;
+}
+.figure-row .figure-mount {
+  aspect-ratio: 1 / 1;
+  min-height: 0;          /* aspect-ratio handles sizing now */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 0;              /* row provides spacing */
+  padding: 1rem;
+}
+.figure-caption {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.figure-caption strong {
+  color: var(--fg);
+  font-weight: 600;
+  margin-right: 0.35em;
+}
+
+@media (max-width: 640px) {
+  .figure-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .figure-row .figure-mount {
+    max-width: 280px;
+    margin: 0 auto;
+  }
 }
 
 /* ---------- pipeline hero ---------- */
