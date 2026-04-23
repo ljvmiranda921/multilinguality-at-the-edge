@@ -185,24 +185,17 @@ section + section {
 }
 .site-header .top-links a { margin-right: 0.25rem; }
 
-.site-header .affiliations {
+/* Letterhead — thin logo strip at the very top of the page frame,
+   above the H1. Acts like institutional stationery. */
+.letterhead {
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-top: 1.75rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--rule);
+  margin-bottom: 2.5rem;
 }
-.site-header .affiliations img {
-  height: 44px;
+.letterhead img {
+  height: 48px;
   width: auto;
-  opacity: 0.85;
-  filter: grayscale(1);
-  transition: opacity 120ms ease, filter 120ms ease;
-}
-.site-header .affiliations img:hover {
-  opacity: 1;
-  filter: grayscale(0);
 }
 
 /* ---------- abstract ---------- */
