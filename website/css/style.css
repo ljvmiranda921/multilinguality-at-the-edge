@@ -243,6 +243,38 @@ section + section {
   font-size: 1.35rem;
 }
 
+/* Pull-quote variant — centered, hairline rules top and bottom.
+   Used as a pivot/transition from "The Problem" → "Our Approach".
+   Label becomes a small uppercase kicker above the statement. */
+.callout-question {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--fg);
+  text-align: center;
+  max-width: 32em;
+  margin: 3rem auto;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.callout-question strong {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .callout-question { font-size: 1.3rem; padding: 1.5rem 1rem; }
+}
+
 @media (max-width: 640px) {
   .callout { font-size: 1.3rem; }
   .callout.callout-sm { font-size: 1.1rem; }
