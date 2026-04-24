@@ -287,8 +287,8 @@ function mountPipelineMesh(container) {
       uAccentCool:  { value: new THREE.Color(0x254eff) }, // blue (Edge)
       uAccentWarm:  { value: new THREE.Color(0xc96a2e) }, // terracotta (Multilinguality)
       uOpacity:     { value: 0.55 },
-      uNarrow:      { value: 0.03 }, // waist half-width
-      uWide:        { value: 0.16 }, // edge half-width
+      uNarrow:      { value: 0.10 }, // waist half-width
+      uWide:        { value: 0.28 }, // edge half-width
     },
     vertexShader:   VERT,
     fragmentShader: FRAG,
