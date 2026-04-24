@@ -1,0 +1,86 @@
+/* Press Start 2P (Google Fonts) — used only for the word "Edge" in the title,
+   as a small pixel-font callback to the edge/constrained theme. */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ---------- Univers (body) ---------- */
+
+@font-face {
+  font-family: 'Univers';
+  src: url('../assets/fonts/UniversLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Univers';
+  src: url('../assets/fonts/UniversRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Univers';
+  src: url('../assets/fonts/UniversBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Tomato Grotesk (headings) ---------- */
+
+@font-face {
+  font-family: 'Tomato Grotesk';
+  src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tomato Grotesk';
+  src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tomato Grotesk';
+  src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tomato Grotesk';
+  src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tomato Grotesk';
+  src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-SemiBoldSlanted.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tomato Grotesk';
+  src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tomato Grotesk';
+  src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Slanted.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --font-body:    'Univers', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Tomato Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-pixel:   'Press Start 2P', ui-monospace, monospace; /* only the word "Edge" */
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace; /* bibtex, code */
+}
