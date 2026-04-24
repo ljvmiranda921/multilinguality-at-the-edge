@@ -591,6 +591,39 @@ sup.ref-marker a {
   white-space: pre;
   margin: 0;
   line-height: 1.5;
+  padding-right: 5.5rem;   /* room for the copy button */
+}
+
+.bibtex-wrap { position: relative; }
+
+.copy-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--fg);
+  background: var(--bg-panel);
+  border: 1px solid var(--ink);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 80ms ease, box-shadow 80ms ease,
+              color 120ms ease, background 120ms ease;
+}
+.copy-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+  color: var(--accent);
+}
+.copy-btn.is-copied {
+  color: var(--paper);
+  background: var(--accent);
+  border-color: var(--ink);
+}
+.copy-btn.is-copied:hover {
+  color: var(--paper);
 }
 
 /* ---------- responsive ---------- */
