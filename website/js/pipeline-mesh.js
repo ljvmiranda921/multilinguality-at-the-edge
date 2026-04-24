@@ -12,8 +12,102 @@
 
 import * as THREE from 'https://esm.sh/three@0.168.0';
 
-const COLS = 80;
-const ROWS = 32;
+const COLS = 140;
+const ROWS = 48;
+const STAGE_XS = [-0.8, -0.4, 0.0, 0.4, 0.8];
+const PARTICLES_PER_STAGE_PER_SIDE = 4;
+
+// Each particle starts on the top (y ≈ +1) or bottom (y ≈ -1) edge
+// at a random x, and flows to (stage_x, 0) over its lifetime. The
+// collection is arranged so each stage gets the same number of
+// particles from each side — even coverage of "force into stages."
+function buildParticlesGeometry() {
+  const total = STAGE_XS.length * PARTICLES_PER_STAGE_PER_SIDE * 2;
+  const position     = new Float32Array(total * 3);
+  const aTarget      = new Float32Array(total);
+  const aSpawnOffset = new Float32Array(total);
+  const aSpeed       = new Float32Array(total);
+
+  let i = 0;
+  for (let s = 0; s < STAGE_XS.length; s++) {
+    const sx = STAGE_XS[s];
+    for (let side = 0; side < 2; side++) {
+      const dir = side === 0 ? 1 : -1; // +1 top, -1 bottom
+      for (let k = 0; k < PARTICLES_PER_STAGE_PER_SIDE; k++) {
+        // Random starting x within a neighbourhood of the stage so
+        // the flow lines bend visibly inward.
+        const jitter = (Math.random() - 0.5) * 0.55;
+        const startX = Math.max(-0.98, Math.min(0.98, sx + jitter));
+        const startY = dir * (0.82 + Math.random() * 0.16);
+
+        position[i * 3 + 0] = startX;
+        position[i * 3 + 1] = startY;
+        position[i * 3 + 2] = 0;
+        aTarget[i]          = sx;
+        aSpawnOffset[i]     = Math.random() * 3.0;
+        aSpeed[i]           = 0.28 + Math.random() * 0.22; // 0.28–0.5 cycles/s
+        i++;
+      }
+    }
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position',     new THREE.BufferAttribute(position, 3));
+  geo.setAttribute('aTarget',      new THREE.BufferAttribute(aTarget, 1));
+  geo.setAttribute('aSpawnOffset', new THREE.BufferAttribute(aSpawnOffset, 1));
+  geo.setAttribute('aSpeed',       new THREE.BufferAttribute(aSpeed, 1));
+  return geo;
+}
+
+const PARTICLE_VERT = `
+  attribute float aTarget;
+  attribute float aSpawnOffset;
+  attribute float aSpeed;
+  uniform float   uTime;
+  uniform float   uPointSize;
+  varying float   vAlpha;
+  varying float   vTop;
+
+  void main() {
+    float startX = position.x;
+    float startY = position.y;
+
+    // Normalised lifetime progress in [0, 1], looping.
+    float t = fract((uTime + aSpawnOffset) * aSpeed);
+
+    vec2 start  = vec2(startX, startY);
+    vec2 target = vec2(aTarget, 0.0);
+    vec2 p      = mix(start, target, smoothstep(0.0, 1.0, t));
+
+    // Fade in at spawn, hold, fade out just before the waist so
+    // particles don't pile up on top of the strip.
+    float fadeIn  = smoothstep(0.0, 0.12, t);
+    float fadeOut = smoothstep(1.0, 0.75, t);
+    vAlpha = fadeIn * fadeOut;
+    vTop   = startY > 0.0 ? 1.0 : 0.0;
+
+    gl_Position  = projectionMatrix * modelViewMatrix * vec4(p, 0.0, 1.0);
+    gl_PointSize = uPointSize;
+  }
+`;
+
+const PARTICLE_FRAG = `
+  uniform vec3  uAccentCool;   // blue  (from top, Edge)
+  uniform vec3  uAccentWarm;   // terracotta (from bottom, Multilinguality)
+  uniform float uOpacity;
+  varying float vAlpha;
+  varying float vTop;
+
+  void main() {
+    vec2 uv = gl_PointCoord - 0.5;
+    float d = length(uv);
+    if (d > 0.5) discard;
+    // Soft disc with a slight core brightness.
+    float shape = smoothstep(0.5, 0.12, d);
+    vec3  col   = mix(uAccentWarm, uAccentCool, vTop);
+    gl_FragColor = vec4(col, vAlpha * shape * uOpacity);
+  }
+`;
 
 function buildGridGeometry() {
   const positions = [];
@@ -66,11 +160,11 @@ const VERT = `
     stageXs[4] =  0.8;
 
     // ---- 1. Mass (where the column renders) ----
-    // Width is narrow at the waist (y = 0) and wide at the edges.
-    // Power > 1 steepens the taper so the pinch reads clearly.
-    float yFactor = pow(abs(pos.y), 1.15);
+    // Smoothstep gives an S-curve hourglass: the waist glides into
+    // the wide ends instead of kinking.
+    float yFactor = smoothstep(0.0, 1.0, abs(pos.y));
     float width = mix(uNarrow, uWide, yFactor);
-    width *= 1.0 + 0.06 * sin(t * 0.4);
+    width *= 1.0 + 0.05 * sin(t * 0.35);
 
     float mass = 0.0;
     float nearStage = stageXs[0];
@@ -85,11 +179,12 @@ const VERT = `
     // ---- 2. Pinch (lines curve inward toward the stage centre
     //         as they approach the pipeline) ----
     float pipeN  = 1.0 - abs(pos.y);
-    float pinchT = pow(pipeN, 1.3);
-    pos.x = mix(pos.x, nearStage, pinchT * 0.65);
+    float pinchT = smoothstep(0.0, 1.0, pipeN);
+    pos.x = mix(pos.x, nearStage, pinchT * 0.7);
 
     // ---- 3. Subtle drift so the mesh is never fully static ----
-    pos.y += sin(pos.x * 14.0 + t * 0.8) * 0.006 * mass;
+    pos.y += sin(pos.x *  5.5 + t * 0.45) * 0.010 * mass;
+    pos.x += cos(pos.y *  4.0 + t * 0.3 ) * 0.004 * mass;
 
     vMass = mass;
     vMid  = 1.0 - abs(pos.y);
@@ -121,10 +216,11 @@ const FRAG = `
     vec3 botCol = mix(uInk, uAccentWarm, tintAmt);
     vec3 col    = mix(botCol, topCol, topWeight);
 
-    // Flow bands: bright crests travel FROM the edges TOWARD the
-    // middle, selling "force flowing into the pipeline stages."
-    float flowPhase = abs(vY) * 7.0 + uTime * 1.6;
-    float flow      = 0.5 + 0.5 * sin(flowPhase);
+    // Flow bands: soft crests travel FROM the edges TOWARD the
+    // middle. Wider wavelength + slower speed than before, so the
+    // motion reads as breathing rather than strobing.
+    float flowPhase = abs(vY) * 4.5 + uTime * 1.2;
+    float flow      = 0.55 + 0.45 * sin(flowPhase);
 
     // Base boost: the top and bottom edges of the mesh (where it
     // meets the requirement bands) get extra opacity so the "force
@@ -192,10 +288,32 @@ function mountPipelineMesh(container) {
   const mesh = new THREE.LineSegments(geometry, material);
   scene.add(mesh);
 
+  // Particle layer — shares the uTime uniform with the mesh so
+  // everything stays on the same clock.
+  const particleMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime:       material.uniforms.uTime,
+      uAccentCool: material.uniforms.uAccentCool,
+      uAccentWarm: material.uniforms.uAccentWarm,
+      uOpacity:    { value: 0.9 },
+      uPointSize:  { value: 4.0 },
+    },
+    vertexShader:   PARTICLE_VERT,
+    fragmentShader: PARTICLE_FRAG,
+    transparent:    true,
+    depthTest:      false,
+  });
+  const particles = new THREE.Points(buildParticlesGeometry(), particleMaterial);
+  scene.add(particles);
+
   function resize() {
     const { width, height } = container.getBoundingClientRect();
     if (width === 0 || height === 0) return;
     renderer.setSize(width, height, false);
+    // Scale point size with DPR + overall width so particles stay
+    // a consistent visual size across devices.
+    const dpr = renderer.getPixelRatio();
+    particleMaterial.uniforms.uPointSize.value = Math.min(6.0, Math.max(3.0, width / 240)) * dpr;
   }
   resize();
 
