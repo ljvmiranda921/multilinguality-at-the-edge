@@ -1,0 +1,1308 @@
+{
+  "data": [
+    {
+      "country": "Afghanistan",
+      "network_access": 34.0,
+      "num_living_languages": 41,
+      "income_group": "Low-income",
+      "label": "Afghanistan",
+      "annotate": false
+    },
+    {
+      "country": "Algeria",
+      "network_access": 90.42,
+      "num_living_languages": 20,
+      "income_group": "Upper-middle-income",
+      "label": "Algeria",
+      "annotate": false
+    },
+    {
+      "country": "Andorra",
+      "network_access": 98.5,
+      "num_living_languages": 5,
+      "income_group": "High-income",
+      "label": "Andorra",
+      "annotate": false
+    },
+    {
+      "country": "Angola",
+      "network_access": 76.78,
+      "num_living_languages": 47,
+      "income_group": "Lower-middle-income",
+      "label": "Angola",
+      "annotate": false
+    },
+    {
+      "country": "Argentina",
+      "network_access": 97.68,
+      "num_living_languages": 27,
+      "income_group": "Upper-middle-income",
+      "label": "Argentina",
+      "annotate": false
+    },
+    {
+      "country": "Armenia",
+      "network_access": 100.0,
+      "num_living_languages": 12,
+      "income_group": "Upper-middle-income",
+      "label": "Armenia",
+      "annotate": false
+    },
+    {
+      "country": "Australia",
+      "network_access": 99.6,
+      "num_living_languages": 225,
+      "income_group": "High-income",
+      "label": "Australia",
+      "annotate": false
+    },
+    {
+      "country": "Austria",
+      "network_access": 98.0,
+      "num_living_languages": 17,
+      "income_group": "High-income",
+      "label": "Austria",
+      "annotate": false
+    },
+    {
+      "country": "Azerbaijan",
+      "network_access": 100.0,
+      "num_living_languages": 18,
+      "income_group": "Upper-middle-income",
+      "label": "Azerbaijan",
+      "annotate": false
+    },
+    {
+      "country": "Bahamas",
+      "network_access": 95.0,
+      "num_living_languages": 3,
+      "income_group": "High-income",
+      "label": "Bahamas",
+      "annotate": false
+    },
+    {
+      "country": "Bahrain",
+      "network_access": 100.0,
+      "num_living_languages": 6,
+      "income_group": "High-income",
+      "label": "Bahrain",
+      "annotate": false
+    },
+    {
+      "country": "Bangladesh",
+      "network_access": 98.93,
+      "num_living_languages": 43,
+      "income_group": "Lower-middle-income",
+      "label": "Bangladesh",
+      "annotate": false
+    },
+    {
+      "country": "Belarus",
+      "network_access": 98.4,
+      "num_living_languages": 7,
+      "income_group": "Upper-middle-income",
+      "label": "Belarus",
+      "annotate": false
+    },
+    {
+      "country": "Belgium",
+      "network_access": 100.0,
+      "num_living_languages": 12,
+      "income_group": "High-income",
+      "label": "Belgium",
+      "annotate": false
+    },
+    {
+      "country": "Benin",
+      "network_access": 80.0,
+      "num_living_languages": 55,
+      "income_group": "Lower-middle-income",
+      "label": "Benin",
+      "annotate": false
+    },
+    {
+      "country": "Bhutan",
+      "network_access": 97.0,
+      "num_living_languages": 23,
+      "income_group": "Lower-middle-income",
+      "label": "Bhutan",
+      "annotate": false
+    },
+    {
+      "country": "Bosnia and Herzegovina",
+      "network_access": 99.0,
+      "num_living_languages": 7,
+      "income_group": "Upper-middle-income",
+      "label": "Bosnia and Herzegovina",
+      "annotate": false
+    },
+    {
+      "country": "Botswana",
+      "network_access": 91.0,
+      "num_living_languages": 29,
+      "income_group": "Upper-middle-income",
+      "label": "Botswana",
+      "annotate": false
+    },
+    {
+      "country": "Brazil",
+      "network_access": 93.19,
+      "num_living_languages": 222,
+      "income_group": "Upper-middle-income",
+      "label": "Brazil",
+      "annotate": false
+    },
+    {
+      "country": "Brunei",
+      "network_access": 99.04,
+      "num_living_languages": 17,
+      "income_group": "High-income",
+      "label": "Brunei",
+      "annotate": false
+    },
+    {
+      "country": "Bulgaria",
+      "network_access": 99.86,
+      "num_living_languages": 16,
+      "income_group": "High-income",
+      "label": "Bulgaria",
+      "annotate": false
+    },
+    {
+      "country": "Burundi",
+      "network_access": 32.18,
+      "num_living_languages": 5,
+      "income_group": "Low-income",
+      "label": "Burundi",
+      "annotate": true
+    },
+    {
+      "country": "Cambodia",
+      "network_access": 93.1,
+      "num_living_languages": 29,
+      "income_group": "Lower-middle-income",
+      "label": "Cambodia",
+      "annotate": false
+    },
+    {
+      "country": "Cameroon",
+      "network_access": 75.0,
+      "num_living_languages": 280,
+      "income_group": "Lower-middle-income",
+      "label": "Cameroon",
+      "annotate": true
+    },
+    {
+      "country": "Canada",
+      "network_access": 99.5,
+      "num_living_languages": 101,
+      "income_group": "High-income",
+      "label": "Canada",
+      "annotate": false
+    },
+    {
+      "country": "Cape Verde",
+      "network_access": 84.7,
+      "num_living_languages": 2,
+      "income_group": "Upper-middle-income",
+      "label": "Cape Verde",
+      "annotate": false
+    },
+    {
+      "country": "Central African Republic",
+      "network_access": 0.3,
+      "num_living_languages": 73,
+      "income_group": "Low-income",
+      "label": "Central African Republic",
+      "annotate": false
+    },
+    {
+      "country": "Chad",
+      "network_access": 44.3,
+      "num_living_languages": 129,
+      "income_group": "Low-income",
+      "label": "Chad",
+      "annotate": true
+    },
+    {
+      "country": "Chile",
+      "network_access": 96.0,
+      "num_living_languages": 13,
+      "income_group": "High-income",
+      "label": "Chile",
+      "annotate": false
+    },
+    {
+      "country": "China",
+      "network_access": 100.0,
+      "num_living_languages": 309,
+      "income_group": "Upper-middle-income",
+      "label": "China",
+      "annotate": true
+    },
+    {
+      "country": "Colombia",
+      "network_access": 99.8,
+      "num_living_languages": 89,
+      "income_group": "Upper-middle-income",
+      "label": "Colombia",
+      "annotate": false
+    },
+    {
+      "country": "Comoros",
+      "network_access": 94.0,
+      "num_living_languages": 7,
+      "income_group": "Lower-middle-income",
+      "label": "Comoros",
+      "annotate": false
+    },
+    {
+      "country": "Congo",
+      "network_access": 77.5,
+      "num_living_languages": 62,
+      "income_group": "Lower-middle-income",
+      "label": "Congo",
+      "annotate": false
+    },
+    {
+      "country": "Costa Rica",
+      "network_access": 95.0,
+      "num_living_languages": 14,
+      "income_group": "High-income",
+      "label": "Costa Rica",
+      "annotate": false
+    },
+    {
+      "country": "Cote d'Ivoire",
+      "network_access": 91.5,
+      "num_living_languages": 88,
+      "income_group": "Lower-middle-income",
+      "label": "Cote d'Ivoire",
+      "annotate": false
+    },
+    {
+      "country": "Croatia",
+      "network_access": 99.72,
+      "num_living_languages": 19,
+      "income_group": "High-income",
+      "label": "Croatia",
+      "annotate": false
+    },
+    {
+      "country": "Cuba",
+      "network_access": 50.04,
+      "num_living_languages": 3,
+      "income_group": "Upper-middle-income",
+      "label": "Cuba",
+      "annotate": false
+    },
+    {
+      "country": "Curacao",
+      "network_access": 99.0,
+      "num_living_languages": 5,
+      "income_group": "High-income",
+      "label": "Curacao",
+      "annotate": false
+    },
+    {
+      "country": "Cyprus",
+      "network_access": 100.0,
+      "num_living_languages": 8,
+      "income_group": "High-income",
+      "label": "Cyprus",
+      "annotate": false
+    },
+    {
+      "country": "Czechia",
+      "network_access": 99.8,
+      "num_living_languages": 12,
+      "income_group": "High-income",
+      "label": "Czechia",
+      "annotate": false
+    },
+    {
+      "country": "Democratic Republic of Congo",
+      "network_access": 45.0,
+      "num_living_languages": 211,
+      "income_group": "Low-income",
+      "label": "DR Congo",
+      "annotate": true
+    },
+    {
+      "country": "Denmark",
+      "network_access": 100.0,
+      "num_living_languages": 7,
+      "income_group": "High-income",
+      "label": "Denmark",
+      "annotate": false
+    },
+    {
+      "country": "Djibouti",
+      "network_access": 76.0,
+      "num_living_languages": 5,
+      "income_group": "Lower-middle-income",
+      "label": "Djibouti",
+      "annotate": false
+    },
+    {
+      "country": "Dominican Republic",
+      "network_access": 97.6,
+      "num_living_languages": 5,
+      "income_group": "Upper-middle-income",
+      "label": "Dominican Republic",
+      "annotate": false
+    },
+    {
+      "country": "East Timor",
+      "network_access": 45.0,
+      "num_living_languages": 22,
+      "income_group": "Lower-middle-income",
+      "label": "East Timor",
+      "annotate": false
+    },
+    {
+      "country": "Ecuador",
+      "network_access": 95.05,
+      "num_living_languages": 24,
+      "income_group": "Upper-middle-income",
+      "label": "Ecuador",
+      "annotate": false
+    },
+    {
+      "country": "Egypt",
+      "network_access": 98.0,
+      "num_living_languages": 21,
+      "income_group": "Lower-middle-income",
+      "label": "Egypt",
+      "annotate": false
+    },
+    {
+      "country": "El Salvador",
+      "network_access": 76.0,
+      "num_living_languages": 6,
+      "income_group": "Upper-middle-income",
+      "label": "El Salvador",
+      "annotate": false
+    },
+    {
+      "country": "Estonia",
+      "network_access": 99.0,
+      "num_living_languages": 10,
+      "income_group": "High-income",
+      "label": "Estonia",
+      "annotate": false
+    },
+    {
+      "country": "Eswatini",
+      "network_access": 87.0,
+      "num_living_languages": 5,
+      "income_group": "Lower-middle-income",
+      "label": "Eswatini",
+      "annotate": false
+    },
+    {
+      "country": "Ethiopia",
+      "network_access": 35.0,
+      "num_living_languages": 92,
+      "income_group": "Low-income",
+      "label": "Ethiopia",
+      "annotate": true
+    },
+    {
+      "country": "Finland",
+      "network_access": 99.99,
+      "num_living_languages": 15,
+      "income_group": "High-income",
+      "label": "Finland",
+      "annotate": false
+    },
+    {
+      "country": "France",
+      "network_access": 99.0,
+      "num_living_languages": 36,
+      "income_group": "High-income",
+      "label": "France",
+      "annotate": false
+    },
+    {
+      "country": "French Polynesia",
+      "network_access": 90.0,
+      "num_living_languages": 9,
+      "income_group": "High-income",
+      "label": "French Polynesia",
+      "annotate": false
+    },
+    {
+      "country": "Gabon",
+      "network_access": 98.0,
+      "num_living_languages": 43,
+      "income_group": "Upper-middle-income",
+      "label": "Gabon",
+      "annotate": false
+    },
+    {
+      "country": "Georgia",
+      "network_access": 99.72,
+      "num_living_languages": 22,
+      "income_group": "Upper-middle-income",
+      "label": "Georgia",
+      "annotate": false
+    },
+    {
+      "country": "Germany",
+      "network_access": 99.96,
+      "num_living_languages": 30,
+      "income_group": "High-income",
+      "label": "Germany",
+      "annotate": false
+    },
+    {
+      "country": "Ghana",
+      "network_access": 99.3,
+      "num_living_languages": 83,
+      "income_group": "Lower-middle-income",
+      "label": "Ghana",
+      "annotate": false
+    },
+    {
+      "country": "Greece",
+      "network_access": 99.8,
+      "num_living_languages": 23,
+      "income_group": "High-income",
+      "label": "Greece",
+      "annotate": false
+    },
+    {
+      "country": "Guatemala",
+      "network_access": 92.0,
+      "num_living_languages": 27,
+      "income_group": "Upper-middle-income",
+      "label": "Guatemala",
+      "annotate": false
+    },
+    {
+      "country": "Guinea",
+      "network_access": 77.0,
+      "num_living_languages": 37,
+      "income_group": "Lower-middle-income",
+      "label": "Guinea",
+      "annotate": false
+    },
+    {
+      "country": "Guinea-Bissau",
+      "network_access": 32.0,
+      "num_living_languages": 25,
+      "income_group": "Low-income",
+      "label": "Guinea-Bissau",
+      "annotate": false
+    },
+    {
+      "country": "Honduras",
+      "network_access": 91.0,
+      "num_living_languages": 10,
+      "income_group": "Lower-middle-income",
+      "label": "Honduras",
+      "annotate": false
+    },
+    {
+      "country": "Hong Kong",
+      "network_access": 99.0,
+      "num_living_languages": 7,
+      "income_group": "High-income",
+      "label": "Hong Kong",
+      "annotate": false
+    },
+    {
+      "country": "Hungary",
+      "network_access": 99.2,
+      "num_living_languages": 20,
+      "income_group": "High-income",
+      "label": "Hungary",
+      "annotate": false
+    },
+    {
+      "country": "Iceland",
+      "network_access": 99.0,
+      "num_living_languages": 3,
+      "income_group": "High-income",
+      "label": "Iceland",
+      "annotate": true
+    },
+    {
+      "country": "India",
+      "network_access": 98.8,
+      "num_living_languages": 454,
+      "income_group": "Lower-middle-income",
+      "label": "India",
+      "annotate": true
+    },
+    {
+      "country": "Indonesia",
+      "network_access": 98.96,
+      "num_living_languages": 709,
+      "income_group": "Upper-middle-income",
+      "label": "Indonesia",
+      "annotate": true
+    },
+    {
+      "country": "Iran",
+      "network_access": 92.0,
+      "num_living_languages": 78,
+      "income_group": "Upper-middle-income",
+      "label": "Iran",
+      "annotate": false
+    },
+    {
+      "country": "Iraq",
+      "network_access": 98.2,
+      "num_living_languages": 25,
+      "income_group": "Upper-middle-income",
+      "label": "Iraq",
+      "annotate": false
+    },
+    {
+      "country": "Ireland",
+      "network_access": 99.8,
+      "num_living_languages": 9,
+      "income_group": "High-income",
+      "label": "Ireland",
+      "annotate": false
+    },
+    {
+      "country": "Israel",
+      "network_access": 97.0,
+      "num_living_languages": 38,
+      "income_group": "High-income",
+      "label": "Israel",
+      "annotate": false
+    },
+    {
+      "country": "Italy",
+      "network_access": 100.0,
+      "num_living_languages": 36,
+      "income_group": "High-income",
+      "label": "Italy",
+      "annotate": false
+    },
+    {
+      "country": "Jamaica",
+      "network_access": 99.0,
+      "num_living_languages": 4,
+      "income_group": "Upper-middle-income",
+      "label": "Jamaica",
+      "annotate": false
+    },
+    {
+      "country": "Japan",
+      "network_access": 96.6,
+      "num_living_languages": 20,
+      "income_group": "High-income",
+      "label": "Japan",
+      "annotate": false
+    },
+    {
+      "country": "Jordan",
+      "network_access": 99.5,
+      "num_living_languages": 12,
+      "income_group": "Lower-middle-income",
+      "label": "Jordan",
+      "annotate": false
+    },
+    {
+      "country": "Kazakhstan",
+      "network_access": 89.2,
+      "num_living_languages": 16,
+      "income_group": "Upper-middle-income",
+      "label": "Kazakhstan",
+      "annotate": false
+    },
+    {
+      "country": "Kenya",
+      "network_access": 97.0,
+      "num_living_languages": 68,
+      "income_group": "Lower-middle-income",
+      "label": "Kenya",
+      "annotate": false
+    },
+    {
+      "country": "Kiribati",
+      "network_access": 65.0,
+      "num_living_languages": 2,
+      "income_group": "Lower-middle-income",
+      "label": "Kiribati",
+      "annotate": false
+    },
+    {
+      "country": "Kuwait",
+      "network_access": 100.0,
+      "num_living_languages": 6,
+      "income_group": "High-income",
+      "label": "Kuwait",
+      "annotate": false
+    },
+    {
+      "country": "Kyrgyzstan",
+      "network_access": 99.33,
+      "num_living_languages": 9,
+      "income_group": "Lower-middle-income",
+      "label": "Kyrgyzstan",
+      "annotate": false
+    },
+    {
+      "country": "Laos",
+      "network_access": 76.0,
+      "num_living_languages": 88,
+      "income_group": "Lower-middle-income",
+      "label": "Laos",
+      "annotate": false
+    },
+    {
+      "country": "Latvia",
+      "network_access": 95.0,
+      "num_living_languages": 11,
+      "income_group": "High-income",
+      "label": "Latvia",
+      "annotate": false
+    },
+    {
+      "country": "Lesotho",
+      "network_access": 85.1,
+      "num_living_languages": 5,
+      "income_group": "Lower-middle-income",
+      "label": "Lesotho",
+      "annotate": false
+    },
+    {
+      "country": "Liberia",
+      "network_access": 80.0,
+      "num_living_languages": 31,
+      "income_group": "Low-income",
+      "label": "Liberia",
+      "annotate": false
+    },
+    {
+      "country": "Liechtenstein",
+      "network_access": 98.33,
+      "num_living_languages": 4,
+      "income_group": "High-income",
+      "label": "Liechtenstein",
+      "annotate": false
+    },
+    {
+      "country": "Lithuania",
+      "network_access": 99.99,
+      "num_living_languages": 13,
+      "income_group": "High-income",
+      "label": "Lithuania",
+      "annotate": false
+    },
+    {
+      "country": "Luxembourg",
+      "network_access": 100.0,
+      "num_living_languages": 7,
+      "income_group": "High-income",
+      "label": "Luxembourg",
+      "annotate": false
+    },
+    {
+      "country": "Macao",
+      "network_access": 99.8,
+      "num_living_languages": 6,
+      "income_group": "High-income",
+      "label": "Macao",
+      "annotate": false
+    },
+    {
+      "country": "Madagascar",
+      "network_access": 33.64,
+      "num_living_languages": 14,
+      "income_group": "Low-income",
+      "label": "Madagascar",
+      "annotate": false
+    },
+    {
+      "country": "Malawi",
+      "network_access": 74.91,
+      "num_living_languages": 17,
+      "income_group": "Low-income",
+      "label": "Malawi",
+      "annotate": false
+    },
+    {
+      "country": "Malaysia",
+      "network_access": 97.1,
+      "num_living_languages": 133,
+      "income_group": "Upper-middle-income",
+      "label": "Malaysia",
+      "annotate": false
+    },
+    {
+      "country": "Maldives",
+      "network_access": 100.0,
+      "num_living_languages": 2,
+      "income_group": "Upper-middle-income",
+      "label": "Maldives",
+      "annotate": false
+    },
+    {
+      "country": "Mali",
+      "network_access": 81.0,
+      "num_living_languages": 69,
+      "income_group": "Low-income",
+      "label": "Mali",
+      "annotate": false
+    },
+    {
+      "country": "Malta",
+      "network_access": 100.0,
+      "num_living_languages": 6,
+      "income_group": "High-income",
+      "label": "Malta",
+      "annotate": false
+    },
+    {
+      "country": "Mauritius",
+      "network_access": 99.0,
+      "num_living_languages": 9,
+      "income_group": "Upper-middle-income",
+      "label": "Mauritius",
+      "annotate": false
+    },
+    {
+      "country": "Mexico",
+      "network_access": 96.94,
+      "num_living_languages": 296,
+      "income_group": "Upper-middle-income",
+      "label": "Mexico",
+      "annotate": false
+    },
+    {
+      "country": "Moldova",
+      "network_access": 99.3,
+      "num_living_languages": 12,
+      "income_group": "Upper-middle-income",
+      "label": "Moldova",
+      "annotate": false
+    },
+    {
+      "country": "Monaco",
+      "network_access": 100.0,
+      "num_living_languages": 6,
+      "income_group": "High-income",
+      "label": "Monaco",
+      "annotate": false
+    },
+    {
+      "country": "Mongolia",
+      "network_access": 99.0,
+      "num_living_languages": 13,
+      "income_group": "Upper-middle-income",
+      "label": "Mongolia",
+      "annotate": false
+    },
+    {
+      "country": "Montenegro",
+      "network_access": 97.97,
+      "num_living_languages": 10,
+      "income_group": "Upper-middle-income",
+      "label": "Montenegro",
+      "annotate": false
+    },
+    {
+      "country": "Morocco",
+      "network_access": 99.7,
+      "num_living_languages": 16,
+      "income_group": "Lower-middle-income",
+      "label": "Morocco",
+      "annotate": false
+    },
+    {
+      "country": "Myanmar",
+      "network_access": 94.44,
+      "num_living_languages": 125,
+      "income_group": "Lower-middle-income",
+      "label": "Myanmar",
+      "annotate": false
+    },
+    {
+      "country": "Namibia",
+      "network_access": 85.0,
+      "num_living_languages": 28,
+      "income_group": "Lower-middle-income",
+      "label": "Namibia",
+      "annotate": false
+    },
+    {
+      "country": "Netherlands",
+      "network_access": 99.0,
+      "num_living_languages": 18,
+      "income_group": "High-income",
+      "label": "Netherlands",
+      "annotate": false
+    },
+    {
+      "country": "New Zealand",
+      "network_access": 97.7,
+      "num_living_languages": 4,
+      "income_group": "High-income",
+      "label": "New Zealand",
+      "annotate": false
+    },
+    {
+      "country": "Nicaragua",
+      "network_access": 78.5,
+      "num_living_languages": 11,
+      "income_group": "Lower-middle-income",
+      "label": "Nicaragua",
+      "annotate": false
+    },
+    {
+      "country": "Nigeria",
+      "network_access": 84.19,
+      "num_living_languages": 530,
+      "income_group": "Lower-middle-income",
+      "label": "Nigeria",
+      "annotate": true
+    },
+    {
+      "country": "North Macedonia",
+      "network_access": 99.85,
+      "num_living_languages": 14,
+      "income_group": "Upper-middle-income",
+      "label": "North Macedonia",
+      "annotate": false
+    },
+    {
+      "country": "Oman",
+      "network_access": 99.0,
+      "num_living_languages": 17,
+      "income_group": "High-income",
+      "label": "Oman",
+      "annotate": false
+    },
+    {
+      "country": "Pakistan",
+      "network_access": 81.0,
+      "num_living_languages": 80,
+      "income_group": "Lower-middle-income",
+      "label": "Pakistan",
+      "annotate": false
+    },
+    {
+      "country": "Palestine",
+      "network_access": 0.0,
+      "num_living_languages": 8,
+      "income_group": "Lower-middle-income",
+      "label": "Palestine",
+      "annotate": false
+    },
+    {
+      "country": "Panama",
+      "network_access": 85.0,
+      "num_living_languages": 15,
+      "income_group": "High-income",
+      "label": "Panama",
+      "annotate": false
+    },
+    {
+      "country": "Papua New Guinea",
+      "network_access": 70.0,
+      "num_living_languages": 843,
+      "income_group": "Lower-middle-income",
+      "label": "Papua New Guinea",
+      "annotate": true
+    },
+    {
+      "country": "Paraguay",
+      "network_access": 96.9,
+      "num_living_languages": 24,
+      "income_group": "Upper-middle-income",
+      "label": "Paraguay",
+      "annotate": false
+    },
+    {
+      "country": "Peru",
+      "network_access": 81.12,
+      "num_living_languages": 95,
+      "income_group": "Upper-middle-income",
+      "label": "Peru",
+      "annotate": false
+    },
+    {
+      "country": "Philippines",
+      "network_access": 95.54,
+      "num_living_languages": 184,
+      "income_group": "Lower-middle-income",
+      "label": "Philippines",
+      "annotate": false
+    },
+    {
+      "country": "Poland",
+      "network_access": 100.0,
+      "num_living_languages": 23,
+      "income_group": "High-income",
+      "label": "Poland",
+      "annotate": false
+    },
+    {
+      "country": "Portugal",
+      "network_access": 100.0,
+      "num_living_languages": 15,
+      "income_group": "High-income",
+      "label": "Portugal",
+      "annotate": false
+    },
+    {
+      "country": "Puerto Rico",
+      "network_access": 90.0,
+      "num_living_languages": 4,
+      "income_group": "High-income",
+      "label": "Puerto Rico",
+      "annotate": false
+    },
+    {
+      "country": "Qatar",
+      "network_access": 99.9,
+      "num_living_languages": 5,
+      "income_group": "High-income",
+      "label": "Qatar",
+      "annotate": false
+    },
+    {
+      "country": "Romania",
+      "network_access": 98.93,
+      "num_living_languages": 29,
+      "income_group": "High-income",
+      "label": "Romania",
+      "annotate": false
+    },
+    {
+      "country": "Russia",
+      "network_access": 93.1,
+      "num_living_languages": 119,
+      "income_group": "High-income",
+      "label": "Russia",
+      "annotate": false
+    },
+    {
+      "country": "Rwanda",
+      "network_access": 98.76,
+      "num_living_languages": 6,
+      "income_group": "Low-income",
+      "label": "Rwanda",
+      "annotate": false
+    },
+    {
+      "country": "Saint Vincent and the Grenadines",
+      "network_access": 90.0,
+      "num_living_languages": 3,
+      "income_group": "Upper-middle-income",
+      "label": "Saint Vincent and the Grenadines",
+      "annotate": false
+    },
+    {
+      "country": "Sao Tome and Principe",
+      "network_access": 0.0,
+      "num_living_languages": 7,
+      "income_group": "Lower-middle-income",
+      "label": "Sao Tome and Principe",
+      "annotate": false
+    },
+    {
+      "country": "Saudi Arabia",
+      "network_access": 100.0,
+      "num_living_languages": 12,
+      "income_group": "High-income",
+      "label": "Saudi Arabia",
+      "annotate": false
+    },
+    {
+      "country": "Senegal",
+      "network_access": 97.5,
+      "num_living_languages": 39,
+      "income_group": "Lower-middle-income",
+      "label": "Senegal",
+      "annotate": false
+    },
+    {
+      "country": "Serbia",
+      "network_access": 98.77,
+      "num_living_languages": 22,
+      "income_group": "Upper-middle-income",
+      "label": "Serbia",
+      "annotate": false
+    },
+    {
+      "country": "Seychelles",
+      "network_access": 99.0,
+      "num_living_languages": 4,
+      "income_group": "High-income",
+      "label": "Seychelles",
+      "annotate": false
+    },
+    {
+      "country": "Sierra Leone",
+      "network_access": 75.0,
+      "num_living_languages": 24,
+      "income_group": "Low-income",
+      "label": "Sierra Leone",
+      "annotate": false
+    },
+    {
+      "country": "Singapore",
+      "network_access": 100.0,
+      "num_living_languages": 25,
+      "income_group": "High-income",
+      "label": "Singapore",
+      "annotate": false
+    },
+    {
+      "country": "Slovakia",
+      "network_access": 99.0,
+      "num_living_languages": 13,
+      "income_group": "High-income",
+      "label": "Slovakia",
+      "annotate": false
+    },
+    {
+      "country": "Slovenia",
+      "network_access": 99.8,
+      "num_living_languages": 12,
+      "income_group": "High-income",
+      "label": "Slovenia",
+      "annotate": false
+    },
+    {
+      "country": "Somalia",
+      "network_access": 50.0,
+      "num_living_languages": 13,
+      "income_group": "Low-income",
+      "label": "Somalia",
+      "annotate": false
+    },
+    {
+      "country": "South Africa",
+      "network_access": 98.95,
+      "num_living_languages": 31,
+      "income_group": "Upper-middle-income",
+      "label": "South Africa",
+      "annotate": false
+    },
+    {
+      "country": "South Korea",
+      "network_access": 99.9,
+      "num_living_languages": 5,
+      "income_group": "High-income",
+      "label": "South Korea",
+      "annotate": false
+    },
+    {
+      "country": "South Sudan",
+      "network_access": 15.0,
+      "num_living_languages": 72,
+      "income_group": "Low-income",
+      "label": "South Sudan",
+      "annotate": false
+    },
+    {
+      "country": "Spain",
+      "network_access": 99.7,
+      "num_living_languages": 21,
+      "income_group": "High-income",
+      "label": "Spain",
+      "annotate": false
+    },
+    {
+      "country": "Sri Lanka",
+      "network_access": 97.0,
+      "num_living_languages": 7,
+      "income_group": "Lower-middle-income",
+      "label": "Sri Lanka",
+      "annotate": false
+    },
+    {
+      "country": "Suriname",
+      "network_access": 82.59,
+      "num_living_languages": 22,
+      "income_group": "Upper-middle-income",
+      "label": "Suriname",
+      "annotate": false
+    },
+    {
+      "country": "Sweden",
+      "network_access": 100.0,
+      "num_living_languages": 18,
+      "income_group": "High-income",
+      "label": "Sweden",
+      "annotate": false
+    },
+    {
+      "country": "Switzerland",
+      "network_access": 100.0,
+      "num_living_languages": 13,
+      "income_group": "High-income",
+      "label": "Switzerland",
+      "annotate": false
+    },
+    {
+      "country": "Syria",
+      "network_access": 76.3,
+      "num_living_languages": 17,
+      "income_group": "Low-income",
+      "label": "Syria",
+      "annotate": false
+    },
+    {
+      "country": "Tanzania",
+      "network_access": 79.0,
+      "num_living_languages": 127,
+      "income_group": "Lower-middle-income",
+      "label": "Tanzania",
+      "annotate": false
+    },
+    {
+      "country": "Thailand",
+      "network_access": 99.0,
+      "num_living_languages": 78,
+      "income_group": "Upper-middle-income",
+      "label": "Thailand",
+      "annotate": false
+    },
+    {
+      "country": "Togo",
+      "network_access": 99.7,
+      "num_living_languages": 44,
+      "income_group": "Low-income",
+      "label": "Togo",
+      "annotate": false
+    },
+    {
+      "country": "Trinidad and Tobago",
+      "network_access": 94.0,
+      "num_living_languages": 7,
+      "income_group": "High-income",
+      "label": "Trinidad and Tobago",
+      "annotate": false
+    },
+    {
+      "country": "Tunisia",
+      "network_access": 96.0,
+      "num_living_languages": 6,
+      "income_group": "Lower-middle-income",
+      "label": "Tunisia",
+      "annotate": false
+    },
+    {
+      "country": "Turkey",
+      "network_access": 99.72,
+      "num_living_languages": 44,
+      "income_group": "Upper-middle-income",
+      "label": "Turkey",
+      "annotate": false
+    },
+    {
+      "country": "Uganda",
+      "network_access": 40.0,
+      "num_living_languages": 44,
+      "income_group": "Low-income",
+      "label": "Uganda",
+      "annotate": false
+    },
+    {
+      "country": "Ukraine",
+      "network_access": 91.0,
+      "num_living_languages": 23,
+      "income_group": "Upper-middle-income",
+      "label": "Ukraine",
+      "annotate": false
+    },
+    {
+      "country": "United Arab Emirates",
+      "network_access": 100.0,
+      "num_living_languages": 11,
+      "income_group": "High-income",
+      "label": "United Arab Emirates",
+      "annotate": false
+    },
+    {
+      "country": "United Kingdom",
+      "network_access": 99.9,
+      "num_living_languages": 18,
+      "income_group": "High-income",
+      "label": "United Kingdom",
+      "annotate": false
+    },
+    {
+      "country": "United States",
+      "network_access": 99.6,
+      "num_living_languages": 239,
+      "income_group": "High-income",
+      "label": "USA",
+      "annotate": true
+    },
+    {
+      "country": "Uruguay",
+      "network_access": 93.9,
+      "num_living_languages": 6,
+      "income_group": "High-income",
+      "label": "Uruguay",
+      "annotate": false
+    },
+    {
+      "country": "Uzbekistan",
+      "network_access": 92.0,
+      "num_living_languages": 13,
+      "income_group": "Lower-middle-income",
+      "label": "Uzbekistan",
+      "annotate": false
+    },
+    {
+      "country": "Vanuatu",
+      "network_access": 90.0,
+      "num_living_languages": 107,
+      "income_group": "Lower-middle-income",
+      "label": "Vanuatu",
+      "annotate": false
+    },
+    {
+      "country": "Venezuela",
+      "network_access": 70.0,
+      "num_living_languages": 44,
+      "income_group": "Upper-middle-income",
+      "label": "Venezuela",
+      "annotate": false
+    },
+    {
+      "country": "Vietnam",
+      "network_access": 99.85,
+      "num_living_languages": 111,
+      "income_group": "Lower-middle-income",
+      "label": "Vietnam",
+      "annotate": false
+    },
+    {
+      "country": "Yemen",
+      "network_access": 56.7,
+      "num_living_languages": 13,
+      "income_group": "Low-income",
+      "label": "Yemen",
+      "annotate": false
+    },
+    {
+      "country": "Zambia",
+      "network_access": 91.2,
+      "num_living_languages": 47,
+      "income_group": "Lower-middle-income",
+      "label": "Zambia",
+      "annotate": false
+    },
+    {
+      "country": "Zimbabwe",
+      "network_access": 44.7,
+      "num_living_languages": 23,
+      "income_group": "Lower-middle-income",
+      "label": "Zimbabwe",
+      "annotate": false
+    }
+  ]
+}

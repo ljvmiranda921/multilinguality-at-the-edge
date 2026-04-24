@@ -1,5 +1,7 @@
 """Plot the relationship between infrastructure access and linguistic diversity per country."""
 
+import argparse
+import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -9,6 +11,7 @@ from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
+WEB_DATA_DIR = ROOT / "docs" / "assets" / "data"
 
 plt.rcParams.update(PLOT_PARAMS)
 
@@ -26,7 +29,47 @@ INCOME_ORDER = [
 ]
 
 
-def main():
+ANNOTATE_COUNTRIES = {
+    "Papua New Guinea",
+    "Nigeria",
+    "Indonesia",
+    "India",
+    "China",
+    "Cameroon",
+    "Chad",
+    "Democratic Republic of Congo",
+    "Ethiopia",
+    "United States",
+    "Burundi",
+    "Iceland",
+}
+
+LABEL_OVERRIDES = {
+    "Democratic Republic of Congo": "DR Congo",
+    "United States": "USA",
+}
+
+
+def export_web(df: pd.DataFrame, name: str) -> None:
+    df = df.copy()
+    df["income_group"] = df["income_group"].str.replace(" countries", "", regex=False)
+    df["label"] = df["country"].map(LABEL_OVERRIDES).fillna(df["country"])
+    df["annotate"] = df["country"].isin(ANNOTATE_COUNTRIES)
+
+    keep = [
+        "country", "label", "internet_users", "network_access",
+        "num_living_languages", "income_group", "annotate",
+    ]
+    records = df[[c for c in keep if c in df.columns]].to_dict(orient="records")
+
+    WEB_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    out = WEB_DATA_DIR / f"{name}.json"
+    with out.open("w") as f:
+        json.dump({"data": records}, f, indent=2)
+    print(f"Exported {len(records)} rows to {out}")
+
+
+def main(export_to_web: bool = False):
     income_df = pd.read_csv(
         "https://ourworldindata.org/grapher/world-bank-income-groups.csv?v=1&csvType=full&useColumnShortNames=true",
         storage_options={"User-Agent": "Our World In Data data fetch/1.0"},
@@ -90,6 +133,9 @@ def main():
     fig.savefig(OUTPUT_DIR / "infra_lingdiv_network.pdf", bbox_inches="tight")
     plt.close(fig)
     print("Saved to outputs/infra_lingdiv_network.pdf")
+
+    if export_to_web:
+        export_web(df_net, "infra_lingdiv_network")
 
     # ICT Adoption
     df_ict = ict_2023.merge(language_df, on="country").merge(
@@ -159,6 +205,16 @@ def main():
     plt.close(fig)
     print("Saved to outputs/infra_lingdiv_ict.pdf")
 
+    if export_to_web:
+        export_web(df_ict, "infra_lingdiv_ict")
+
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--export_to_web",
+        action="store_true",
+        help="Also export the merged data as JSON under docs/assets/data/.",
+    )
+    args = parser.parse_args()
+    main(export_to_web=args.export_to_web)
