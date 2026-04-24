@@ -17,14 +17,20 @@ const ROWS = 48;
 const STAGE_XS = [-0.8, -0.4, 0.0, 0.4, 0.8];
 const PARTICLES_PER_STAGE_PER_SIDE = 4;
 
-// Each particle starts on the top (y ≈ +1) or bottom (y ≈ -1) edge
-// at a random x, and flows to (stage_x, 0) over its lifetime. The
-// collection is arranged so each stage gets the same number of
-// particles from each side — even coverage of "force into stages."
+// Each particle is assigned to a stage and stays within that stage's
+// column for its entire lifetime. The particle's x position at any
+// height is (stage_x + aNormOffset * columnWidth(y)), where
+// columnWidth(y) is the same hourglass profile used by the mesh. So
+// as the column narrows toward the waist, the particle narrows with
+// it and never crosses the whitespace into a neighbouring column.
 function buildParticlesGeometry() {
   const total = STAGE_XS.length * PARTICLES_PER_STAGE_PER_SIDE * 2;
+  // three.js requires a position attribute — unused here, we compute
+  // everything from the other attributes in the vertex shader.
   const position     = new Float32Array(total * 3);
-  const aTarget      = new Float32Array(total);
+  const aStageX      = new Float32Array(total);
+  const aNormOffset  = new Float32Array(total); // [-0.85, 0.85] within column
+  const aStartY      = new Float32Array(total);
   const aSpawnOffset = new Float32Array(total);
   const aSpeed       = new Float32Array(total);
 
@@ -34,18 +40,11 @@ function buildParticlesGeometry() {
     for (let side = 0; side < 2; side++) {
       const dir = side === 0 ? 1 : -1; // +1 top, -1 bottom
       for (let k = 0; k < PARTICLES_PER_STAGE_PER_SIDE; k++) {
-        // Random starting x within a neighbourhood of the stage so
-        // the flow lines bend visibly inward.
-        const jitter = (Math.random() - 0.5) * 0.55;
-        const startX = Math.max(-0.98, Math.min(0.98, sx + jitter));
-        const startY = dir * (0.82 + Math.random() * 0.16);
-
-        position[i * 3 + 0] = startX;
-        position[i * 3 + 1] = startY;
-        position[i * 3 + 2] = 0;
-        aTarget[i]          = sx;
-        aSpawnOffset[i]     = Math.random() * 3.0;
-        aSpeed[i]           = 0.28 + Math.random() * 0.22; // 0.28–0.5 cycles/s
+        aStageX[i]      = sx;
+        aNormOffset[i]  = (Math.random() - 0.5) * 1.7;  // ≈ [-0.85, 0.85]
+        aStartY[i]      = dir * (0.82 + Math.random() * 0.16);
+        aSpawnOffset[i] = Math.random() * 3.0;
+        aSpeed[i]       = 0.28 + Math.random() * 0.22;
         i++;
       }
     }
@@ -53,40 +52,51 @@ function buildParticlesGeometry() {
 
   const geo = new THREE.BufferGeometry();
   geo.setAttribute('position',     new THREE.BufferAttribute(position, 3));
-  geo.setAttribute('aTarget',      new THREE.BufferAttribute(aTarget, 1));
+  geo.setAttribute('aStageX',      new THREE.BufferAttribute(aStageX, 1));
+  geo.setAttribute('aNormOffset',  new THREE.BufferAttribute(aNormOffset, 1));
+  geo.setAttribute('aStartY',      new THREE.BufferAttribute(aStartY, 1));
   geo.setAttribute('aSpawnOffset', new THREE.BufferAttribute(aSpawnOffset, 1));
   geo.setAttribute('aSpeed',       new THREE.BufferAttribute(aSpeed, 1));
   return geo;
 }
 
 const PARTICLE_VERT = `
-  attribute float aTarget;
+  attribute float aStageX;
+  attribute float aNormOffset;
+  attribute float aStartY;
   attribute float aSpawnOffset;
   attribute float aSpeed;
   uniform float   uTime;
   uniform float   uPointSize;
+  uniform float   uNarrow;      // must match the mesh material
+  uniform float   uWide;
   varying float   vAlpha;
   varying float   vTop;
 
   void main() {
-    float startX = position.x;
-    float startY = position.y;
-
     // Normalised lifetime progress in [0, 1], looping.
     float t = fract((uTime + aSpawnOffset) * aSpeed);
 
-    vec2 start  = vec2(startX, startY);
-    vec2 target = vec2(aTarget, 0.0);
-    vec2 p      = mix(start, target, smoothstep(0.0, 1.0, t));
+    // y descends from |aStartY| toward 0 along the same easing used
+    // by the mesh pinch.
+    float curY = mix(aStartY, 0.0, smoothstep(0.0, 1.0, t));
 
-    // Fade in at spawn, hold, fade out just before the waist so
-    // particles don't pile up on top of the strip.
+    // Hourglass width at the particle's current height — identical
+    // profile to the mesh so particles stay inside the visible grid.
+    float yF    = smoothstep(0.0, 1.0, abs(curY));
+    float width = mix(uNarrow, uWide, yF);
+
+    // x is offset from the stage centre by a fixed fraction of the
+    // column width, so the particle follows the column's taper.
+    float curX = aStageX + aNormOffset * width;
+
+    // Fade in at spawn, fade out just before the waist.
     float fadeIn  = smoothstep(0.0, 0.12, t);
-    float fadeOut = smoothstep(1.0, 0.75, t);
+    float fadeOut = smoothstep(1.0, 0.78, t);
     vAlpha = fadeIn * fadeOut;
-    vTop   = startY > 0.0 ? 1.0 : 0.0;
+    vTop   = aStartY > 0.0 ? 1.0 : 0.0;
 
-    gl_Position  = projectionMatrix * modelViewMatrix * vec4(p, 0.0, 1.0);
+    gl_Position  = projectionMatrix * modelViewMatrix * vec4(curX, curY, 0.0, 1.0);
     gl_PointSize = uPointSize;
   }
 `;
@@ -295,6 +305,8 @@ function mountPipelineMesh(container) {
       uTime:       material.uniforms.uTime,
       uAccentCool: material.uniforms.uAccentCool,
       uAccentWarm: material.uniforms.uAccentWarm,
+      uNarrow:     material.uniforms.uNarrow, // share with mesh
+      uWide:       material.uniforms.uWide,
       uOpacity:    { value: 0.9 },
       uPointSize:  { value: 4.0 },
     },
