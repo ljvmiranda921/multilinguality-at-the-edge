@@ -100,7 +100,8 @@ const VERT = `
 
 const FRAG = `
   uniform vec3  uInk;
-  uniform vec3  uAccent;
+  uniform vec3  uAccentCool;   // Edge — blue, top half
+  uniform vec3  uAccentWarm;   // Multilinguality — terracotta, bottom half
   uniform float uOpacity;
   uniform float uTime;
   varying float vMass;
@@ -108,24 +109,34 @@ const FRAG = `
   varying float vY;
 
   void main() {
-    // Colour: ink at the wide ends, blue at the waist. Smoothstep
-    // sharpens the transition so the blue reads as a distinct
-    // collision band rather than a soft gradient.
+    // Top/bottom tint selection — top half skews blue, bottom half
+    // skews terracotta, blended smoothly across the waist.
+    float topWeight = smoothstep(-0.15, 0.15, vY);
+    // Subtle ambient tint throughout (0.22) that strengthens at the
+    // waist (up to ~0.85) for the collision emphasis.
     float midEmph = smoothstep(0.45, 1.0, vMid);
-    vec3  col     = mix(uInk, uAccent, midEmph * 0.85);
+    float tintAmt = 0.22 + midEmph * 0.65;
+
+    vec3 topCol = mix(uInk, uAccentCool, tintAmt);
+    vec3 botCol = mix(uInk, uAccentWarm, tintAmt);
+    vec3 col    = mix(botCol, topCol, topWeight);
 
     // Flow bands: bright crests travel FROM the edges TOWARD the
     // middle, selling "force flowing into the pipeline stages."
-    // |vY| grows toward the edges; adding uTime shifts the pattern
-    // so a crest is at decreasing |vY| over time.
     float flowPhase = abs(vY) * 7.0 + uTime * 1.6;
     float flow      = 0.5 + 0.5 * sin(flowPhase);
+
+    // Base boost: the top and bottom edges of the mesh (where it
+    // meets the requirement bands) get extra opacity so the "force
+    // origin" reads clearly.
+    float baseBoost = smoothstep(0.55, 1.0, abs(vY));
 
     float waistPulse = 0.78 + 0.22 * sin(uTime * 1.1);
     float a = uOpacity
             * vMass
             * (0.35 + flow * 0.7)
             * (0.7 + midEmph * waistPulse * 0.55);
+    a *= 1.0 + baseBoost * 0.9;
 
     gl_FragColor = vec4(col, a);
   }
@@ -165,12 +176,13 @@ function mountPipelineMesh(container) {
   const geometry = buildGridGeometry();
   const material = new THREE.ShaderMaterial({
     uniforms: {
-      uTime:    { value: 0 },
-      uInk:     { value: new THREE.Color(0x35302e) }, // --ink
-      uAccent:  { value: new THREE.Color(0x254eff) }, // --blue
-      uOpacity: { value: 0.55 },
-      uNarrow:  { value: 0.03 }, // waist half-width (pipeline centre)
-      uWide:    { value: 0.16 }, // edge half-width (top + bottom)
+      uTime:        { value: 0 },
+      uInk:         { value: new THREE.Color(0x35302e) }, // --ink
+      uAccentCool:  { value: new THREE.Color(0x254eff) }, // blue (Edge)
+      uAccentWarm:  { value: new THREE.Color(0xc96a2e) }, // terracotta (Multilinguality)
+      uOpacity:     { value: 0.55 },
+      uNarrow:      { value: 0.03 }, // waist half-width
+      uWide:        { value: 0.16 }, // edge half-width
     },
     vertexShader:   VERT,
     fragmentShader: FRAG,

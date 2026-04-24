@@ -357,8 +357,8 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
    canvas sits behind the stack (see pipeline-mesh.js). */
 #pipeline-figure {
   position: relative;
-  min-height: 240px;
-  padding: 1.5rem 0;
+  min-height: 300px;
+  padding: 2rem 0;
 }
 .pipeline-mesh-canvas {
   position: absolute;
@@ -375,7 +375,7 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2.5rem;
   width: 100%;
 }
 
@@ -403,10 +403,8 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
 .pipeline-reqs {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   gap: 0.5rem;
-  width: 100%;
-  padding: 0 1.5rem;
 }
 .pipeline-req {
   font-family: var(--font-body);
