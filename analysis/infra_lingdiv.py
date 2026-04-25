@@ -57,8 +57,13 @@ def export_web(df: pd.DataFrame, name: str) -> None:
     df["annotate"] = df["country"].isin(ANNOTATE_COUNTRIES)
 
     keep = [
-        "country", "label", "internet_users", "network_access",
-        "num_living_languages", "income_group", "annotate",
+        "country",
+        "label",
+        "internet_users",
+        "network_access",
+        "num_living_languages",
+        "income_group",
+        "annotate",
     ]
     records = df[[c for c in keep if c in df.columns]].to_dict(orient="records")
 

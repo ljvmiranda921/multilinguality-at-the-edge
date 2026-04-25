@@ -105,20 +105,20 @@ WEB_FOCUS_STYLE = {
     "Efficiency": {
         "facecolor": WEB_COLORS["accent_pale"],
         "edgecolor": WEB_COLORS["accent"],
-        "hatch":     "//",
-        "label":     "Edge",
+        "hatch": "//",
+        "label": "Edge",
     },
     "Multilinguality": {
         "facecolor": WEB_COLORS["warm_pale"],
         "edgecolor": WEB_COLORS["warm"],
-        "hatch":     "\\\\",
-        "label":     "Multilinguality",
+        "hatch": "\\\\",
+        "label": "Multilinguality",
     },
     "Both": {
         "facecolor": WEB_COLORS["cool_pale"],
         "edgecolor": WEB_COLORS["cool"],
-        "hatch":     "..",
-        "label":     "Both",
+        "hatch": "..",
+        "label": "Both",
     },
 }
 
@@ -132,27 +132,46 @@ def _plot_paper(counts, outpath):
         style = PAPER_FOCUS_STYLE[focus]
         vals = counts[focus].values
         ax.bar(
-            x, vals, bottom=bottom, label=style["label"],
-            color=style["facecolor"], edgecolor=style["edgecolor"],
-            hatch=style["hatch"], linewidth=1.0, width=0.6,
+            x,
+            vals,
+            bottom=bottom,
+            label=style["label"],
+            color=style["facecolor"],
+            edgecolor=style["edgecolor"],
+            hatch=style["hatch"],
+            linewidth=1.0,
+            width=0.6,
         )
         for i, (v, b) in enumerate(zip(vals, bottom)):
             if v >= 3:
-                ax.text(x[i], b + v / 2, str(v), ha="center", va="center",
-                        fontsize=18, fontweight="bold")
+                ax.text(
+                    x[i],
+                    b + v / 2,
+                    str(v),
+                    ha="center",
+                    va="center",
+                    fontsize=18,
+                    fontweight="bold",
+                )
         bottom += vals
 
     for i, b in enumerate(LANG_BINS):
         total_val = counts.loc[b].sum()
-        ax.text(x[i], total_val + 0.8, str(int(total_val)),
-                ha="center", va="bottom", fontsize=16, color=COLORS["slate_3"])
+        ax.text(
+            x[i],
+            total_val + 0.8,
+            str(int(total_val)),
+            ha="center",
+            va="bottom",
+            fontsize=16,
+            color=COLORS["slate_3"],
+        )
 
     ax.set_xlabel("Number of languages")
     ax.set_ylabel("Number of papers")
     ax.set_xticks(x)
     ax.set_xticklabels(LANG_BINS)
-    ax.legend(frameon=False, loc="upper center",
-              bbox_to_anchor=(0.5, -0.18), ncol=3)
+    ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.18), ncol=3)
     ax.grid(False)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -171,29 +190,49 @@ def _plot_web(counts, outpath):
             style = WEB_FOCUS_STYLE[focus]
             vals = counts[focus].values
             ax.bar(
-                x, vals, bottom=bottom, label=style["label"],
-                facecolor=style["facecolor"], edgecolor=style["edgecolor"],
-                hatch=style["hatch"], linewidth=1.2, width=0.62,
+                x,
+                vals,
+                bottom=bottom,
+                label=style["label"],
+                facecolor=style["facecolor"],
+                edgecolor=style["edgecolor"],
+                hatch=style["hatch"],
+                linewidth=1.2,
+                width=0.62,
             )
             for i, (v, b) in enumerate(zip(vals, bottom)):
                 if v >= 3:
-                    ax.text(x[i], b + v / 2, str(v), ha="center", va="center",
-                            fontsize=12, fontweight="bold",
-                            color=style["edgecolor"])
+                    ax.text(
+                        x[i],
+                        b + v / 2,
+                        str(v),
+                        ha="center",
+                        va="center",
+                        fontsize=12,
+                        fontweight="bold",
+                        color=style["edgecolor"],
+                    )
             bottom += vals
 
         for i, b in enumerate(LANG_BINS):
             total_val = counts.loc[b].sum()
-            ax.text(x[i], total_val + 0.8, str(int(total_val)),
-                    ha="center", va="bottom", fontsize=11,
-                    color=WEB_COLORS["muted"])
+            ax.text(
+                x[i],
+                total_val + 0.8,
+                str(int(total_val)),
+                ha="center",
+                va="bottom",
+                fontsize=11,
+                color=WEB_COLORS["muted"],
+            )
 
         ax.set_xlabel("Number of languages", fontdict=WEB_TITLE_FONT)
         ax.set_ylabel("Number of papers", fontdict=WEB_TITLE_FONT)
         ax.set_xticks(x)
         ax.set_xticklabels(LANG_BINS)
-        ax.legend(frameon=False, loc="upper center",
-                  bbox_to_anchor=(0.5, -0.16), ncol=3)
+        ax.legend(
+            frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.16), ncol=3
+        )
         ax.grid(False)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
@@ -245,7 +284,10 @@ def main(export_to_web: bool = False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--export_to_web", action="store_true",
-                        help="Also export an SVG to docs/assets/figures/.")
+    parser.add_argument(
+        "--export_to_web",
+        action="store_true",
+        help="Also export an SVG to docs/assets/figures/.",
+    )
     args = parser.parse_args()
     main(export_to_web=args.export_to_web)

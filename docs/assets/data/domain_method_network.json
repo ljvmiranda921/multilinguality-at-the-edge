@@ -1,0 +1,494 @@
+{
+  "domains": [
+    {
+      "id": "Agriculture",
+      "label": "Agri\nculture",
+      "x": 2.755455298081545e-16,
+      "y": -4.5,
+      "color": "#C96A2E",
+      "samples": [
+        {
+          "title": "Leveraging Synthetic Data for Question Answering with Multilingual LLMs in the Agricultural Domain",
+          "url": "https://arxiv.org/abs/2507.16974",
+          "year": 2025
+        },
+        {
+          "title": "Farm-LightSeek: An Edge-centric Multimodal Agricultural IoT Data Analytics Framework with Lightweight LLMs",
+          "url": "https://arxiv.org/abs/2506.03168",
+          "year": 2025
+        }
+      ]
+    },
+    {
+      "id": "Climate",
+      "label": "Climate",
+      "x": 3.518241671106134,
+      "y": -2.8057041083643006,
+      "color": "#7B93B8",
+      "samples": [
+        {
+          "title": "Climate-Eval: A Comprehensive Benchmark for NLP Tasks Related to Climate Change",
+          "url": "https://arxiv.org/abs/2505.18653",
+          "year": 2025
+        },
+        {
+          "title": "Analyzing Regional Impacts of Climate Change using Natural Language Processing Techniques",
+          "url": "https://arxiv.org/abs/2401.06817",
+          "year": 2024
+        }
+      ]
+    },
+    {
+      "id": "Finance",
+      "label": "Finance",
+      "x": 4.387175604818206,
+      "y": 1.0013442028034147,
+      "color": "#254EFF",
+      "samples": [
+        {
+          "title": "Multilingual Financial Fraud Detection Using Machine Learning and Transformer Models",
+          "url": "https://arxiv.org/abs/2603.11358",
+          "year": 2026
+        },
+        {
+          "title": "Multilingual Conversational AI for Financial Assistance: Bridging Language Barriers in Indian FinTech",
+          "url": "https://arxiv.org/abs/2512.01439",
+          "year": 2025
+        }
+      ]
+    },
+    {
+      "id": "Healthcare",
+      "label": "Health\ncare",
+      "x": 1.9524768260290117,
+      "y": 4.0543599055608865,
+      "color": "#E39A5F",
+      "samples": [
+        {
+          "title": "Large Language Models for Frontline Healthcare Support in Low-Resource Settings",
+          "url": "https://www.nature.com/articles/s44360-025-00038-1",
+          "year": 2025
+        },
+        {
+          "title": "Efficiently Democratizing Medical LLMs for 50 Languages via a Mixture of Language Family Experts",
+          "url": "https://arxiv.org/abs/2410.10626",
+          "year": 2024
+        }
+      ]
+    },
+    {
+      "id": "Legal",
+      "label": "Legal",
+      "x": -1.9524768260290113,
+      "y": 4.0543599055608865,
+      "color": "#6b6358",
+      "samples": [
+        {
+          "title": "Low-Resource Court Judgment Summarization for Common Law Systems",
+          "url": "https://arxiv.org/abs/2403.04454",
+          "year": 2024
+        },
+        {
+          "title": "Unlocking Legal Knowledge: A Multilingual Dataset for Judicial Summarization in Switzerland",
+          "url": "https://arxiv.org/abs/2410.13456",
+          "year": 2024
+        }
+      ]
+    },
+    {
+      "id": "Social",
+      "label": "Social",
+      "x": -4.387175604818206,
+      "y": 1.0013442028034152,
+      "color": "#254EFF",
+      "samples": [
+        {
+          "title": "A Lightweight LLM Framework for Disaster Humanitarian Information Classification",
+          "url": "https://arxiv.org/abs/2602.12284",
+          "year": 2026
+        },
+        {
+          "title": "Data-Efficient Hate Speech Detection via Cross-Lingual Nearest Neighbor Retrieval",
+          "url": "https://arxiv.org/abs/2505.14272",
+          "year": 2025
+        }
+      ]
+    },
+    {
+      "id": "Speech",
+      "label": "Speech",
+      "x": -3.518241671106135,
+      "y": -2.8057041083643,
+      "color": "#7B93B8",
+      "samples": [
+        {
+          "title": "WhisperKit: On-device Real-time ASR with Billion-Scale Transformers",
+          "url": "https://arxiv.org/abs/2507.10860",
+          "year": 2025
+        },
+        {
+          "title": "Quantization for OpenAI Whisper Models: A Comparative Analysis",
+          "url": "https://arxiv.org/abs/2503.09905",
+          "year": 2025
+        }
+      ]
+    }
+  ],
+  "techniques": [
+    {
+      "id": "Benchmarking",
+      "x": 0.34368995078607456,
+      "y": 0.3431256747002023,
+      "degree": 4,
+      "size": 1160,
+      "label_x": 0.8249174435088849,
+      "label_y": 0.8235630798298588,
+      "label_anchor": "start",
+      "color": "#555353"
+    },
+    {
+      "id": "LoRA/\nQLoRA",
+      "x": 0.7246177421211114,
+      "y": -0.8670639087835024,
+      "degree": 3,
+      "size": 950,
+      "label_x": 1.1606759006443972,
+      "label_y": -1.388842868099879,
+      "label_anchor": "start",
+      "color": "#757578"
+    },
+    {
+      "id": "Federated\nLearning",
+      "x": -2.7395108837493733,
+      "y": 0.5564461163636952,
+      "degree": 1,
+      "size": 530,
+      "label_x": -3.405903069263257,
+      "label_y": 0.6918028859987231,
+      "label_anchor": "end",
+      "color": "#b6bbc2"
+    },
+    {
+      "id": "Synthetic\nData",
+      "x": -1.925037081151792,
+      "y": -0.32487202395530107,
+      "degree": 4,
+      "size": 1160,
+      "label_x": -2.5955557869808468,
+      "label_y": -0.4380297242382691,
+      "label_anchor": "end",
+      "color": "#555353"
+    },
+    {
+      "id": "Dialogue\nSystems",
+      "x": 1.9623330568156778,
+      "y": -0.6782427318070229,
+      "degree": 3,
+      "size": 950,
+      "label_x": 2.6050274296091573,
+      "label_y": -0.900377697941569,
+      "label_anchor": "start",
+      "color": "#757578"
+    },
+    {
+      "id": "ASR",
+      "x": -1.8509747755713013,
+      "y": -2.266640888750534,
+      "degree": 1,
+      "size": 530,
+      "label_x": -2.281082213302756,
+      "label_y": -2.7933358593056767,
+      "label_anchor": "end",
+      "color": "#b6bbc2"
+    },
+    {
+      "id": "Mixtures-of-Experts",
+      "x": 1.361316683477595,
+      "y": 2.2794389413374425,
+      "degree": 1,
+      "size": 530,
+      "label_x": 1.7099778302816495,
+      "label_y": 2.8632500449568252,
+      "label_anchor": "start",
+      "color": "#b6bbc2"
+    },
+    {
+      "id": "Data\nCuration",
+      "x": -1.3724952822943681,
+      "y": 0.7403498123376854,
+      "degree": 5,
+      "size": 1370,
+      "label_x": -1.9709763081144676,
+      "label_y": 1.0631817527235794,
+      "label_anchor": "end",
+      "color": "#35302d"
+    },
+    {
+      "id": "Distillation",
+      "x": 1.976738646936142,
+      "y": -1.8781562615970995,
+      "degree": 1,
+      "size": 530,
+      "label_x": 2.4697065623244985,
+      "label_y": -2.346539261286092,
+      "label_anchor": "start",
+      "color": "#b6bbc2"
+    },
+    {
+      "id": "Machine\nTranslation",
+      "x": -1.6477603632718627,
+      "y": 1.9083520106209133,
+      "degree": 2,
+      "size": 740,
+      "label_x": -2.092165977098163,
+      "label_y": 2.4230399261577653,
+      "label_anchor": "end",
+      "color": "#95989d"
+    },
+    {
+      "id": "Quantization",
+      "x": -1.184236385860133,
+      "y": -1.268913511314514,
+      "degree": 3,
+      "size": 950,
+      "label_x": -1.6481954397688172,
+      "label_y": -1.7660472923998056,
+      "label_anchor": "end",
+      "color": "#757578"
+    },
+    {
+      "id": "Supervised\nFine-tuning",
+      "x": -0.3543159333007646,
+      "y": 1.3754173782572192,
+      "degree": 4,
+      "size": 1160,
+      "label_x": -0.5239499630803601,
+      "label_y": 2.033918931741139,
+      "label_anchor": "end",
+      "color": "#555353"
+    },
+    {
+      "id": "Continual\nPretraining",
+      "x": 2.4114770655775803,
+      "y": 0.434532923656956,
+      "degree": 2,
+      "size": 740,
+      "label_x": 3.0806991157546313,
+      "label_y": 0.5551225067760001,
+      "label_anchor": "start",
+      "color": "#95989d"
+    }
+  ],
+  "edges": [
+    {
+      "domain": "Healthcare",
+      "technique": "Supervised\nFine-tuning",
+      "weight": 2,
+      "color": "#E39A5F"
+    },
+    {
+      "domain": "Healthcare",
+      "technique": "Machine\nTranslation",
+      "weight": 1,
+      "color": "#E39A5F"
+    },
+    {
+      "domain": "Healthcare",
+      "technique": "Mixtures-of-Experts",
+      "weight": 1,
+      "color": "#E39A5F"
+    },
+    {
+      "domain": "Healthcare",
+      "technique": "Quantization",
+      "weight": 1,
+      "color": "#E39A5F"
+    },
+    {
+      "domain": "Healthcare",
+      "technique": "Continual\nPretraining",
+      "weight": 1,
+      "color": "#E39A5F"
+    },
+    {
+      "domain": "Healthcare",
+      "technique": "Benchmarking",
+      "weight": 4,
+      "color": "#E39A5F"
+    },
+    {
+      "domain": "Healthcare",
+      "technique": "Data\nCuration",
+      "weight": 1,
+      "color": "#E39A5F"
+    },
+    {
+      "domain": "Healthcare",
+      "technique": "Dialogue\nSystems",
+      "weight": 1,
+      "color": "#E39A5F"
+    },
+    {
+      "domain": "Social",
+      "technique": "LoRA/\nQLoRA",
+      "weight": 3,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Social",
+      "technique": "Supervised\nFine-tuning",
+      "weight": 3,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Social",
+      "technique": "Machine\nTranslation",
+      "weight": 3,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Social",
+      "technique": "Data\nCuration",
+      "weight": 5,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Social",
+      "technique": "Synthetic\nData",
+      "weight": 2,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Social",
+      "technique": "Benchmarking",
+      "weight": 2,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Speech",
+      "technique": "Quantization",
+      "weight": 2,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Speech",
+      "technique": "ASR",
+      "weight": 5,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Speech",
+      "technique": "Benchmarking",
+      "weight": 2,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Speech",
+      "technique": "Synthetic\nData",
+      "weight": 1,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Speech",
+      "technique": "Data\nCuration",
+      "weight": 1,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Social",
+      "technique": "Federated\nLearning",
+      "weight": 1,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Finance",
+      "technique": "Dialogue\nSystems",
+      "weight": 1,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Finance",
+      "technique": "Data\nCuration",
+      "weight": 1,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Finance",
+      "technique": "LoRA/\nQLoRA",
+      "weight": 2,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Agriculture",
+      "technique": "Dialogue\nSystems",
+      "weight": 1,
+      "color": "#C96A2E"
+    },
+    {
+      "domain": "Agriculture",
+      "technique": "Supervised\nFine-tuning",
+      "weight": 1,
+      "color": "#C96A2E"
+    },
+    {
+      "domain": "Agriculture",
+      "technique": "Synthetic\nData",
+      "weight": 1,
+      "color": "#C96A2E"
+    },
+    {
+      "domain": "Social",
+      "technique": "Quantization",
+      "weight": 1,
+      "color": "#254EFF"
+    },
+    {
+      "domain": "Climate",
+      "technique": "Distillation",
+      "weight": 1,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Climate",
+      "technique": "Continual\nPretraining",
+      "weight": 1,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Climate",
+      "technique": "LoRA/\nQLoRA",
+      "weight": 1,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Climate",
+      "technique": "Benchmarking",
+      "weight": 1,
+      "color": "#7B93B8"
+    },
+    {
+      "domain": "Legal",
+      "technique": "Data\nCuration",
+      "weight": 1,
+      "color": "#6b6358"
+    },
+    {
+      "domain": "Legal",
+      "technique": "Supervised\nFine-tuning",
+      "weight": 1,
+      "color": "#6b6358"
+    },
+    {
+      "domain": "Legal",
+      "technique": "Synthetic\nData",
+      "weight": 1,
+      "color": "#6b6358"
+    }
+  ],
+  "bounds": {
+    "x_min": -4.387175604818206,
+    "x_max": 4.387175604818206,
+    "y_min": -4.5,
+    "y_max": 4.0543599055608865
+  }
+}

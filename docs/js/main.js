@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Chart mounts (#fig-how, #fig-who, #fig-where) stay as placeholders
-  // until wired to Plotly/cytoscape in a follow-up.
+  // Figure scripts wire interactive analysis mounts independently.
 
   // Copy-to-clipboard buttons. A button with data-copy-target="#id"
   // copies the target element's textContent to the clipboard and

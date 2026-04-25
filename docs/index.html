@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Multilinguality at the Edge</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -20,7 +24,7 @@
     <p class="subtitle">Developing Language Models for the Global South</p>
     <p class="authors"><a href="https://ljvmiranda921.github.io">Lester James V. Miranda</a>, <a href="https://songbohu.github.io/">Songbo Hu</a>, <a href="https://roireichart.com/">Roi Reichart</a>, <a href="https://sites.google.com/site/annakorhonen/">Anna Korhonen</a></p>
     <nav class="top-links">
-      <a href="https://github.com/ljvmiranda921/multilinguality-at-the-edge">code</a> &middot; <a href="#">paper</a>
+      <a href="https://github.com/ljvmiranda921/multilinguality-at-the-edge">code</a> &middot; <a href="https://arxiv.org/abs/2604.21637">paper</a>
     </nav>
   </header>
 
@@ -85,6 +89,10 @@
   <section id="analysis">
     <h2>Analysis</h2>
 
+    <p>
+      We also looked into <strong>edge LM systems</strong>, which we define as completed efforts that have been integrated into real-world applications. To identify them, we manually classified each of the 232 papers on whether an actual model deployment took place, obtaining 36 systems in the process.
+    </p>
+
     <div class="tabs" role="tablist" aria-label="Analysis subsections">
       <button type="button" class="tab is-active" role="tab" data-tab="how" aria-selected="true">How are edge LMs developed?</button>
       <button type="button" class="tab" role="tab" data-tab="who" aria-selected="false">Who develops edge LMs?</button>
@@ -93,24 +101,43 @@
 
     <div class="tab-panels">
       <div class="tab-panel is-active" role="tabpanel" data-panel="how">
-        <p class="placeholder-text">TODO &mdash; short intro paragraph.</p>
-        <div id="fig-how" class="pixel-frame chart-mount">
-          <p class="placeholder">[ chart loads here ]</p>
-        </div>
+        <p>
+          To examine how edge LM systems are made, we situate the 36 deployment papers within the broader 232 surveyed papers. We embed each abstract with MiniLM, reduce to 2D with UMAP, and cluster with HDBSCAN; KeyBERT extracts the top keywords per cluster. Hover any cluster to see representative papers.
+        </p>
+        <figure class="analysis-figure">
+          <div id="fig-how" class="figure-mount">
+            <p class="placeholder">[ chart loads here ]</p>
+          </div>
+          <figcaption><strong>Figure 3. Clustering of the 232 surveyed papers by abstract similarity.</strong> Real-world deployments (&starf;) tend to concentrate near a few clusters such as <em>model compression</em> and <em>dialog datasets</em>, while clusters like <em>reasoning performance</em> or <em>prompt compression</em> have little to no representation, suggesting that edge LM deployments favor a relatively narrow set of methods.</figcaption>
+        </figure>
       </div>
 
       <div class="tab-panel" role="tabpanel" data-panel="who" hidden>
-        <p class="placeholder-text">TODO &mdash; short intro paragraph.</p>
-        <div id="fig-who" class="pixel-frame chart-mount">
-          <p class="placeholder">[ chart loads here ]</p>
-        </div>
+        <p>
+          We classified the affiliations of authors across the 36 deployment papers into four sectors: <strong>Academia</strong> (universities and affiliated research institutions), <strong>Industry</strong> (startups to enterprise), <strong>Research collective</strong> (non-profit research organizations), and <strong>Government</strong> (state-affiliated institutes, public sector). Authors with multiple affiliations are counted in each. Cross-sector collaborations are measured by how often each pair of sectors co-occurs within the same paper.
+        </p>
+        <figure class="analysis-figure">
+          <div id="fig-who" class="figure-mount" data-svg="assets/figures/collaboration_sectors.svg">
+            <p class="placeholder">[ chart loads here ]</p>
+          </div>
+          <figcaption><strong>Figure 4. Affiliation type of authors from papers that deployed edge LM systems.</strong> Numbers on each arc show the total count of papers contributing from that sector. Academia has the largest proportion of collaborations, while government participation remains limited and is mostly driven by cross-sector ties with academia.</figcaption>
+        </figure>
       </div>
 
       <div class="tab-panel" role="tabpanel" data-panel="where" hidden>
-        <p class="placeholder-text">TODO &mdash; short intro paragraph.</p>
-        <div id="fig-where" class="pixel-frame chart-mount">
-          <p class="placeholder">[ chart loads here ]</p>
-        </div>
+        <p>
+          In order to map the domains in which an edge LM is deployed, we perform a round of classification by tagging each paper according to their <strong>domain</strong>: Agriculture, Climate, Finance, Healthcare, Legal, Social, and Speech.
+          Then, we extract mentions of different methods by keyword matching via KeyBERT, and visualize the domain-method connections as a network graph. Click on any outer domain node to see representative papers for that domain.
+        </p>
+        <figure class="analysis-figure">
+          <div id="fig-where" class="figure-mount">
+            <p class="placeholder">[ chart loads here ]</p>
+          </div>
+          <figcaption><strong>Figure 5. Edge LM real-world deployment domains network.</strong> Central nodes represent methods used to develop and deploy real-world edge LMs. Edge color indicates connectivity, while darker nodes indicate high sharing among domains.</figcaption>
+        </figure>
+        <aside id="fig-where-detail" class="pixel-frame where-detail">
+          <p class="placeholder">[ click a domain to see representative deployment papers ]</p>
+        </aside>
       </div>
     </div>
   </section>
@@ -119,9 +146,9 @@
     <h2>Recommendations</h2>
     <div class="pixel-frame">
       <ol class="recs-list">
-        <li>TODO &mdash; recommendation one.</li>
-        <li>TODO &mdash; recommendation two.</li>
-        <li>TODO &mdash; recommendation three.</li>
+        <li><strong>For NLP researchers and model developers:</strong> Evaluate edge models beyond memory (e.g., compute and energy), and explore underrepresented methods since current deployments cluster around a relatively narrow toolkit.</li>
+        <li><strong>For deployment practitioners and communities at the edge:</strong> Build cross-sector collaborations (academia, industry, research collectives, government), and involve local communities as active collaborators in development and deployment.</li>
+        <li><strong>For policymakers and funders:</strong> Invest not only in model development but also in infrastructure and devices that make deployment feasible in linguistically diverse, lower-resource settings; increase public-sector participation in edge LM efforts.</li>
       </ol>
     </div>
   </section>
@@ -150,6 +177,8 @@
   <script src="js/figures/fig-infra-lingdiv.js"></script>
   <script src="js/figures/fig-loader.js"></script>
   <script src="js/figures/fig-model-sizes.js"></script>
+  <script src="js/figures/fig-literature-clusters.js"></script>
+  <script src="js/figures/fig-domain-network.js"></script>
 </div>
 </body>
 </html>

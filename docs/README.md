@@ -1,8 +1,8 @@
-# website
+# Website
 
 Static project page. Plain HTML/CSS/JS, no build step.
 
-## run locally
+## Run locally
 
 ```
 python -m http.server --directory website 8000
@@ -10,7 +10,7 @@ python -m http.server --directory website 8000
 
 Open <http://localhost:8000>.
 
-## edit pipeline copy
+## Edit pipeline copy
 
 All paper text lives at the top of [`js/pipeline.js`](js/pipeline.js):
 
@@ -19,6 +19,11 @@ All paper text lives at the top of [`js/pipeline.js`](js/pipeline.js):
 
 Save, refresh.
 
-## deploy (GitHub Pages)
+## Deploy (GitHub Pages)
 
 Settings → Pages → Source: `main` branch, folder: `/website`.
+
+## Disclosure of AI use
+
+A large part of the website's codebase was created using Claude and Codex, especially the interactive versions of the paper's charts (although the static versions are mine).
+I triple-checked the information when generating the interactive figures, but please report back if you see any inconsistencies in the paper.

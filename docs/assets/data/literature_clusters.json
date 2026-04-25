@@ -1,0 +1,1864 @@
+{
+  "points": [
+    {
+      "x": 8.230168342590332,
+      "y": 7.308472633361816,
+      "cluster": 6,
+      "is_deployment": false
+    },
+    {
+      "x": 4.326703071594238,
+      "y": 10.515488624572754,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 5.461610317230225,
+      "y": 8.810197830200195,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.180612564086914,
+      "y": 9.34652328491211,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 4.3547682762146,
+      "y": 10.545588493347168,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 9.398306846618652,
+      "y": 10.014012336730957,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 2.8528096675872803,
+      "y": 9.45566177368164,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 3.897404670715332,
+      "y": 10.41295337677002,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 4.15192174911499,
+      "y": 9.82767391204834,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 7.920206546783447,
+      "y": 10.42335033416748,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 10.038665771484375,
+      "y": 9.721653938293457,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.068228721618652,
+      "y": 8.343378067016602,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 10.06105899810791,
+      "y": 9.208620071411133,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.487841606140137,
+      "y": 9.606117248535156,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.96617603302002,
+      "y": 8.51710033416748,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.58004379272461,
+      "y": 9.84241008758545,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 3.791229486465454,
+      "y": 9.235711097717285,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 8.163010597229004,
+      "y": 9.141538619995117,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 3.0053350925445557,
+      "y": 9.97042465209961,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 9.295441627502441,
+      "y": 9.506114959716797,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 2.6390278339385986,
+      "y": 9.97553825378418,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 8.381715774536133,
+      "y": 9.175719261169434,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.475174903869629,
+      "y": 10.154385566711426,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 4.360108375549316,
+      "y": 9.057894706726074,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 9.67180061340332,
+      "y": 9.976668357849121,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.845741271972656,
+      "y": 9.333590507507324,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.775927543640137,
+      "y": 9.745878219604492,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 2.3548338413238525,
+      "y": 10.154749870300293,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 5.508941650390625,
+      "y": 9.024333953857422,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.163402080535889,
+      "y": 10.288265228271484,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 4.241269588470459,
+      "y": 10.658002853393555,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 10.1366605758667,
+      "y": 9.399940490722656,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 3.349720001220703,
+      "y": 10.372624397277832,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 2.673342704772949,
+      "y": 9.512837409973145,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 8.729731559753418,
+      "y": 9.665210723876953,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 4.6777801513671875,
+      "y": 10.548344612121582,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 3.0373308658599854,
+      "y": 9.932913780212402,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 5.316243648529053,
+      "y": 8.397344589233398,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 5.500667095184326,
+      "y": 10.423565864562988,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 4.263948917388916,
+      "y": 10.046296119689941,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 6.65608024597168,
+      "y": 7.902167320251465,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 7.336443901062012,
+      "y": 9.452492713928223,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.10880184173584,
+      "y": 8.636445045471191,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.609916687011719,
+      "y": 9.278571128845215,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.483222961425781,
+      "y": 9.611773490905762,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 4.71983003616333,
+      "y": 10.06415843963623,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 6.555463790893555,
+      "y": 8.996564865112305,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 4.055912494659424,
+      "y": 10.619213104248047,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 9.789190292358398,
+      "y": 8.487997055053711,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.62938404083252,
+      "y": 9.076081275939941,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.920448303222656,
+      "y": 10.232013702392578,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 4.9828643798828125,
+      "y": 8.377511978149414,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 5.2300004959106445,
+      "y": 10.796124458312988,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 5.022750377655029,
+      "y": 9.893162727355957,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 8.845488548278809,
+      "y": 9.87173080444336,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 6.023984432220459,
+      "y": 8.925274848937988,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.4499101638793945,
+      "y": 9.315829277038574,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.7465643882751465,
+      "y": 10.690091133117676,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.70775032043457,
+      "y": 10.000894546508789,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.276637077331543,
+      "y": 10.673392295837402,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 9.802183151245117,
+      "y": 9.99026870727539,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.070271968841553,
+      "y": 10.57458782196045,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 8.36505126953125,
+      "y": 10.357268333435059,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 2.7873435020446777,
+      "y": 9.953343391418457,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 2.5793895721435547,
+      "y": 10.069692611694336,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 8.931394577026367,
+      "y": 10.448565483093262,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 9.9434814453125,
+      "y": 8.45374870300293,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 6.654632568359375,
+      "y": 8.4169282913208,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 8.90599250793457,
+      "y": 8.717168807983398,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.315710544586182,
+      "y": 8.727097511291504,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 4.190550327301025,
+      "y": 10.75955867767334,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 6.782149314880371,
+      "y": 8.30300235748291,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 5.284902095794678,
+      "y": 9.710755348205566,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 7.042108058929443,
+      "y": 10.843002319335938,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 2.1170876026153564,
+      "y": 9.851150512695312,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 4.778625965118408,
+      "y": 10.18899154663086,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 4.569451332092285,
+      "y": 9.715911865234375,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 6.511776924133301,
+      "y": 8.662087440490723,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 5.136077404022217,
+      "y": 10.855314254760742,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 9.018484115600586,
+      "y": 8.797890663146973,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.92712116241455,
+      "y": 9.588366508483887,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.914716720581055,
+      "y": 9.335448265075684,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.083709716796875,
+      "y": 10.577162742614746,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.486246109008789,
+      "y": 8.537138938903809,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.6196088790893555,
+      "y": 9.726533889770508,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 5.375476837158203,
+      "y": 8.23984146118164,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 2.258305072784424,
+      "y": 9.87881088256836,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 4.451115131378174,
+      "y": 10.513134002685547,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 3.5478737354278564,
+      "y": 9.265501022338867,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 8.984204292297363,
+      "y": 9.587884902954102,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.911861419677734,
+      "y": 8.438902854919434,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.365289688110352,
+      "y": 8.839583396911621,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.8491106033325195,
+      "y": 7.77459716796875,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 4.548542499542236,
+      "y": 9.640437126159668,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 9.647789001464844,
+      "y": 9.817172050476074,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 6.950425624847412,
+      "y": 10.80068302154541,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 8.197141647338867,
+      "y": 8.915102005004883,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.700603485107422,
+      "y": 8.168060302734375,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.959327697753906,
+      "y": 8.548267364501953,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.3410115242004395,
+      "y": 8.383000373840332,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 5.429266452789307,
+      "y": 8.346038818359375,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 2.7780799865722656,
+      "y": 9.797687530517578,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 8.39963436126709,
+      "y": 9.965677261352539,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.923344612121582,
+      "y": 8.747074127197266,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 4.3796234130859375,
+      "y": 10.691898345947266,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 4.488586902618408,
+      "y": 10.084233283996582,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 10.213061332702637,
+      "y": 9.314981460571289,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.176759719848633,
+      "y": 9.48206901550293,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.947966575622559,
+      "y": 8.19034481048584,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.384600639343262,
+      "y": 9.983312606811523,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.055692672729492,
+      "y": 8.331636428833008,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 4.407124996185303,
+      "y": 9.168106079101562,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 1.8944807052612305,
+      "y": 9.776129722595215,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 5.896683216094971,
+      "y": 9.014442443847656,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 9.435930252075195,
+      "y": 8.063871383666992,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 4.723103046417236,
+      "y": 10.628885269165039,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 8.049057960510254,
+      "y": 10.553600311279297,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 2.6234798431396484,
+      "y": 9.877195358276367,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 5.6204915046691895,
+      "y": 10.785059928894043,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 3.0153467655181885,
+      "y": 9.848146438598633,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 7.153101444244385,
+      "y": 10.909893989562988,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 1.8263630867004395,
+      "y": 10.024497032165527,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 7.56706428527832,
+      "y": 8.030816078186035,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 9.037444114685059,
+      "y": 8.747798919677734,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.384475708007812,
+      "y": 10.384992599487305,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 10.011907577514648,
+      "y": 9.950657844543457,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.067302703857422,
+      "y": 10.489296913146973,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.89081335067749,
+      "y": 8.916790008544922,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 8.829301834106445,
+      "y": 9.016741752624512,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.484592914581299,
+      "y": 8.48109245300293,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 5.510880470275879,
+      "y": 8.39909553527832,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.016602039337158,
+      "y": 9.548835754394531,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 1.8857637643814087,
+      "y": 9.884166717529297,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 4.929137706756592,
+      "y": 8.492874145507812,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 4.122127532958984,
+      "y": 10.88537883758545,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 2.2730791568756104,
+      "y": 10.234662055969238,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 9.817407608032227,
+      "y": 9.015275955200195,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 6.237572193145752,
+      "y": 9.446568489074707,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 2.4500646591186523,
+      "y": 10.301386833190918,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 2.4832515716552734,
+      "y": 9.61303997039795,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 5.246459007263184,
+      "y": 9.827737808227539,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 6.53233528137207,
+      "y": 9.241623878479004,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 5.673621654510498,
+      "y": 8.549459457397461,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 6.857479572296143,
+      "y": 8.10205364227295,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 1.7729685306549072,
+      "y": 10.020349502563477,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 2.536444664001465,
+      "y": 10.418168067932129,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 5.1029582023620605,
+      "y": 10.932559967041016,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 9.403936386108398,
+      "y": 9.867122650146484,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.663669586181641,
+      "y": 10.681496620178223,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 2.4237453937530518,
+      "y": 9.64917278289795,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 5.817802906036377,
+      "y": 8.261754989624023,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.875376224517822,
+      "y": 10.441691398620605,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.399678707122803,
+      "y": 8.070972442626953,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 9.961913108825684,
+      "y": 10.015944480895996,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.259033203125,
+      "y": 10.508031845092773,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 9.591080665588379,
+      "y": 9.139283180236816,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.757054328918457,
+      "y": 10.07424545288086,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.176203727722168,
+      "y": 9.812702178955078,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 2.0168983936309814,
+      "y": 9.751955032348633,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 4.998958110809326,
+      "y": 8.656834602355957,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.089688301086426,
+      "y": 10.742544174194336,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 6.660150051116943,
+      "y": 8.166298866271973,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 7.187355041503906,
+      "y": 10.478958129882812,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 6.937616348266602,
+      "y": 7.693081378936768,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 2.8237268924713135,
+      "y": 9.587977409362793,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 4.729141712188721,
+      "y": 9.900240898132324,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 6.404489517211914,
+      "y": 9.119868278503418,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 5.124948501586914,
+      "y": 9.839248657226562,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 4.712421417236328,
+      "y": 8.877058982849121,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.7221245765686035,
+      "y": 8.010554313659668,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 8.239015579223633,
+      "y": 9.362316131591797,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 6.666407108306885,
+      "y": 9.180641174316406,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 7.544356822967529,
+      "y": 9.476690292358398,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 2.7577457427978516,
+      "y": 9.519901275634766,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 4.586894512176514,
+      "y": 10.315681457519531,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 5.035200595855713,
+      "y": 10.996414184570312,
+      "cluster": 3,
+      "is_deployment": false
+    },
+    {
+      "x": 5.029855728149414,
+      "y": 8.478580474853516,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.783592224121094,
+      "y": 9.284810066223145,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.034865856170654,
+      "y": 10.422567367553711,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 4.572129726409912,
+      "y": 10.3823881149292,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 2.5712053775787354,
+      "y": 9.860475540161133,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 6.483990669250488,
+      "y": 8.687230110168457,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 6.928773403167725,
+      "y": 10.964702606201172,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 4.692335605621338,
+      "y": 10.576334953308105,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 9.45728588104248,
+      "y": 10.14425277709961,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 5.172461032867432,
+      "y": 8.750731468200684,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.228036880493164,
+      "y": 8.04892349243164,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 2.447075605392456,
+      "y": 10.428240776062012,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 9.25634765625,
+      "y": 10.387399673461914,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.86875057220459,
+      "y": 8.177894592285156,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.779678344726562,
+      "y": 9.716146469116211,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 2.4156861305236816,
+      "y": 9.803275108337402,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 6.21115255355835,
+      "y": 9.412245750427246,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 5.051652908325195,
+      "y": 9.176037788391113,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 4.236776828765869,
+      "y": 10.328920364379883,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 2.0488595962524414,
+      "y": 9.847393989562988,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 6.998879432678223,
+      "y": 10.44106388092041,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 6.933279514312744,
+      "y": 8.182426452636719,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 1.674079418182373,
+      "y": 10.145956993103027,
+      "cluster": 0,
+      "is_deployment": false
+    },
+    {
+      "x": 6.879410743713379,
+      "y": 10.076070785522461,
+      "cluster": 1,
+      "is_deployment": false
+    },
+    {
+      "x": 5.478674411773682,
+      "y": 8.525879859924316,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 4.610954284667969,
+      "y": 10.744709014892578,
+      "cluster": 2,
+      "is_deployment": false
+    },
+    {
+      "x": 3.845886707305908,
+      "y": 9.658661842346191,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 8.959931373596191,
+      "y": 9.135562896728516,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 4.366898536682129,
+      "y": 9.123588562011719,
+      "cluster": 4,
+      "is_deployment": false
+    },
+    {
+      "x": 7.755404472351074,
+      "y": 8.997727394104004,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.508125305175781,
+      "y": 10.35252857208252,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.917731285095215,
+      "y": 9.647506713867188,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.212512016296387,
+      "y": 9.230381965637207,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.924948692321777,
+      "y": 9.195713996887207,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.153754234313965,
+      "y": 8.416268348693848,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 7.149621963500977,
+      "y": 8.328722953796387,
+      "cluster": 5,
+      "is_deployment": false
+    },
+    {
+      "x": 4.022319316864014,
+      "y": 9.664496421813965,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 8.447669982910156,
+      "y": 8.952776908874512,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 7.504552841186523,
+      "y": 8.579983711242676,
+      "cluster": -1,
+      "is_deployment": false
+    },
+    {
+      "x": 8.003897666931152,
+      "y": 9.00401496887207,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.747015953063965,
+      "y": 9.121272087097168,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.323751449584961,
+      "y": 10.128536224365234,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.117751121520996,
+      "y": 8.972770690917969,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.250361442565918,
+      "y": 8.249770164489746,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.298136711120605,
+      "y": 8.562004089355469,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.47737979888916,
+      "y": 8.202421188354492,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.481179237365723,
+      "y": 8.54026985168457,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.856712341308594,
+      "y": 9.444133758544922,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.422903060913086,
+      "y": 9.020536422729492,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.185322761535645,
+      "y": 8.691888809204102,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 9.553342819213867,
+      "y": 8.314384460449219,
+      "cluster": 7,
+      "is_deployment": false
+    },
+    {
+      "x": 8.324081420898438,
+      "y": 7.19642972946167,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 8.133912086486816,
+      "y": 7.146695613861084,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 8.10986328125,
+      "y": 7.4645867347717285,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 8.301826477050781,
+      "y": 7.528754711151123,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 8.000234603881836,
+      "y": 7.393719673156738,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 8.145358085632324,
+      "y": 7.3656086921691895,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 8.277311325073242,
+      "y": 7.214010715484619,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 9.181432723999023,
+      "y": 7.4849958419799805,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 9.302654266357422,
+      "y": 7.397972583770752,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 9.224929809570312,
+      "y": 7.335630416870117,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 9.27607536315918,
+      "y": 7.390807628631592,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 2.8155429363250732,
+      "y": 8.934281349182129,
+      "cluster": 0,
+      "is_deployment": true
+    },
+    {
+      "x": 2.992335081100464,
+      "y": 8.711644172668457,
+      "cluster": 0,
+      "is_deployment": true
+    },
+    {
+      "x": 3.060664653778076,
+      "y": 8.691130638122559,
+      "cluster": 0,
+      "is_deployment": true
+    },
+    {
+      "x": 3.1372079849243164,
+      "y": 8.593941688537598,
+      "cluster": 0,
+      "is_deployment": true
+    },
+    {
+      "x": 2.9617600440979004,
+      "y": 8.721414566040039,
+      "cluster": 0,
+      "is_deployment": true
+    },
+    {
+      "x": 10.150579452514648,
+      "y": 8.269564628601074,
+      "cluster": 7,
+      "is_deployment": true
+    },
+    {
+      "x": 10.140149116516113,
+      "y": 8.204424858093262,
+      "cluster": 7,
+      "is_deployment": true
+    },
+    {
+      "x": 10.221305847167969,
+      "y": 8.16896915435791,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 8.577808380126953,
+      "y": 7.808109283447266,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 7.937619209289551,
+      "y": 7.881749153137207,
+      "cluster": 5,
+      "is_deployment": true
+    },
+    {
+      "x": 9.749792098999023,
+      "y": 7.885703086853027,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 8.35891056060791,
+      "y": 7.5894622802734375,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 7.288788795471191,
+      "y": 7.630033493041992,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 8.46486759185791,
+      "y": 7.668403625488281,
+      "cluster": 6,
+      "is_deployment": true
+    },
+    {
+      "x": 9.214461326599121,
+      "y": 9.028117179870605,
+      "cluster": 7,
+      "is_deployment": true
+    },
+    {
+      "x": 8.656914710998535,
+      "y": 8.94286060333252,
+      "cluster": 7,
+      "is_deployment": true
+    },
+    {
+      "x": 8.292431831359863,
+      "y": 9.159210205078125,
+      "cluster": 7,
+      "is_deployment": true
+    },
+    {
+      "x": 9.525810241699219,
+      "y": 7.1974053382873535,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 9.47646427154541,
+      "y": 7.18050479888916,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 9.44176959991455,
+      "y": 7.198895454406738,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 8.195611000061035,
+      "y": 8.016511917114258,
+      "cluster": -1,
+      "is_deployment": true
+    },
+    {
+      "x": 8.44308853149414,
+      "y": 8.15389633178711,
+      "cluster": 7,
+      "is_deployment": true
+    },
+    {
+      "x": 9.648015975952148,
+      "y": 9.06251335144043,
+      "cluster": 7,
+      "is_deployment": true
+    },
+    {
+      "x": 3.1367647647857666,
+      "y": 8.671357154846191,
+      "cluster": 0,
+      "is_deployment": true
+    }
+  ],
+  "clusters": [
+    {
+      "id": 0,
+      "size": 37,
+      "keywords": [
+        "bert quantization",
+        "smaller memory",
+        "distillation method"
+      ],
+      "centroid": [
+        2.553436279296875,
+        9.725440979003906
+      ],
+      "representatives": [
+        {
+          "title": "LLM-FP4: 4-Bit Floating-Point Quantized Transformers",
+          "url": "https://www.semanticscholar.org/paper/a8b995f0da78a79447dfb18c2337972b044f4239",
+          "year": 2023
+        },
+        {
+          "title": "BiLLM: Pushing the Limit of Post-Training Quantization for LLMs",
+          "url": "https://www.semanticscholar.org/paper/d3a23b571143a45c5d7406fbc395750ac5cfef95",
+          "year": 2024
+        },
+        {
+          "title": "FP8 Formats for Deep Learning",
+          "url": "https://www.semanticscholar.org/paper/b37d57edf4a84da158ab8d77921d4aa39faceb32",
+          "year": 2022
+        },
+        {
+          "title": "Optimizing Large Language Model Training Using FP4 Quantization",
+          "url": "https://www.semanticscholar.org/paper/e5458bd9e3b1098475ed5c9f9cdeb1264f6c0ebb",
+          "year": 2025
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "size": 11,
+      "keywords": [
+        "reasoning performance",
+        "thinking capabilities",
+        "inference boost"
+      ],
+      "centroid": [
+        7.0452985763549805,
+        10.594758033752441
+      ],
+      "representatives": [
+        {
+          "title": "Dynamic Cheatsheet: Test-Time Learning with Adaptive Memory",
+          "url": "https://www.semanticscholar.org/paper/4f0b16ed997e790a41d7251e559faca12051603a",
+          "year": 2025
+        },
+        {
+          "title": "CODI: Compressing Chain-of-Thought into Continuous Space via Self-Distillation",
+          "url": "https://www.semanticscholar.org/paper/bf04a4f09c19ec0ebaeadff5f78832626673fc00",
+          "year": 2025
+        },
+        {
+          "title": "Knowledge-Augmented Reasoning Distillation for Small Language Models in Knowledge-Intensive Tasks",
+          "url": "https://www.semanticscholar.org/paper/ebf3a59aacdd9982283d7f41229ee2a93800d6ef",
+          "year": 2023
+        },
+        {
+          "title": "Orca 2: Teaching Small Language Models How to Reason",
+          "url": "https://www.semanticscholar.org/paper/d2ea161e6b2114529d875d16cfaad4c824e17a8c",
+          "year": 2023
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "size": 27,
+      "keywords": [
+        "higher throughput",
+        "faster draft",
+        "context window"
+      ],
+      "centroid": [
+        4.595473766326904,
+        10.295049667358398
+      ],
+      "representatives": [
+        {
+          "title": "TriForce: Lossless Acceleration of Long Sequence Generation with Hierarchical Speculative Decoding",
+          "url": "https://www.semanticscholar.org/paper/d0deaec3e1f74701ac43600d9e64c5c969be7391",
+          "year": 2024
+        },
+        {
+          "title": "MiniCache: KV Cache Compression in Depth Dimension for Large Language Models",
+          "url": "https://www.semanticscholar.org/paper/d372fb69c485472385f152bc832bf1d35e223324",
+          "year": 2024
+        },
+        {
+          "title": "Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads",
+          "url": "https://www.semanticscholar.org/paper/57e7af0b69325fafb371ef5d502e39ef9c90ef7e",
+          "year": 2024
+        },
+        {
+          "title": "Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation",
+          "url": "https://www.semanticscholar.org/paper/875418bb21265276be9298b50e52a6c53ff3a202",
+          "year": 2025
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "size": 9,
+      "keywords": [
+        "prompt compression",
+        "information entropy",
+        "efficiency llms"
+      ],
+      "centroid": [
+        5.313859939575195,
+        10.739107131958008
+      ],
+      "representatives": [
+        {
+          "title": "LongLLMLingua: Accelerating and Enhancing LLMs in Long Context Scenarios via Prompt Compression",
+          "url": "https://www.semanticscholar.org/paper/4c0428917aeee6aa7bd434f337d039f35996b736",
+          "year": 2023
+        },
+        {
+          "title": "SimpleMem: Efficient Lifelong Memory for LLM Agents",
+          "url": "https://www.semanticscholar.org/paper/473edf1acf5e21b7c3ccca548de1c0b860c54ba3",
+          "year": 2026
+        },
+        {
+          "title": "In-context Autoencoder for Context Compression in a Large Language Model",
+          "url": "https://www.semanticscholar.org/paper/60b0476a97c00e355df28ba35422764a7fbe88e8",
+          "year": 2023
+        },
+        {
+          "title": "Learning to Compress Prompts with Gist Tokens",
+          "url": "https://www.semanticscholar.org/paper/b9870e130f61ff900fe00dbcc5782c9b31773d32",
+          "year": 2023
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "size": 25,
+      "keywords": [
+        "language tasks",
+        "model compression",
+        "pruning llms"
+      ],
+      "centroid": [
+        5.303161144256592,
+        8.661677360534668
+      ],
+      "representatives": [
+        {
+          "title": "Garbage Attention in Large Language Models: BOS Sink Heads and Sink-aware Pruning",
+          "url": "https://www.semanticscholar.org/paper/da342984a6695bf3fc0c7b02dd53d7b59f23e398",
+          "year": 2026
+        },
+        {
+          "title": "LLM-Pruner: On the Structural Pruning of Large Language Models",
+          "url": "https://www.semanticscholar.org/paper/017010b941d902a467f6d329ae5e74fd67e67912",
+          "year": 2023
+        },
+        {
+          "title": "LLM Pruning and Distillation in Practice: The Minitron Approach",
+          "url": "https://www.semanticscholar.org/paper/64526696e6ab5862380bbb6ddb75a5475795ba2f",
+          "year": 2024
+        },
+        {
+          "title": "Compact Language Models via Pruning and Knowledge Distillation",
+          "url": "https://www.semanticscholar.org/paper/ef122de37f6fe57403974bbfb12d4f7d2f183e1f",
+          "year": 2024
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "size": 22,
+      "keywords": [
+        "architecture tokenizer",
+        "context size",
+        "datasets diverse"
+      ],
+      "centroid": [
+        6.916089057922363,
+        8.471922874450684
+      ],
+      "representatives": [
+        {
+          "title": "TinyLlama: An Open-Source Small Language Model",
+          "url": "https://www.semanticscholar.org/paper/560c6f24c335c2dd27be0cfa50dbdbb50a9e4bfd",
+          "year": 2024
+        },
+        {
+          "title": "Gemma 3 Technical Report",
+          "url": "",
+          "year": 2025
+        },
+        {
+          "title": "SmolLM2: When Smol Goes Big - Data-Centric Training of a Small Language Model",
+          "url": "https://www.semanticscholar.org/paper/54145fcb714653b1143bef312fdac821cccbfb62",
+          "year": 2025
+        },
+        {
+          "title": "TranslateGemma Technical Report",
+          "url": "",
+          "year": 2026
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "size": 11,
+      "keywords": [
+        "ai healthcare",
+        "dialog datasets",
+        "specialized domains"
+      ],
+      "centroid": [
+        8.265848159790039,
+        7.425841808319092
+      ],
+      "representatives": [
+        {
+          "title": "Towards Building Multilingual Language Model for Medicine",
+          "url": "",
+          "year": 2024
+        },
+        {
+          "title": "MedArabiQ: Benchmarking Large Language Models on Arabic Medical Tasks",
+          "url": "https://www.semanticscholar.org/paper/00873a8228e515b87a0e0690cff8fbc1e71200e9",
+          "year": 2025
+        },
+        {
+          "title": "Large Language Models for Frontline Healthcare Support in Low-Resource Settings",
+          "url": "",
+          "year": 2025
+        },
+        {
+          "title": "BioMistral: A Collection of Open-Source Pretrained Large Language Models for Medical Domains",
+          "url": "",
+          "year": 2024
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "size": 97,
+      "keywords": [
+        "embedding benchmark",
+        "encoder translation",
+        "learn subwords"
+      ],
+      "centroid": [
+        8.954296112060547,
+        9.31214714050293
+      ],
+      "representatives": [
+        {
+          "title": "Tiny Aya: Bridging Scale and Multilingual Depth",
+          "url": "",
+          "year": 2026
+        },
+        {
+          "title": "Improving Massively Multilingual Neural Machine Translation and Zero-Shot Translation",
+          "url": "https://api.semanticscholar.org/graph/v1/paper/4789355a00650afa29682d331d7d9a49a301b43b",
+          "year": 2020
+        },
+        {
+          "title": "Aya 23: Open Weight Releases to Further Multilingual Progress",
+          "url": "https://www.semanticscholar.org/paper/f1549691db69b6564a0b2a52c795a91d4a5a2c71",
+          "year": 2024
+        },
+        {
+          "title": "Aya Expanse: Combining Research Breakthroughs for a New Multilingual Frontier",
+          "url": "https://www.semanticscholar.org/paper/ff66800d0f0879e2776a0410173b37b3e64ca51e",
+          "year": 2024
+        }
+      ]
+    }
+  ],
+  "bounds": {
+    "x_min": 1.674079418182373,
+    "x_max": 10.221305847167969,
+    "y_min": 7.146695613861084,
+    "y_max": 10.996414184570312
+  }
+}
