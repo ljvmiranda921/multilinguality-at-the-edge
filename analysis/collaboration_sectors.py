@@ -1,3 +1,4 @@
+import argparse
 from itertools import combinations
 from pathlib import Path
 
@@ -6,7 +7,14 @@ import numpy as np
 import pandas as pd
 from mpl_chord_diagram import chord_diagram
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
+from analysis.utils import (
+    COLORS,
+    OUTPUT_DIR,
+    PLOT_PARAMS,
+    WEB_COLORS,
+    WEB_FIGURES_DIR,
+    WEB_PLOT_PARAMS,
+)
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -44,6 +52,32 @@ def build_collaboration_matrix(df: pd.DataFrame) -> np.ndarray:
             matrix[idx[b], idx[a]] += 1
 
     return matrix
+
+
+def _annotate_arc_totals(ax, matrix, label_radius=1.18, fontsize=14, color="#35302E"):
+    """Place per-sector totals at each arc midpoint, matching mpl-chord's
+    sort='size' / start_at=90 layout (descending by row sum, clockwise)."""
+    totals = matrix.sum(axis=1)
+    grand_total = totals.sum()
+    pad_deg = 2
+    available = 360 - pad_deg * len(totals)
+    order = np.argsort(-totals)
+    spans = (totals / grand_total) * available
+
+    angle = 90  # start_at=90
+    for idx in order:
+        span = spans[idx]
+        mid = angle + span / 2
+        a = np.radians(mid)
+        x = label_radius * np.cos(a)
+        y = label_radius * np.sin(a)
+        ax.text(
+            x, y, str(int(totals[idx])),
+            ha="center", va="center",
+            fontsize=fontsize, fontweight="bold",
+            color=color, zorder=10,
+        )
+        angle += span + pad_deg
 
 
 def plot_chord(matrix: np.ndarray) -> None:
@@ -110,7 +144,55 @@ def plot_chord(matrix: np.ndarray) -> None:
     print(f"Saved to {OUTPUT_DIR / 'collaboration_sectors.pdf'}")
 
 
-def main():
+WEB_SECTOR_COLORS = [
+    WEB_COLORS["accent"],   # Academia
+    WEB_COLORS["warm"],     # Industry
+    WEB_COLORS["cool"],     # Research collective
+    WEB_COLORS["muted"],    # Government
+]
+
+
+def plot_chord_web(matrix: np.ndarray, outpath: Path) -> None:
+    with plt.rc_context(WEB_PLOT_PARAMS):
+        fig, ax = plt.subplots(figsize=(7, 7))
+
+        chord_diagram(
+            matrix,
+            ax=ax,
+            names=SECTOR_ORDER,
+            colors=WEB_SECTOR_COLORS,
+            fontsize=14,
+            use_gradient=True,
+            sort="size",
+            rotate_names=False,
+            alpha=0.65,
+            start_at=90,
+        )
+
+        _annotate_arc_totals(
+            ax, matrix,
+            label_radius=1.20,
+            fontsize=15,
+            color=WEB_COLORS["ink"],
+        )
+
+        from matplotlib.colors import to_rgb
+        from matplotlib.patches import Wedge
+        for patch in ax.patches:
+            if isinstance(patch, Wedge):
+                fc = patch.get_facecolor()
+                if hasattr(fc, "__len__") and len(fc) >= 3:
+                    r, g, b = to_rgb(fc[:3])
+                    patch.set_edgecolor((r * 0.65, g * 0.65, b * 0.65))
+                    patch.set_linewidth(0.8)
+
+        fig.tight_layout()
+        fig.savefig(outpath, bbox_inches="tight", transparent=True)
+        plt.close(fig)
+        print(f"Saved to {outpath}")
+
+
+def main(export_to_web: bool = False):
     df = pd.read_csv(DATA_PATH)
     print(f"Loaded: {len(df)} papers")
 
@@ -130,6 +212,13 @@ def main():
 
     plot_chord(matrix)
 
+    if export_to_web:
+        plot_chord_web(matrix, WEB_FIGURES_DIR / "collaboration_sectors.svg")
+
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--export_to_web", action="store_true",
+                        help="Also export an SVG to docs/assets/figures/.")
+    args = parser.parse_args()
+    main(export_to_web=args.export_to_web)
