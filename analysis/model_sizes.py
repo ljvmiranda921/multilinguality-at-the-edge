@@ -211,26 +211,39 @@ def _export_web_data(records, outpath):
 
 
 def _ensure_web_meta(records, outpath):
-    """Write a metadata stub. Preserves any entries the user has filled in."""
+    """Write a metadata stub. Preserves any entries the user has filled in.
+
+    Schema per model:
+        description       - short blurb shown in the hover tooltip
+        tech_report_url   - link shown in the tooltip / opened on name click
+        hf_url            - fallback HF link if a size-specific one isn't set
+        hf_urls           - dict keyed by size (as string) → HF link;
+                            takes precedence over hf_url for that circle
+    """
     existing = {}
     if outpath.exists():
         with outpath.open() as f:
             existing = json.load(f)
     payload = dict(existing)
-    added = 0
+    added_models = added_sizes = 0
     for r in records:
-        if r["name"] not in payload:
-            payload[r["name"]] = {
-                "description":     "",
-                "tech_report_url": "",
-                "hf_url":          "",
-            }
-            added += 1
+        cur = payload.setdefault(r["name"], {})
+        if not cur:
+            added_models += 1
+        cur.setdefault("description",     "")
+        cur.setdefault("tech_report_url", "")
+        cur.setdefault("hf_url",          "")
+        urls = cur.setdefault("hf_urls",  {})
+        for s in r["sizes"]:
+            key = str(s)
+            if key not in urls:
+                urls[key] = ""
+                added_sizes += 1
     outpath.parent.mkdir(parents=True, exist_ok=True)
     with outpath.open("w") as f:
         json.dump(payload, f, indent=2)
-    if added:
-        print(f"Added {added} new entries to {outpath}")
+    if added_models or added_sizes:
+        print(f"Added {added_models} new model(s), {added_sizes} new size key(s) to {outpath}")
     else:
         print(f"Metadata up-to-date at {outpath}")
 

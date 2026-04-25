@@ -150,7 +150,7 @@
           "stroke-width": 1.4,
           class: "model-dot",
           "data-model": r.name,
-          "data-size": s,
+          "data-size": String(s),
         }));
       });
     });
@@ -269,7 +269,9 @@
 
     mount.querySelectorAll(".model-dot").forEach(c => {
       const name = c.dataset.model;
-      const url  = meta[name]?.hf_url;
+      const size = c.dataset.size;
+      const m    = meta[name] || {};
+      const url  = (m.hf_urls && m.hf_urls[size]) || m.hf_url;
       if (url) {
         c.style.cursor = "pointer";
         c.addEventListener("click", () => window.open(url, "_blank", "noopener"));
