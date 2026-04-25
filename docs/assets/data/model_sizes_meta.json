@@ -1,0 +1,256 @@
+{
+  "NLLB": {
+    "description": "No Language Left Behind (Meta AI)",
+    "tech_report_url": "https://arxiv.org/pdf/2207.04672",
+    "hf_url": "",
+    "hf_urls": {
+      "0.6": "https://huggingface.co/facebook/nllb-200-distilled-600M",
+      "1.3": "https://huggingface.co/facebook/nllb-200-1.3B",
+      "3.3": "https://huggingface.co/facebook/nllb-200-3.3B",
+      "54.5": "https://huggingface.co/facebook/nllb-moe-54b"
+    }
+  },
+  "GLM-130B": {
+    "description": "Open Bilingual Pretrained Model (Tsinghua, Zhipu.AI)",
+    "tech_report_url": "https://arxiv.org/abs/2210.02414",
+    "hf_url": "",
+    "hf_urls": {
+      "130.0": "https://github.com/zai-org/GLM-130B"
+    }
+  },
+  "Phi-1": {
+    "description": "Phi-1 (Microsoft Research)",
+    "tech_report_url": "https://arxiv.org/pdf/2306.11644",
+    "hf_url": "",
+    "hf_urls": {
+      "1.3": "https://huggingface.co/microsoft/phi-1"
+    }
+  },
+  "Phi-1.5": {
+    "description": "Phi-1.5 (Microsoft Research)",
+    "tech_report_url": "https://arxiv.org/abs/2309.05463",
+    "hf_url": "",
+    "hf_urls": {
+      "1.3": "https://huggingface.co/microsoft/phi-1_5"
+    }
+  },
+  "Phi-2": {
+    "description": "Phi-2 (Microsoft Research)",
+    "tech_report_url": "https://nips.cc/media/neurips-2023/Slides/83968_5GxuY2z.pdf",
+    "hf_url": "",
+    "hf_urls": {
+      "2.7": "https://huggingface.co/microsoft/phi-2"
+    }
+  },
+  "SeaLLMs": {
+    "description": "Large Language Models for Southeast Asia (DAMO Academy, Alibaba Group)",
+    "tech_report_url": "https://aclanthology.org/2024.acl-demos.28/",
+    "hf_url": "",
+    "hf_urls": {
+      "7.0": "https://huggingface.co/SeaLLMs/SeaLLM-7B-v1",
+      "13.0": "https://huggingface.co/SeaLLMs/SeaLLM-13B-Chat"
+    }
+  },
+  "Orca 2": {
+    "description": "Teaching Small Language Models How To Reason (Microsoft Research)",
+    "tech_report_url": "https://arxiv.org/abs/2311.11045",
+    "hf_url": "",
+    "hf_urls": {
+      "7.0": "https://huggingface.co/microsoft/Orca-2-7b",
+      "13.0": "https://huggingface.co/microsoft/Orca-2-13b"
+    }
+  },
+  "Orca": {
+    "description": "Progressive Learning from Complex Explanation Traces of GPT-4 (Microsoft Research)",
+    "tech_report_url": "https://arxiv.org/abs/2306.02707",
+    "hf_url": "",
+    "hf_urls": {
+      "13.0": ""
+    }
+  },
+  "Qwen2": {
+    "description": "Qwen2 multilingual/open model family (Qwen Team, Alibaba Cloud).",
+    "tech_report_url": "https://arxiv.org/abs/2407.10671",
+    "hf_url": "https://huggingface.co/Qwen",
+    "hf_urls": {
+      "0.5": "https://huggingface.co/Qwen/Qwen2-0.5B",
+      "1.5": "https://huggingface.co/Qwen/Qwen2-1.5B",
+      "7.0": "https://huggingface.co/Qwen/Qwen2-7B",
+      "72.0": "https://huggingface.co/Qwen/Qwen2-72B"
+    }
+  },
+  "Qwen2.5": {
+    "description": "Qwen2.5 multilingual/open model family (Qwen Team, Alibaba Cloud).",
+    "tech_report_url": "https://qwen.ai/blog?id=qwen2.5",
+    "hf_url": "https://huggingface.co/Qwen",
+    "hf_urls": {
+      "0.5": "https://huggingface.co/Qwen/Qwen2.5-0.5B",
+      "1.5": "https://huggingface.co/Qwen/Qwen2.5-1.5B",
+      "3.0": "https://huggingface.co/Qwen/Qwen2.5-3B",
+      "7.0": "https://huggingface.co/Qwen/Qwen2.5-7B",
+      "14.0": "https://huggingface.co/Qwen/Qwen2.5-14B",
+      "32.0": "https://huggingface.co/Qwen/Qwen2.5-32B",
+      "72.0": "https://huggingface.co/Qwen/Qwen2.5-72B"
+    }
+  },
+  "Granite 3.0": {
+    "description": "Granite 3.0 language model family (IBM).",
+    "tech_report_url": "https://www.ibm.com/granite/docs/models/granite",
+    "hf_url": "https://huggingface.co/ibm-granite",
+    "hf_urls": {
+      "1.0": "https://huggingface.co/ibm-granite/granite-3.0-1b-a400m-base",
+      "3.0": "https://huggingface.co/ibm-granite/granite-3.0-3b-a800m-base",
+      "8.0": "https://huggingface.co/ibm-granite/granite-3.0-8b-base"
+    }
+  },
+  "EuroLLM": {
+    "description": "EuroLLM multilingual model family for European languages.",
+    "tech_report_url": "https://arxiv.org/abs/2409.16235",
+    "hf_url": "https://huggingface.co/utter-project",
+    "hf_urls": {
+      "1.7": "https://huggingface.co/utter-project/EuroLLM-1.7B-Instruct",
+      "9.0": "https://huggingface.co/utter-project/EuroLLM-9B-Instruct"
+    }
+  },
+  "Phi-3": {
+    "description": "Phi-3 small language model family (Microsoft).",
+    "tech_report_url": "https://arxiv.org/abs/2404.14219",
+    "hf_url": "https://huggingface.co/microsoft",
+    "hf_urls": {
+      "3.8": "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct",
+      "7.0": "https://huggingface.co/microsoft/Phi-3-small-8k-instruct",
+      "14.0": "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct"
+    }
+  },
+  "Minitron": {
+    "description": "NVIDIA Minitron compressed model family.",
+    "tech_report_url": "https://arxiv.org/abs/2407.14679",
+    "hf_url": "https://huggingface.co/nvidia",
+    "hf_urls": {
+      "4.0": "https://huggingface.co/nvidia/Minitron-4B-Base",
+      "8.0": "https://huggingface.co/nvidia/Minitron-8B-Base"
+    }
+  },
+  "Yi": {
+    "description": "Yi open LLM family (01.AI).",
+    "tech_report_url": "https://arxiv.org/abs/2403.04652",
+    "hf_url": "https://huggingface.co/01-ai",
+    "hf_urls": {
+      "6.0": "https://huggingface.co/01-ai/Yi-6B",
+      "34.0": "https://huggingface.co/01-ai/Yi-34B"
+    }
+  },
+  "Llama 3": {
+    "description": "Llama 3/3.1 open model family (Meta).",
+    "tech_report_url": "https://ai.meta.com/research/publications/the-llama-3-herd-of-models/",
+    "hf_url": "https://huggingface.co/meta-llama",
+    "hf_urls": {
+      "8.0": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+      "70.0": "https://huggingface.co/meta-llama/Meta-Llama-3-70B",
+      "405.0": "https://huggingface.co/meta-llama/Llama-3.1-405B"
+    }
+  },
+  "MaLA-500": {
+    "description": "MaLA-500 multilingual model covering 500+ languages.",
+    "tech_report_url": "https://arxiv.org/abs/2401.13303",
+    "hf_url": "https://huggingface.co/MaLA-LM",
+    "hf_urls": {
+      "10.0": "https://huggingface.co/MaLA-LM"
+    }
+  },
+  "Mixtral 8x7B": {
+    "description": "Mixtral 8x7B sparse Mixture-of-Experts model (Mistral AI).",
+    "tech_report_url": "https://arxiv.org/abs/2401.04088",
+    "hf_url": "https://huggingface.co/mistralai/Mixtral-8x7B-v0.1",
+    "hf_urls": {
+      "46.7": "https://huggingface.co/mistralai/Mixtral-8x7B-v0.1"
+    }
+  },
+  "EmbeddingGemma": {
+    "description": "EmbeddingGemma lightweight multilingual embedding model (Google).",
+    "tech_report_url": "",
+    "hf_url": "https://huggingface.co/google/embeddinggemma-300m",
+    "hf_urls": {
+      "0.3": "https://huggingface.co/google/embeddinggemma-300m"
+    }
+  },
+  "Omnilingual ASR": {
+    "description": "Open Source Multilingual Speech Recognition for 1600+ Languages (Meta AI)",
+    "tech_report_url": "https://arxiv.org/abs/2511.09690",
+    "hf_url": "",
+    "hf_urls": {
+      "0.3": "https://huggingface.co/facebook/omniASR-LLM-300M",
+      "1.0": "https://huggingface.co/facebook/omniASR-LLM-1B",
+      "3.0": "https://huggingface.co/facebook/omniASR-LLM-3B",
+      "7.0": "https://huggingface.co/facebook/omniASR-LLM-7B"
+    }
+  },
+  "Falcon-H1": {
+    "description": "Falcon-H1 hybrid-head language model family (TII).",
+    "tech_report_url": "",
+    "hf_url": "https://huggingface.co/tiiuae",
+    "hf_urls": {
+      "0.5": "https://huggingface.co/tiiuae/Falcon-H1-0.5B-Base",
+      "1.5": "https://huggingface.co/tiiuae/Falcon-H1-1.5B-Base",
+      "3.0": "https://huggingface.co/tiiuae/Falcon-H1-3B-Base",
+      "7.0": "https://huggingface.co/tiiuae/Falcon-H1-7B-Base",
+      "14.0": "",
+      "34.0": "https://huggingface.co/tiiuae/Falcon-H1-34B-Base"
+    }
+  },
+  "Qwen3 Embedding": {
+    "description": "Qwen3 Embedding and reranking model family (Qwen Team).",
+    "tech_report_url": "https://qwenlm.github.io/blog/qwen3-embedding/",
+    "hf_url": "https://huggingface.co/Qwen",
+    "hf_urls": {
+      "0.6": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+      "4.0": "https://huggingface.co/Qwen/Qwen3-Embedding-4B",
+      "8.0": "https://huggingface.co/Qwen/Qwen3-Embedding-8B"
+    }
+  },
+  "Gemma 3": {
+    "description": "Gemma 3 open model family (Google).",
+    "tech_report_url": "https://arxiv.org/abs/2503.19786",
+    "hf_url": "https://huggingface.co/google",
+    "hf_urls": {
+      "1.0": "https://huggingface.co/google/gemma-3-1b-it",
+      "4.0": "https://huggingface.co/google/gemma-3-4b-it",
+      "12.0": "https://huggingface.co/google/gemma-3-12b-it",
+      "27.0": "https://huggingface.co/google/gemma-3-27b-it"
+    }
+  },
+  "Phi-4-Mini": {
+    "description": "Phi-4-Mini small language model (Microsoft).",
+    "tech_report_url": "https://www.microsoft.com/en-us/research/publication/phi-4-technical-report/",
+    "hf_url": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+    "hf_urls": {
+      "3.8": "https://huggingface.co/microsoft/Phi-4-mini-instruct"
+    }
+  },
+  "Nemotron 3": {
+    "description": "Nemotron 3 Efficient and Open Intelligence (NVIDIA)",
+    "tech_report_url": "https://arxiv.org/abs/2512.20856",
+    "hf_url": "",
+    "hf_urls": {
+      "30.0": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16"
+    }
+  },
+  "Tiny Aya": {
+    "description": "Tiny Aya multilingual model focused on compact scale and depth (Cohere).",
+    "tech_report_url": "https://arxiv.org/abs/2603.11510",
+    "hf_url": "",
+    "hf_urls": {
+      "3.35": "https://huggingface.co/CohereLabs/tiny-aya-global"
+    }
+  },
+  "TranslateGemma": {
+    "description": "TranslateGemma open machine-translation models built on Gemma foundations (Google).",
+    "tech_report_url": "https://arxiv.org/abs/2601.09012",
+    "hf_url": "https://huggingface.co/google/translategemma-4b-it",
+    "hf_urls": {
+      "4.0": "https://huggingface.co/google/translategemma-4b-it",
+      "12.0": "https://huggingface.co/google/translategemma-12b-it",
+      "27.0": "https://huggingface.co/google/translategemma-27b-it"
+    }
+  }
+}

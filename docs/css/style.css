@@ -363,14 +363,72 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
   flex-direction: column;
 }
 .figure-pair .figure-mount {
-  aspect-ratio: 1 / 1;
-  min-height: 0;
+  min-height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 0 0 0.75rem;
 }
+.figure-pair .figure-mount.svg-loaded {
+  align-items: stretch;
+  justify-content: stretch;
+}
+.figure-mount svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+/* fig-model-sizes interactive bits */
+#fig-2b .model-name text { transition: fill 100ms ease; }
+#fig-2b .model-name:hover text {
+  fill: var(--accent);
+  text-decoration: underline;
+}
+#fig-2b .model-dot { transition: fill 100ms ease; }
+
+.model-tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: 320px;
+  padding: 0.7rem 0.85rem;
+  background: var(--bg-frame);
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--fg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+.model-tooltip.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.model-tooltip .model-tooltip-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+.model-tooltip .model-tooltip-desc { color: var(--fg); }
+.model-tooltip .model-tooltip-desc .muted { color: var(--fg-muted); font-style: italic; }
+.model-tooltip .model-tooltip-links {
+  margin-top: 0.55rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--rule);
+  font-size: 0.85rem;
+}
+.model-tooltip a {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(37, 78, 255, 0.3);
+}
+.model-tooltip a + a { margin-left: 0.6rem; }
 .figure-pair figcaption {
   font-size: 0.92rem;
   line-height: 1.55;

@@ -1,12 +1,20 @@
 """Plot model size ranges per model family from papers_both.csv."""
 
+import argparse
+import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
+from analysis.utils import (
+    COLORS,
+    OUTPUT_DIR,
+    PLOT_PARAMS,
+)
+
+WEB_DATA_DIR = Path("docs/assets/data")
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -47,9 +55,7 @@ NAME_MAP = {
 }
 
 
-def main():
-    df = pd.read_csv(DATA_PATH)
-
+def _build_records(df):
     records = []
     for _, row in df.iterrows():
         s = str(row["model_size"])
@@ -63,18 +69,18 @@ def main():
                 continue
         if sizes:
             name = NAME_MAP.get(row["title"], row["title"][:30])
-            records.append(
-                {
-                    "name": name,
-                    "sizes": sorted(sizes),
-                    "min": min(sizes),
-                    "max": max(sizes),
-                    "year": int(row["year"]),
-                }
-            )
-
+            records.append({
+                "name": name,
+                "sizes": sorted(sizes),
+                "min": min(sizes),
+                "max": max(sizes),
+                "year": int(row["year"]),
+            })
     records.sort(key=lambda r: (r["year"], r["min"]))
+    return records
 
+
+def _plot_paper(records, outpath):
     fig, ax = plt.subplots(figsize=(9.5, 9.5))
     y_positions = np.arange(len(records))
 
@@ -181,11 +187,83 @@ def main():
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     fig.tight_layout()
-    outpath = OUTPUT_DIR / "model_sizes.pdf"
     fig.savefig(outpath, bbox_inches="tight")
     plt.close(fig)
+
+
+def _export_web_data(records, outpath):
+    payload = {
+        "models": [
+            {
+                "name":  r["name"],
+                "sizes": r["sizes"],
+                "year":  r["year"],
+                "min":   r["min"],
+                "max":   r["max"],
+            }
+            for r in records
+        ]
+    }
+    outpath.parent.mkdir(parents=True, exist_ok=True)
+    with outpath.open("w") as f:
+        json.dump(payload, f, indent=2)
     print(f"Saved to {outpath}")
 
 
+def _ensure_web_meta(records, outpath):
+    """Write a metadata stub. Preserves any entries the user has filled in.
+
+    Schema per model:
+        description       - short blurb shown in the hover tooltip
+        tech_report_url   - link shown in the tooltip / opened on name click
+        hf_url            - fallback HF link if a size-specific one isn't set
+        hf_urls           - dict keyed by size (as string) → HF link;
+                            takes precedence over hf_url for that circle
+    """
+    existing = {}
+    if outpath.exists():
+        with outpath.open() as f:
+            existing = json.load(f)
+    payload = dict(existing)
+    added_models = added_sizes = 0
+    for r in records:
+        cur = payload.setdefault(r["name"], {})
+        if not cur:
+            added_models += 1
+        cur.setdefault("description",     "")
+        cur.setdefault("tech_report_url", "")
+        cur.setdefault("hf_url",          "")
+        urls = cur.setdefault("hf_urls",  {})
+        for s in r["sizes"]:
+            key = str(s)
+            if key not in urls:
+                urls[key] = ""
+                added_sizes += 1
+    outpath.parent.mkdir(parents=True, exist_ok=True)
+    with outpath.open("w") as f:
+        json.dump(payload, f, indent=2)
+    if added_models or added_sizes:
+        print(f"Added {added_models} new model(s), {added_sizes} new size key(s) to {outpath}")
+    else:
+        print(f"Metadata up-to-date at {outpath}")
+
+
+def main(export_to_web: bool = False):
+    df = pd.read_csv(DATA_PATH)
+    records = _build_records(df)
+
+    pdf_path = OUTPUT_DIR / "model_sizes.pdf"
+    _plot_paper(records, pdf_path)
+    print(f"Saved to {pdf_path}")
+
+    if export_to_web:
+        _export_web_data(records, WEB_DATA_DIR / "model_sizes.json")
+        _ensure_web_meta(records, WEB_DATA_DIR / "model_sizes_meta.json")
+
+
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--export_to_web", action="store_true",
+                        help="Also export an SVG to docs/assets/figures/.")
+    args = parser.parse_args()
+    main(export_to_web=args.export_to_web)

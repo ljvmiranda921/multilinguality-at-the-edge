@@ -74,3 +74,51 @@ COLORS = {
 
 OUTPUT_DIR = Path("plot_outputs")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+# ----- Website styling for inline-SVG export -----
+
+WEB_COLORS = {
+    "ink":          "#35302E",
+    "accent":       "#254EFF",
+    "accent_pale":  "#DCE3FF",
+    "warm":         "#C96A2E",
+    "warm_light":   "#E39A5F",
+    "warm_pale":    "#F5D8BE",
+    "cool":         "#7B93B8",
+    "cool_light":   "#B4C0D2",
+    "cool_pale":    "#D7DEE9",
+    "muted":        "#6b6358",
+    "rule":         "#e5ddcb",
+    "paper":        "#F8ECDA",
+    "white":        "#FFFFFF",
+}
+
+WEB_PLOT_PARAMS = {
+    "font.family":       "Univers",
+    "font.size":         12,
+    "axes.titlesize":    14,
+    "axes.labelsize":    13,
+    "axes.titleweight":  "normal",
+    "axes.labelweight":  "normal",
+    "axes.edgecolor":    WEB_COLORS["ink"],
+    "axes.labelcolor":   WEB_COLORS["ink"],
+    "xtick.labelsize":   11,
+    "ytick.labelsize":   11,
+    "xtick.color":       WEB_COLORS["ink"],
+    "ytick.color":       WEB_COLORS["ink"],
+    "legend.fontsize":   11,
+    "figure.titlesize":  13,
+    "text.color":        WEB_COLORS["ink"],
+    "text.usetex":       False,
+    "svg.fonttype":      "none",
+    "figure.facecolor":  "none",
+    "axes.facecolor":    "none",
+    "savefig.facecolor": "none",
+    "savefig.transparent": True,
+    "grid.color":        WEB_COLORS["rule"],
+}
+
+WEB_TITLE_FONT = {"family": "Tomato Grotesk", "size": 13}
+
+WEB_FIGURES_DIR = Path("docs/assets/figures")
+WEB_FIGURES_DIR.mkdir(parents=True, exist_ok=True)

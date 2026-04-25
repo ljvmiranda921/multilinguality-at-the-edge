@@ -31,11 +31,11 @@
     </p>
 
     <figure class="figure-row">
-      <div class="figure-mount pixel-frame">
+      <div id="fig-1" class="figure-mount">
         <p class="placeholder">[ figure loads here ]</p>
       </div>
       <figcaption class="figure-caption">
-        <strong>Figure 1.</strong> Placeholder caption &mdash; describe what the figure shows and why it motivates the problem statement.
+        <strong>Figure 1. Countries with high linguistic diversity have the most limited network connectivity (upper left).</strong> Internet penetration is sourced from <a href="https://www.itu.int/en/ITU-D/Statistics/Pages/facts/default.aspx">ITU (2025)</a>, number of living languages (log-scale) from the <a href="https://ourworldindata.org/grapher/living-languages">Ethnologue (SIL International, 2025)</a>, and income groups from the <a href="https://ourworldindata.org/grapher/world-bank-income-groups">World Bank (2025)</a>. Hover a point for the country.
       </figcaption>
     </figure>
 
@@ -55,16 +55,16 @@
 
     <div class="figure-pair">
       <figure>
-        <div class="figure-mount pixel-frame">
+        <div id="fig-2a" class="figure-mount" data-svg="assets/figures/language_coverage.svg">
           <p class="placeholder">[ figure loads here ]</p>
         </div>
-        <figcaption><strong>Figure 2a.</strong> Placeholder caption &mdash; describe the first figure.</figcaption>
+        <figcaption><strong>Figure 2a. Reported language coverage of edge LM papers.</strong> We show 78 papers (of 232) that report a concrete number of evaluated languages and bin them into four brackets: monolingual (1), few (2&ndash;10), many (11&ndash;50), and massive (50+), categorized by research focus.</figcaption>
       </figure>
       <figure>
-        <div class="figure-mount pixel-frame">
+        <div id="fig-2b" class="figure-mount">
           <p class="placeholder">[ figure loads here ]</p>
         </div>
-        <figcaption><strong>Figure 2b.</strong> Placeholder caption &mdash; describe the second figure.</figcaption>
+        <figcaption><strong>Figure 2b. Model sizes (in billion parameters) of various language models.</strong> For each model family in our curated set of released models, we recorded publicly documented parameter counts and plotted the range of available sizes on a log scale.</figcaption>
       </figure>
     </div>
   </section>
@@ -146,6 +146,10 @@
   <script src="js/pipeline.js"></script>
   <script src="js/main.js"></script>
   <script type="module" src="js/pipeline-mesh.js"></script>
+  <script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
+  <script src="js/figures/fig-infra-lingdiv.js"></script>
+  <script src="js/figures/fig-loader.js"></script>
+  <script src="js/figures/fig-model-sizes.js"></script>
 </div>
 </body>
 </html>
