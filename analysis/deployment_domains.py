@@ -254,7 +254,9 @@ def _compute_network_layout(
     return domain_nodes, technique_nodes, pos, max_degree
 
 
-def _build_domain_samples(df: pd.DataFrame, max_per_domain: int = 2) -> dict[str, list[dict]]:
+def _build_domain_samples(
+    df: pd.DataFrame, max_per_domain: int = 2
+) -> dict[str, list[dict]]:
     records = df.copy()
     records["domain"] = records["domain"].replace(DOMAIN_MAP)
     records["year"] = pd.to_numeric(records.get("year"), errors="coerce")
@@ -655,7 +657,10 @@ def plot_domain_technique_network_web(
 
 
 def export_domain_network_web_data(
-    G: nx.Graph, edge_weights: dict[tuple[str, str], int], df: pd.DataFrame, outpath: Path
+    G: nx.Graph,
+    edge_weights: dict[tuple[str, str], int],
+    df: pd.DataFrame,
+    outpath: Path,
 ) -> None:
     domain_nodes, technique_nodes, pos, max_degree = _compute_network_layout(
         G, edge_weights
