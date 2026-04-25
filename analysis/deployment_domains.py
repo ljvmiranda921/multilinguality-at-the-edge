@@ -165,9 +165,7 @@ def _compute_network_layout(
     G: nx.Graph, edge_weights: dict[tuple[str, str], int]
 ) -> tuple[list[str], list[str], dict[str, tuple[float, float]], int]:
     domain_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"]
-    technique_nodes = [
-        n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"
-    ]
+    technique_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"]  # fmt:  skip
 
     pos = {}
     n_domains = len(domain_nodes)
@@ -188,13 +186,12 @@ def _compute_network_layout(
             xs = [pos[n][0] for n in neighbors if n in pos]
             ys = [pos[n][1] for n in neighbors if n in pos]
             if xs:
+                # i think at this point we just adjust things and eyeball it a bit..
                 total_w = sum(weights)
                 wx = sum(x * w for x, w in zip(xs, weights)) / total_w
                 wy = sum(y * w for y, w in zip(ys, weights)) / total_w
                 degree = G.nodes[technique].get("degree", 1)
-                pull = 0.20 - 0.15 * (
-                    degree / max(G.nodes[t].get("degree", 1) for t in technique_nodes)
-                )
+                pull = 0.20 - 0.15 * (degree / max(G.nodes[t].get("degree", 1) for t in technique_nodes))  # fmt: skip
                 init_pos[technique] = (wx * pull, wy * pull)
             else:
                 init_pos[technique] = (0, 0)
@@ -230,7 +227,7 @@ def _compute_network_layout(
             scale = max_dist / dist
             full_pos[t] = (x * scale, y * scale)
 
-    min_separation = 1.2
+    min_separation = 1.2  # try 1.4? 1.8? 2.1 is good but too small for paper
     for _ in range(200):
         moved = False
         for i, t1 in enumerate(technique_nodes):
@@ -290,9 +287,7 @@ def plot_domain_technique_network(
     fig, ax = plt.subplots(figsize=(10, 12))
 
     domain_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"]
-    technique_nodes = [
-        n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"
-    ]
+    technique_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"]  # fmt: skip
 
     pos = {}
     n_domains = len(domain_nodes)
@@ -317,6 +312,7 @@ def plot_domain_technique_network(
                 wx = sum(x * w for x, w in zip(xs, weights)) / total_w
                 wy = sum(y * w for y, w in zip(ys, weights)) / total_w
                 degree = G.nodes[technique].get("degree", 1)
+                # same adjustments
                 pull = 0.20 - 0.15 * (
                     degree / max(G.nodes[t].get("degree", 1) for t in technique_nodes)
                 )
@@ -512,12 +508,8 @@ def plot_domain_technique_network_web(
 ) -> None:
     del domain_techniques
     with plt.rc_context(WEB_PLOT_PARAMS):
-        fig, ax = plt.subplots(figsize=(7.2, 7.2))
-
-        domain_nodes, technique_nodes, pos, max_degree = _compute_network_layout(
-            G, edge_weights
-        )
-
+        fig, ax = plt.subplots(figsize=(7.2, 7.2))  # manual adjust
+        domain_nodes, technique_nodes, pos, max_degree = _compute_network_layout(G, edge_weights)  # fmt: skip
         for (u, v), weight in edge_weights.items():
             domain_node = u if u in domain_nodes else v
             color = WEB_DOMAIN_COLORS.get(domain_node, WEB_COLORS["cool"])
@@ -569,6 +561,7 @@ def plot_domain_technique_network_web(
             degree = G.nodes[t].get("degree", 1)
             technique_sizes.append(320 + degree * 210)
             frac = degree / max_degree
+            # use chia colors
             r_lo, g_lo, b_lo = 0.84, 0.87, 0.91
             r_hi, g_hi, b_hi = 0.21, 0.19, 0.18
             r = r_lo + (r_hi - r_lo) * frac
