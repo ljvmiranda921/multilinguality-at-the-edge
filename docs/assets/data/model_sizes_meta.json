@@ -36,19 +36,19 @@
   },
   "Phi-2": {
     "description": "Phi-2 (Microsoft Research)",
-    "tech_report_url": "",
+    "tech_report_url": "https://nips.cc/media/neurips-2023/Slides/83968_5GxuY2z.pdf",
     "hf_url": "",
     "hf_urls": {
-      "2.7": ""
+      "2.7": "https://huggingface.co/microsoft/phi-2"
     }
   },
   "SeaLLMs": {
-    "description": "",
-    "tech_report_url": "",
+    "description": "Large Language Models for Southeast Asia (DAMO Academy, Alibaba Group)",
+    "tech_report_url": "https://aclanthology.org/2024.acl-demos.28/",
     "hf_url": "",
     "hf_urls": {
-      "7.0": "",
-      "13.0": ""
+      "7.0": "https://huggingface.co/SeaLLMs/SeaLLM-7B-v1",
+      "13.0": "https://huggingface.co/SeaLLMs/SeaLLM-13B-Chat"
     }
   },
   "Orca 2": {
