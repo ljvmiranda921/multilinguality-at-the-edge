@@ -429,6 +429,87 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
   border-bottom: 1px solid rgba(37, 78, 255, 0.3);
 }
 .model-tooltip a + a { margin-left: 0.6rem; }
+
+/* fig-literature-clusters interactivity */
+#fig-how svg .cluster-group,
+#fig-how svg .cluster-label {
+  transition: opacity 150ms ease;
+}
+#fig-how svg.has-active .cluster-group:not(.is-active),
+#fig-how svg.has-active .cluster-label:not(.is-active) {
+  opacity: 0.12;
+}
+#fig-how svg.has-active .cluster-noise { opacity: 0.08; }
+#fig-how svg .cluster-group.is-active { opacity: 1; }
+
+.cluster-tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: 360px;
+  padding: 0.7rem 0.85rem 0.85rem;
+  background: var(--bg-frame);
+  border: 1px solid var(--ink);
+  border-left-width: 4px;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--fg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+.cluster-tooltip.is-visible { opacity: 1; pointer-events: auto; }
+.cluster-tooltip-head {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.cluster-tooltip-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 1px solid var(--ink);
+}
+.cluster-tooltip-count {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.cluster-tooltip-kws {
+  display: flex; flex-wrap: wrap; gap: 0.3rem 0.4rem;
+  margin-bottom: 0.65rem;
+}
+.cluster-tooltip-kw {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 0.1rem 0.45rem;
+}
+.cluster-tooltip-reps-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 0.3rem;
+}
+.cluster-tooltip-reps {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.cluster-tooltip-reps li {
+  margin: 0.2rem 0;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+.cluster-tooltip-reps a {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(37, 78, 255, 0.3);
+}
 .figure-pair figcaption {
   font-size: 0.92rem;
   line-height: 1.55;

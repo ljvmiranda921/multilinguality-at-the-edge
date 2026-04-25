@@ -101,12 +101,14 @@
 
     <div class="tab-panels">
       <div class="tab-panel is-active" role="tabpanel" data-panel="how">
-        <p>TODO &mdash; short intro paragraph about how edge LM systems are developed.</p>
+        <p>
+          To examine how edge LM systems are made, we situate the 36 deployment papers within the broader 232 surveyed papers. We embed each abstract with MiniLM, reduce to 2D with UMAP, and cluster with HDBSCAN; KeyBERT extracts the top keywords per cluster. Hover any cluster to see representative papers.
+        </p>
         <figure class="analysis-figure">
           <div id="fig-how" class="figure-mount">
             <p class="placeholder">[ chart loads here ]</p>
           </div>
-          <figcaption><strong>Figure 3.</strong> Placeholder caption &mdash; describe what the figure shows.</figcaption>
+          <figcaption><strong>Figure 3. Clustering of the 232 surveyed papers by abstract similarity.</strong> Real-world deployments (&starf;) tend to concentrate near a few clusters such as <em>model compression</em> and <em>dialog datasets</em>, while clusters like <em>reasoning performance</em> or <em>prompt compression</em> have little to no representation, suggesting that edge LM deployments favor a relatively narrow set of methods.</figcaption>
         </figure>
       </div>
 
@@ -167,6 +169,7 @@
   <script src="js/figures/fig-infra-lingdiv.js"></script>
   <script src="js/figures/fig-loader.js"></script>
   <script src="js/figures/fig-model-sizes.js"></script>
+  <script src="js/figures/fig-literature-clusters.js"></script>
 </div>
 </body>
 </html>

@@ -1,3 +1,5 @@
+import argparse
+import json
 import random
 from pathlib import Path
 
@@ -15,6 +17,7 @@ from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, get_device
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
+WEB_DATA_DIR = ROOT / "docs" / "assets" / "data"
 
 plt.rcParams.update(PLOT_PARAMS)
 
@@ -319,7 +322,79 @@ def plot_clusters(
     print(f"Saved to {OUTPUT_DIR / 'literature_clusters_umap.pdf'}")
 
 
-def main():
+def export_web(
+    df: pd.DataFrame,
+    coords_2d: np.ndarray,
+    labels: np.ndarray,
+    cluster_keywords: dict[int, list[str]],
+    outpath: Path,
+    n_representatives: int = 4,
+) -> None:
+    """Write the cluster scatter as JSON for the website renderer.
+
+    Representatives = the papers nearest to each cluster's centroid.
+    """
+    points = [
+        {
+            "x": float(coords_2d[i, 0]),
+            "y": float(coords_2d[i, 1]),
+            "cluster": int(labels[i]),
+            "is_deployment": bool(df["is_deployment"].iloc[i]),
+        }
+        for i in range(len(df))
+    ]
+
+    clusters = []
+    for cid, kws in sorted(cluster_keywords.items()):
+        mask = labels == cid
+        member_idx = np.where(mask)[0]
+        cluster_coords = coords_2d[mask]
+        centroid = cluster_coords.mean(axis=0)
+
+        dists = np.linalg.norm(cluster_coords - centroid, axis=1)
+        order = np.argsort(dists)[:n_representatives]
+        rep_indices = member_idx[order]
+
+        reps = []
+        for idx in rep_indices:
+            row = df.iloc[idx]
+            url = row.get("s2_url")
+            url = str(url) if pd.notna(url) else ""
+            year = row.get("year")
+            year = int(year) if pd.notna(year) else None
+            reps.append(
+                {
+                    "title": str(row["title"]),
+                    "url": url,
+                    "year": year,
+                }
+            )
+
+        clusters.append(
+            {
+                "id": int(cid),
+                "size": int(mask.sum()),
+                "keywords": kws,
+                "centroid": [float(centroid[0]), float(centroid[1])],
+                "representatives": reps,
+            }
+        )
+
+    bounds = {
+        "x_min": float(coords_2d[:, 0].min()),
+        "x_max": float(coords_2d[:, 0].max()),
+        "y_min": float(coords_2d[:, 1].min()),
+        "y_max": float(coords_2d[:, 1].max()),
+    }
+
+    payload = {"points": points, "clusters": clusters, "bounds": bounds}
+    outpath.parent.mkdir(parents=True, exist_ok=True)
+    with outpath.open("w") as f:
+        json.dump(payload, f, indent=2)
+    print(f"Saved {len(points)} points + {len(clusters)} clusters to {outpath}")
+
+
+def main(export_to_web: bool = False):
     # Load data
     df = load_and_merge_data()
     print(f"Loaded {len(df)} papers with abstracts")
@@ -342,6 +417,8 @@ def main():
 
     df["cluster"] = labels
     df["cluster_keywords"] = df["cluster"].map(lambda x: ", ".join(cluster_keywords.get(x, [])) if x != -1 else "unclustered")  # fmt: skip
+    df["umap_x"] = coords_2d[:, 0]
+    df["umap_y"] = coords_2d[:, 1]
 
     output_path = ROOT / "data" / "papers_with_clusters.csv"
     df.to_csv(output_path, index=False)
@@ -355,6 +432,22 @@ def main():
 
     plot_clusters(coords_2d, labels, cluster_keywords, df)
 
+    if export_to_web:
+        export_web(
+            df,
+            coords_2d,
+            labels,
+            cluster_keywords,
+            WEB_DATA_DIR / "literature_clusters.json",
+        )
+
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--export_to_web",
+        action="store_true",
+        help="Also export cluster + point data as JSON.",
+    )
+    args = parser.parse_args()
+    main(export_to_web=args.export_to_web)
