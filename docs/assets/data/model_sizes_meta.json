@@ -35,7 +35,7 @@
     }
   },
   "Phi-2": {
-    "description": "",
+    "description": "Phi-2 (Microsoft Research)",
     "tech_report_url": "",
     "hf_url": "",
     "hf_urls": {
