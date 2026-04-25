@@ -153,13 +153,18 @@ WEB_SECTOR_COLORS = [
 
 
 def plot_chord_web(matrix: np.ndarray, outpath: Path) -> None:
+    totals = matrix.sum(axis=1).astype(int)
+    names_with_totals = [
+        f"{name} ({totals[i]})" for i, name in enumerate(SECTOR_ORDER)
+    ]
+
     with plt.rc_context(WEB_PLOT_PARAMS):
         fig, ax = plt.subplots(figsize=(7, 7))
 
         chord_diagram(
             matrix,
             ax=ax,
-            names=SECTOR_ORDER,
+            names=names_with_totals,
             colors=WEB_SECTOR_COLORS,
             fontsize=14,
             use_gradient=True,
@@ -167,13 +172,6 @@ def plot_chord_web(matrix: np.ndarray, outpath: Path) -> None:
             rotate_names=False,
             alpha=0.65,
             start_at=90,
-        )
-
-        _annotate_arc_totals(
-            ax, matrix,
-            label_radius=1.20,
-            fontsize=15,
-            color=WEB_COLORS["ink"],
         )
 
         from matplotlib.colors import to_rgb
