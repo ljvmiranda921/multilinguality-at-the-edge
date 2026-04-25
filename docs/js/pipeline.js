@@ -8,8 +8,8 @@ const PIPELINE_STAGES = {
   // Pipeline stages
   "data-collection": {
     title: "Data Collection",
-    body:  "TODO — paste survey text for the Data Collection stage here. " +
-           "Inline citations like [1] and [2] become clickable superscripts.",
+    body: "The LM pipeline often begins with sourcing and curating text corpora for both pretraining and post-training. " + 
+          "Pretraining corpora tend to be unstructured web-crawled text, while post-training datasets are more structured.",
   },
   "pretraining": {
     title: "Pretraining",
