@@ -52,12 +52,12 @@
     }
   },
   "Orca 2": {
-    "description": "",
-    "tech_report_url": "",
+    "description": "Teaching Small Language Models How To Reason (Microsoft Research)",
+    "tech_report_url": "https://arxiv.org/abs/2311.11045",
     "hf_url": "",
     "hf_urls": {
-      "7.0": "",
-      "13.0": ""
+      "7.0": "https://huggingface.co/microsoft/Orca-2-7b",
+      "13.0": "https://huggingface.co/microsoft/Orca-2-13b"
     }
   },
   "Orca": {
