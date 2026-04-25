@@ -252,6 +252,21 @@
     tooltipEl.style.top  = y + "px";
   }
 
+  function resolveDotUrl(metaEntry, size) {
+    if (!metaEntry) return "";
+    const urls = metaEntry.hf_urls || {};
+    const raw = String(size);
+    if (urls[raw]) return urls[raw];
+
+    const num = Number(size);
+    if (Number.isFinite(num)) {
+      for (const [k, v] of Object.entries(urls)) {
+        if (Number.isFinite(Number(k)) && Number(k) === num && v) return v;
+      }
+    }
+    return metaEntry.hf_url || "";
+  }
+
   // -------- interactions --------
 
   function wire(mount, meta) {
@@ -271,7 +286,7 @@
       const name = c.dataset.model;
       const size = c.dataset.size;
       const m    = meta[name] || {};
-      const url  = (m.hf_urls && m.hf_urls[size]) || m.hf_url;
+      const url  = resolveDotUrl(m, size);
       if (url) {
         c.style.cursor = "pointer";
         c.addEventListener("click", () => window.open(url, "_blank", "noopener"));
