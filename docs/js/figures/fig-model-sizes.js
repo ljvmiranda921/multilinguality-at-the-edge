@@ -16,8 +16,12 @@
 
   const TICK_VALS  = [0.3, 1, 3, 7, 14, 30, 70, 130, 400];
   const X_DOMAIN   = [0.2, 600];
-  const ROW_HEIGHT = 22;
-  const MARGINS    = { left: 150, right: 64, top: 38, bottom: 56 };
+  const ROW_HEIGHT = 14;
+  const MARGINS    = { left: 138, right: 60, top: 32, bottom: 46 };
+  const FONT_SIZE_NAME  = 11.5;
+  const FONT_SIZE_TICK  = 10.5;
+  const FONT_SIZE_LABEL = 12.5;
+  const FONT_SIZE_CAT   = 13;
   const SVG_NS     = "http://www.w3.org/2000/svg";
 
   function logScale(domain, range) {
@@ -64,10 +68,10 @@
         fill: cat.color, opacity: 0.07,
       }));
       svg.appendChild(el("text", {
-        x: (x0 + x1) / 2, y: MARGINS.top - 14,
+        x: (x0 + x1) / 2, y: MARGINS.top - 12,
         "text-anchor": "middle",
         "font-family": "Tomato Grotesk, sans-serif",
-        "font-size": 14, "font-weight": 600,
+        "font-size": FONT_SIZE_CAT, "font-weight": 600,
         fill: cat.color,
       }, [cat.label]));
     });
@@ -94,12 +98,12 @@
       const midI = indices.reduce((a, b) => a + b, 0) / indices.length;
       const y = MARGINS.top + (midI + 0.5) * ROW_HEIGHT;
       svg.appendChild(el("text", {
-        x: width - MARGINS.right + 12,
+        x: width - MARGINS.right + 10,
         y: y,
         "text-anchor": "start",
         "dominant-baseline": "middle",
         "font-family": "Univers, sans-serif",
-        "font-size": 11,
+        "font-size": FONT_SIZE_TICK,
         "font-style": "italic",
         fill: COLORS.muted,
       }, [year]));
@@ -119,7 +123,7 @@
         "text-anchor": "end",
         "dominant-baseline": "middle",
         "font-family": "Univers, sans-serif",
-        "font-size": 12,
+        "font-size": FONT_SIZE_NAME,
         fill: COLORS.ink,
       }, [r.name]));
       svg.appendChild(nameG);
@@ -131,7 +135,7 @@
           x2: MARGINS.left + xScale(r.max),
           y1: y, y2: y,
           stroke: COLORS.accent,
-          "stroke-width": 2.2,
+          "stroke-width": 2,
           "stroke-linecap": "round",
         }));
       }
@@ -140,10 +144,10 @@
       r.sizes.forEach(s => {
         svg.appendChild(el("circle", {
           cx: MARGINS.left + xScale(s),
-          cy: y, r: 5,
+          cy: y, r: 4.5,
           fill: COLORS.warm_pale,
           stroke: COLORS.warm,
-          "stroke-width": 1.6,
+          "stroke-width": 1.4,
           class: "model-dot",
           "data-model": r.name,
           "data-size": s,
@@ -152,7 +156,7 @@
     });
 
     // X axis
-    const axisY = MARGINS.top + innerH + 12;
+    const axisY = MARGINS.top + innerH + 8;
     svg.appendChild(el("line", {
       x1: MARGINS.left, x2: MARGINS.left + innerW,
       y1: axisY, y2: axisY,
@@ -161,23 +165,23 @@
     TICK_VALS.forEach(t => {
       const tx = MARGINS.left + xScale(t);
       svg.appendChild(el("line", {
-        x1: tx, x2: tx, y1: axisY, y2: axisY + 5,
+        x1: tx, x2: tx, y1: axisY, y2: axisY + 4,
         stroke: COLORS.ink, "stroke-width": 1,
       }));
       svg.appendChild(el("text", {
-        x: tx, y: axisY + 18,
+        x: tx, y: axisY + 15,
         "text-anchor": "middle",
         "font-family": "Univers, sans-serif",
-        "font-size": 11,
+        "font-size": FONT_SIZE_TICK,
         fill: COLORS.ink,
       }, [String(t)]));
     });
 
     svg.appendChild(el("text", {
-      x: MARGINS.left + innerW / 2, y: axisY + 40,
+      x: MARGINS.left + innerW / 2, y: axisY + 33,
       "text-anchor": "middle",
       "font-family": "Tomato Grotesk, sans-serif",
-      "font-size": 13,
+      "font-size": FONT_SIZE_LABEL,
       fill: COLORS.ink,
     }, ["Model size (B parameters)"]));
 
