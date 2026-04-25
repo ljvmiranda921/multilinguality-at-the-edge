@@ -1,0 +1,137 @@
+{
+  "NLLB": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "GLM-130B": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Phi-1": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Phi-1.5": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Phi-2": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "SeaLLMs": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Orca 2": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Orca": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Qwen2": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Qwen2.5": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Granite 3.0": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "EuroLLM": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Phi-3": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Minitron": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Yi": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Llama 3": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "MaLA-500": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Mixtral 8x7B": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "EmbeddingGemma": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Omnilingual ASR": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Falcon-H1": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Qwen3 Embedding": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Gemma 3": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Phi-4-Mini": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Nemotron 3": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "Tiny Aya": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  },
+  "TranslateGemma": {
+    "description": "",
+    "tech_report_url": "",
+    "hf_url": ""
+  }
+}

@@ -1,6 +1,7 @@
 """Plot model size ranges per model family from papers_both.csv."""
 
 import argparse
+import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -11,11 +12,9 @@ from analysis.utils import (
     COLORS,
     OUTPUT_DIR,
     PLOT_PARAMS,
-    WEB_COLORS,
-    WEB_FIGURES_DIR,
-    WEB_PLOT_PARAMS,
-    WEB_TITLE_FONT,
 )
+
+WEB_DATA_DIR = Path("docs/assets/data")
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -192,83 +191,48 @@ def _plot_paper(records, outpath):
     plt.close(fig)
 
 
-def _plot_web(records, outpath):
-    with plt.rc_context(WEB_PLOT_PARAMS):
-        fig, ax = plt.subplots(figsize=(9, 9))
-        y_positions = np.arange(len(records))
+def _export_web_data(records, outpath):
+    payload = {
+        "models": [
+            {
+                "name":  r["name"],
+                "sizes": r["sizes"],
+                "year":  r["year"],
+                "min":   r["min"],
+                "max":   r["max"],
+            }
+            for r in records
+        ]
+    }
+    outpath.parent.mkdir(parents=True, exist_ok=True)
+    with outpath.open("w") as f:
+        json.dump(payload, f, indent=2)
+    print(f"Saved to {outpath}")
 
-        for i, rec in enumerate(records):
-            sizes = rec["sizes"]
-            if len(sizes) == 1:
-                ax.plot(
-                    sizes[0], i, "o",
-                    color=WEB_COLORS["warm"], markersize=8,
-                    markeredgecolor=WEB_COLORS["ink"], markeredgewidth=0.8,
-                    zorder=3,
-                )
-            else:
-                ax.plot(
-                    [sizes[0], sizes[-1]], [i, i],
-                    color=WEB_COLORS["accent"], linewidth=2.2,
-                    solid_capstyle="round", zorder=2,
-                )
-                ax.plot(
-                    sizes, [i] * len(sizes), "o",
-                    color=WEB_COLORS["warm"], markersize=7,
-                    markeredgecolor=WEB_COLORS["ink"], markeredgewidth=0.8,
-                    zorder=3,
-                )
 
-        years = [r["year"] for r in records]
-        prev_year = None
-        for i, yr in enumerate(years):
-            if prev_year is not None and yr != prev_year:
-                ax.axhline(i - 0.5, color=WEB_COLORS["rule"],
-                           linewidth=0.8, linestyle="-")
-            prev_year = yr
-
-        year_groups = {}
-        for i, yr in enumerate(years):
-            year_groups.setdefault(yr, []).append(i)
-        for yr, indices in year_groups.items():
-            mid = np.mean(indices)
-            ax.text(620, mid, str(yr), ha="left", va="center",
-                    fontsize=11, color=WEB_COLORS["muted"], style="italic")
-
-        ax.set_yticks(y_positions)
-        ax.set_yticklabels([r["name"] for r in records])
-        ax.set_xscale("log")
-        ax.set_xlabel("Model size (B parameters)", fontdict=WEB_TITLE_FONT)
-
-        tick_vals = [0.3, 1, 3, 7, 14, 30, 70, 130, 400]
-        ax.set_xticks(tick_vals)
-        ax.set_xticklabels([str(v) for v in tick_vals])
-        ax.set_xlim(0.2, 600)
-
-        ax.axvspan(0.2, 8, alpha=0.08, color=WEB_COLORS["accent"], zorder=0)
-        ax.axvspan(8, 80, alpha=0.06, color=WEB_COLORS["cool"], zorder=0)
-        ax.axvspan(80, 600, alpha=0.08, color=WEB_COLORS["warm"], zorder=0)
-
-        label_y = len(records) - 0.1
-        ax.text(1.3, label_y, "Small", ha="center", va="bottom",
-                fontsize=16, color=WEB_COLORS["accent"],
-                fontfamily="Tomato Grotesk")
-        ax.text(25, label_y, "Medium", ha="center", va="bottom",
-                fontsize=16, color=WEB_COLORS["cool"],
-                fontfamily="Tomato Grotesk")
-        ax.text(220, label_y, "Large", ha="center", va="bottom",
-                fontsize=16, color=WEB_COLORS["warm"],
-                fontfamily="Tomato Grotesk")
-
-        ax.grid(True, axis="x", alpha=0.4, linestyle="--",
-                color=WEB_COLORS["rule"])
-        ax.spines["top"].set_visible(False)
-        ax.spines["right"].set_visible(False)
-        ax.spines["left"].set_color(WEB_COLORS["ink"])
-        ax.spines["bottom"].set_color(WEB_COLORS["ink"])
-        fig.tight_layout()
-        fig.savefig(outpath, bbox_inches="tight", transparent=True)
-        plt.close(fig)
+def _ensure_web_meta(records, outpath):
+    """Write a metadata stub. Preserves any entries the user has filled in."""
+    existing = {}
+    if outpath.exists():
+        with outpath.open() as f:
+            existing = json.load(f)
+    payload = dict(existing)
+    added = 0
+    for r in records:
+        if r["name"] not in payload:
+            payload[r["name"]] = {
+                "description":     "",
+                "tech_report_url": "",
+                "hf_url":          "",
+            }
+            added += 1
+    outpath.parent.mkdir(parents=True, exist_ok=True)
+    with outpath.open("w") as f:
+        json.dump(payload, f, indent=2)
+    if added:
+        print(f"Added {added} new entries to {outpath}")
+    else:
+        print(f"Metadata up-to-date at {outpath}")
 
 
 def main(export_to_web: bool = False):
@@ -280,9 +244,8 @@ def main(export_to_web: bool = False):
     print(f"Saved to {pdf_path}")
 
     if export_to_web:
-        svg_path = WEB_FIGURES_DIR / "model_sizes.svg"
-        _plot_web(records, svg_path)
-        print(f"Saved to {svg_path}")
+        _export_web_data(records, WEB_DATA_DIR / "model_sizes.json")
+        _ensure_web_meta(records, WEB_DATA_DIR / "model_sizes_meta.json")
 
 
 if __name__ == "__main__":
