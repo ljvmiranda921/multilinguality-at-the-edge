@@ -1,3 +1,4 @@
+import argparse
 from collections import defaultdict
 from pathlib import Path
 
@@ -9,7 +10,14 @@ import numpy as np
 import pandas as pd
 from adjustText import adjust_text
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
+from analysis.utils import (
+    COLORS,
+    OUTPUT_DIR,
+    PLOT_PARAMS,
+    WEB_COLORS,
+    WEB_FIGURES_DIR,
+    WEB_PLOT_PARAMS,
+)
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -44,6 +52,16 @@ DOMAIN_COLORS = {
     "Legal": COLORS["slate_2"],
     "Social": COLORS["crest"],
     "Speech": COLORS["warm_purple"],
+}
+
+WEB_DOMAIN_COLORS = {
+    "Agriculture": WEB_COLORS["warm"],
+    "Climate": WEB_COLORS["cool"],
+    "Finance": WEB_COLORS["accent"],
+    "Healthcare": WEB_COLORS["warm_light"],
+    "Legal": WEB_COLORS["muted"],
+    "Social": WEB_COLORS["accent"],
+    "Speech": WEB_COLORS["cool"],
 }
 
 TECHNIQUE_KEYWORDS = {
@@ -358,7 +376,223 @@ def plot_domain_technique_network(
     print(f"Saved to {OUTPUT_DIR / 'domain_method_network.pdf'}")
 
 
-def main():
+def plot_domain_technique_network_web(
+    G: nx.Graph,
+    domain_techniques: dict,
+    edge_weights: dict,
+    outpath: Path,
+) -> None:
+    del domain_techniques
+    with plt.rc_context(WEB_PLOT_PARAMS):
+        fig, ax = plt.subplots(figsize=(7.2, 7.2))
+
+        domain_nodes = [
+            n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"
+        ]
+        technique_nodes = [
+            n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"
+        ]
+
+        pos = {}
+        n_domains = len(domain_nodes)
+        radius = 4.5
+        for i, domain in enumerate(domain_nodes):
+            angle = 2 * np.pi * i / n_domains - np.pi / 2
+            pos[domain] = (radius * np.cos(angle), radius * np.sin(angle))
+
+        init_pos = {}
+        for technique in technique_nodes:
+            neighbors = list(G.neighbors(technique))
+            if neighbors:
+                weights = [
+                    edge_weights.get(
+                        (n, technique), edge_weights.get((technique, n), 1)
+                    )
+                    for n in neighbors
+                    if n in pos
+                ]
+                xs = [pos[n][0] for n in neighbors if n in pos]
+                ys = [pos[n][1] for n in neighbors if n in pos]
+                if xs:
+                    total_w = sum(weights)
+                    wx = sum(x * w for x, w in zip(xs, weights)) / total_w
+                    wy = sum(y * w for y, w in zip(ys, weights)) / total_w
+                    degree = G.nodes[technique].get("degree", 1)
+                    pull = 0.20 - 0.15 * (
+                        degree
+                        / max(G.nodes[t].get("degree", 1) for t in technique_nodes)
+                    )
+                    init_pos[technique] = (wx * pull, wy * pull)
+                else:
+                    init_pos[technique] = (0, 0)
+            else:
+                init_pos[technique] = (0, 0)
+
+        fixed_pos = {**pos, **init_pos}
+        full_pos = nx.spring_layout(
+            G,
+            pos=fixed_pos,
+            fixed=domain_nodes,
+            k=2.5,
+            iterations=300,
+            seed=42,
+        )
+
+        tech_xs = [full_pos[t][0] for t in technique_nodes]
+        tech_ys = [full_pos[t][1] for t in technique_nodes]
+        cx_off = np.mean(tech_xs)
+        cy_off = np.mean(tech_ys)
+        for t in technique_nodes:
+            x, y = full_pos[t]
+            full_pos[t] = (x - cx_off, y - cy_off)
+
+        max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
+        for t in technique_nodes:
+            x, y = full_pos[t]
+            degree = G.nodes[t].get("degree", 1)
+            frac = degree / max_degree
+            max_dist = radius * (0.65 - 0.30 * frac)
+            dist = np.sqrt(x**2 + y**2)
+            if dist > max_dist:
+                scale = max_dist / dist
+                full_pos[t] = (x * scale, y * scale)
+
+        min_separation = 1.2
+        for _ in range(200):
+            moved = False
+            for i, t1 in enumerate(technique_nodes):
+                for t2 in technique_nodes[i + 1 :]:
+                    x1, y1 = full_pos[t1]
+                    x2, y2 = full_pos[t2]
+                    dx = x2 - x1
+                    dy = y2 - y1
+                    dist = np.sqrt(dx**2 + dy**2)
+                    if dist < min_separation and dist > 0:
+                        push = (min_separation - dist) / 2
+                        nx_dir = dx / dist
+                        ny_dir = dy / dist
+                        full_pos[t1] = (x1 - nx_dir * push, y1 - ny_dir * push)
+                        full_pos[t2] = (x2 + nx_dir * push, y2 + ny_dir * push)
+                        moved = True
+            if not moved:
+                break
+
+        pos.update({t: full_pos[t] for t in technique_nodes})
+
+        for (u, v), weight in edge_weights.items():
+            domain_node = u if u in domain_nodes else v
+            color = WEB_DOMAIN_COLORS.get(domain_node, WEB_COLORS["cool"])
+            x0, y0 = pos[u]
+            x1, y1 = pos[v]
+            mx, my = (x0 + x1) / 2, (y0 + y1) / 2
+            dx, dy = x1 - x0, y1 - y0
+            length = np.sqrt(dx**2 + dy**2)
+            if length > 0:
+                nx_perp, ny_perp = -dy / length, dx / length
+            else:
+                nx_perp, ny_perp = 0, 0
+            curvature = 0.2 * length
+            sign = np.sign(mx * ny_perp - my * nx_perp)
+            cx = (mx + nx_perp * curvature * sign) * 0.85
+            cy = (my + ny_perp * curvature * sign) * 0.85
+            path = mpath.Path(
+                [(x0, y0), (cx, cy), (x1, y1)],
+                [mpath.Path.MOVETO, mpath.Path.CURVE3, mpath.Path.CURVE3],
+            )
+            patch = mpatches.FancyArrowPatch(
+                path=path,
+                arrowstyle="-",
+                linewidth=0.8 + weight * 0.9,
+                color=color,
+                alpha=0.26,
+                zorder=1,
+            )
+            ax.add_patch(patch)
+
+        domain_colors = [
+            WEB_DOMAIN_COLORS.get(n, WEB_COLORS["cool"]) for n in domain_nodes
+        ]
+        nx.draw_networkx_nodes(
+            G,
+            pos,
+            ax=ax,
+            nodelist=domain_nodes,
+            node_size=3500,
+            node_color=domain_colors,
+            edgecolors=WEB_COLORS["ink"],
+            linewidths=1.2,
+            alpha=0.95,
+        )
+
+        technique_sizes = []
+        technique_colors = []
+        for t in technique_nodes:
+            degree = G.nodes[t].get("degree", 1)
+            technique_sizes.append(240 + degree * 170)
+            frac = degree / max_degree
+            r_lo, g_lo, b_lo = 0.84, 0.87, 0.91
+            r_hi, g_hi, b_hi = 0.21, 0.19, 0.18
+            r = r_lo + (r_hi - r_lo) * frac
+            g = g_lo + (g_hi - g_lo) * frac
+            b = b_lo + (b_hi - b_lo) * frac
+            technique_colors.append((r, g, b))
+
+        nx.draw_networkx_nodes(
+            G,
+            pos,
+            ax=ax,
+            nodelist=technique_nodes,
+            node_size=technique_sizes,
+            node_color=technique_colors,
+            edgecolors=WEB_COLORS["white"],
+            linewidths=0.8,
+            alpha=0.95,
+        )
+
+        for domain in domain_nodes:
+            x, y = pos[domain]
+            ax.text(
+                x,
+                y,
+                domain,
+                ha="center",
+                va="center",
+                fontsize=12,
+                fontfamily="Tomato Grotesk",
+                fontweight="bold",
+                color=WEB_COLORS["white"],
+                zorder=5,
+            )
+
+        for technique in technique_nodes:
+            x, y = pos[technique]
+            ax.text(
+                x,
+                y - 0.03,
+                technique,
+                ha="center",
+                va="center",
+                ma="center",
+                fontsize=9.3,
+                fontfamily="Univers",
+                color=WEB_COLORS["ink"],
+                zorder=4,
+            )
+
+        ax.axis("off")
+        margin = 1.0
+        all_x = [p[0] for p in pos.values()]
+        all_y = [p[1] for p in pos.values()]
+        ax.set_xlim(min(all_x) - margin, max(all_x) + margin)
+        ax.set_ylim(min(all_y) - margin, max(all_y) + margin)
+
+        fig.tight_layout()
+        fig.savefig(outpath, bbox_inches="tight", transparent=True)
+        plt.close(fig)
+        print(f"Saved to {outpath}")
+
+
+def main(export_to_web: bool = False):
     df = pd.read_csv(DATA_PATH)
     print(f"Loaded: {len(df)} papers")
 
@@ -376,7 +610,21 @@ def main():
         print(f"  {d} -- {t}: {w}")
 
     plot_domain_technique_network(G, domain_techniques, edge_weights)
+    if export_to_web:
+        plot_domain_technique_network_web(
+            G,
+            domain_techniques,
+            edge_weights,
+            WEB_FIGURES_DIR / "domain_method_network.svg",
+        )
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--export_to_web",
+        action="store_true",
+        help="Also export an SVG to docs/assets/figures/.",
+    )
+    args = parser.parse_args()
+    main(export_to_web=args.export_to_web)

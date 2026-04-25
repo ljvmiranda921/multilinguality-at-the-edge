@@ -125,12 +125,15 @@
       </div>
 
       <div class="tab-panel" role="tabpanel" data-panel="where" hidden>
-        <p>TODO &mdash; short intro paragraph about which domains edge LM systems are deployed to.</p>
+        <p>
+          To understand where edge LM systems are currently deployed, we grouped the deployment papers by application domain and linked each domain to the techniques explicitly used in the papers.
+          This reveals both concentration (e.g., speech-heavy and socially oriented applications) and the relatively narrow set of methods that bridge multilinguality and edge constraints in practice.
+        </p>
         <figure class="analysis-figure">
-          <div id="fig-where" class="figure-mount">
+          <div id="fig-where" class="figure-mount" data-svg="assets/figures/domain_method_network.svg">
             <p class="placeholder">[ chart loads here ]</p>
           </div>
-          <figcaption><strong>Figure 5.</strong> Placeholder caption &mdash; describe what the figure shows.</figcaption>
+          <figcaption><strong>Figure 5. Domain-technique network for deployed edge LM systems.</strong> Outer nodes are application domains and inner nodes are modeling techniques extracted from abstracts and deployment descriptions. Curved links show observed pairings, with thicker links indicating repeated use in the surveyed deployment papers.</figcaption>
         </figure>
       </div>
     </div>
