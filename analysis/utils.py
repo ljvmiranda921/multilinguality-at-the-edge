@@ -78,16 +78,19 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 # ----- Website styling for inline-SVG export -----
 
 WEB_COLORS = {
-    "ink":        "#35302E",
-    "accent":     "#254EFF",
-    "warm":       "#C96A2E",
-    "warm_light": "#E39A5F",
-    "cool":       "#7B93B8",
-    "cool_light": "#B4C0D2",
-    "muted":      "#6b6358",
-    "rule":       "#e5ddcb",
-    "paper":      "#F8ECDA",
-    "white":      "#FFFFFF",
+    "ink":          "#35302E",
+    "accent":       "#254EFF",
+    "accent_pale":  "#DCE3FF",
+    "warm":         "#C96A2E",
+    "warm_light":   "#E39A5F",
+    "warm_pale":    "#F5D8BE",
+    "cool":         "#7B93B8",
+    "cool_light":   "#B4C0D2",
+    "cool_pale":    "#D7DEE9",
+    "muted":        "#6b6358",
+    "rule":         "#e5ddcb",
+    "paper":        "#F8ECDA",
+    "white":        "#FFFFFF",
 }
 
 WEB_PLOT_PARAMS = {

@@ -102,9 +102,24 @@ PAPER_FOCUS_STYLE = {
 }
 
 WEB_FOCUS_STYLE = {
-    "Efficiency":      {"color": WEB_COLORS["accent"], "label": "Edge"},
-    "Multilinguality": {"color": WEB_COLORS["warm"],   "label": "Multilinguality"},
-    "Both":            {"color": WEB_COLORS["cool"],   "label": "Both"},
+    "Efficiency": {
+        "facecolor": WEB_COLORS["accent_pale"],
+        "edgecolor": WEB_COLORS["accent"],
+        "hatch":     "//",
+        "label":     "Edge",
+    },
+    "Multilinguality": {
+        "facecolor": WEB_COLORS["warm_pale"],
+        "edgecolor": WEB_COLORS["warm"],
+        "hatch":     "\\\\",
+        "label":     "Multilinguality",
+    },
+    "Both": {
+        "facecolor": WEB_COLORS["cool_pale"],
+        "edgecolor": WEB_COLORS["cool"],
+        "hatch":     "..",
+        "label":     "Both",
+    },
 }
 
 
@@ -148,7 +163,7 @@ def _plot_paper(counts, outpath):
 
 def _plot_web(counts, outpath):
     with plt.rc_context(WEB_PLOT_PARAMS):
-        fig, ax = plt.subplots(figsize=(6.5, 4.8))
+        fig, ax = plt.subplots(figsize=(6.5, 6.5))
         x = np.arange(len(LANG_BINS))
         bottom = np.zeros(len(LANG_BINS))
 
@@ -157,14 +172,14 @@ def _plot_web(counts, outpath):
             vals = counts[focus].values
             ax.bar(
                 x, vals, bottom=bottom, label=style["label"],
-                color=style["color"], edgecolor=WEB_COLORS["ink"],
-                linewidth=0.6, width=0.62,
+                facecolor=style["facecolor"], edgecolor=style["edgecolor"],
+                hatch=style["hatch"], linewidth=1.2, width=0.62,
             )
             for i, (v, b) in enumerate(zip(vals, bottom)):
                 if v >= 3:
                     ax.text(x[i], b + v / 2, str(v), ha="center", va="center",
-                            fontsize=12, fontweight=600,
-                            color=WEB_COLORS["white"])
+                            fontsize=12, fontweight="bold",
+                            color=style["edgecolor"])
             bottom += vals
 
         for i, b in enumerate(LANG_BINS):
