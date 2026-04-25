@@ -64,6 +64,11 @@ WEB_DOMAIN_COLORS = {
     "Speech": WEB_COLORS["cool"],
 }
 
+WEB_DOMAIN_LABELS = {
+    "Agriculture": "Agri\nculture",
+    "Healthcare": "Health\ncare",
+}
+
 TECHNIQUE_KEYWORDS = {
     # "RAG": ["retrieval-augmented", "retrieval augmented", " rag "],
     "Data\nCuration": [
@@ -517,7 +522,7 @@ def plot_domain_technique_network_web(
             pos,
             ax=ax,
             nodelist=domain_nodes,
-            node_size=3500,
+            node_size=4300,
             node_color=domain_colors,
             edgecolors=WEB_COLORS["ink"],
             linewidths=1.2,
@@ -525,17 +530,17 @@ def plot_domain_technique_network_web(
         )
 
         technique_sizes = []
-        technique_colors = []
+        technique_colors = {}
         for t in technique_nodes:
             degree = G.nodes[t].get("degree", 1)
-            technique_sizes.append(240 + degree * 170)
+            technique_sizes.append(320 + degree * 210)
             frac = degree / max_degree
             r_lo, g_lo, b_lo = 0.84, 0.87, 0.91
             r_hi, g_hi, b_hi = 0.21, 0.19, 0.18
             r = r_lo + (r_hi - r_lo) * frac
             g = g_lo + (g_hi - g_lo) * frac
             b = b_lo + (b_hi - b_lo) * frac
-            technique_colors.append((r, g, b))
+            technique_colors[t] = (r, g, b)
 
         nx.draw_networkx_nodes(
             G,
@@ -543,7 +548,7 @@ def plot_domain_technique_network_web(
             ax=ax,
             nodelist=technique_nodes,
             node_size=technique_sizes,
-            node_color=technique_colors,
+            node_color=[technique_colors[t] for t in technique_nodes],
             edgecolors=WEB_COLORS["white"],
             linewidths=0.8,
             alpha=0.95,
@@ -551,21 +556,27 @@ def plot_domain_technique_network_web(
 
         for domain in domain_nodes:
             x, y = pos[domain]
+            label = WEB_DOMAIN_LABELS.get(domain, domain)
+            label_fontsize = 11 if "\n" in label else 12
             ax.text(
                 x,
                 y,
-                domain,
+                label,
                 ha="center",
                 va="center",
-                fontsize=12,
+                fontsize=label_fontsize,
                 fontfamily="Tomato Grotesk",
                 fontweight="bold",
                 color=WEB_COLORS["white"],
+                linespacing=0.95,
                 zorder=5,
             )
 
         for technique in technique_nodes:
             x, y = pos[technique]
+            r, g, b = technique_colors[technique]
+            luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
+            text_color = WEB_COLORS["white"] if luminance < 0.50 else WEB_COLORS["ink"]
             ax.text(
                 x,
                 y - 0.03,
@@ -575,7 +586,7 @@ def plot_domain_technique_network_web(
                 ma="center",
                 fontsize=9.3,
                 fontfamily="Univers",
-                color=WEB_COLORS["ink"],
+                color=text_color,
                 zorder=4,
             )
 
