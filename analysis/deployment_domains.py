@@ -572,26 +572,45 @@ def plot_domain_technique_network_web(
                 zorder=5,
             )
 
-        for technique in technique_nodes:
+        for i, technique in enumerate(technique_nodes):
             x, y = pos[technique]
-            r, g, b = technique_colors[technique]
-            luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
-            text_color = WEB_COLORS["white"] if luminance < 0.50 else WEB_COLORS["ink"]
-            ax.text(
-                x,
-                y - 0.03,
+            dist = np.hypot(x, y)
+            if dist < 0.25:
+                angle = 2 * np.pi * i / max(len(technique_nodes), 1)
+                ux, uy = np.cos(angle), np.sin(angle)
+            else:
+                ux, uy = x / dist, y / dist
+            tx = x + ux * 0.62
+            ty = y + uy * 0.62
+            if ux > 0.2:
+                ha = "left"
+            elif ux < -0.2:
+                ha = "right"
+            else:
+                ha = "center"
+            ax.annotate(
                 technique,
-                ha="center",
+                xy=(x, y),
+                xytext=(tx, ty),
+                textcoords="data",
+                ha=ha,
                 va="center",
-                ma="center",
                 fontsize=9.3,
                 fontfamily="Univers",
-                color=text_color,
+                color=WEB_COLORS["ink"],
+                arrowprops={
+                    "arrowstyle": "-",
+                    "color": WEB_COLORS["muted"],
+                    "linewidth": 0.75,
+                    "alpha": 0.45,
+                    "shrinkA": 4,
+                    "shrinkB": 4,
+                },
                 zorder=4,
             )
 
         ax.axis("off")
-        margin = 1.0
+        margin = 1.8
         all_x = [p[0] for p in pos.values()]
         all_y = [p[1] for p in pos.values()]
         ax.set_xlim(min(all_x) - margin, max(all_x) + margin)
