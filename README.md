@@ -2,6 +2,8 @@
 
 # Multilinguality at the Edge: Developing Language Models for the Global South
 
+ [[Paper](https://arxiv.org/abs/2604.21637)] [[Website](https://ljvmiranda921.github.io/multilinguality-at-the-edge/)]
+
 Where and how language models (LMs) are deployed determines who can benefit from them. 
 However, there are several challenges that prevent effective deployment of LMs in non-English-speaking and hardware-constrained communities in the Global South.
 We call this challenge the last mile: the intersection of multilinguality and edge deployment, where the goals are aligned but the technical requirements often compete.
