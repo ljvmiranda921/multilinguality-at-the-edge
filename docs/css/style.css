@@ -510,6 +510,55 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
   color: var(--accent);
   border-bottom: 1px solid rgba(37, 78, 255, 0.3);
 }
+
+/* fig-domain-network interactivity */
+#fig-where svg .where-edge,
+#fig-where svg .where-tech,
+#fig-where svg .where-domain,
+#fig-where svg .where-label,
+#fig-where svg .where-leader {
+  transition: opacity 140ms ease, stroke-width 140ms ease, fill 140ms ease;
+}
+#fig-where svg.has-active .where-edge,
+#fig-where svg.has-active .where-tech,
+#fig-where svg.has-active .where-label,
+#fig-where svg.has-active .where-leader,
+#fig-where svg.has-active .where-domain {
+  opacity: 0.2;
+}
+#fig-where svg.has-active .where-edge.is-active,
+#fig-where svg.has-active .where-tech.is-active,
+#fig-where svg.has-active .where-label.is-active,
+#fig-where svg.has-active .where-leader.is-active,
+#fig-where svg.has-active .where-domain.is-active {
+  opacity: 1;
+}
+
+.where-detail {
+  margin-top: 1rem;
+}
+.where-detail-head {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0 0 0.55rem;
+}
+.where-detail-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.where-detail-list li {
+  margin: 0.35rem 0;
+  color: var(--fg);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.where-detail-year {
+  color: var(--fg-muted);
+  font-style: italic;
+}
+
 .figure-pair figcaption {
   font-size: 0.92rem;
   line-height: 1.55;

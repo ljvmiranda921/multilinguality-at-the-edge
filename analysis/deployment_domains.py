@@ -1,4 +1,5 @@
 import argparse
+import json
 from collections import defaultdict
 from pathlib import Path
 
@@ -25,6 +26,7 @@ ROOT = CWD.parent
 plt.rcParams.update(PLOT_PARAMS)
 
 DATA_PATH = ROOT / "data" / "papers_application.csv"
+WEB_DATA_DIR = ROOT / "docs" / "assets" / "data"
 
 DOMAIN_ORDER = [
     "Agriculture",
@@ -157,6 +159,125 @@ def build_domain_technique_graph(
         G.add_edge(domain, technique, weight=weight)
 
     return G, domain_techniques, edge_weights
+
+
+def _compute_network_layout(
+    G: nx.Graph, edge_weights: dict[tuple[str, str], int]
+) -> tuple[list[str], list[str], dict[str, tuple[float, float]], int]:
+    domain_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"]
+    technique_nodes = [
+        n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"
+    ]
+
+    pos = {}
+    n_domains = len(domain_nodes)
+    radius = 4.5
+    for i, domain in enumerate(domain_nodes):
+        angle = 2 * np.pi * i / n_domains - np.pi / 2
+        pos[domain] = (radius * np.cos(angle), radius * np.sin(angle))
+
+    init_pos = {}
+    for technique in technique_nodes:
+        neighbors = list(G.neighbors(technique))
+        if neighbors:
+            weights = [
+                edge_weights.get((n, technique), edge_weights.get((technique, n), 1))
+                for n in neighbors
+                if n in pos
+            ]
+            xs = [pos[n][0] for n in neighbors if n in pos]
+            ys = [pos[n][1] for n in neighbors if n in pos]
+            if xs:
+                total_w = sum(weights)
+                wx = sum(x * w for x, w in zip(xs, weights)) / total_w
+                wy = sum(y * w for y, w in zip(ys, weights)) / total_w
+                degree = G.nodes[technique].get("degree", 1)
+                pull = 0.20 - 0.15 * (
+                    degree / max(G.nodes[t].get("degree", 1) for t in technique_nodes)
+                )
+                init_pos[technique] = (wx * pull, wy * pull)
+            else:
+                init_pos[technique] = (0, 0)
+        else:
+            init_pos[technique] = (0, 0)
+
+    fixed_pos = {**pos, **init_pos}
+    full_pos = nx.spring_layout(
+        G,
+        pos=fixed_pos,
+        fixed=domain_nodes,
+        k=2.5,
+        iterations=300,
+        seed=42,
+    )
+
+    tech_xs = [full_pos[t][0] for t in technique_nodes]
+    tech_ys = [full_pos[t][1] for t in technique_nodes]
+    cx_off = np.mean(tech_xs)
+    cy_off = np.mean(tech_ys)
+    for t in technique_nodes:
+        x, y = full_pos[t]
+        full_pos[t] = (x - cx_off, y - cy_off)
+
+    max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
+    for t in technique_nodes:
+        x, y = full_pos[t]
+        degree = G.nodes[t].get("degree", 1)
+        frac = degree / max_degree
+        max_dist = radius * (0.65 - 0.30 * frac)
+        dist = np.sqrt(x**2 + y**2)
+        if dist > max_dist:
+            scale = max_dist / dist
+            full_pos[t] = (x * scale, y * scale)
+
+    min_separation = 1.2
+    for _ in range(200):
+        moved = False
+        for i, t1 in enumerate(technique_nodes):
+            for t2 in technique_nodes[i + 1 :]:
+                x1, y1 = full_pos[t1]
+                x2, y2 = full_pos[t2]
+                dx = x2 - x1
+                dy = y2 - y1
+                dist = np.sqrt(dx**2 + dy**2)
+                if dist < min_separation and dist > 0:
+                    push = (min_separation - dist) / 2
+                    nx_dir = dx / dist
+                    ny_dir = dy / dist
+                    full_pos[t1] = (x1 - nx_dir * push, y1 - ny_dir * push)
+                    full_pos[t2] = (x2 + nx_dir * push, y2 + ny_dir * push)
+                    moved = True
+        if not moved:
+            break
+
+    pos.update({t: full_pos[t] for t in technique_nodes})
+    return domain_nodes, technique_nodes, pos, max_degree
+
+
+def _build_domain_samples(df: pd.DataFrame, max_per_domain: int = 2) -> dict[str, list[dict]]:
+    records = df.copy()
+    records["domain"] = records["domain"].replace(DOMAIN_MAP)
+    records["year"] = pd.to_numeric(records.get("year"), errors="coerce")
+    records = records.sort_values("year", ascending=False, na_position="last")
+
+    out: dict[str, list[dict]] = {}
+    for domain in DOMAIN_ORDER:
+        subset = records[records["domain"] == domain].head(max_per_domain)
+        samples = []
+        for _, row in subset.iterrows():
+            url = row.get("url")
+            url = str(url) if pd.notna(url) else ""
+            year = row.get("year")
+            year = int(year) if pd.notna(year) else None
+            samples.append(
+                {
+                    "title": str(row.get("title", "")),
+                    "url": url,
+                    "year": year,
+                }
+            )
+        out[domain] = samples
+    return out
 
 
 def plot_domain_technique_network(
@@ -391,98 +512,9 @@ def plot_domain_technique_network_web(
     with plt.rc_context(WEB_PLOT_PARAMS):
         fig, ax = plt.subplots(figsize=(7.2, 7.2))
 
-        domain_nodes = [
-            n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"
-        ]
-        technique_nodes = [
-            n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"
-        ]
-
-        pos = {}
-        n_domains = len(domain_nodes)
-        radius = 4.5
-        for i, domain in enumerate(domain_nodes):
-            angle = 2 * np.pi * i / n_domains - np.pi / 2
-            pos[domain] = (radius * np.cos(angle), radius * np.sin(angle))
-
-        init_pos = {}
-        for technique in technique_nodes:
-            neighbors = list(G.neighbors(technique))
-            if neighbors:
-                weights = [
-                    edge_weights.get(
-                        (n, technique), edge_weights.get((technique, n), 1)
-                    )
-                    for n in neighbors
-                    if n in pos
-                ]
-                xs = [pos[n][0] for n in neighbors if n in pos]
-                ys = [pos[n][1] for n in neighbors if n in pos]
-                if xs:
-                    total_w = sum(weights)
-                    wx = sum(x * w for x, w in zip(xs, weights)) / total_w
-                    wy = sum(y * w for y, w in zip(ys, weights)) / total_w
-                    degree = G.nodes[technique].get("degree", 1)
-                    pull = 0.20 - 0.15 * (
-                        degree
-                        / max(G.nodes[t].get("degree", 1) for t in technique_nodes)
-                    )
-                    init_pos[technique] = (wx * pull, wy * pull)
-                else:
-                    init_pos[technique] = (0, 0)
-            else:
-                init_pos[technique] = (0, 0)
-
-        fixed_pos = {**pos, **init_pos}
-        full_pos = nx.spring_layout(
-            G,
-            pos=fixed_pos,
-            fixed=domain_nodes,
-            k=2.5,
-            iterations=300,
-            seed=42,
+        domain_nodes, technique_nodes, pos, max_degree = _compute_network_layout(
+            G, edge_weights
         )
-
-        tech_xs = [full_pos[t][0] for t in technique_nodes]
-        tech_ys = [full_pos[t][1] for t in technique_nodes]
-        cx_off = np.mean(tech_xs)
-        cy_off = np.mean(tech_ys)
-        for t in technique_nodes:
-            x, y = full_pos[t]
-            full_pos[t] = (x - cx_off, y - cy_off)
-
-        max_degree = max(G.nodes[t].get("degree", 1) for t in technique_nodes)
-        for t in technique_nodes:
-            x, y = full_pos[t]
-            degree = G.nodes[t].get("degree", 1)
-            frac = degree / max_degree
-            max_dist = radius * (0.65 - 0.30 * frac)
-            dist = np.sqrt(x**2 + y**2)
-            if dist > max_dist:
-                scale = max_dist / dist
-                full_pos[t] = (x * scale, y * scale)
-
-        min_separation = 1.2
-        for _ in range(200):
-            moved = False
-            for i, t1 in enumerate(technique_nodes):
-                for t2 in technique_nodes[i + 1 :]:
-                    x1, y1 = full_pos[t1]
-                    x2, y2 = full_pos[t2]
-                    dx = x2 - x1
-                    dy = y2 - y1
-                    dist = np.sqrt(dx**2 + dy**2)
-                    if dist < min_separation and dist > 0:
-                        push = (min_separation - dist) / 2
-                        nx_dir = dx / dist
-                        ny_dir = dy / dist
-                        full_pos[t1] = (x1 - nx_dir * push, y1 - ny_dir * push)
-                        full_pos[t2] = (x2 + nx_dir * push, y2 + ny_dir * push)
-                        moved = True
-            if not moved:
-                break
-
-        pos.update({t: full_pos[t] for t in technique_nodes})
 
         for (u, v), weight in edge_weights.items():
             domain_node = u if u in domain_nodes else v
@@ -622,6 +654,108 @@ def plot_domain_technique_network_web(
         print(f"Saved to {outpath}")
 
 
+def export_domain_network_web_data(
+    G: nx.Graph, edge_weights: dict[tuple[str, str], int], df: pd.DataFrame, outpath: Path
+) -> None:
+    domain_nodes, technique_nodes, pos, max_degree = _compute_network_layout(
+        G, edge_weights
+    )
+    samples = _build_domain_samples(df, max_per_domain=2)
+
+    domains = []
+    for domain in domain_nodes:
+        x, y = pos[domain]
+        domains.append(
+            {
+                "id": domain,
+                "label": WEB_DOMAIN_LABELS.get(domain, domain),
+                "x": float(x),
+                "y": float(y),
+                "color": WEB_DOMAIN_COLORS.get(domain, WEB_COLORS["cool"]),
+                "samples": samples.get(domain, []),
+            }
+        )
+
+    techniques = []
+    for i, technique in enumerate(technique_nodes):
+        x, y = pos[technique]
+        degree = int(G.nodes[technique].get("degree", 1))
+        size = 320 + degree * 210
+
+        dist = np.hypot(x, y)
+        if dist < 0.25:
+            angle = 2 * np.pi * i / max(len(technique_nodes), 1)
+            ux, uy = np.cos(angle), np.sin(angle)
+        else:
+            ux, uy = x / dist, y / dist
+
+        tx = x + ux * 0.68
+        ty = y + uy * 0.68
+        if ux > 0.2:
+            anchor = "start"
+        elif ux < -0.2:
+            anchor = "end"
+        else:
+            anchor = "middle"
+
+        frac = degree / max_degree
+        r_lo, g_lo, b_lo = 0.84, 0.87, 0.91
+        r_hi, g_hi, b_hi = 0.21, 0.19, 0.18
+        r = r_lo + (r_hi - r_lo) * frac
+        g = g_lo + (g_hi - g_lo) * frac
+        b = b_lo + (b_hi - b_lo) * frac
+        color = "#{:02x}{:02x}{:02x}".format(
+            int(np.clip(r, 0, 1) * 255),
+            int(np.clip(g, 0, 1) * 255),
+            int(np.clip(b, 0, 1) * 255),
+        )
+
+        techniques.append(
+            {
+                "id": technique,
+                "x": float(x),
+                "y": float(y),
+                "degree": degree,
+                "size": int(size),
+                "label_x": float(tx),
+                "label_y": float(ty),
+                "label_anchor": anchor,
+                "color": color,
+            }
+        )
+
+    edges = []
+    for (u, v), weight in edge_weights.items():
+        domain = u if u in domain_nodes else v
+        technique = v if domain == u else u
+        edges.append(
+            {
+                "domain": domain,
+                "technique": technique,
+                "weight": int(weight),
+                "color": WEB_DOMAIN_COLORS.get(domain, WEB_COLORS["cool"]),
+            }
+        )
+
+    all_x = [p[0] for p in pos.values()]
+    all_y = [p[1] for p in pos.values()]
+    payload = {
+        "domains": domains,
+        "techniques": techniques,
+        "edges": edges,
+        "bounds": {
+            "x_min": float(min(all_x)),
+            "x_max": float(max(all_x)),
+            "y_min": float(min(all_y)),
+            "y_max": float(max(all_y)),
+        },
+    }
+    outpath.parent.mkdir(parents=True, exist_ok=True)
+    with outpath.open("w") as f:
+        json.dump(payload, f, indent=2)
+    print(f"Saved to {outpath}")
+
+
 def main(export_to_web: bool = False):
     df = pd.read_csv(DATA_PATH)
     print(f"Loaded: {len(df)} papers")
@@ -646,6 +780,12 @@ def main(export_to_web: bool = False):
             domain_techniques,
             edge_weights,
             WEB_FIGURES_DIR / "domain_method_network.svg",
+        )
+        export_domain_network_web_data(
+            G,
+            edge_weights,
+            df,
+            WEB_DATA_DIR / "domain_method_network.json",
         )
 
 
