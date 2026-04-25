@@ -1,7 +1,8 @@
 // ============================================================
 // EDIT ME — pipeline stage copy
-// Add the survey text per stage. Use [1], [2] markers inline;
-// the numbers map to REFERENCES below (1-indexed).
+// Add the survey text per stage/requirement. Use [1], [2] markers
+// inline; numbering is LOCAL to that stage/requirement and maps to
+// its own `references` array (1-indexed).
 // ============================================================
 
 const PIPELINE_STAGES = {
@@ -10,61 +11,63 @@ const PIPELINE_STAGES = {
     title: "Data Collection",
     body: "The LM pipeline often begins with sourcing and curating text corpora for both pretraining and post-training. " + 
           "Pretraining corpora tend to be unstructured web-crawled text, while post-training datasets are more structured.",
+    references: [],
   },
   "pretraining": {
     title: "Pretraining",
     body:  "TODO — paste survey text for the Pretraining stage here.",
+    references: [],
   },
   "post-training": {
     title: "Post-training",
     body:  "TODO — paste survey text for the Post-training stage here.",
+    references: [],
   },
   "inference": {
     title: "Inference",
     body:  "TODO — paste survey text for the Inference stage here.",
+    references: [],
   },
   "evaluation": {
     title: "Evaluation",
     body:  "TODO — paste survey text for the Evaluation stage here.",
+    references: [],
   },
 
   // Requirements of the edge (top band)
   "req-memory": {
     title: "Memory",
     body:  "TODO — paste survey text on memory constraints at the edge.",
+    references: [],
   },
   "req-compute": {
     title: "Compute",
     body:  "TODO — paste survey text on compute constraints at the edge.",
+    references: [],
   },
   "req-energy": {
     title: "Energy",
     body:  "TODO — paste survey text on energy constraints at the edge.",
+    references: [],
   },
 
   // Requirements for multilingual capability (bottom band)
   "req-data": {
     title: "Data",
     body:  "TODO — paste survey text on data requirements for multilinguality.",
+    references: [],
   },
   "req-representation": {
     title: "Representation",
     body:  "TODO — paste survey text on representation for multilinguality.",
+    references: [],
   },
   "req-alignment": {
     title: "Alignment",
     body:  "TODO — paste survey text on alignment for multilinguality.",
+    references: [],
   },
 };
-
-// ============================================================
-// EDIT ME — numbered references (1-indexed as shown to readers)
-// ============================================================
-
-const REFERENCES = [
-  "TODO — Author et al. (Year). Title. Venue.",
-  "TODO — second reference",
-];
 
 // ============================================================
 // Below this line: rendering + interaction. No need to edit
@@ -158,11 +161,12 @@ function resetDetail() {
 function renderDetail(id) {
   const stage = PIPELINE_STAGES[id];
   const detail = document.getElementById("pipeline-detail");
+  const references = Array.isArray(stage.references) ? stage.references : [];
 
-  const body = linkifyRefs(escapeHtml(stage.body));
-  const refsHtml = REFERENCES.length
+  const body = linkifyRefs(escapeHtml(stage.body), id, references.length);
+  const refsHtml = references.length
     ? `<div class="refs"><strong>References</strong><ol>${
-        REFERENCES.map((r, i) => `<li id="ref-${i + 1}">${escapeHtml(r)}</li>`).join("")
+        references.map((r, i) => `<li id="ref-${id}-${i + 1}">${escapeHtml(r)}</li>`).join("")
       }</ol></div>`
     : "";
 
@@ -173,10 +177,12 @@ function renderDetail(id) {
   `;
 }
 
-function linkifyRefs(text) {
-  return text.replace(/\[(\d+)\]/g, (_, n) =>
-    `<sup class="ref-marker"><a href="#ref-${n}">[${n}]</a></sup>`
-  );
+function linkifyRefs(text, stageId, refCount) {
+  return text.replace(/\[(\d+)\]/g, (_, nRaw) => {
+    const n = Number(nRaw);
+    if (!Number.isFinite(n) || n < 1 || n > refCount) return `[${nRaw}]`;
+    return `<sup class="ref-marker"><a href="#ref-${stageId}-${n}">[${n}]</a></sup>`;
+  });
 }
 
 function escapeHtml(str) {
