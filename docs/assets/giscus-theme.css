@@ -1,0 +1,74 @@
+/* Branded giscus theme matching docs/style.css palette */
+main {
+  --color-fg-default: #35302e;
+  --color-fg-muted: #6b6358;
+  --color-fg-subtle: #8a8277;
+
+  --color-canvas-default: #ffffff;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #f8ecda;
+  --color-canvas-subtle: #f8ecda;
+
+  --color-border-default: #35302e;
+  --color-border-muted: #e5ddcb;
+  --color-neutral-muted: rgba(53, 48, 46, 0.16);
+
+  --color-accent-fg: #254eff;
+  --color-accent-emphasis: #254eff;
+  --color-accent-muted: rgba(37, 78, 255, 0.4);
+  --color-accent-subtle: rgba(37, 78, 255, 0.1);
+
+  --color-success-fg: #1f7a4e;
+  --color-attention-fg: #c96a2e;
+  --color-attention-muted: rgba(201, 106, 46, 0.4);
+  --color-attention-subtle: rgba(201, 106, 46, 0.12);
+  --color-danger-fg: #b23a35;
+  --color-danger-muted: rgba(178, 58, 53, 0.35);
+  --color-danger-subtle: rgba(178, 58, 53, 0.1);
+
+  --color-btn-text: #35302e;
+  --color-btn-bg: #ffffff;
+  --color-btn-border: #35302e;
+  --color-btn-hover-bg: #f8ecda;
+  --color-btn-hover-border: #254eff;
+  --color-btn-active-bg: #ece3d2;
+  --color-btn-active-border: #254eff;
+  --color-btn-selected-bg: #ece3d2;
+
+  --color-btn-primary-text: #f8ecda;
+  --color-btn-primary-bg: #254eff;
+  --color-btn-primary-border: #35302e;
+  --color-btn-primary-hover-bg: #1f43dd;
+  --color-btn-primary-hover-border: #35302e;
+  --color-btn-primary-selected-bg: #1b3bc4;
+  --color-btn-primary-disabled-text: rgba(248, 236, 218, 0.75);
+  --color-btn-primary-disabled-bg: rgba(37, 78, 255, 0.55);
+  --color-btn-primary-disabled-border: #35302e;
+
+  --color-action-list-item-default-hover-bg: #f8ecda;
+  --color-segmented-control-bg: rgba(53, 48, 46, 0.08);
+  --color-segmented-control-button-bg: #ffffff;
+  --color-segmented-control-button-selected-border: #35302e;
+
+  --color-social-reaction-bg-hover: #f8ecda;
+  --color-social-reaction-bg-reacted-hover: rgba(37, 78, 255, 0.14);
+}
+
+main .gsc-comment-box,
+main .gsc-comment-box-tabs,
+main .gsc-comment-box-textarea,
+main .gsc-comment,
+main .gsc-reactions,
+main .gsc-comments .gsc-header {
+  border-radius: 0 !important;
+}
+
+main .gsc-comment-box,
+main .gsc-comment,
+main .gsc-reactions {
+  box-shadow: 3px 3px 0 #35302e;
+}
+
+main .gsc-homepage-bg {
+  background-color: #f8ecda;
+}

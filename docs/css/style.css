@@ -847,6 +847,14 @@ sup.ref-marker a {
   color: var(--paper);
 }
 
+/* ---------- discussion ---------- */
+
+.giscus { width: 100%; }
+.giscus-frame {
+  width: 100%;
+  border: 0;
+}
+
 /* ---------- responsive ---------- */
 
 @media (max-width: 640px) {
