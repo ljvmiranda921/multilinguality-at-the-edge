@@ -61,8 +61,8 @@
     }
   },
   "Orca": {
-    "description": "",
-    "tech_report_url": "",
+    "description": "Progressive Learning from Complex Explanation Traces of GPT-4 (Microsoft Research)",
+    "tech_report_url": "https://arxiv.org/abs/2306.02707",
     "hf_url": "",
     "hf_urls": {
       "13.0": ""
