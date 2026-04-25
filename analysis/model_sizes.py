@@ -69,13 +69,15 @@ def _build_records(df):
                 continue
         if sizes:
             name = NAME_MAP.get(row["title"], row["title"][:30])
-            records.append({
-                "name": name,
-                "sizes": sorted(sizes),
-                "min": min(sizes),
-                "max": max(sizes),
-                "year": int(row["year"]),
-            })
+            records.append(
+                {
+                    "name": name,
+                    "sizes": sorted(sizes),
+                    "min": min(sizes),
+                    "max": max(sizes),
+                    "year": int(row["year"]),
+                }
+            )
     records.sort(key=lambda r: (r["year"], r["min"]))
     return records
 
@@ -195,11 +197,11 @@ def _export_web_data(records, outpath):
     payload = {
         "models": [
             {
-                "name":  r["name"],
+                "name": r["name"],
                 "sizes": r["sizes"],
-                "year":  r["year"],
-                "min":   r["min"],
-                "max":   r["max"],
+                "year": r["year"],
+                "min": r["min"],
+                "max": r["max"],
             }
             for r in records
         ]
@@ -230,10 +232,10 @@ def _ensure_web_meta(records, outpath):
         cur = payload.setdefault(r["name"], {})
         if not cur:
             added_models += 1
-        cur.setdefault("description",     "")
+        cur.setdefault("description", "")
         cur.setdefault("tech_report_url", "")
-        cur.setdefault("hf_url",          "")
-        urls = cur.setdefault("hf_urls",  {})
+        cur.setdefault("hf_url", "")
+        urls = cur.setdefault("hf_urls", {})
         for s in r["sizes"]:
             key = str(s)
             if key not in urls:
@@ -243,7 +245,9 @@ def _ensure_web_meta(records, outpath):
     with outpath.open("w") as f:
         json.dump(payload, f, indent=2)
     if added_models or added_sizes:
-        print(f"Added {added_models} new model(s), {added_sizes} new size key(s) to {outpath}")
+        print(
+            f"Added {added_models} new model(s), {added_sizes} new size key(s) to {outpath}"
+        )
     else:
         print(f"Metadata up-to-date at {outpath}")
 
@@ -263,7 +267,10 @@ def main(export_to_web: bool = False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--export_to_web", action="store_true",
-                        help="Also export an SVG to docs/assets/figures/.")
+    parser.add_argument(
+        "--export_to_web",
+        action="store_true",
+        help="Also export an SVG to docs/assets/figures/.",
+    )
     args = parser.parse_args()
     main(export_to_web=args.export_to_web)

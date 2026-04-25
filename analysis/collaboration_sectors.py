@@ -72,10 +72,15 @@ def _annotate_arc_totals(ax, matrix, label_radius=1.18, fontsize=14, color="#353
         x = label_radius * np.cos(a)
         y = label_radius * np.sin(a)
         ax.text(
-            x, y, str(int(totals[idx])),
-            ha="center", va="center",
-            fontsize=fontsize, fontweight="bold",
-            color=color, zorder=10,
+            x,
+            y,
+            str(int(totals[idx])),
+            ha="center",
+            va="center",
+            fontsize=fontsize,
+            fontweight="bold",
+            color=color,
+            zorder=10,
         )
         angle += span + pad_deg
 
@@ -145,18 +150,16 @@ def plot_chord(matrix: np.ndarray) -> None:
 
 
 WEB_SECTOR_COLORS = [
-    WEB_COLORS["accent"],   # Academia
-    WEB_COLORS["warm"],     # Industry
-    WEB_COLORS["cool"],     # Research collective
-    WEB_COLORS["muted"],    # Government
+    WEB_COLORS["accent"],  # Academia
+    WEB_COLORS["warm"],  # Industry
+    WEB_COLORS["cool"],  # Research collective
+    WEB_COLORS["muted"],  # Government
 ]
 
 
 def plot_chord_web(matrix: np.ndarray, outpath: Path) -> None:
     totals = matrix.sum(axis=1).astype(int)
-    names_with_totals = [
-        f"{name} ({totals[i]})" for i, name in enumerate(SECTOR_ORDER)
-    ]
+    names_with_totals = [f"{name} ({totals[i]})" for i, name in enumerate(SECTOR_ORDER)]
 
     with plt.rc_context(WEB_PLOT_PARAMS):
         fig, ax = plt.subplots(figsize=(7, 7))
@@ -176,6 +179,7 @@ def plot_chord_web(matrix: np.ndarray, outpath: Path) -> None:
 
         from matplotlib.colors import to_rgb
         from matplotlib.patches import Wedge
+
         for patch in ax.patches:
             if isinstance(patch, Wedge):
                 fc = patch.get_facecolor()
@@ -216,7 +220,10 @@ def main(export_to_web: bool = False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--export_to_web", action="store_true",
-                        help="Also export an SVG to docs/assets/figures/.")
+    parser.add_argument(
+        "--export_to_web",
+        action="store_true",
+        help="Also export an SVG to docs/assets/figures/.",
+    )
     args = parser.parse_args()
     main(export_to_web=args.export_to_web)

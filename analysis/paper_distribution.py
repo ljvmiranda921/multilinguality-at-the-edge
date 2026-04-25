@@ -37,12 +37,16 @@ def main():
     for _, row in df_both.iterrows():
         t = _normalize(row["title"])
         if t not in main_titles:
-            records.append({"title": t, "year": int(row["year"]), "category": "Model Release"})
+            records.append(
+                {"title": t, "year": int(row["year"]), "category": "Model Release"}
+            )
 
     # Add all application papers
     for _, row in df_app.iterrows():
         t = _normalize(row["title"])
-        records.append({"title": t, "year": int(row["year"]), "category": "Real-world Deployment"})
+        records.append(
+            {"title": t, "year": int(row["year"]), "category": "Real-world Deployment"}
+        )
 
     df = pd.DataFrame(records)
     total = len(df)
