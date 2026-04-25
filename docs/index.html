@@ -126,14 +126,14 @@
 
       <div class="tab-panel" role="tabpanel" data-panel="where" hidden>
         <p>
-          To understand where edge LM systems are currently deployed, we grouped the deployment papers by application domain and linked each domain to the techniques explicitly used in the papers.
-          This reveals both concentration (e.g., speech-heavy and socially oriented applications) and the relatively narrow set of methods that bridge multilinguality and edge constraints in practice.
+          In order to map the domains in which an edge LM is deployed, we perform a round of classification by tagging each paper according to their <strong>domain</strong>: Agriculture, Climate, Finance, Healthcare, Legal, Social, and Speech.
+          Then, we extract mentions of different methods by keyword matching via KeyBERT, and visualize the domain-method connections as a network graph.
         </p>
         <figure class="analysis-figure">
           <div id="fig-where" class="figure-mount">
             <p class="placeholder">[ chart loads here ]</p>
           </div>
-          <figcaption><strong>Figure 5. Domain-technique network for deployed edge LM systems.</strong> Outer nodes are application domains and inner nodes are techniques used to develop such systems.</figcaption>
+          <figcaption><strong>Figure 5. Edge LM real-world deployment domains network.</strong> Central nodes represent methods used to develop and deploy real-world edge LMs. Edge color indicates connectivity, while darker nodes indicate high sharing among domains.</figcaption>
         </figure>
         <aside id="fig-where-detail" class="pixel-frame where-detail">
           <p class="placeholder">[ click a domain to see representative deployment papers ]</p>
