@@ -177,6 +177,19 @@ section + section {
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
+.site-header .authors a.email-link {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 0.3em;
+  padding: 0 0.1em;
+  border-bottom: none;
+  color: var(--fg-muted);
+}
+.site-header .authors a.email-link:hover {
+  color: var(--accent);
+  border-bottom: none;
+}
 
 .site-header .top-links {
   font-size: 0.9rem;
