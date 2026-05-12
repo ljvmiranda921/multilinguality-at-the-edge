@@ -1,29 +1,14 @@
 # Website
 
-Static project page. Plain HTML/CSS/JS, no build step.
+I'm not a frontend web developer so a lot of the HTML code was written by Claude (and Codex).
+The color scheme was inspired by CHIA's website, font is Tomato Grotesk and Univers.
+Ineractive versions of the paper's charts are based on my data (basically it just reads the same JSON / CSV file that my matplotlib plot generators read).
 
-## Run locally
+To preview a local version, run:
 
-```
+```sh
 python -m http.server --directory website 8000
 ```
 
-Open <http://localhost:8000>.
-
-## Edit pipeline copy
-
-All paper text lives at the top of [`js/pipeline.js`](js/pipeline.js):
-
-- `PIPELINE_STAGES` — per-stage `title` + `body`. Use `[1]`, `[2]` inline.
-- `REFERENCES` — numbered 1-indexed, matches the markers.
-
-Save, refresh.
-
-## Deploy (GitHub Pages)
-
-Settings → Pages → Source: `main` branch, folder: `/website`.
-
-## Disclosure of AI use
-
-A large part of the website's codebase was created using Claude and Codex, especially the interactive versions of the paper's charts (although the static versions are mine).
-I triple-checked the information when generating the interactive figures, but please report back if you see any inconsistencies in the paper.
+Deployment happens automatically whenever you push to the main branch.
+The live version is at [https://ljvmiranda921.github.io/multilinguality-at-the-edge](https://ljvmiranda921.github.io/multilinguality-at-the-edge)
