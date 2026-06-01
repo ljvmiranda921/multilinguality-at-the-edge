@@ -57,7 +57,7 @@
     <p class="subtitle">Developing Language Models for the Global South</p>
     <p class="authors"><a href="https://ljvmiranda921.github.io">Lester James V. Miranda</a><a class="email-link" href="mailto:ljvm2@cam.ac.uk" aria-label="Email Lester James V. Miranda"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg></a>, <a href="https://songbohu.github.io/">Songbo Hu</a>, <a href="https://roireichart.com/">Roi Reichart</a>, <a href="https://sites.google.com/site/annakorhonen/">Anna Korhonen</a></p>
     <nav class="top-links">
-      <a href="https://github.com/ljvmiranda921/multilinguality-at-the-edge">code</a> &middot; <a href="https://arxiv.org/abs/2604.21637">read the paper</a>
+      <a href="https://github.com/ljvmiranda921/multilinguality-at-the-edge" target="_blank" rel="noopener noreferrer">code</a> &middot; <a href="https://arxiv.org/abs/2604.21637" target="_blank" rel="noopener noreferrer">read the paper</a>
     </nav>
   </header>
 
@@ -220,20 +220,36 @@
   <script src="js/figures/fig-model-sizes.js"></script>
   <script src="js/figures/fig-literature-clusters.js"></script>
   <script src="js/figures/fig-domain-network.js"></script>
-  <script src="https://giscus.app/client.js"
-          data-repo="ljvmiranda921/multilinguality-at-the-edge"
-          data-repo-id="R_kgDORoQj6A"
-          data-category="General"
-          data-category-id="DIC_kwDORoQj6M4C7rwu"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="0"
-          data-emit-metadata="0"
-          data-input-position="top"
-          data-theme="https://ljvmiranda921.github.io/multilinguality-at-the-edge/assets/giscus-theme.css"
-          data-lang="en"
-          crossorigin="anonymous"
-          async>
+  <script>
+    // Comments are GitHub-backed (giscus). On Hugging Face Spaces (*.hf.space)
+    // the giscus pathname mapping and theme URL don't make sense, so hide the
+    // Discussion section entirely there. Everywhere else, load giscus normally.
+    (function () {
+      if (location.hostname.endsWith('hf.space')) {
+        var section = document.getElementById('discussion');
+        if (section) section.remove();
+        return;
+      }
+      var s = document.createElement('script');
+      s.src = 'https://giscus.app/client.js';
+      var attrs = {
+        'data-repo': 'ljvmiranda921/multilinguality-at-the-edge',
+        'data-repo-id': 'R_kgDORoQj6A',
+        'data-category': 'General',
+        'data-category-id': 'DIC_kwDORoQj6M4C7rwu',
+        'data-mapping': 'pathname',
+        'data-strict': '0',
+        'data-reactions-enabled': '0',
+        'data-emit-metadata': '0',
+        'data-input-position': 'top',
+        'data-theme': 'https://ljvmiranda921.github.io/multilinguality-at-the-edge/assets/giscus-theme.css',
+        'data-lang': 'en'
+      };
+      Object.keys(attrs).forEach(function (k) { s.setAttribute(k, attrs[k]); });
+      s.crossOrigin = 'anonymous';
+      s.async = true;
+      document.body.appendChild(s);
+    })();
   </script>
 </div>
 </body>
