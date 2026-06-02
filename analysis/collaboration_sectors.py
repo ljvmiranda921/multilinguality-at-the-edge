@@ -85,13 +85,47 @@ def _annotate_arc_totals(ax, matrix, label_radius=1.18, fontsize=14, color="#353
         angle += span + pad_deg
 
 
+VALUE_LABELS = [
+    # --- self-counts (inside each sector's arc) ---
+    {"x": -0.60, "y": -0.22, "label": 30},  # Academia self
+    {"x": 0.43, "y": -0.60, "label": 12},  # Industry self
+    {"x": 0.55, "y": 0.45, "label": 12},  # Research collective self
+    {"x": 0.10, "y": 0.68, "label": 4},  # Government self
+    # --- cross-counts (on the connecting ribbon) ---
+    {"x": 0.03, "y": -0.20, "label": 8},  # Academia–Industry
+    {"x": 0.18, "y": 0.10, "label": 11},  # Academia–Research collective
+    {"x": 0.08, "y": 0.46, "label": 3},  # Academia–Government
+    {"x": 0.24, "y": -0.25, "label": 5},  # Industry–Research collective
+    {"x": 0.15, "y": 0.30, "label": 2},  # Industry–Government
+    {"x": 0.28, "y": 0.30, "label": 1},  # Research collective–Government
+]
+
+
+def _annotate_chord_values(ax) -> None:
+    """Place the count labels from VALUE_LABELS at fixed axis coordinates."""
+    for lab in VALUE_LABELS:
+        ax.text(
+            lab["x"],
+            lab["y"],
+            str(lab["label"]),
+            ha="center",
+            va="center",
+            fontsize=22,
+            color=COLORS["slate_4"],
+            zorder=11,
+        )
+
+
 def plot_chord(matrix: np.ndarray) -> None:
     fig, ax = plt.subplots(figsize=(8, 8))
+
+    totals = matrix.sum(axis=1).astype(int)
+    names_with_totals = [f"{name} ({totals[i]})" for i, name in enumerate(SECTOR_ORDER)]
 
     chord_diagram(
         matrix,
         ax=ax,
-        names=SECTOR_ORDER,
+        names=names_with_totals,
         colors=SECTOR_COLORS,
         fontsize=24,
         use_gradient=True,
@@ -142,6 +176,8 @@ def plot_chord(matrix: np.ndarray) -> None:
                 darker = (r * 0.65, g * 0.65, b * 0.65)
                 patch.set_edgecolor(darker)
                 patch.set_linewidth(0.8)
+
+    _annotate_chord_values(ax)
 
     fig.tight_layout()
     fig.savefig(OUTPUT_DIR / "collaboration_sectors.pdf", bbox_inches="tight")
