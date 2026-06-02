@@ -85,21 +85,19 @@ def _annotate_arc_totals(ax, matrix, label_radius=1.18, fontsize=14, color="#353
         angle += span + pad_deg
 
 
-# Manually placed value labels, in axis coords (centre = 0,0; arc radius = 1).
-# Nudge any (x, y) freely to taste. `label` is the count shown.
 VALUE_LABELS = [
     # --- self-counts (inside each sector's arc) ---
-    {"x": -0.42, "y": -0.16, "label": 30},  # Academia self
-    {"x": 0.33, "y": -0.40, "label": 12},  # Industry self
-    {"x": 0.46, "y": 0.02, "label": 12},  # Research collective self
-    {"x": 0.07, "y": 0.55, "label": 4},  # Government self
+    {"x": -0.60, "y": -0.22, "label": 30},  # Academia self
+    {"x": 0.43, "y": -0.60, "label": 12},  # Industry self
+    {"x": 0.55, "y": 0.45, "label": 12},  # Research collective self
+    {"x": 0.10, "y": 0.68, "label": 4},  # Government self
     # --- cross-counts (on the connecting ribbon) ---
-    {"x": -0.12, "y": -0.34, "label": 8},  # Academia–Industry
-    {"x": -0.06, "y": -0.02, "label": 11},  # Academia–Research collective
-    {"x": -0.10, "y": 0.20, "label": 3},  # Academia–Government
-    {"x": 0.24, "y": -0.30, "label": 5},  # Industry–Research collective
-    {"x": 0.02, "y": -0.10, "label": 2},  # Industry–Government
-    {"x": 0.30, "y": 0.18, "label": 1},  # Research collective–Government
+    {"x": 0.03, "y": -0.20, "label": 8},  # Academia–Industry
+    {"x": 0.18, "y": 0.10, "label": 11},  # Academia–Research collective
+    {"x": 0.08, "y": 0.46, "label": 3},  # Academia–Government
+    {"x": 0.24, "y": -0.25, "label": 5},  # Industry–Research collective
+    {"x": 0.15, "y": 0.30, "label": 2},  # Industry–Government
+    {"x": 0.28, "y": 0.30, "label": 1},  # Research collective–Government
 ]
 
 
