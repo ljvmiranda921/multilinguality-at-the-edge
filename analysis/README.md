@@ -1,13 +1,3 @@
-# analysis
-
-Scripts that regenerate every figure in `plot_outputs/`. Run from the repo root.
-All shared style (Arial font via the `helvet` LaTeX twin, the Cambridge color
-palette, the output dir) lives in `analysis/utils.py` — edit `PLOT_PARAMS` /
-`COLORS` there and every figure changes at once.
-
-Fonts are rendered with `text.usetex=True` + `helvet`/`sansmath`, so a TeX
-install (`pdflatex`, with the `helvet` and `sansmath` packages) is required.
-
 ```bash
 # model_sizes.pdf
 uv run python -m analysis.model_sizes
