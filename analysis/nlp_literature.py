@@ -103,7 +103,7 @@ def main():
                     f"{v:.0f}\\%",
                     ha="center",
                     va="center",
-                    fontsize=22,
+                    fontsize=18,
                     fontweight="bold",
                 )
         left += vals

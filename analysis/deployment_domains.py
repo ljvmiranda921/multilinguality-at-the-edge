@@ -94,7 +94,7 @@ TECHNIQUE_KEYWORDS = {
     "Mixtures-of-Experts": ["mixture of experts", " moe ", "language family expert"],
     "Federated\nLearning": ["federated learning", "federated few-shot"],
     "Synthetic\nData": ["synthetic data", "data augmentation", "synthetic qa"],
-    "Continual\nPretraining": [
+    "Cont.\nPretraining": [
         "continual pretrain",
         "continued pretrain",
         "further pretrain",
@@ -165,7 +165,9 @@ def _compute_network_layout(
     G: nx.Graph, edge_weights: dict[tuple[str, str], int]
 ) -> tuple[list[str], list[str], dict[str, tuple[float, float]], int]:
     domain_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "domain"]
-    technique_nodes = [n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"]  # fmt:  skip
+    technique_nodes = [
+        n for n, d in G.nodes(data=True) if d.get("node_type") == "technique"
+    ]  # fmt:  skip
 
     pos = {}
     n_domains = len(domain_nodes)
@@ -449,7 +451,8 @@ def plot_domain_technique_network(
         dt = ax.text(
             x,
             y,
-            r"\textsc{" + domain + r"}",
+            domain,
+            # r"\textsc{" + domain + r"}",
             ha="center",
             va="center",
             fontsize=28,
@@ -508,7 +511,7 @@ def plot_domain_technique_network_web(
 ) -> None:
     del domain_techniques
     with plt.rc_context(WEB_PLOT_PARAMS):
-        fig, ax = plt.subplots(figsize=(7.2, 7.2))  # manual adjust
+        fig, ax = plt.subplots(figsize=(7.2, 7.2))
         domain_nodes, technique_nodes, pos, max_degree = _compute_network_layout(G, edge_weights)  # fmt: skip
         for (u, v), weight in edge_weights.items():
             domain_node = u if u in domain_nodes else v
