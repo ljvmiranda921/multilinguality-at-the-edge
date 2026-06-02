@@ -453,7 +453,7 @@ def plot_domain_technique_network(
             ha="center",
             va="center",
             fontsize=28,
-            fontfamily="serif",
+            fontfamily="sans-serif",
             color="black",
             zorder=5,
         )
@@ -470,7 +470,7 @@ def plot_domain_technique_network(
             va="center",
             ma="left",
             fontsize=24,
-            fontfamily="serif",
+            fontfamily="sans-serif",
             color="black",
             zorder=4,
         )

@@ -11,11 +11,11 @@ def get_device() -> str:
     return "cpu"
 
 
-FONT_SIZES = {"small": 14, "medium": 18, "large": 24}
+FONT_SIZES = {"small": 14, "medium": 16, "large": 18}
 
 PLOT_PARAMS = {
-    "font.family": "serif",
-    "font.serif": ["Times"],
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica", "Arial"],
     "font.size": FONT_SIZES.get("medium"),
     "axes.titlesize": FONT_SIZES.get("large"),
     "axes.labelsize": FONT_SIZES.get("large"),
@@ -24,6 +24,17 @@ PLOT_PARAMS = {
     "legend.fontsize": FONT_SIZES.get("medium"),
     "figure.titlesize": FONT_SIZES.get("medium"),
     "text.usetex": True,
+    # Render all LaTeX text (and math) in Helvetica, the metric-identical
+    # twin of Arial. pdflatex ships no true Arial, so helvet is the standard
+    # substitute and keeps the existing \textsc, \%, ``'' markup working.
+    "text.latex.preamble": "\n".join(
+        [
+            r"\usepackage{helvet}",
+            r"\renewcommand{\familydefault}{\sfdefault}",
+            r"\usepackage{sansmath}",
+            r"\sansmath",
+        ]
+    ),
 }
 
 # https://www.cam.ac.uk/brand-resources/guidelines/colour (with the help of claude)
