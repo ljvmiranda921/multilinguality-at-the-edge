@@ -1,0 +1,117 @@
+/* ============================================================================
+   Chia — a small, reusable design system
+   Univers (light body) + Tomato Grotesk (display), brand blue, retro shadows.
+
+   Copied from the datasmith repo (docs/theme/chia.css). Font URLs point at
+   this project's existing ../assets/fonts/ instead of a sibling fonts/ dir,
+   and two slanted Tomato Grotesk faces are added for italic display type.
+
+   Usage:
+   1. <link rel="stylesheet" href="css/chia.css"> (loads fonts + tokens + base + components).
+   2. Wrap page content in a container capped by --maxw, e.g. <main class="chia-page">.
+   Every visual value lives in :root below, so retheme by editing tokens only.
+   ============================================================================ */
+
+/* ---------- Fonts ---------- */
+@font-face { font-family: 'Univers'; src: url('../assets/fonts/UniversLight.ttf') format('truetype');   font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Univers'; src: url('../assets/fonts/UniversRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+/* No true Univers Medium: map the 500 slot to Regular so `font-weight: 500` works. */
+@font-face { font-family: 'Univers'; src: url('../assets/fonts/UniversRegular.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Univers'; src: url('../assets/fonts/UniversBold.ttf') format('truetype');    font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Tomato Grotesk'; src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Regular.otf') format('opentype');  font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Tomato Grotesk'; src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Medium.otf') format('opentype');   font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Tomato Grotesk'; src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-SemiBold.otf') format('opentype'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Tomato Grotesk'; src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Bold.otf') format('opentype');     font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Tomato Grotesk'; src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-Slanted.otf') format('opentype');         font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Tomato Grotesk'; src: url('../assets/fonts/TomatoGrotesk/TomatoGrotesk-SemiBoldSlanted.otf') format('opentype'); font-weight: 600; font-style: italic; font-display: swap; }
+
+/* ---------- Tokens ---------- */
+:root {
+  /* palette */
+  --blue:  #254eff;   /* brand / accent */
+  --cream: #f8ecda;   /* warm accent, assistant bubbles */
+  --ink:   #1a1a1a;   /* text and borders */
+  --white: #ffffff;   /* page background */
+  --muted: #5a554f;   /* secondary text, captions */
+  --rule:  #e2ddd4;   /* hairline dividers */
+  --panel: #f4f2ee;   /* soft gray boxes (abstract, code, table heads) */
+
+  /* type */
+  --font-body:    'Univers', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Tomato Grotesk', Arial, sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --text-size:    17px;   /* base body size */
+  --leading:      1.3;    /* 130% */
+  --weight-body:  300;    /* Univers Light */
+  --weight-emph:  500;    /* medium (maps to Regular) */
+
+  /* retro hard-offset shadows (no blur) */
+  --shadow-sm: 3px 3px 0 var(--ink);
+  --shadow-md: 5px 5px 0 var(--ink);
+
+  /* layout */
+  --maxw: 880px;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-size);
+  font-weight: var(--weight-body);
+  line-height: var(--leading);
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.chia-page { max-width: var(--maxw); margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+h1, h2, h3 { font-family: var(--font-heading); letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: 3rem;    line-height: 1.04; font-weight: 700; color: var(--blue); margin: 0 0 0.6rem; }
+h2 { font-size: 1.65rem; font-weight: 600;  color: var(--blue); margin: 3.4rem 0 1rem; }
+h3 { font-size: 1.2rem;  font-weight: 600;  color: var(--ink);  margin: 2rem 0 0.6rem; }
+p  { margin: 0 0 1rem; text-wrap: pretty; }
+strong { font-weight: var(--weight-emph); }
+em { font-style: italic; }
+a { color: var(--blue); text-decoration: none; border-bottom: 1px solid transparent; }
+a:hover { border-bottom-color: var(--blue); }
+.muted { color: var(--muted); }
+
+/* Brand name: display face, blue, medium. e.g. <span class="brand">DataSmith</span> */
+.brand { font-family: var(--font-heading); font-weight: 600; color: var(--blue); }
+
+/* ---------- Buttons (retro: lift on hover, press on click) ---------- */
+.btn {
+  font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem;
+  padding: 0.4rem 0.8rem; border: 1.5px solid var(--ink);
+  background: var(--white); color: var(--ink); cursor: pointer;
+  box-shadow: var(--shadow-sm); transition: transform .06s ease, box-shadow .06s ease;
+}
+.btn:hover  { transform: translate(-1px, -1px); box-shadow: var(--shadow-md); }
+.btn:active { transform: translate(3px, 3px);   box-shadow: 0 0 0 var(--ink); }
+.btn.is-active { background: var(--blue); color: var(--white); }
+
+/* ---------- Soft gray box (abstract, callouts, code) ---------- */
+.panel { background: var(--panel); padding: 1.1rem 1.3rem; }
+.panel--small { font-size: 0.92rem; color: var(--muted); }
+
+/* ---------- Minimal (booktabs) tables ---------- */
+table.chia { border-collapse: collapse; width: 100%; font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+table.chia caption { caption-side: top; text-align: left; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.8rem; }
+table.chia th, table.chia td { border: none; padding: 0.42rem 0.65rem; text-align: center; white-space: nowrap; }
+table.chia thead tr:first-child th { border-top: 2px solid var(--ink); }        /* top rule */
+table.chia tbody tr:first-child td { border-top: 1.5px solid var(--ink); }      /* mid rule (under header) */
+table.chia tbody tr:last-child  td { border-bottom: 2px solid var(--ink); }     /* bottom rule */
+table.chia thead th { font-family: var(--font-body); font-weight: 500; color: var(--ink); }
+table.chia thead th:first-child, table.chia tbody td:first-child { text-align: left; }
+table.chia tr.is-highlight td { font-weight: 500; color: var(--blue); }
+
+/* ---------- Chat bubbles ---------- */
+.msg { max-width: 88%; padding: 0.55rem 0.85rem; margin-bottom: 0.55rem; border-radius: 16px; font-size: 0.9rem; white-space: pre-wrap; word-break: break-word; }
+.msg.user      { background: var(--blue);  color: var(--white); margin-left: auto;  border-bottom-right-radius: 4px; }
+.msg.assistant { background: var(--cream); color: var(--blue);  margin-right: auto; border-bottom-left-radius: 4px; }
+
+/* ---------- Captions (Univers Light, 130% leading, tracking 0) ---------- */
+.caption { font-size: 0.9rem; line-height: 1.3; letter-spacing: 0; color: var(--muted); }
