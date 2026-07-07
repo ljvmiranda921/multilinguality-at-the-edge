@@ -216,10 +216,8 @@ section + section {
 .abstract-box { margin: 0 0 2.5rem; }
 .abstract-heading {
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--fg-muted);
   margin: 0 0 0.75rem;
 }
@@ -258,7 +256,7 @@ section + section {
 
 /* Pull-quote variant — full-width, hairline rules top and bottom.
    Used as a pivot/transition from "The Problem" → "Our Approach".
-   Label becomes a small uppercase kicker above the statement. */
+   Label sits inline in accent blue, matching the other callouts. */
 .callout-question {
   font-family: var(--font-heading);
   font-size: 2.25rem;
@@ -274,14 +272,10 @@ section + section {
   letter-spacing: -0.01em;
 }
 .callout-question strong {
-  display: block;
   font-style: normal;
   font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   color: var(--accent);
-  margin: 0 0 1.1rem;
+  margin-right: 0.25em;
 }
 
 @media (max-width: 820px) {
@@ -484,9 +478,7 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
 .cluster-tooltip-count {
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
   color: var(--fg-muted);
 }
 .cluster-tooltip-kws {
@@ -504,9 +496,7 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
 .cluster-tooltip-reps-label {
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
   color: var(--fg-muted);
   margin-bottom: 0.3rem;
 }
@@ -633,10 +623,8 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
 
 .pipeline-band {
   font-family: var(--font-heading);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: var(--fg-muted);
   text-align: center;
 }
