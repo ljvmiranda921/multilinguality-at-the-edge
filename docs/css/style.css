@@ -57,24 +57,20 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
 .abstract-box p { font-size: 0.92rem; line-height: 1.7; color: var(--muted); margin: 0; }
 
 /* ---------- callouts ----------
-   Big Univers Light statement used to emphasise a single-sentence thesis
-   ("The Problem:", "Our Approach:"). Headline spec: leading tracks the font
-   size (110% at this scale), tracking -5 (-0.005em). The leading label goes
-   in a <strong>. */
+   Big Univers Light statement in brand blue, used to emphasise a
+   single-sentence thesis (the research question, the approach). Headline
+   spec: leading tracks the font size (110% at this scale), tracking -5
+   (-0.005em). */
 
 .callout {
   font-size: 1.6rem;
   line-height: 1.1;
   font-weight: 300;
+  color: var(--blue);
   margin: 1.6rem 0;
   letter-spacing: -0.005em;
   text-wrap: balance;
 }
-.callout strong { color: var(--blue); font-weight: 500; margin-right: 0.25em; }
-
-/* Unlabeled variant — the whole statement in brand blue (e.g. the opening
-   research question). */
-.callout.callout-blue { color: var(--blue); }
 
 @media (max-width: 640px) {
   .callout { font-size: 1.3rem; }
