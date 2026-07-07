@@ -161,7 +161,7 @@ function buildBand(label, ids, pos) {
   ids.forEach((id) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "pipeline-req";
+    btn.className = "btn pipeline-req";
     btn.dataset.stage = id;
     btn.textContent = PIPELINE_STAGES[id].title;
     btn.addEventListener("click", () => toggleStage(id));

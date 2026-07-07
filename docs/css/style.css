@@ -6,6 +6,18 @@
 
 section { scroll-margin-top: 1rem; }
 
+/* Subheadings ("How are edge LMs developed?", pipeline stage titles):
+   Univers Light, leading 110% of font size, tracking -5 (-0.005em). */
+h3 {
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin: 2.2rem 0 0.6rem;
+}
+
 /* ---------- header ---------- */
 
 .letterhead { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2rem; }
@@ -45,39 +57,38 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
 .abstract-box p { font-size: 0.92rem; line-height: 1.7; color: var(--muted); margin: 0; }
 
 /* ---------- callouts ----------
-   Big Tomato Grotesk statement used to emphasise a single-sentence thesis
-   ("The Problem:", "Our Approach:"). The leading label goes in a <strong>. */
+   Big Univers Light statement used to emphasise a single-sentence thesis
+   ("The Problem:", "Our Approach:"). Headline spec: leading tracks the font
+   size (110% at this scale), tracking -5 (-0.005em). The leading label goes
+   in a <strong>. */
 
 .callout {
-  font-family: var(--font-heading);
   font-size: 1.6rem;
-  line-height: 1.25;
-  font-weight: 400;
+  line-height: 1.1;
+  font-weight: 300;
   margin: 1.6rem 0;
   letter-spacing: -0.005em;
   text-wrap: balance;
 }
-.callout strong { color: var(--blue); font-weight: 600; margin-right: 0.25em; }
+.callout strong { color: var(--blue); font-weight: 500; margin-right: 0.25em; }
 
 /* Pull-quote variant — full-width, hairline rules top and bottom. Used as a
-   pivot/transition from "The Problem" → "Our Approach". */
+   pivot/transition from "The Problem" → "Our Approach". Headline spec:
+   leading = font size (100%). */
 .callout-question {
-  font-family: var(--font-heading);
   font-size: 2rem;
-  line-height: 1.2;
-  font-weight: 400;
-  font-style: italic;
+  line-height: 1;
+  font-weight: 300;
   text-align: center;
   margin: 2.5rem 0;
   padding: 2rem 1.5rem;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
   text-wrap: balance;
 }
 .callout-question strong {
-  font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--blue);
   margin-right: 0.25em;
 }
@@ -379,12 +390,6 @@ a.cite { font-size: 0.88em; white-space: nowrap; margin-left: 0.2em; }
 #pipeline-detail .refs li { margin: 0.25rem 0; }
 
 sup.ref-marker a { font-family: var(--font-mono); font-size: 0.72rem; border-bottom: none; }
-
-/* ---------- analysis tabs (chia .btn toggles) ---------- */
-
-.tabs { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.5rem 0 1.75rem; }
-.tab-panel { display: none; }
-.tab-panel.is-active { display: block; }
 
 .chart-mount { min-height: 340px; display: flex; align-items: center; justify-content: center; }
 .placeholder-text { color: var(--muted); }
