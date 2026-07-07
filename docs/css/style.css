@@ -177,26 +177,26 @@ section + section {
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
-.site-header .authors a.email-link {
-  display: inline-flex;
-  align-items: center;
-  vertical-align: middle;
-  margin-left: 0.3em;
-  padding: 0 0.1em;
-  border-bottom: none;
-  color: var(--fg-muted);
-}
-.site-header .authors a.email-link:hover {
-  color: var(--accent);
-  border-bottom: none;
-}
-
 .site-header .top-links {
   font-size: 0.9rem;
   color: var(--fg-muted);
   margin-top: 0.5rem;
 }
 .site-header .top-links a { margin-right: 0.25rem; }
+
+.site-header .correspondence {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  margin: 0.35rem 0 0;
+}
+.site-header .correspondence a {
+  color: var(--fg-muted);
+  border-bottom: 1px dotted var(--rule);
+}
+.site-header .correspondence a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
 
 /* Letterhead — thin logo strip at the very top of the page frame,
    above the H1. Acts like institutional stationery. */
@@ -456,7 +456,6 @@ a.cite:hover { border-bottom: 1px solid var(--accent); }
   padding: 0.7rem 0.85rem 0.85rem;
   background: var(--bg-frame);
   border: 1px solid var(--ink);
-  border-left-width: 4px;
   box-shadow: 3px 3px 0 var(--ink);
   font-family: var(--font-body);
   font-size: 0.86rem;

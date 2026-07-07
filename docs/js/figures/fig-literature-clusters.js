@@ -93,12 +93,11 @@
     t.innerHTML =
       `<div class="cluster-tooltip-head">` +
         `<span class="cluster-tooltip-dot" style="background:${color}"></span>` +
-        `<span class="cluster-tooltip-count">cluster of ${cluster.size}</span>` +
+        `<span class="cluster-tooltip-count">Cluster of ${cluster.size}</span>` +
       `</div>` +
       `<div class="cluster-tooltip-kws">${kwsHtml}</div>` +
-      `<div class="cluster-tooltip-reps-label">representative papers</div>` +
+      `<div class="cluster-tooltip-reps-label">Representative papers</div>` +
       `<ul class="cluster-tooltip-reps">${reps}</ul>`;
-    t.style.borderColor = color;
     t.classList.add("is-visible");
     positionTip(evt);
   }
