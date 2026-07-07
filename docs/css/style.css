@@ -72,30 +72,12 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
 }
 .callout strong { color: var(--blue); font-weight: 500; margin-right: 0.25em; }
 
-/* Pull-quote variant — full-width, hairline rules top and bottom. Used as a
-   pivot/transition from "The Problem" → "Our Approach". Headline spec:
-   leading = font size (100%). */
-.callout-question {
-  font-size: 2rem;
-  line-height: 1;
-  font-weight: 300;
-  text-align: center;
-  margin: 2.5rem 0;
-  padding: 2rem 1.5rem;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  letter-spacing: -0.005em;
-  text-wrap: balance;
-}
-.callout-question strong {
-  font-weight: 500;
-  color: var(--blue);
-  margin-right: 0.25em;
-}
+/* Unlabeled variant — the whole statement in brand blue (e.g. the opening
+   research question). */
+.callout.callout-blue { color: var(--blue); }
 
 @media (max-width: 640px) {
   .callout { font-size: 1.3rem; }
-  .callout-question { font-size: 1.35rem; padding: 1.5rem 0.5rem; margin: 2rem 0; }
 }
 
 /* ---------- inline citation ----------
