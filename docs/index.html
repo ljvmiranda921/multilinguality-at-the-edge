@@ -41,11 +41,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
   <link rel="apple-touch-icon" href="assets/favicon.png">
-  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/chia.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="page-frame">
+<main class="chia-page">
 
   <div class="letterhead" aria-label="Affiliations">
     <img src="assets/ucam-logo-colour-preferred.png" alt="University of Cambridge">
@@ -53,14 +53,30 @@
   </div>
 
   <header class="site-header">
-    <h1>Multilinguality at the <span class="title-edge">Edge</span></h1>
+    <h1>Multilinguality at the Edge</h1>
     <p class="subtitle">Developing Language Models for the Global South</p>
-    <p class="authors"><a href="https://ljvmiranda921.github.io">Lester James V. Miranda</a>, <a href="https://songbohu.github.io/">Songbo Hu</a>, <a href="https://roireichart.com/">Roi Reichart</a>, <a href="https://sites.google.com/site/annakorhonen/">Anna Korhonen</a></p>
+    <p class="authors">
+      <a href="https://ljvmiranda921.github.io">Lester James V. Miranda</a><sup>1</sup>, <a href="https://songbohu.github.io/">Songbo Hu</a><sup>1</sup>, <a href="https://roireichart.com/">Roi Reichart</a><sup>2</sup>, <a href="https://sites.google.com/site/annakorhonen/">Anna Korhonen</a><sup>1</sup>
+      <br><span class="aff"><sup>1</sup>Language Technology Lab, University of Cambridge&ensp;<sup>2</sup>Technion, Israel Institute of Technology</span>
+      <br><span class="aff">Correspondence to <a href="mailto:ljvm2@cam.ac.uk">ljvm2@cam.ac.uk</a></span>
+    </p>
     <nav class="top-links">
-      <a href="https://arxiv.org/abs/2604.21637" target="_blank" rel="noopener noreferrer">Paper</a> &middot; <a href="https://github.com/ljvmiranda921/multilinguality-at-the-edge" target="_blank" rel="noopener noreferrer">Code</a>
+      <a class="btn" href="https://arxiv.org/abs/2604.21637" target="_blank" rel="noopener noreferrer">Paper</a>
+      <a class="btn" href="https://github.com/ljvmiranda921/multilinguality-at-the-edge" target="_blank" rel="noopener noreferrer">Code</a>
     </nav>
-    <p class="correspondence">Correspondence to <a href="mailto:ljvm2@cam.ac.uk">ljvm2@cam.ac.uk</a></p>
   </header>
+
+  <section id="abstract">
+    <p class="abstract">
+      Where and how language models are deployed determines who can benefit from them. Communities in the Global South face what we call the <em>last mile</em>: the intersection of multilinguality and edge deployment, where the goals are aligned but the technical requirements often compete. We survey 232 papers that tackle this problem across the language modelling pipeline, from data collection to development and deployment, and provide actionable recommendations for different stakeholders in the NLP ecosystem.
+    </p>
+    <details class="abstract-full">
+      <summary>Read the full abstract</summary>
+      <div class="abstract-box panel">
+        <p>Where and how language models (LMs) are deployed determines who can benefit from them. However, there are several challenges that prevent effective deployment of LMs in non-English-speaking and hardware-constrained communities in the Global South. We call this challenge the <em>last mile</em>: the intersection of multilinguality and edge deployment, where the goals are aligned but the technical requirements often compete. Studying these two fields together is both a <em>need</em>, as linguistically diverse communities often face the most severe infrastructure constraints, and an <em>opportunity</em>, as edge and multilingual NLP research remain largely siloed. To understand the state of the art and the challenges of combining the two areas, we survey 232 papers that tackle this problem across the language modelling pipeline, from data collection to development and deployment. We also discuss open questions and provide actionable recommendations for different stakeholders in the NLP ecosystem. Finally, we hope that this work contributes to the development of inclusive and equitable language technologies.</p>
+      </div>
+    </details>
+  </section>
 
   <section id="intro">
     <p class="callout">
@@ -72,7 +88,7 @@
       <div id="fig-1" class="figure-mount">
         <p class="placeholder">[ figure loads here ]</p>
       </div>
-      <figcaption class="figure-caption">
+      <figcaption class="caption">
         <strong>Figure 1. Countries with high linguistic diversity have the most limited network connectivity (upper left).</strong> Internet penetration is sourced from <a href="https://www.itu.int/en/ITU-D/Statistics/Pages/facts/default.aspx">ITU (2025)</a>, number of living languages (log-scale) from the <a href="https://ourworldindata.org/grapher/living-languages">Ethnologue (SIL International, 2025)</a>, and income groups from the <a href="https://ourworldindata.org/grapher/world-bank-income-groups">World Bank (2025)</a>. Hover a point for the country.
       </figcaption>
     </figure>
@@ -96,13 +112,13 @@
         <div id="fig-2a" class="figure-mount" data-svg="assets/figures/language_coverage.svg">
           <p class="placeholder">[ figure loads here ]</p>
         </div>
-        <figcaption><strong>Figure 2a. Reported language coverage of edge LM papers.</strong> We show 78 papers (of 232) that report a concrete number of evaluated languages and bin them into four brackets: monolingual (1), few (2&ndash;10), many (11&ndash;50), and massive (50+), categorized by research focus.</figcaption>
+        <figcaption class="caption"><strong>Figure 2a. Reported language coverage of edge LM papers.</strong> We show 78 papers (of 232) that report a concrete number of evaluated languages and bin them into four brackets: monolingual (1), few (2&ndash;10), many (11&ndash;50), and massive (50+), categorized by research focus.</figcaption>
       </figure>
       <figure>
         <div id="fig-2b" class="figure-mount">
           <p class="placeholder">[ figure loads here ]</p>
         </div>
-        <figcaption><strong>Figure 2b. Model sizes (in billion parameters) of various language models.</strong> For each model family in our curated set of released models, we recorded publicly documented parameter counts and plotted the range of available sizes on a log scale.</figcaption>
+        <figcaption class="caption"><strong>Figure 2b. Model sizes (in billion parameters) of various language models.</strong> For each model family in our curated set of released models, we recorded publicly documented parameter counts and plotted the range of available sizes on a log scale.</figcaption>
       </figure>
     </div>
   </section>
@@ -115,7 +131,7 @@
     <div id="pipeline-figure">
       <p class="placeholder">[ pipeline diagram loads here ]</p>
     </div>
-    <aside id="pipeline-detail" class="pixel-frame">
+    <aside id="pipeline-detail" class="panel">
       <p class="placeholder">[ click a stage above to read ]</p>
     </aside>
   </section>
@@ -128,9 +144,9 @@
     </p>
 
     <div class="tabs" role="tablist" aria-label="Analysis subsections">
-      <button type="button" class="tab is-active" role="tab" data-tab="how" aria-selected="true">How are edge LMs developed?</button>
-      <button type="button" class="tab" role="tab" data-tab="who" aria-selected="false">Who develops edge LMs?</button>
-      <button type="button" class="tab" role="tab" data-tab="where" aria-selected="false">Which domains are edge LMs deployed to?</button>
+      <button type="button" class="btn tab is-active" role="tab" data-tab="how" aria-selected="true">How are edge LMs developed?</button>
+      <button type="button" class="btn tab" role="tab" data-tab="who" aria-selected="false">Who develops edge LMs?</button>
+      <button type="button" class="btn tab" role="tab" data-tab="where" aria-selected="false">Which domains are edge LMs deployed to?</button>
     </div>
 
     <div class="tab-panels">
@@ -142,7 +158,7 @@
           <div id="fig-how" class="figure-mount">
             <p class="placeholder">[ chart loads here ]</p>
           </div>
-          <figcaption><strong>Figure 3. Clustering of the 232 surveyed papers by abstract similarity.</strong> Real-world deployments (&starf;) tend to concentrate near a few clusters such as <em>model compression</em> and <em>dialog datasets</em>, while clusters like <em>reasoning performance</em> or <em>prompt compression</em> have little to no representation, suggesting that edge LM deployments favor a relatively narrow set of methods.</figcaption>
+          <figcaption class="caption"><strong>Figure 3. Clustering of the 232 surveyed papers by abstract similarity.</strong> Real-world deployments (&starf;) tend to concentrate near a few clusters such as <em>model compression</em> and <em>dialog datasets</em>, while clusters like <em>reasoning performance</em> or <em>prompt compression</em> have little to no representation, suggesting that edge LM deployments favor a relatively narrow set of methods.</figcaption>
         </figure>
       </div>
 
@@ -154,7 +170,7 @@
           <div id="fig-who" class="figure-mount" data-svg="assets/figures/collaboration_sectors.svg">
             <p class="placeholder">[ chart loads here ]</p>
           </div>
-          <figcaption><strong>Figure 4. Affiliation type of authors from papers that deployed edge LM systems.</strong> Numbers on each arc show the total count of papers contributing from that sector. Academia has the largest proportion of collaborations, while government participation remains limited and is mostly driven by cross-sector ties with academia.</figcaption>
+          <figcaption class="caption"><strong>Figure 4. Affiliation type of authors from papers that deployed edge LM systems.</strong> Numbers on each arc show the total count of papers contributing from that sector. Academia has the largest proportion of collaborations, while government participation remains limited and is mostly driven by cross-sector ties with academia.</figcaption>
         </figure>
       </div>
 
@@ -167,9 +183,9 @@
           <div id="fig-where" class="figure-mount">
             <p class="placeholder">[ chart loads here ]</p>
           </div>
-          <figcaption><strong>Figure 5. Edge LM real-world deployment domains network.</strong> Central nodes represent methods used to develop and deploy real-world edge LMs. Edge color indicates connectivity, while darker nodes indicate high sharing among domains.</figcaption>
+          <figcaption class="caption"><strong>Figure 5. Edge LM real-world deployment domains network.</strong> Central nodes represent methods used to develop and deploy real-world edge LMs. Edge color indicates connectivity, while darker nodes indicate high sharing among domains.</figcaption>
         </figure>
-        <aside id="fig-where-detail" class="pixel-frame where-detail">
+        <aside id="fig-where-detail" class="panel where-detail">
           <p class="placeholder">[ click a domain to see representative deployment papers ]</p>
         </aside>
       </div>
@@ -178,7 +194,7 @@
 
   <section id="recommendations">
     <h2>Recommendations</h2>
-    <div class="pixel-frame">
+    <div class="panel">
       <ol class="recs-list">
         <li><strong>For NLP researchers and model developers:</strong> Evaluate edge models beyond memory (e.g., compute and energy), and explore underrepresented methods since current deployments cluster around a relatively narrow toolkit.</li>
         <li><strong>For deployment practitioners and communities at the edge:</strong> Build cross-sector collaborations (academia, industry, research collectives, government), and involve local communities as active collaborators in development and deployment.</li>
@@ -190,7 +206,7 @@
   <section id="citation">
     <h2>Citation</h2>
     <div class="bibtex-wrap">
-      <pre class="pixel-frame bibtex"><code id="bibtex-code">@misc{miranda2026multilingualityedgedevelopinglanguage,
+      <pre class="panel bibtex"><code id="bibtex-code">@misc{miranda2026multilingualityedgedevelopinglanguage,
   title={{M}ultilinguality at the {E}dge: {D}eveloping {L}anguage {M}odels for the {G}lobal {S}outh},
   author={Lester James Validad Miranda and Songbo Hu and Roi Reichart and Anna Korhonen},
   year={2026},
@@ -200,16 +216,14 @@
   url={https://arxiv.org/abs/2604.21637},
 }
 </code></pre>
-      <button type="button" class="copy-btn" data-copy-target="#bibtex-code" aria-label="Copy citation to clipboard">Copy</button>
+      <button type="button" class="btn copy-btn" data-copy-target="#bibtex-code" aria-label="Copy citation to clipboard">Copy</button>
     </div>
   </section>
 
   <section id="discussion">
     <h2>Discussion</h2>
     <p>Have feedback, questions, or ideas? Join the conversation below.</p>
-    <div class="card">
-      <div class="giscus"></div>
-    </div>
+    <div class="giscus"></div>
   </section>
 
   <script src="js/pipeline.js"></script>
@@ -252,6 +266,6 @@
       document.body.appendChild(s);
     })();
   </script>
-</div>
+</main>
 </body>
 </html>
