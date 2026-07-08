@@ -6,6 +6,12 @@
 
 section { scroll-margin-top: 1rem; }
 
+/* Shown only on mobile (narrow viewport or touch-only device). */
+.mobile-note { display: none; font-style: italic; margin: 0 0 1.5rem; }
+@media (max-width: 820px), (hover: none) and (pointer: coarse) {
+  .mobile-note { display: block; }
+}
+
 /* Subheadings ("How are edge LMs developed?", pipeline stage titles):
    Univers Light, leading 110% of font size, tracking -5 (-0.005em). */
 h3 {
