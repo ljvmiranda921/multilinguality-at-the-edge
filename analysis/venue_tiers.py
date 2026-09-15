@@ -123,7 +123,7 @@ def load_counts() -> pd.DataFrame:
 
 def plot(df: pd.DataFrame, outpath: Path) -> None:
     fig, ax = plt.subplots(figsize=(8, 6))
-    offset = 0.22
+    offset = 0.235
 
     for side, shift in [("methods", -offset), ("deployments", offset)]:
         style = STYLE[side]
@@ -132,7 +132,7 @@ def plot(df: pd.DataFrame, outpath: Path) -> None:
         ax.barh(
             positions,
             widths,
-            height=0.42,
+            height=0.45,
             facecolor=style["facecolor"],
             edgecolor=style["edgecolor"],
             hatch=style["hatch"],
@@ -149,7 +149,7 @@ def plot(df: pd.DataFrame, outpath: Path) -> None:
                 f"{pct:.1f}\\% ({n})",
                 ha="left",
                 va="center",
-                fontsize=12,
+                fontsize=15,
                 color=COLORS["slate_4"],
                 zorder=4,
             )
@@ -157,7 +157,7 @@ def plot(df: pd.DataFrame, outpath: Path) -> None:
     ax.set_yticks(range(len(df)))
     ax.set_yticklabels(df.index)
     ax.set_ylim(len(df) - 0.5, -0.5)
-    ax.set_xlim(0, 62)
+    ax.set_xlim(0, 66)
     ax.set_xlabel("Percentage of papers (\\%)")
 
     ax.spines["top"].set_visible(False)
