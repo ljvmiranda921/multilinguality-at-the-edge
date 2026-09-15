@@ -15,6 +15,7 @@ from analysis.utils import (
     COLORS,
     OUTPUT_DIR,
     PLOT_PARAMS,
+    save_paper_figure,
     WEB_COLORS,
     WEB_FIGURES_DIR,
     WEB_PLOT_PARAMS,
@@ -497,8 +498,7 @@ def plot_domain_technique_network(
     ax.set_ylim(min(all_y) - margin, max(all_y) + margin)
 
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "domain_method_network.pdf", bbox_inches="tight")
-    fig.savefig(OUTPUT_DIR / "domain_method_network.png", bbox_inches="tight", dpi=150)
+    save_paper_figure(fig, OUTPUT_DIR / "domain_method_network.pdf")
     plt.close(fig)
     print(f"Saved to {OUTPUT_DIR / 'domain_method_network.pdf'}")
 

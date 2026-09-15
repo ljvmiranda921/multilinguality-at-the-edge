@@ -13,6 +13,7 @@ from analysis.utils import (
     COLORS,
     OUTPUT_DIR,
     PLOT_PARAMS,
+    save_paper_figure,
     WEB_COLORS,
     WEB_FIGURES_DIR,
     WEB_PLOT_PARAMS,
@@ -176,7 +177,7 @@ def _plot_paper(counts, outpath):
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     fig.tight_layout()
-    fig.savefig(outpath, bbox_inches="tight")
+    save_paper_figure(fig, outpath)
     plt.close(fig)
 
 

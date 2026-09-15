@@ -86,6 +86,22 @@ COLORS = {
 OUTPUT_DIR = Path("plot_outputs")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+PNG_DIR = OUTPUT_DIR / "png_highres"
+PNG_DIR.mkdir(parents=True, exist_ok=True)
+
+PNG_DPI = 600
+
+
+def save_paper_figure(fig, pdf_path: Path) -> None:
+    pdf_path = Path(pdf_path)
+    fig.savefig(pdf_path, bbox_inches="tight")
+    fig.savefig(
+        PNG_DIR / f"{pdf_path.stem}.png",
+        bbox_inches="tight",
+        dpi=PNG_DPI,
+        facecolor="white",
+    )
+
 # ----- Website styling for inline-SVG export -----
 
 WEB_COLORS = {

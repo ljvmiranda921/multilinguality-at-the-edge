@@ -7,7 +7,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
+from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, save_paper_figure
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -135,7 +135,7 @@ def main(export_to_web: bool = False):
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "infra_lingdiv_network.pdf", bbox_inches="tight")
+    save_paper_figure(fig, OUTPUT_DIR / "infra_lingdiv_network.pdf")
     plt.close(fig)
     print("Saved to outputs/infra_lingdiv_network.pdf")
 
@@ -206,7 +206,7 @@ def main(export_to_web: bool = False):
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "infra_lingdiv_ict.pdf", bbox_inches="tight")
+    save_paper_figure(fig, OUTPUT_DIR / "infra_lingdiv_ict.pdf")
     plt.close(fig)
     print("Saved to outputs/infra_lingdiv_ict.pdf")
 

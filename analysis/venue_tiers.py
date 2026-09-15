@@ -5,7 +5,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
+from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, save_paper_figure
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -171,7 +171,7 @@ def plot(df: pd.DataFrame, outpath: Path) -> None:
     )
     ax.grid(False)
     fig.tight_layout()
-    fig.savefig(outpath, bbox_inches="tight")
+    save_paper_figure(fig, outpath)
     plt.close(fig)
 
 

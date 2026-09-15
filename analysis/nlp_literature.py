@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS
+from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, save_paper_figure
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -120,7 +120,7 @@ def main():
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "nlp_literature_by_stage_prop.pdf", bbox_inches="tight")
+    save_paper_figure(fig, OUTPUT_DIR / "nlp_literature_by_stage_prop.pdf")
     plt.close(fig)
     print("Saved to plot_outputs/nlp_literature_by_stage_prop.pdf")
 

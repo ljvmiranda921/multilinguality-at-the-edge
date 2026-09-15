@@ -11,6 +11,7 @@ from analysis.utils import (
     COLORS,
     OUTPUT_DIR,
     PLOT_PARAMS,
+    save_paper_figure,
     WEB_COLORS,
     WEB_FIGURES_DIR,
     WEB_PLOT_PARAMS,
@@ -180,7 +181,7 @@ def plot_chord(matrix: np.ndarray) -> None:
     _annotate_chord_values(ax)
 
     fig.tight_layout()
-    fig.savefig(OUTPUT_DIR / "collaboration_sectors.pdf", bbox_inches="tight")
+    save_paper_figure(fig, OUTPUT_DIR / "collaboration_sectors.pdf")
     plt.close(fig)
     print(f"Saved to {OUTPUT_DIR / 'collaboration_sectors.pdf'}")
 
