@@ -29,26 +29,26 @@ HARDWARE_LABELS = {
     "Consumer PCs": "Consumer PCs",
 }
 
-MODE_ORDER = ["on-device", "client", "server"]
+MODE_ORDER = ["on-device only", "both", "client only"]
 
 MODE_STYLE = {
-    "on-device": {
+    "on-device only": {
         "facecolor": COLORS["light_blue"],
         "edgecolor": COLORS["warm_blue"],
         "hatch": "//",
         "label": "On-device",
     },
-    "client": {
-        "facecolor": COLORS["light_crest"],
-        "edgecolor": COLORS["crest"],
-        "hatch": "\\\\",
-        "label": "Client",
-    },
-    "server": {
+    "both": {
         "facecolor": COLORS["slate_1"],
         "edgecolor": COLORS["slate_3"],
         "hatch": "",
-        "label": "Server",
+        "label": "Both",
+    },
+    "client only": {
+        "facecolor": COLORS["light_crest"],
+        "edgecolor": COLORS["crest"],
+        "hatch": "\\\\",
+        "label": "Client (API)",
     },
 }
 
@@ -57,19 +57,30 @@ def split_field(value: str) -> list[str]:
     return [p.strip() for p in str(value).split(";") if p.strip() and p.strip() != "N/A"]
 
 
+def categorize(modes: list[str]) -> str | None:
+    local = bool({"on-device", "server"} & set(modes))
+    remote = "client" in modes
+    if local and remote:
+        return "both"
+    if local:
+        return "on-device only"
+    if remote:
+        return "client only"
+    return None
+
+
 def build_matrix(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
     counts = pd.DataFrame(0, index=HARDWARE_ORDER, columns=MODE_ORDER, dtype=float)
     papers = pd.Series(0, index=HARDWARE_ORDER, dtype=int)
 
     for _, row in df.iterrows():
         classes = [c for c in split_field(row["hardware_class"]) if c in HARDWARE_ORDER]
-        modes = [m for m in split_field(row["deployment_mode"]) if m in MODE_ORDER]
-        if not classes or not modes:
+        category = categorize(split_field(row["deployment_mode"]))
+        if not classes or category is None:
             continue
         for cls in classes:
             papers[cls] += 1
-            for mode in modes:
-                counts.loc[cls, mode] += 1
+            counts.loc[cls, category] += 1
 
     return counts, papers
 
