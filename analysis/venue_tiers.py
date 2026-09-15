@@ -33,10 +33,10 @@ CORE_ASTAR = [
     "international conference on machine learning",
     "aaai conference",
     "human factors in computing",
-    "acm on human-computer",
 ]
 
 CORE_RANKED = [
+    "acm on human-computer",
     "north american chapter",
     "international conference on computational linguistics",
     "language resources and evaluation",
@@ -123,67 +123,53 @@ def load_counts() -> pd.DataFrame:
 
 def plot(df: pd.DataFrame, outpath: Path) -> None:
     fig, ax = plt.subplots(figsize=(8, 6))
+    offset = 0.22
 
-    totals = df["methods_n"] + df["deployments_n"]
-    labels = [f"{t} (N={int(n)})" for t, n in zip(df.index, totals)]
-    baseline = df["deployments_n"].sum() / totals.sum() * 100
-
-    left = [0.0] * len(df)
-    for side in ["methods", "deployments"]:
+    for side, shift in [("methods", -offset), ("deployments", offset)]:
         style = STYLE[side]
-        vals = (df[f"{side}_n"] / totals * 100).to_numpy()
+        positions = [i + shift for i in range(len(df))]
+        widths = [p if n else float("nan") for p, n in zip(df[f"{side}_pct"], df[f"{side}_n"])]
         ax.barh(
-            labels,
-            vals,
-            left=left,
-            height=0.72,
-            color=style["facecolor"],
+            positions,
+            widths,
+            height=0.42,
+            facecolor=style["facecolor"],
             edgecolor=style["edgecolor"],
             hatch=style["hatch"],
-            linewidth=1.0,
-            label=style["label"],
+            linewidth=1.3,
+            label=f"{style['label']} (N={int(df[f'{side}_n'].sum())})",
+            zorder=3,
         )
-        for j, (v, off) in enumerate(zip(vals, left)):
-            if v > 11:
-                ax.text(
-                    off + v / 2,
-                    j,
-                    f"{v:.0f}\\%",
-                    ha="center",
-                    va="center",
-                    fontsize=17,
-                    fontweight="bold",
-                )
-        left = [a + b for a, b in zip(left, vals)]
+        for pos, pct, n in zip(positions, df[f"{side}_pct"], df[f"{side}_n"]):
+            if n == 0:
+                continue
+            ax.text(
+                pct + 1.2,
+                pos,
+                f"{pct:.1f}\\% ({n})",
+                ha="left",
+                va="center",
+                fontsize=12,
+                color=COLORS["slate_4"],
+                zorder=4,
+            )
 
-    ax.axvline(
-        100 - baseline,
-        color=COLORS["slate_3"],
-        linestyle=(0, (4, 3)),
-        linewidth=1.4,
-        zorder=5,
-    )
-    ax.text(
-        100 - baseline - 1.5,
-        -0.72,
-        f"corpus baseline {baseline:.0f}\\%",
-        ha="right",
-        va="center",
-        fontsize=13,
-        color=COLORS["slate_3"],
-    )
-
+    ax.set_yticks(range(len(df)))
+    ax.set_yticklabels(df.index)
+    ax.set_ylim(len(df) - 0.5, -0.5)
+    ax.set_xlim(0, 62)
     ax.set_xlabel("Percentage of papers (\\%)")
-    ax.set_xlim(0, 100)
+
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
     ax.legend(
         frameon=False,
         loc="upper center",
-        bbox_to_anchor=(0.5, -0.18),
+        bbox_to_anchor=(0.5, -0.16),
         ncol=2,
     )
     ax.grid(False)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
     fig.tight_layout()
     fig.savefig(outpath, bbox_inches="tight")
     plt.close(fig)
