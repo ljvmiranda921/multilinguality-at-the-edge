@@ -2,6 +2,8 @@ from pathlib import Path
 
 import torch
 
+HF_DATASET = "cambridgeltl/multilinguality-at-the-edge-papers"
+
 
 def get_device() -> str:
     if torch.backends.mps.is_available():
@@ -24,9 +26,6 @@ PLOT_PARAMS = {
     "legend.fontsize": FONT_SIZES.get("medium"),
     "figure.titlesize": FONT_SIZES.get("medium"),
     "text.usetex": True,
-    # Render all LaTeX text (and math) in Helvetica, the metric-identical
-    # twin of Arial. pdflatex ships no true Arial, so helvet is the standard
-    # substitute and keeps the existing \textsc, \%, ``'' markup working.
     "text.latex.preamble": "\n".join(
         [
             r"\usepackage{helvet}",
@@ -101,6 +100,7 @@ def save_paper_figure(fig, pdf_path: Path) -> None:
         dpi=PNG_DPI,
         facecolor="white",
     )
+
 
 # ----- Website styling for inline-SVG export -----
 

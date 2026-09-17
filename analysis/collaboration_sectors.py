@@ -5,10 +5,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from datasets import load_dataset
 from mpl_chord_diagram import chord_diagram
 
 from analysis.utils import (
     COLORS,
+    HF_DATASET,
     OUTPUT_DIR,
     PLOT_PARAMS,
     save_paper_figure,
@@ -21,8 +23,6 @@ CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
 
 plt.rcParams.update(PLOT_PARAMS)
-
-DATA_PATH = ROOT / "data" / "papers_application.csv"
 
 SECTOR_ORDER = ["Academia", "Industry", "Research\ncollective", "Government"]
 
@@ -232,7 +232,7 @@ def plot_chord_web(matrix: np.ndarray, outpath: Path) -> None:
 
 
 def main(export_to_web: bool = False):
-    df = pd.read_csv(DATA_PATH)
+    df = load_dataset(HF_DATASET, "deployments", split="train").to_pandas()
     print(f"Loaded: {len(df)} papers")
 
     matrix = build_collaboration_matrix(df)

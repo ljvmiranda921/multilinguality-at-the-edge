@@ -10,9 +10,11 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 from adjustText import adjust_text
+from datasets import load_dataset
 
 from analysis.utils import (
     COLORS,
+    HF_DATASET,
     OUTPUT_DIR,
     PLOT_PARAMS,
     save_paper_figure,
@@ -26,7 +28,6 @@ ROOT = CWD.parent
 
 plt.rcParams.update(PLOT_PARAMS)
 
-DATA_PATH = ROOT / "data" / "papers_application.csv"
 WEB_DATA_DIR = ROOT / "docs" / "assets" / "data"
 
 DOMAIN_ORDER = [
@@ -758,7 +759,7 @@ def export_domain_network_web_data(
 
 
 def main(export_to_web: bool = False):
-    df = pd.read_csv(DATA_PATH)
+    df = load_dataset(HF_DATASET, "deployments", split="train").to_pandas()
     print(f"Loaded: {len(df)} papers")
 
     G, domain_techniques, edge_weights = build_domain_technique_graph(df)

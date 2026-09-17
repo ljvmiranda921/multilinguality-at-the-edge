@@ -10,10 +10,11 @@ import pandas as pd
 import torch
 import umap
 from adjustText import adjust_text
+from datasets import load_dataset
 from keybert import KeyBERT
 from sentence_transformers import SentenceTransformer
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, get_device
+from analysis.utils import COLORS, HF_DATASET, OUTPUT_DIR, PLOT_PARAMS, get_device
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
@@ -21,8 +22,6 @@ WEB_DATA_DIR = ROOT / "docs" / "assets" / "data"
 
 plt.rcParams.update(PLOT_PARAMS)
 
-MAIN_DATA_PATH = ROOT / "data" / "papers_multilingual_edge_llm.csv"
-APP_DATA_PATH = ROOT / "data" / "papers_application.csv"
 
 CLUSTER_COLORS = [
     COLORS["cherry"],
@@ -87,8 +86,8 @@ REMOVE_LIST = {
 
 
 def load_and_merge_data() -> tuple[pd.DataFrame, set[str]]:
-    main_df = pd.read_csv(MAIN_DATA_PATH)
-    app_df = pd.read_csv(APP_DATA_PATH)
+    main_df = load_dataset(HF_DATASET, "general", split="train").to_pandas()
+    app_df = load_dataset(HF_DATASET, "deployments", split="train").to_pandas()
 
     def norm(s: pd.Series) -> pd.Series:
         return s.str.lower().str.replace(r"[^a-z0-9]+", " ", regex=True).str.strip()
