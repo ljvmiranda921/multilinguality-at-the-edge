@@ -7,10 +7,12 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
+
+from datasets import load_dataset
 
 from analysis.utils import (
     COLORS,
+    HF_DATASET,
     OUTPUT_DIR,
     PLOT_PARAMS,
     save_paper_figure,
@@ -24,8 +26,6 @@ CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
 
 plt.rcParams.update(PLOT_PARAMS)
-
-DATA_PATH = ROOT / "data" / "papers_multilingual_edge_llm.csv"
 
 LANG_BINS = ["1", "2--10", "11--50", "50+"]
 
@@ -245,7 +245,7 @@ def _plot_web(counts, outpath):
 
 
 def main(export_to_web: bool = False):
-    df = pd.read_csv(DATA_PATH)
+    df = load_dataset(HF_DATASET, "general", split="train").to_pandas()
     print(f"Loaded: {len(df)} papers")
 
     df["_langs"] = df["languages_supported"].apply(_parse_langs)

@@ -4,16 +4,21 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, save_paper_figure
+from datasets import load_dataset
+
+from analysis.utils import (
+    COLORS,
+    HF_DATASET,
+    OUTPUT_DIR,
+    PLOT_PARAMS,
+    save_paper_figure,
+)
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
 
 plt.rcParams.update(PLOT_PARAMS)
-
-DATA_PATH = ROOT / "data" / "papers_multilingual_edge_llm.csv"
 
 FOCUS_STYLE = {
     "Efficiency": {
@@ -57,7 +62,7 @@ STAGE_LABELS = {
 
 
 def main():
-    df = pd.read_csv(DATA_PATH)
+    df = load_dataset(HF_DATASET, "general", split="train").to_pandas()
     print(f"Loaded: {len(df)} papers")
     df_focus = df[df["research_focus"].isin(FOCUS_ORDER)]
     df_focus = df_focus[df_focus["primary_stage"].isin(STAGE_ORDER)]

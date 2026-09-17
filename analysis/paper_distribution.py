@@ -3,12 +3,13 @@
 from pathlib import Path
 
 import pandas as pd
+from datasets import load_dataset
+
+from analysis.utils import HF_DATASET
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
 
-DATA_MAIN = ROOT / "data" / "papers_multilingual_edge_llm.csv"
-DATA_APP = ROOT / "data" / "papers_application.csv"
 DATA_BOTH = ROOT / "data" / "papers_both.csv"
 
 CATEGORY_ORDER = ["Methodology", "Model Release", "Real-world Deployment"]
@@ -19,13 +20,13 @@ def _normalize(title: str) -> str:
 
 
 def main():
-    df_main = pd.read_csv(DATA_MAIN)
-    df_app = pd.read_csv(DATA_APP)
+    df_main = load_dataset(HF_DATASET, "general", split="train").to_pandas()
+    df_app = load_dataset(HF_DATASET, "deployments", split="train").to_pandas()
     df_both = pd.read_csv(DATA_BOTH)
 
     both_titles = set(df_both["title"].apply(_normalize))
 
-    # Categorize main papers: model release if in both, else methodology
+    # Categorize main papers
     records = []
     for _, row in df_main.iterrows():
         t = _normalize(row["title"])

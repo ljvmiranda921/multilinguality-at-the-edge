@@ -6,14 +6,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, save_paper_figure
+from datasets import load_dataset
+
+from analysis.utils import (
+    COLORS,
+    HF_DATASET,
+    OUTPUT_DIR,
+    PLOT_PARAMS,
+    save_paper_figure,
+)
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
 
 plt.rcParams.update(PLOT_PARAMS)
-
-DATA_PATH = ROOT / "data" / "papers_application.csv"
 
 HARDWARE_ORDER = [
     "Microcontrollers",
@@ -138,7 +144,7 @@ def plot(counts: pd.DataFrame, papers: pd.Series, outpath: Path) -> None:
 
 
 def main() -> None:
-    df = pd.read_csv(DATA_PATH)
+    df = load_dataset(HF_DATASET, "deployments", split="train").to_pandas()
     counts, papers = build_matrix(df)
 
     print(counts.astype(int).to_string())

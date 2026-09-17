@@ -5,15 +5,20 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from analysis.utils import COLORS, OUTPUT_DIR, PLOT_PARAMS, save_paper_figure
+from datasets import load_dataset
+
+from analysis.utils import (
+    COLORS,
+    HF_DATASET,
+    OUTPUT_DIR,
+    PLOT_PARAMS,
+    save_paper_figure,
+)
 
 CWD = Path(__file__).resolve().parent
 ROOT = CWD.parent
 
 plt.rcParams.update(PLOT_PARAMS)
-
-MAIN_DATA_PATH = ROOT / "data" / "papers_multilingual_edge_llm.csv"
-APP_DATA_PATH = ROOT / "data" / "papers_application.csv"
 
 TIER_ORDER = [
     "Top-tier (A*)",
@@ -108,8 +113,8 @@ def classify_venue(venue: str) -> str:
 
 
 def load_counts() -> pd.DataFrame:
-    main = pd.read_csv(MAIN_DATA_PATH)
-    app = pd.read_csv(APP_DATA_PATH)
+    main = load_dataset(HF_DATASET, "general", split="train").to_pandas()
+    app = load_dataset(HF_DATASET, "deployments", split="train").to_pandas()
 
     rows = {}
     for name, df in [("methods", main), ("deployments", app)]:
