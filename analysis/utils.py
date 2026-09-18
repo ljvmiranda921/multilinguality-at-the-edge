@@ -2,7 +2,7 @@ from pathlib import Path
 
 import torch
 
-HF_DATASET = "cambridgeltl/multilinguality-at-the-edge-papers"
+HF_DATASET = "ljvmiranda921/multilinguality-at-the-edge-papers"
 
 
 def get_device() -> str:
