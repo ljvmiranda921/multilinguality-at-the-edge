@@ -82,6 +82,25 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
   .callout { font-size: 1.3rem; }
 }
 
+/* ---------- sidenote ---------- */
+
+.sidenote-anchor { position: relative; }
+.sidenote-ref { color: var(--blue); font-size: 0.5em; margin-left: 0.1em; }
+.sidenote { margin: -0.6rem 0 1.6rem; padding-left: 0.75rem; border-left: 1px solid var(--rule); }
+.sidenote p { margin: 0 0 0.4rem; }
+.sidenote ol { margin: 0; padding-left: 1.1rem; }
+.sidenote li { margin-bottom: 0.3rem; }
+
+@media (min-width: 1400px) {
+  .sidenote {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 2.5rem);
+    width: 220px;
+    margin: 0;
+  }
+}
+
 /* ---------- inline citation ----------
    Use: <a class="cite" href="...">(Author et al., 2021)</a> */
 
