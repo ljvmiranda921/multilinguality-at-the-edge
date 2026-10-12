@@ -194,20 +194,15 @@
       Answering this requires combining multilinguality and edge NLP. But combining the two areas is hard: while their goals are aligned, their technical requirements often compete, and the two research communities remain largely siloed. The field has several names for this tension: the <em>low-resource double bind</em> <a class="cite" href="https://aclanthology.org/2021.findings-emnlp.282/">(Ahia et al., 2021)</a>, the <em>square-one bias</em> <a class="cite" href="https://aclanthology.org/2022.findings-acl.184/">(Ruder et al., 2022)</a>, <em>Zeno's paradox of language technology</em> <a class="cite" href="https://aclanthology.org/2024.emnlp-main.983/">(Nigatu et al., 2024)</a>, among others.
     </p>
 
+    <h2>Research at the Intersection</h2>
     <div class="sidenote-anchor">
-      <p class="callout">
-        To understand the state of the art and the challenges of combining the two areas, we survey 306 papers<a class="sidenote-ref" href="#methodology">1</a> that tackle this problem across the language modelling pipeline.
+      <p>
+        To understand the state of the art and the challenges of combining the two areas, we survey 306 papers<a class="sidenote-ref" href="#methodology" data-drawer-open aria-controls="methodology">1</a> that tackle this problem across the language modelling pipeline.
+        Below, we show an overview of these papers based on the languages they support and the range of model sizes they release.
       </p>
-      <details id="methodology" class="sidenote caption">
-        <summary><sup>1</sup> Show methodology</summary>
-        <p>Papers from January 2021 to March 2026.</p>
-        <ol>
-          <li><strong>Keyword search</strong> of *CL, ML venues, workshops, and preprints via Semantic Scholar: 2,473 papers.</li>
-          <li><strong>Targeted search</strong> of regional, efficiency, and HCI/education venues, plus grey literature: 55 papers.</li>
-          <li><strong>Citation filter</strong> by publication year (targeted results exempt): 1,069 papers.</li>
-          <li><strong>Annotation</strong> with GPT-4.1 Mini, then manual post-correction and exclusion of out-of-scope work: 306 papers.</li>
-        </ol>
-      </details>
+      <div class="sidenote caption">
+        <button type="button" class="sidenote-toggle" data-drawer-open aria-controls="methodology" aria-expanded="false"><sup>1</sup> Show methodology &#9656;</button>
+      </div>
     </div>
 
     <div class="figure-pair">
@@ -254,6 +249,7 @@
   </section>
 
   <section id="pipeline-hero">
+    <h2>Results: Multilingual Edge LM Survey</h2>
     <p>
       The requirements for deploying on the edge and supporting multilinguality often have competing requirements that impose challenges across the language modelling pipeline.
       <em>Click</em> on each pipeline stage (or requirement) to read about the challenges and the state of the art.
@@ -267,7 +263,7 @@
   </section>
 
   <section id="analysis">
-    <h2>Analysis</h2>
+    <h2>Analysis: From Methods to Systems</h2>
 
     <p>
       We also looked into <strong>edge LM systems</strong>, which we define as completed efforts that have been integrated into real-world applications. To identify them, we manually classified each of the 306 papers on whether an actual model deployment took place, obtaining 58 systems in the process.
@@ -275,7 +271,7 @@
 
     <h3>How are edge LMs developed?</h3>
     <p>
-      To examine how edge LM systems are made, we situate the 58 deployment papers within the broader 306 surveyed papers. We embed each abstract with MiniLM, reduce to 2D with UMAP, and cluster with HDBSCAN; KeyBERT extracts the top keywords per cluster. Hover any cluster to see representative papers.
+      To examine how edge LM systems are made, we situate the 58 deployment papers within the broader 306 surveyed papers. We embed each abstract with MiniLM, reduce to 2D with UMAP, and cluster with HDBSCAN. Then, we use KeyBERT to extract the top keywords per cluster. Hover any cluster to see representative papers.
     </p>
     <figure class="analysis-figure">
       <div id="fig-how" class="figure-mount">
@@ -342,6 +338,39 @@
     <p>Have feedback, questions, or ideas? Join the conversation below.</p>
     <div class="giscus"></div>
   </section>
+
+  <div class="drawer-backdrop" data-drawer-close></div>
+  <aside id="methodology" class="drawer" role="dialog" aria-modal="true" aria-labelledby="methodology-title" tabindex="-1">
+    <button type="button" class="btn drawer-close" data-drawer-close aria-label="Close methodology">Close</button>
+    <h2 id="methodology-title">Methodology</h2>
+    <p>To understand the landscape of multilingual and edge LMs, we collect research from January 2021 to March 2026 on multilinguality, edge and efficient NLP, or both. In total, we obtain 306 papers.</p>
+
+    <ol class="drawer-flow">
+      <li><span class="n">2,473</span> keyword search</li>
+      <li><span class="n">+55</span> targeted search</li>
+      <li><span class="n">1,069</span> screened</li>
+      <li><span class="n">306</span> included</li>
+    </ol>
+
+    <h3>Identification of papers</h3>
+    <p><strong>Keyword search.</strong> We gather studies from *CL (e.g., ACL, EMNLP, TACL), machine learning venues (e.g., NeurIPS, ICLR, TMLR), related workshops, and preprints using the <a href="https://www.semanticscholar.org/product/api" target="_blank" rel="noopener noreferrer">Semantic Scholar API</a>. Our search query includes keywords pertaining to multilingual NLP, efficiency, and LM deployment. This step resulted in 2,473 papers.</p>
+    <p><strong>Targeted search.</strong> To cover work outside mainstream *CL and ML venues, we perform a targeted search across three groups of venues: regional venues such as AfricaNLP and PACLIC, efficiency-focused workshops such as SustaiNLP and ENLSP, and human-computer interaction and education venues where deployments are commonly reported, such as CHI and AIED. We also include grey literature such as technical reports and model cards that describe deployed systems. Within these sources, we include papers that study a non-English language, a hardware constraint, or a real-world deployment. This step resulted in 55 papers.</p>
+
+    <h3>Screening and annotation of papers</h3>
+    <p><strong>Citation filter.</strong> We screen the keyword search results by citation count in a staggered manner, with thresholds by publication year. We apply this filter to keep annotation tractable, as the keyword search returns thousands of papers. In addition, the targeted search results are exempted from this filter so as to accommodate relevant works that may be disadvantaged by this criterion. Combined, this step led to an initial set of 1,069 papers for annotation.</p>
+    <p><strong>LM-assisted annotation.</strong> In order to characterize each work, we annotate each paper across several dimensions. We bootstrapped all annotations using GPT-4.1 Mini, prompting the model with each paper's title and abstract.</p>
+    <ul>
+      <li><strong>Pipeline stage</strong> (multi-label): which stage(s) of the LM pipeline the work contributes to: Data Collection, Pretraining, Post-training, Inference, Evaluation, or Full-Stack.</li>
+      <li><strong>Focus</strong> (single-label): whether the work specifically targets multilinguality or edge efficiency, or both.</li>
+      <li><strong>Deployment device and mode</strong>: the target hardware or device for deployment, if specified, and whether a work was deployed on-device or as a client.</li>
+      <li><strong>Deployment</strong> (yes/no): whether an actual deployment has taken place, i.e., any mention of usage or community-based evaluation or feedback.</li>
+      <li><strong>Artifacts</strong>: for papers that release a model or dataset, its name, parameter count (if model), and whether it was used for training or evaluation (if dataset).</li>
+    </ul>
+    <p><strong>Post-correction.</strong> We conduct a round of post-correction to verify the LM-bootstrapped annotations. We check whether the labels are correct given the title and abstract; if they appear incorrect or ambiguous, then we consult the full paper and make a correction. During this step, we also exclude papers that (1) address neither multilinguality nor efficiency, (2) do not involve language as a modality (e.g., vision-only work), or (3) have no technical contribution such as surveys and position papers. This reduces the set to 306 papers.</p>
+
+    <h3>Included papers in the survey</h3>
+    <p>These 306 works range from peer-reviewed publications to workshops, regional venues, and grey literature. Out of the 306 papers, 6.9% are model releases, 74.2% describe methodologies for developing these edge LMs, while the rest (58 papers, 19.0%) are real-world system deployments.</p>
+  </aside>
 
   <script src="js/pipeline.js"></script>
   <script src="js/main.js"></script>
