@@ -247,7 +247,7 @@ a.cite { font-size: 0.88em; white-space: nowrap; margin-left: 0.2em; }
   pointer-events: none;
 }
 .hw-stage { aspect-ratio: 1 / 1; }
-.hw-cell h3 { margin: 0.5rem 0 0.25rem; font-size: 1rem; }
+.hw-name { margin: 0.5rem 0 0.25rem; font-size: 1rem; font-weight: 300; line-height: 1.1; letter-spacing: -0.005em; color: var(--ink); }
 .hw-cell .caption { margin: 0; }
 .hw-figure > figcaption { margin-top: 1.25rem; }
 .hw-figure.no-webgl .hw-stage { display: none; }
