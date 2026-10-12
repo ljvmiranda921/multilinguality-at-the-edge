@@ -82,6 +82,8 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
   .callout { font-size: 1.3rem; }
 }
 
+.key-term { font-family: var(--font-heading); color: var(--blue); }
+
 /* ---------- sidenote ---------- */
 
 .sidenote-anchor { position: relative; }
@@ -129,7 +131,7 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
 .drawer-open { overflow: hidden; }
 .drawer:focus { outline: none; }
 .drawer h2 { margin-top: 0; }
-.drawer h3 { margin: 1.75rem 0 0.5rem; }
+.drawer h3 { margin: 1.75rem 0 0.5rem; color: var(--blue); }
 .drawer p, .drawer li { font-size: 0.95rem; }
 .drawer ul { padding-left: 1.1rem; }
 .drawer li { margin-bottom: 0.4rem; }
@@ -137,7 +139,7 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
 
 .drawer-flow {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
   list-style: none;
   padding: 1rem 0;
@@ -153,7 +155,6 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
 }
 @media (max-width: 640px) {
   .drawer { padding: 1.5rem 16px 2.5rem; border-left: 0; }
-  .drawer-flow { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 1400px) {
