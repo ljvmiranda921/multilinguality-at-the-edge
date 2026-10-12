@@ -154,6 +154,7 @@
     <nav class="top-links">
       <a class="btn" href="https://arxiv.org/abs/2604.21637" target="_blank" rel="noopener noreferrer">Paper</a>
       <a class="btn" href="https://github.com/ljvmiranda921/multilinguality-at-the-edge" target="_blank" rel="noopener noreferrer">Code</a>
+      <a class="btn" href="https://huggingface.co/collections/ljvmiranda921/edge-nlp" target="_blank" rel="noopener noreferrer">Collection</a>
     </nav>
   </header>
 
@@ -170,7 +171,7 @@
   </section>
 
   <section id="intro">
-    <p class="mobile-note caption">Note: the interactive charts render better on desktop.</p>
+    <p class="mobile-note caption">This website is better viewed on a desktop</p>
 
     <p class="callout">
       What shapes multilingual edge LM development, and how can these models reach the communities that need them the most?
@@ -195,17 +196,18 @@
 
     <div class="sidenote-anchor">
       <p class="callout">
-        To understand the state of the art and the challenges of combining the two areas, we survey 306 papers<sup class="sidenote-ref">1</sup> that tackle this problem across the language modelling pipeline.
+        To understand the state of the art and the challenges of combining the two areas, we survey 306 papers<a class="sidenote-ref" href="#methodology">1</a> that tackle this problem across the language modelling pipeline.
       </p>
-      <aside class="sidenote caption">
-        <p><sup>1</sup> <strong>Methodology.</strong> Papers from January 2021 to March 2026.</p>
+      <details id="methodology" class="sidenote caption">
+        <summary><sup>1</sup> Show methodology</summary>
+        <p>Papers from January 2021 to March 2026.</p>
         <ol>
           <li><strong>Keyword search</strong> of *CL, ML venues, workshops, and preprints via Semantic Scholar: 2,473 papers.</li>
           <li><strong>Targeted search</strong> of regional, efficiency, and HCI/education venues, plus grey literature: 55 papers.</li>
           <li><strong>Citation filter</strong> by publication year (targeted results exempt): 1,069 papers.</li>
           <li><strong>Annotation</strong> with GPT-4.1 Mini, then manual post-correction and exclusion of out-of-scope work: 306 papers.</li>
         </ol>
-      </aside>
+      </details>
     </div>
 
     <div class="figure-pair">
@@ -222,6 +224,33 @@
         <figcaption class="caption"><strong>Figure 2b. Model sizes (in billion parameters) of various language models.</strong> For each model family in our curated set of released models, we recorded publicly documented parameter counts and plotted the range of available sizes on a log scale.</figcaption>
       </figure>
     </div>
+
+    <figure id="fig-hardware" class="hw-figure">
+      <div class="hw-grid">
+        <canvas aria-hidden="true"></canvas>
+        <div class="hw-cell">
+          <div class="hw-stage"></div>
+          <h3>Microcontrollers</h3>
+          <p class="caption">ESP32, Arduino<br>512&nbsp;KB&ndash;16&nbsp;MB RAM<br>On-device (~30M)</p>
+        </div>
+        <div class="hw-cell">
+          <div class="hw-stage"></div>
+          <h3>Single-board computers</h3>
+          <p class="caption">Raspberry Pi, NVIDIA Jetson<br>1&ndash;16&nbsp;GB RAM<br>On-device (~3B)</p>
+        </div>
+        <div class="hw-cell">
+          <div class="hw-stage"></div>
+          <h3>Smartphones</h3>
+          <p class="caption">Tecno Spark 20, Galaxy A16, iPhone 16 Pro<br>4&ndash;24&nbsp;GB RAM<br>On-device (~3B, ~7B&#8209;Q4); client</p>
+        </div>
+        <div class="hw-cell">
+          <div class="hw-stage"></div>
+          <h3>Consumer PCs</h3>
+          <p class="caption">Chromebook, MacBook, RTX laptops<br>8&ndash;32&nbsp;GB RAM<br>On-device (7B&ndash;32B); client</p>
+        </div>
+      </div>
+      <figcaption class="caption"><strong>Figure 2c. Hardware classes for edge LM deployment.</strong> We organize edge devices into four classes according to their technical specifications. For Memory, we report volatile working memory which governs the size of the model that can be loaded. For Compute, we describe the processing throughput (in trillion operations per second (TOPS) or GHz) which dictates inference speed.</figcaption>
+    </figure>
   </section>
 
   <section id="pipeline-hero">
@@ -317,6 +346,7 @@
   <script src="js/pipeline.js"></script>
   <script src="js/main.js"></script>
   <script type="module" src="js/pipeline-mesh.js"></script>
+  <script type="module" src="js/figures/fig-hardware.js"></script>
   <script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
   <script src="js/figures/fig-infra-lingdiv.js"></script>
   <script src="js/figures/fig-loader.js"></script>

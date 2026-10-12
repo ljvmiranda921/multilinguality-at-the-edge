@@ -31,4 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 2000);
     });
   });
+
+  document.querySelectorAll(".sidenote-ref").forEach((ref) => {
+    ref.addEventListener("click", (e) => {
+      const note = document.querySelector(ref.getAttribute("href"));
+      if (!note) return;
+      e.preventDefault();
+      note.open = !note.open;
+    });
+  });
 });

@@ -85,8 +85,13 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
 /* ---------- sidenote ---------- */
 
 .sidenote-anchor { position: relative; }
-.sidenote-ref { color: var(--blue); font-size: 0.5em; margin-left: 0.1em; }
+.sidenote-ref { color: var(--blue); font-size: 0.5em; margin-left: 0.1em; vertical-align: super; text-decoration: none; }
 .sidenote { margin: -0.6rem 0 1.6rem; padding-left: 0.75rem; border-left: 1px solid var(--rule); }
+.sidenote summary { cursor: pointer; color: var(--blue); list-style: none; }
+.sidenote summary::-webkit-details-marker { display: none; }
+.sidenote summary::after { content: " \25B8"; }
+.sidenote[open] summary { margin-bottom: 0.4rem; }
+.sidenote[open] summary::after { content: " \25BE"; }
 .sidenote p { margin: 0 0 0.4rem; }
 .sidenote ol { margin: 0; padding-left: 1.1rem; }
 .sidenote li { margin-bottom: 0.3rem; }
@@ -163,6 +168,31 @@ a.cite { font-size: 0.88em; white-space: nowrap; margin-left: 0.2em; }
 
 @media (max-width: 640px) {
   .figure-pair { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+
+/* Full-bleed hardware classes figure: one WebGL canvas, one viewport per cell. */
+.hw-figure { margin: 2.5rem 0 2rem; }
+.hw-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.hw-grid canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.hw-stage { aspect-ratio: 1 / 1; }
+.hw-cell h3 { margin: 0.5rem 0 0.25rem; font-size: 1rem; }
+.hw-cell .caption { margin: 0; }
+.hw-figure > figcaption { margin-top: 1.25rem; }
+.hw-figure.no-webgl .hw-stage { display: none; }
+
+@media (max-width: 640px) {
+  .hw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1rem; }
 }
 
 /* Figure on the left + caption on the right inside each analysis tab. */
