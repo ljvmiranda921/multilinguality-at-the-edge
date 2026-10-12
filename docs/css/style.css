@@ -82,6 +82,91 @@ details.abstract-full[open] summary::before { content: "\25BE  "; }
   .callout { font-size: 1.3rem; }
 }
 
+.key-term { font-family: var(--font-heading); color: var(--blue); }
+
+/* ---------- sidenote ---------- */
+
+.sidenote-anchor { position: relative; }
+.sidenote-ref { color: var(--blue); font-size: 0.7em; margin-left: 0.1em; vertical-align: super; text-decoration: none; }
+.sidenote { margin: 0 0 1.6rem; padding-left: 0.75rem; border-left: 1px solid var(--rule); }
+.sidenote-toggle {
+  font: inherit;
+  color: var(--blue);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.sidenote-toggle:hover { text-decoration: underline; }
+
+/* ---------- drawer (methodology) ---------- */
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s;
+  z-index: 999;
+}
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(560px, 100vw);
+  overflow-y: auto;
+  background: var(--white);
+  border-left: 2px solid var(--ink);
+  padding: 2rem 2rem 3rem;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s;
+  z-index: 1000;
+}
+.drawer-open .drawer { transform: none; visibility: visible; }
+.drawer-open .drawer-backdrop { opacity: 1; visibility: visible; }
+.drawer-open { overflow: hidden; }
+.drawer:focus { outline: none; }
+.drawer h2 { margin-top: 0; }
+.drawer h3 { margin: 1.75rem 0 0.5rem; color: var(--blue); }
+.drawer p, .drawer li { font-size: 0.95rem; }
+.drawer ul { padding-left: 1.1rem; }
+.drawer li { margin-bottom: 0.4rem; }
+.drawer-close { float: right; margin-left: 1rem; }
+
+.drawer-flow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  list-style: none;
+  padding: 1rem 0;
+  margin: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.drawer-flow li { margin: 0; font-size: 0.85rem; color: var(--muted); line-height: 1.2; }
+.drawer-flow .n { display: block; font-size: 1.6rem; line-height: 1.1; color: var(--blue); }
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer, .drawer-backdrop { transition: none; }
+}
+@media (max-width: 640px) {
+  .drawer { padding: 1.5rem 16px 2.5rem; border-left: 0; }
+}
+
+@media (min-width: 1400px) {
+  .sidenote {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 2.5rem);
+    width: 220px;
+    margin: 0;
+  }
+}
+
 /* ---------- inline citation ----------
    Use: <a class="cite" href="...">(Author et al., 2021)</a> */
 
@@ -144,6 +229,31 @@ a.cite { font-size: 0.88em; white-space: nowrap; margin-left: 0.2em; }
 
 @media (max-width: 640px) {
   .figure-pair { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+
+/* Full-bleed hardware classes figure: one WebGL canvas, one viewport per cell. */
+.hw-figure { margin: 2.5rem 0 2rem; }
+.hw-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.hw-grid canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.hw-stage { aspect-ratio: 1 / 1; }
+.hw-name { margin: 0.5rem 0 0.25rem; font-size: 1rem; font-weight: 300; line-height: 1.1; letter-spacing: -0.005em; color: var(--ink); }
+.hw-cell .caption { margin: 0; }
+.hw-figure > figcaption { margin-top: 1.25rem; }
+.hw-figure.no-webgl .hw-stage { display: none; }
+
+@media (max-width: 640px) {
+  .hw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1rem; }
 }
 
 /* Figure on the left + caption on the right inside each analysis tab. */

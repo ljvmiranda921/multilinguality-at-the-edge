@@ -31,4 +31,29 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 2000);
     });
   });
+
+  const drawer = document.getElementById("methodology");
+  if (drawer) {
+    const toggles = document.querySelectorAll("[data-drawer-open]");
+    let lastFocus = null;
+    const setOpen = (open) => {
+      document.body.classList.toggle("drawer-open", open);
+      toggles.forEach((t) => t.setAttribute("aria-expanded", String(open)));
+      if (open) {
+        lastFocus = document.activeElement;
+        drawer.focus();
+      } else if (lastFocus) {
+        lastFocus.focus();
+      }
+    };
+    toggles.forEach((t) => t.addEventListener("click", (e) => {
+      e.preventDefault();
+      setOpen(true);
+    }));
+    document.querySelectorAll("[data-drawer-close]").forEach((c) =>
+      c.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && document.body.classList.contains("drawer-open")) setOpen(false);
+    });
+  }
 });
